@@ -228,7 +228,6 @@ namespace Calendar
 
         private void DeleteNoteController()
         {
-
             CalendarResourcesManager.RemoveHoliday(startText.ToString(),
             calBase.SelectedDate.Day.ToString(),
             calBase.SelectedDate.Month.ToString(),
@@ -240,7 +239,8 @@ namespace Calendar
                 noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
 
             if (noteList.Items.Count == 1)
-                if (gviPrev.Style == (Style)this.Resources["ThisMonthStyle"]) gviPrev.Foreground = new SolidColorBrush(Colors.Black);
+                if (gviPrev.Style == (Style)this.Resources["ThisMonthStyle"]) 
+                    gviPrev.Foreground = new SolidColorBrush(Colors.Black);
                 else gviPrev.Foreground = new SolidColorBrush(Colors.DarkGray);
 
             AddNoteFlyout.Hide();

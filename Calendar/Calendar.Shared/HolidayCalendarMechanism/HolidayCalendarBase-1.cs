@@ -152,12 +152,13 @@ namespace Calendar.HolidayCalendarMechanism
                         }
                 }
 
+            string mine = CalendarResourcesManager.resource.GetString("MineAsTag");
             foreach (XElement pers in CalendarResourcesManager.PersonalData.Root.Descendants("holidays").Descendants("persDate"))
                 if (pers.Attribute("month").Value == SelectedDate.Month.ToString() && (pers.Attribute("year").Value == SelectedDate.Year.ToString() || pers.Attribute("year").Value == "0"))
                     HolidayItemCollection.Add(new HolidayItem 
                     { Date = Convert.ToInt32(pers.Attribute("date").Value), 
                         HolidayName = pers.Attribute("name").Value,
-                      HolidayTag = CalendarResourcesManager.resource.GetString("MineAsTag")
+                      HolidayTag = mine
                     });
 
             HolidayItemCollection.Add(new HolidayItem { Date = 0,

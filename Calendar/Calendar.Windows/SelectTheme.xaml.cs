@@ -77,7 +77,7 @@ namespace Calendar
             foreach (XElement holiday in collection)
                 itemSource.Add(new LvItem
                 {
-                    Name = String.Format("/SelectTheme/{0}.png", holiday.FirstAttribute.Value),
+                    Name = "/SelectTheme/" + holiday.FirstAttribute.Value + ".png",
                     Text = holiday.LastAttribute.Value,
                     Tag = holiday.FirstAttribute.Value
                 });

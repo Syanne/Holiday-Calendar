@@ -39,8 +39,7 @@ namespace Calendar
                     tileToggle.IsOn = true;
                 if (task.Value.Name == "ToastBackgroundTask")
                     toastToggle.IsOn = true;
-            }
-            
+            }            
 
             //FlipViews (small and full-screen)
             SampleDataSource sds = new SampleDataSource();

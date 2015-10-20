@@ -49,7 +49,6 @@ namespace Calendar
 
         void PagePreLoader()
         {
-
             //first day of week
             if (ApplicationData.Current.RoamingSettings.Values["Weekend"] != null)
                 fDay = Convert.ToInt32(ApplicationData.Current.RoamingSettings.Values["Weekend"]);
@@ -59,12 +58,10 @@ namespace Calendar
                 fDay = 5;
             }
 
-
             SelectedHolidayType = All;
 
             gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
             startText = new StringBuilder(50);
-
             calBase = new HolidayCalendarBase(ApplicationData.Current.RoamingSettings.Values["Weekend"].ToString()[0]);
 
             //Weekend styles
@@ -117,11 +114,19 @@ namespace Calendar
         /// </summary>
         public void FillCalendar()
         {
-            //Shows month and year in the top of calGrid
             monthNameButton.Content = calBase.SelectedDate.Date.ToString("MMMM yyyy");
 
             //from first to last day in a month
             int jj = (calBase.Start == 7) ? calBase.Start : 0;
+
+            //styles and brushes
+            Style adjStyle = (Style)this.Resources["AdjMonthStyle"];
+            Style weekndStyle = (Style)this.Resources["WeekendStyle"];
+            Style dayStyle = (Style)this.Resources["ThisMonthStyle"];
+            Brush wBgBrush = (Brush)Application.Current.Resources["WeekendBg"];
+            Brush mBgBrush = (Brush)Application.Current.Resources["MainFg"];
+            Brush DayBg = (Brush)Application.Current.Resources["DayBg"];
+            Brush DayFg = (Brush)Application.Current.Resources["DayFg"];
 
             
             //fill calendar
@@ -134,23 +139,21 @@ namespace Calendar
 
                 //adjMonths
                 if (i < calBase.Start || i >= calBase.End)
-                    gvItem.Style = (Style)this.Resources["AdjMonthStyle"];
+                    gvItem.Style = adjStyle;
                 //weekends
                 else if (i - jj == fDay || i - jj == 6)
                 {
-                    gvItem.Style = (Style)this.Resources["WeekendStyle"];
-                    gvItem.Background = (Brush)Application.Current.Resources["WeekendBg"];
-                    gvItem.Foreground = (Brush)Application.Current.Resources["MainFg"];
+                    gvItem.Style = weekndStyle;
+                    gvItem.Background = wBgBrush;
+                    gvItem.Foreground = mBgBrush;
 
                     if (i - jj == 6) jj += 7;
                 }
-
-                //simple
                 else
                 {
-                    gvItem.Style = (Style)this.Resources["ThisMonthStyle"];
-                    gvItem.Background = (Brush)Application.Current.Resources["DayBg"];
-                    gvItem.Foreground = (Brush)Application.Current.Resources["DayFg"];
+                    gvItem.Style = dayStyle;
+                    gvItem.Background = DayBg;
+                    gvItem.Foreground = DayFg;
                 }
 
                 gviCalSource.Add(gvItem);
@@ -170,14 +173,18 @@ namespace Calendar
             else holItemSource = calBase.HolidayItemCollection.Where(
                 h => h.HolidayTag == SelectedHolidayType.Content.ToString());
 
+
+            SolidColorBrush standard = new SolidColorBrush(Colors.WhiteSmoke);
+            SolidColorBrush hol = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
+                
             //holidays
             for (int i = calBase.Start; i < calBase.End; i++)
             {
                 var current = Convert.ToInt32((calGrid.Items[i] as GridViewItem).Content);
-
+               
                 if (holItemSource.Count(item => item.Date == current) != 0)
-                    (calGrid.Items[i] as GridViewItem).Foreground = new SolidColorBrush(Colors.WhiteSmoke);
-                else (calGrid.Items[i] as GridViewItem).Foreground = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
+                    (calGrid.Items[i] as GridViewItem).Foreground = standard;
+                else (calGrid.Items[i] as GridViewItem).Foreground = hol;
             }
 
             //today
