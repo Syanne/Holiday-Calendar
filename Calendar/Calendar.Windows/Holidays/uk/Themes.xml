@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes>
+  <theme name="Default" text="Оригінальне оформлення"/>  
+  <theme name="MintGreen" text="М'ятно-Зелений"/>  
+  <theme name="DarkBlue" text="Льодяна Блакить"/>  
+  <theme name="HotPink" text="Малина з Вершками"/>  
+  <theme name="Cherry" text="Стигла Вишня"/>  
+  <theme name="Orange" text="Соковитий Апельсин"/>
+  <theme name="Bottle" text="Квіти у пляшці"/>
+  <theme name="BloodDrops" text="Краплі червоного вина"/>
+</themes>

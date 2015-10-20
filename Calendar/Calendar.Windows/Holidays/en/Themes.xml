@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes>
+  <theme name="Default" text="Default"/>  
+  <theme name="MintGreen" text="Mint Green"/>  
+  <theme name="DarkBlue" text="Ice Blue"/>  
+  <theme name="HotPink" text="Raspberry and Cream"/>  
+  <theme name="Cherry" text="Ripe Cherry"/>  
+  <theme name="Orange" text="Juicy Orange"/>
+  <theme name="Bottle" text="Flowers in a Bottle"/>
+  <theme name="BloodDrops" text="Drops of Wine"/>
+</themes>

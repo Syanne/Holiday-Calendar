@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>070baebd-5106-4338-90a5-97e08918e3b9</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Calendar</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)1.2.MainPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1.3.MainPage_Controllers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)HolidayCalendarMechanism\HolidayCalendarBase-1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HolidayCalendarMechanism\HolidayCalendarBase-2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CalendarDataModels.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\StandardClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\StylesPageDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UniversalRL.cs" />
+  </ItemGroup>
+</Project>

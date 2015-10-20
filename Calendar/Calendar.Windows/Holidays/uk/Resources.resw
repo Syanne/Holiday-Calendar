@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="addNote.Content" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="AllHol.Content" xml:space="preserve">
+    <value>Усі</value>
+  </data>
+  <data name="btnholCancel.Content" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="btnHolidays.Content" xml:space="preserve">
+    <value>Зберегти</value>
+  </data>
+  <data name="changeNote.Content" xml:space="preserve">
+    <value>Змінити</value>
+  </data>
+  <data name="delNote.Content" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="everyYear.Content" xml:space="preserve">
+    <value>кожного року</value>
+  </data>
+  <data name="GoToDate.Text" xml:space="preserve">
+    <value>Перейти до:</value>
+  </data>
+  <data name="once.Content" xml:space="preserve">
+    <value>одного разу</value>
+  </data>
+  <data name="PersonalNote" xml:space="preserve">
+    <value>Додати запис</value>
+  </data>
+  <data name="reclineButton.Content" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="topString.Text" xml:space="preserve">
+    <value>Назва події:</value>
+  </data>
+  <data name="typesTopString.Text" xml:space="preserve">
+    <value>Оберіть не більше 3 видів свят:</value>
+  </data>
+  <data name="Wd1.Content" xml:space="preserve">
+    <value>Пн</value>
+  </data>
+  <data name="Wd2.Content" xml:space="preserve">
+    <value>Вт</value>
+  </data>
+  <data name="Wd3.Content" xml:space="preserve">
+    <value>Ср</value>
+  </data>
+  <data name="Wd4.Content" xml:space="preserve">
+    <value>Чт</value>
+  </data>
+  <data name="Wd5.Content" xml:space="preserve">
+    <value>Пт</value>
+  </data>
+  <data name="Wd6.Content" xml:space="preserve">
+    <value>Сб</value>
+  </data>
+  <data name="Wd7.Content" xml:space="preserve">
+    <value>Нд</value>
+  </data>
+  <data name="assesBtn.Label" xml:space="preserve">
+    <value>Оцінити</value>
+  </data>
+  <data name="daysText.Text" xml:space="preserve">
+    <value>надіслати за </value>
+  </data>
+  <data name="Mine.Content" xml:space="preserve">
+    <value>Мої</value>
+  </data>
+  <data name="textTile.Text" xml:space="preserve">
+    <value>Утримати в пам'яті всі важливі дати майже неможливо. І як же зручно, коли поряд є друг, який нагадає про завтрашню зустріч! Але раптом він і сам забуде? От лихо ...
+
+З цим завданням чудово впорається жива плитка. Вона нагадає і про зустріч ыз товаришем, і про те, яке сьогодні свято. Тепер вам буде що відзначити за чашкою кави!</value>
+  </data>
+  <data name="tileOff.Content" xml:space="preserve">
+    <value>Вимкнути</value>
+  </data>
+  <data name="tileOn.Content" xml:space="preserve">
+    <value>Увімкнути</value>
+  </data>
+  <data name="toastOff.Content" xml:space="preserve">
+    <value>Вимкнути</value>
+  </data>
+  <data name="toastOn.Content" xml:space="preserve">
+    <value>Вімкнути</value>
+  </data>
+  <data name="toastText1.Text" xml:space="preserve">
+    <value>Вкажіть, за скільки днів до події показувати нагадування, і період повторення протягом дня (у годинах).</value>
+  </data>
+  <data name="ApplicationDescription" xml:space="preserve">
+    <value>Уявіть собі, що ви маєте помічника, котрий пам'ятає про кожне свято, подію та зустріч. Він нагадає про день народження вашого друга, і ви може все ще знайти  ідеальний подарунок. Він житиме у вашому комп'ютері та планшетному ПК, і обовяз'ково попередить, що завтра ви повинні приготувати смачний обід і та попрасувати одежу.</value>
+  </data>
+  <data name="ApplicationDisplayName" xml:space="preserve">
+    <value>Святковий календар</value>
+  </data>
+  <data name="periodText.Text" xml:space="preserve">
+    <value>період (год)</value>
+  </data>
+  <data name="c1.Content" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="c2.Content" xml:space="preserve">
+    <value>2 дні</value>
+  </data>
+  <data name="c3.Content" xml:space="preserve">
+    <value>3 дні</value>
+  </data>
+  <data name="c4.Content" xml:space="preserve">
+    <value>4 дні</value>
+  </data>
+  <data name="c5.Content" xml:space="preserve">
+    <value>5 днів</value>
+  </data>
+  <data name="AddNoteText" xml:space="preserve">
+    <value>Додати запис</value>
+  </data>
+  <data name="chooseBtn.Content" xml:space="preserve">
+    <value>Вибрати</value>
+  </data>
+  <data name="preview.Text" xml:space="preserve">
+    <value>Попередній перегляд:</value>
+  </data>
+  <data name="selectThemeTop.Text" xml:space="preserve">
+    <value>Оберіть оформлення, яке Вам подобається найбільше</value>
+  </data>
+  <data name="selectThemeBtn.Label" xml:space="preserve">
+    <value>Оформлення</value>
+  </data>
+  <data name="ApplicationShortName" xml:space="preserve">
+    <value>Календар</value>
+  </data>
+  <data name="LocalHolidaysPath" xml:space="preserve">
+    <value>Holidays/uk/Holidays.xml</value>
+  </data>
+  <data name="LocalPresonalData" xml:space="preserve">
+    <value>Holidays/uk/PersData.xml</value>
+  </data>
+  <data name="ChangeLangAppButt.Label" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+  <data name="buy.Content" xml:space="preserve">
+    <value>Отримати усе!</value>
+  </data>
+  <data name="buyMeText.Text" xml:space="preserve">
+    <value>- Увімкнути повідомлення;
+- Користуватися кнопкою "Перейти";
+- Змінити оформлення календаря;</value>
+  </data>
+  <data name="shopBtn.Content" xml:space="preserve">
+    <value>Купить</value>
+  </data>
+  <data name="language.Text" xml:space="preserve">
+    <value>Мова</value>
+  </data>
+  <data name="settings.Title" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="ThemeBtn.Content" xml:space="preserve">
+    <value>Обрати</value>
+  </data>
+  <data name="tileHeader.Text" xml:space="preserve">
+    <value>Жива плитка</value>
+  </data>
+  <data name="toastHeader.Text" xml:space="preserve">
+    <value>Нагадування</value>
+  </data>
+  <data name="buyMeTitle.Text" xml:space="preserve">
+    <value>Придбавши цей додаток Ви зможете:</value>
+  </data>
+  <data name="Unlicensed" xml:space="preserve">
+    <value>Нажаль, Ви не можете скористуватися цією опцією. Будь ласка, придбайте пакет додаткових можливостей</value>
+  </data>
+  <data name="UnlicensedButton" xml:space="preserve">
+    <value>Придбати</value>
+  </data>
+  <data name="UnlicensedCancel" xml:space="preserve">
+    <value>Наступного разу</value>
+  </data>
+  <data name="dayOfWeek.Text" xml:space="preserve">
+    <value>Перший день тижня:</value>
+  </data>
+  <data name="monday.Content" xml:space="preserve">
+    <value>Понеділок</value>
+  </data>
+  <data name="monday.Tag" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="sunday.Content" xml:space="preserve">
+    <value>Неділя</value>
+  </data>
+  <data name="sunday.Tag" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Будь ласка, перезавантажте додаток</value>
+  </data>
+  <data name="MineAsTag" xml:space="preserve">
+    <value>Мої</value>
+  </data>
+  <data name="Done.Content" xml:space="preserve">
+    <value>Закрити</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="LocalThemesPath" xml:space="preserve">
+    <value>Holidays/uk/Themes.xml</value>
+  </data>
+  <data name="LocalHolidaysPath1" xml:space="preserve">
+    <value>\Holidays\uk\Holidays.xml</value>
+  </data>
+  <data name="BuyMeTextMP" xml:space="preserve">
+    <value>- Увімкнути повідомлення;
+- Користуватися кнопкою "Перейти";
+- Змінити оформлення календаря;</value>
+  </data>
+  <data name="BuyMeTitleMP" xml:space="preserve">
+    <value>Придбавши цей додаток Ви зможете:</value>
+  </data>
+  <data name="GoToDateBtn.Content" xml:space="preserve">
+    <value>Перейти</value>
+  </data>
+  <data name="settingsAppButton.Label" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="settingsTop.Text" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="clickToPreview.Text" xml:space="preserve">
+    <value>Натисніть на зображення, щоб збільшити</value>
+  </data>
+</root>
