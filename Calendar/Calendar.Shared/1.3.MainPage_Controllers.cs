@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-using System.Xml.Linq;
 using CalendarResources;
-using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -20,15 +18,6 @@ namespace Calendar
     {
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ResourcesLoaderHere();
-        }
-
-
-        private async void ResourcesLoaderHere()
-        {
-            CalendarResourcesManager.PersonalData = await CalendarResourcesManager.LoadPersonalData();
-            //-----------------------
-
             calBase.ReadHolidayXml();
             calBase.FillHolidaysList();
 
@@ -60,11 +49,11 @@ namespace Calendar
             SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
             UpdateNoteList();
         }
-
-
+        
         void gvItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GridViewItem gvi = sender as GridViewItem;
+
             //if selected day is not TODAY or from ANOTHER month, do not make a border
             if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
             {

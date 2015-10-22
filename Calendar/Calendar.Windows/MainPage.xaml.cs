@@ -9,7 +9,6 @@ using Windows.UI;
 using System.Collections.Generic;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
 
 // Шаблон элемента пустой страницы задокументирован по адресу http://go.microsoft.com/fwlink/?LinkId=234238
@@ -23,11 +22,7 @@ namespace Calendar
     public sealed partial class MainPage : Page
     {
         public MainPage()
-        {
-            CalendarResourcesManager.resource = ResourceLoader.GetForCurrentView("Resources");
-            
-            Application.Current.Resources.Source = new Uri(CalendarResourcesManager.ThemeLoader());
-
+        {            
             this.InitializeComponent();
             PagePreLoader();
 
@@ -37,11 +32,9 @@ namespace Calendar
                 calBack.Width = 510;
                 noteGridMain.Margin = new Thickness(530, 10, 5, 10);
             }
-        }      
-        
+        }              
 
-        #region Calendar controls        
-     
+        #region Calendar controls     
         private void butNext_Click(object sender, RoutedEventArgs e)
         {
             NextButtonController();
@@ -85,8 +78,7 @@ namespace Calendar
             gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             FillCalendar();
             MarkHolidays();
-        }
-        
+        }        
         #endregion
 
         #region Kind of Holiday menu & flyout

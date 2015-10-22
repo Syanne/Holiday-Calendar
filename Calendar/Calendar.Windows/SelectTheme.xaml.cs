@@ -168,7 +168,6 @@ namespace Calendar
                 catch (Exception ex)
                 {
                     MyMessage(ex.Message);
-
                 }
             }
         }

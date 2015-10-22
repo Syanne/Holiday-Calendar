@@ -21,14 +21,13 @@ namespace Calendar
     /// 
     public sealed partial class MainPage : Page
     {
-
         /// <summary>
         /// Deselect previously selected gvi in calGrid
         /// </summary>
         GridViewItem gviPrev { get; set; }
 
         /// <summary>
-        /// Selected holidays ( < 3 )
+        /// Selected holidays ( <= 3 )
         /// </summary>
         ListViewItem SelectedHolidayType { get; set; }
 
@@ -76,13 +75,11 @@ namespace Calendar
         /// <param name="day">Chosen day</param>
         private void UpdateNoteList()
         {
-
 #if WINDOWS_PHONE_APP
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("ddd d MMM yyyy");
 #else
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif
-
             //fill list of holidays
             if (SelectedHolidayType.Content.ToString() == All.Content.ToString())
                 noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
@@ -93,8 +90,7 @@ namespace Calendar
                                       Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) &&
                                       (hi.HolidayTag == SelectedHolidayType.Content.ToString()));
         }
-
-
+        
         #region Fill calendar
 
         /// <summary>
@@ -127,9 +123,11 @@ namespace Calendar
             Brush mBgBrush = (Brush)Application.Current.Resources["MainFg"];
             Brush DayBg = (Brush)Application.Current.Resources["DayBg"];
             Brush DayFg = (Brush)Application.Current.Resources["DayFg"];
-
-            
+                        
             //fill calendar
+
+
+
             ObservableCollection<GridViewItem> gviCalSource = new ObservableCollection<GridViewItem>();
             for (int i = 0; i < 42; i++)
             {
@@ -146,7 +144,6 @@ namespace Calendar
                     gvItem.Style = weekndStyle;
                     gvItem.Background = wBgBrush;
                     gvItem.Foreground = mBgBrush;
-
                     if (i - jj == 6) jj += 7;
                 }
                 else
@@ -158,7 +155,6 @@ namespace Calendar
 
                 gviCalSource.Add(gvItem);
             }
-
             calGrid.ItemsSource = gviCalSource;            
         }
 
@@ -172,8 +168,7 @@ namespace Calendar
                 holItemSource = calBase.HolidayItemCollection;
             else holItemSource = calBase.HolidayItemCollection.Where(
                 h => h.HolidayTag == SelectedHolidayType.Content.ToString());
-
-
+            
             SolidColorBrush standard = new SolidColorBrush(Colors.WhiteSmoke);
             SolidColorBrush hol = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
                 
@@ -190,15 +185,14 @@ namespace Calendar
             //today
             if (calBase.SelectedDate.Month == DateTime.Now.Month && calBase.SelectedDate.Year == DateTime.Now.Year)
             {
-                var brush = Application.Current.Resources["DayBg"];
+                Brush brush = (Brush)Application.Current.Resources["DayBg"];
                 int x = calBase.Start - 1 + DateTime.Now.Day;
                 (calGrid.Items[x] as GridViewItem).Style = (Style)this.Resources["TodayStyle"];
                 (calGrid.Items[x] as GridViewItem).Background = new SolidColorBrush(Color.FromArgb(200, 55, 55, 55));
-                (calGrid.Items[x] as GridViewItem).Foreground = (Brush)Application.Current.Resources["DayBg"];
-                (calGrid.Items[x] as GridViewItem).BorderBrush = (Brush)Application.Current.Resources["DayBg"];
+                (calGrid.Items[x] as GridViewItem).Foreground = brush;
+                (calGrid.Items[x] as GridViewItem).BorderBrush = brush;
             }
         }
-
 
         /// <summary>
         /// fill month list
@@ -222,8 +216,7 @@ namespace Calendar
         }
 
 #endregion
-
-
+        
         private async void MyMessage(string text)
         {
             var dial = new MessageDialog(text);

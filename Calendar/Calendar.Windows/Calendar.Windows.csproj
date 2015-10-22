@@ -127,6 +127,9 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -134,14 +137,16 @@
     </AppxManifest>
     <None Include="Calendar.Windows_StoreKey.pfx" />
     <None Include="Calendar.Windows_TemporaryKey.pfx" />
+    <None Include="packages.config" />
+    <PRIResource Include="Holidays\en\Resources.resw" />
     <PRIResource Include="Holidays\uk\Resources.resw" />
     <PRIResource Include="Holidays\ru\Resources.resw" />
-    <PRIResource Include="Holidays\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\arrow-left.png" />
     <Content Include="Assets\arrow-right.png" />
     <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\loading-page.gif" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
@@ -188,6 +193,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="StartPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\BloodDrops.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -228,6 +237,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="XamlAnimatedGif, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XamlAnimatedGif.1.0.4\lib\portable-win81+wpa81\XamlAnimatedGif.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
+      <Name>Behaviors SDK %28XAML%29</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

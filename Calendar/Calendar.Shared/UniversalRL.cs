@@ -23,7 +23,6 @@ namespace CalendarResources
         /// </summary>
         public static Task<XDocument> LoadPersonalData()
         {
-            //personal
             return Task.Run(() =>
             {
                 if (doc == null)
@@ -36,7 +35,6 @@ namespace CalendarResources
                     string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
                     return XDocument.Parse(text);
-
                 }
                 //if it's the fist launch - load basic file
                 catch
@@ -46,7 +44,6 @@ namespace CalendarResources
             });
         }
         
-
         public static void BgTaskHelper()
         {
             var po = Package.Current.InstalledLocation.Path + resource.GetString("LocalHolidaysPath1");
@@ -55,7 +52,6 @@ namespace CalendarResources
             String stamp = FileIO.ReadTextAsync(fileeee).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
             doc = XDocument.Parse(stamp);
-
 
             if (PersonalData == null)
             {
@@ -81,26 +77,7 @@ namespace CalendarResources
                 }
             }
         }
-
-        /// <summary>
-        /// Load a color theme of the applocation
-        /// </summary>
-        /// <returns>path to the color theme</returns>
-        public static string ThemeLoader()
-        {
-            string path;
-
-            try
-            {
-                path = ApplicationData.Current.LocalSettings.Values["AppTheme"].ToString();
-            }
-            catch
-            {
-                path = "ms-appx:///Themes/Default.xaml";
-            }
-
-            return path;
-        }
+               
 
         /// <summary>
         /// Log exceptions
@@ -253,7 +230,6 @@ namespace CalendarResources
                 Logging(e);
             }
         }
-
     }
     
 
