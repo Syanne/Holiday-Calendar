@@ -16,5 +16,6 @@
         <Image gif:AnimationBehavior.SourceUri="Assets/loading-page.gif"
                  HorizontalAlignment="Center" VerticalAlignment="Center" 
                 Width="200" Height="288"/>
+
     </Grid>
 </Page>

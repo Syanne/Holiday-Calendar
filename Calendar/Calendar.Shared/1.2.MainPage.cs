@@ -98,8 +98,9 @@ namespace Calendar
         /// </summary>
         void SetWeekends()
         {
+            Brush day = (Brush)Application.Current.Resources["DayBg"];
             foreach (var item in weekDayNames.Items)
-                (item as GridViewItem).Background = (Brush)Application.Current.Resources["DayBg"];
+                (item as GridViewItem).Background = day;
 
             (weekDayNames.Items[fDay] as GridViewItem).Background = (Brush)Application.Current.Resources["WeekendBg"];
             (weekDayNames.Items[6] as GridViewItem).Background = (Brush)Application.Current.Resources["WeekendBg"];
@@ -125,14 +126,15 @@ namespace Calendar
             Brush DayFg = (Brush)Application.Current.Resources["DayFg"];
                         
             //fill calendar
-
-
-
             ObservableCollection<GridViewItem> gviCalSource = new ObservableCollection<GridViewItem>();
+            GridViewItem gvItem;
+            
             for (int i = 0; i < 42; i++)
             {
-                GridViewItem gvItem = new GridViewItem();
-                gvItem.Content = calBase.Month[i];
+                gvItem = new GridViewItem()
+                {
+                    Content = calBase.Month[i]
+                };
                 gvItem.Tapped += gvItem_Tapped;
 
                 //adjMonths
@@ -175,7 +177,7 @@ namespace Calendar
             //holidays
             for (int i = calBase.Start; i < calBase.End; i++)
             {
-                var current = Convert.ToInt32((calGrid.Items[i] as GridViewItem).Content);
+                int current = Convert.ToInt32((calGrid.Items[i] as GridViewItem).Content);
                
                 if (holItemSource.Count(item => item.Date == current) != 0)
                     (calGrid.Items[i] as GridViewItem).Foreground = standard;
