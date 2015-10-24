@@ -4,6 +4,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
+using Windows.Globalization;
 
 namespace Calendar
 {
@@ -21,8 +22,8 @@ namespace Calendar
 
         private async void ResourcesLoaderHere()
         {
+            //resources
             CalendarResourcesManager.resource = ResourceLoader.GetForCurrentView("Resources");
-
             try
             {
                 Application.Current.Resources.Source =
@@ -33,7 +34,7 @@ namespace Calendar
                 Application.Current.Resources.Source =
                     new Uri("ms-appx:///Themes/Default.xaml");
             }
-            
+      
             CalendarResourcesManager.PersonalData = await CalendarResourcesManager.LoadPersonalData();
 
             //if (CalendarResourcesManager.PersonalData != null)

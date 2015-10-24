@@ -6,7 +6,6 @@ using System.Xml.Linq;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
-using Windows.Globalization;
 using Windows.Storage;
 using Windows.UI.Popups;
 
@@ -39,7 +38,7 @@ namespace CalendarResources
                 //if it's the fist launch - load basic file
                 catch
                 {
-                    return LoadSampleDataFileAsync();
+                    return XDocument.Load(resource.GetString("LocalPresonalData"));
                 }
             });
         }
@@ -73,7 +72,7 @@ namespace CalendarResources
                 //if it's the fist launch - load sample file
                 catch
                 {
-                    LoadSampleDataFileAsync();
+                    PersonalData = XDocument.Load(resource.GetString("LocalPresonalData"));
                 }
             }
         }
@@ -107,21 +106,6 @@ namespace CalendarResources
             }
         }
         
-        /// <summary>
-        /// load standard PersonalData.xml for initial application language
-        /// </summary>
-        public static XDocument LoadSampleDataFileAsync()
-        {
-            object result;
-            if (!ApplicationData.Current.LocalSettings.Values.TryGetValue("Language", out result))
-                ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
-            PersonalData = XDocument.Load(resource.GetString("LocalPresonalData"));
-
-            SaveDocumentAsync();
-            return PersonalData;
-        }
-
-
         /// <summary>
         /// change the list of holidays
         /// </summary>

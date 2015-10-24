@@ -10,19 +10,19 @@ using System.Collections.Generic;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.ApplicationModel.Store;
-
-// Шаблон элемента пустой страницы задокументирован по адресу http://go.microsoft.com/fwlink/?LinkId=234238
+using Windows.Storage;
+using Windows.Globalization;
 
 namespace Calendar
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
-    /// 
     public sealed partial class MainPage : Page
     {
         public MainPage()
-        {            
+        {
+            //language
+            if (ApplicationData.Current.LocalSettings.Values.Count == 0)
+                ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
+                  
             this.InitializeComponent();
             PagePreLoader();
 
