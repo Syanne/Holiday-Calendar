@@ -78,18 +78,8 @@ namespace Calendar.HolidayCalendarMechanism
             R = 7000 + (day + y + y / 4 - y / 100 + y / 400 + (31 * m) / 12);
             R %= 7;
 
-            if (firstDay == '0') return R;
+            if (firstDay == 0) return R;
             else return R = (R > 0) ? (R - 1) : 6;
         }
-
-
-        protected async void MyMessage(string text)
-        {
-            var dial = new MessageDialog(text);
-
-            dial.Commands.Add(new UICommand("OK"));
-            var command = await dial.ShowAsync();
-        }
     }
-
 }

@@ -18,19 +18,20 @@ namespace Calendar
     public sealed partial class MainPage : Page
     {
         public MainPage()
-        {
-            //language
-            if (ApplicationData.Current.LocalSettings.Values.Count == 0)
-                ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
-                  
+        { 
             this.InitializeComponent();
             PagePreLoader();
 
+            //language
+            if (ApplicationData.Current.LocalSettings.Values.Count == 0)
+                ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
+             
             //components
             if (Window.Current.Bounds.Width < 1200)
             {
                 calBack.Width = 510;
                 noteGridMain.Margin = new Thickness(530, 10, 5, 10);
+                gvDecades.Margin = new Thickness(25, 150, 25, 0);
             }
         }              
 
@@ -48,8 +49,8 @@ namespace Calendar
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
             //have you bought my app?
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            {
+            //if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+            //{
                 calBase.Skip(Convert.ToInt32(gviPrev.Content), DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
                 //Shows month and year in the top of calGrid\
@@ -57,8 +58,8 @@ namespace Calendar
                 MarkHolidays();
 
                 DatePickerDp.Date = DateTimeOffset.Now;
-            }
-            else ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");            
+            //}
+            //else ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");            
         }
         
         private void monthNameButton_Click(object sender, RoutedEventArgs e)
@@ -244,7 +245,7 @@ namespace Calendar
 
         private async void testMeBtn_Click(object sender, RoutedEventArgs e)
         {
-            var uri = new Uri("ms-windows-store:PDP?PFN=f22f2dcf-6655-429d-9720-8e15f750943a");
+            var uri = new Uri("ms-windows-store:PDP?PFN=36856Syanne.TestMe_x48427g2pbxee");
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }        
 

@@ -45,11 +45,9 @@ namespace Calendar
             SampleDataSource sds = new SampleDataSource();
             myFlip.ItemsSource = sds.Items;
             smallThemesPreview.ItemsSource = sds.Items;
-        }
-             
+        }             
           
-        #region themes
-        
+        #region themes        
         private void cancelBth_Click(object sender, RoutedEventArgs e)
         {
             themesFullScreen.Visibility = Visibility.Collapsed;
@@ -57,8 +55,8 @@ namespace Calendar
 
         private void doneBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            {
+            //if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+            //{
                 string temp;
                 if (themesFullScreen.Visibility == Visibility.Visible)
                     temp = (myFlip.SelectedItem as LocalFVItem).Tag;
@@ -71,11 +69,11 @@ namespace Calendar
                 if (themesFullScreen.Visibility == Visibility.Visible)
                     themesFullScreen.Visibility = Visibility.Collapsed;
                 else this.Frame.Navigate(typeof(MainPage));
-            }
-            else
-            {
-                BuyThis();
-            }
+            //}
+            //else
+            //{
+            //    BuyThis();
+            //}
         }
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)

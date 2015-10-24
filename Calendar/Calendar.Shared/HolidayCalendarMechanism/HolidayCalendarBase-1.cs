@@ -39,9 +39,9 @@ namespace Calendar.HolidayCalendarMechanism
         public ObservableCollection<CheckBox> HolidayNameCollection { get; private set; }
 
 
-        private char firstDay;
+        private int firstDay;
 
-        public HolidayCalendarBase(char firstDay)
+        public HolidayCalendarBase(int firstDay)
         {
             this.firstDay = firstDay;
 

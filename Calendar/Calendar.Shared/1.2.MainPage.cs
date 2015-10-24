@@ -61,7 +61,7 @@ namespace Calendar
 
             gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
             startText = new StringBuilder(50);
-            calBase = new HolidayCalendarBase(ApplicationData.Current.RoamingSettings.Values["Weekend"].ToString()[0]);
+            calBase = new HolidayCalendarBase(fDay);
 
             //Weekend styles
             SetWeekends();

@@ -47,7 +47,7 @@ namespace Calendar
             SelectedHolidayType.Foreground = Application.Current.Resources["MainFg"] as Brush;
             SelectedHolidayType = All;
             SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
-            UpdateNoteList();
+            UpdateNoteList();            
         }
         
         void gvItem_Tapped(object sender, TappedRoutedEventArgs e)
