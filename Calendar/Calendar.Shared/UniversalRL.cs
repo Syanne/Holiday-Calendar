@@ -24,8 +24,7 @@ namespace CalendarResources
         {
             return Task.Run(() =>
             {
-                if (doc == null)
-                    doc = XDocument.Load(resource.GetString("LocalHolidaysPath"));
+                doc = XDocument.Load(resource.GetString("LocalHolidaysPath"));
 
                 try
                 {

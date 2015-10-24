@@ -32,6 +32,12 @@ namespace Calendar
         {
             this.InitializeComponent();
 
+            if (Window.Current.Bounds.Width < 1200)
+            {
+                rightSide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
+
             //enable toggles
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
@@ -118,14 +124,13 @@ namespace Calendar
             MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
         }
 
-        private void comboDOW_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplicationData.Current.RoamingSettings.Values["Weekend"] = (comboDOW.SelectedItem as ComboBoxItem).Tag;
+        //private void comboDOW_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    ApplicationData.Current.RoamingSettings.Values["Weekend"] = (comboDOW.SelectedItem as ComboBoxItem).Tag;
             
-            MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
-        }
-
-
+        //    MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
+        //}
+        
         private void buy_Click(object sender, RoutedEventArgs e)
         {
             BuyButtonController();
@@ -278,6 +283,11 @@ namespace Calendar
         }
 
         #endregion
+
+        private void buttonTheme_Click(object sender, RoutedEventArgs e)
+        {
+            themesFullScreen.Visibility = Windows.UI.Xaml.Visibility.Visible;
+        }
 
     }
 }

@@ -325,9 +325,6 @@
   <data name="LocalThemesPath" xml:space="preserve">
     <value>Holidays/uk/Themes.xml</value>
   </data>
-  <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>\Holidays\uk\Holidays.xml</value>
-  </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- Увімкнути повідомлення;
 - Користуватися кнопкою "Перейти";

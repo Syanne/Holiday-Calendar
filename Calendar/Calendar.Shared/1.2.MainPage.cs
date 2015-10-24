@@ -48,17 +48,9 @@ namespace Calendar
 
         void PagePreLoader()
         {
-            //first day of week
-            if (ApplicationData.Current.RoamingSettings.Values["Weekend"] != null)
-                fDay = Convert.ToInt32(ApplicationData.Current.RoamingSettings.Values["Weekend"]);
-            else
-            {
-                ApplicationData.Current.RoamingSettings.Values.Add("Weekend", 5);
-                fDay = 5;
-            }
-
             SelectedHolidayType = All;
 
+            fDay = 5;
             gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
             startText = new StringBuilder(50);
             calBase = new HolidayCalendarBase(fDay);

@@ -136,7 +136,6 @@
     <None Include="Calendar.Windows_StoreKey.pfx" />
     <None Include="Calendar.Windows_TemporaryKey.pfx" />
     <None Include="packages.config" />
-    <PRIResource Include="Holidays\en\Resources.resw" />
     <PRIResource Include="Holidays\uk\Resources.resw" />
     <PRIResource Include="Holidays\ru\Resources.resw" />
   </ItemGroup>
@@ -151,9 +150,6 @@
     <Content Include="Assets\Square70x70Logo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
-    <Content Include="Holidays\en\Holidays.xml" />
-    <Content Include="Holidays\en\PersData.xml" />
-    <Content Include="Holidays\en\Themes.xml" />
     <Content Include="Holidays\ru\Holidays.xml" />
     <Content Include="Holidays\ru\PersData.xml" />
     <Content Include="Holidays\ru\Themes.xml" />

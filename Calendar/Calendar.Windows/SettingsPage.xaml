@@ -71,27 +71,45 @@
                           Margin="400,-65,20,20" 
                           SelectionChanged="ComboBox_SelectionChanged" 
                           HorizontalAlignment="Left" >
-                        <ComboBoxItem Content="en" ></ComboBoxItem>
                         <ComboBoxItem Content="ru" ></ComboBoxItem>
                         <ComboBoxItem Content="uk" ></ComboBoxItem>
                     </ComboBox>
 
-                    <TextBlock x:Uid="dayOfWeek" 
+                    <!--<TextBlock x:Uid="dayOfWeek" 
                            Height="40" Width="300"
                            HorizontalAlignment="Left"
                            Style="{StaticResource TitleTextBlockStyle}" 
                            FontSize="26" FontFamily="Minion Pro"
                            Margin="0, 15" />
-                    <!-- Основная часть раздела 1 -->
+                    --><!-- Основная часть раздела 1 --><!--
                     <ComboBox Name="comboDOW" 
                           Width="140" Height="30" 
                           Margin="400,-65, 20,10" 
                           SelectionChanged="comboDOW_SelectionChanged" 
                           HorizontalAlignment="Left" >
-                        <ComboBoxItem x:Uid="monday"></ComboBoxItem>
+                        <ComboBoxItem x:Uid="monday" IsSelected="True"></ComboBoxItem>
                         <ComboBoxItem x:Uid="sunday" ></ComboBoxItem>
-                    </ComboBox>
+                    </ComboBox>-->
                 </StackPanel>
+                
+                <StackPanel x:Name="ThemeStack" Visibility="Collapsed">
+                    <TextBlock x:Uid="selectThemeTop" 
+                           Height="40" Width="300"
+                           HorizontalAlignment="Left"
+                           Style="{StaticResource TitleTextBlockStyle}" 
+                           FontSize="26" FontFamily="Minion Pro"
+                           Margin="0, 15" />
+                    <Button x:Uid="chooseBtn"
+                            Name="buttonTheme" 
+                            Click="buttonTheme_Click"
+                          Width="140" Height="40" 
+                          Margin="400,-65,20,20" 
+                          HorizontalAlignment="Left"
+                          Background="#FF454545"
+                          Foreground="#FFF6F6F9"/>
+                </StackPanel>
+                
+                
                 <!-- Раздел содержимого 2-->
                 <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
                         Margin="0, 20"
