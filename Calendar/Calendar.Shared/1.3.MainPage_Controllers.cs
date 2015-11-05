@@ -44,7 +44,6 @@ namespace Calendar
             }
 
             //end select "all"
-            SelectedHolidayType.Foreground = Application.Current.Resources["MainFg"] as Brush;
             SelectedHolidayType = All;
             SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
             UpdateNoteList();            

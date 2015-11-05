@@ -18,14 +18,14 @@ namespace Calendar
     public sealed partial class MainPage : Page
     {
         public MainPage()
-        { 
-            this.InitializeComponent();
-            PagePreLoader();
-
+        {
             //language
             if (ApplicationData.Current.LocalSettings.Values.Count == 0)
                 ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
              
+            this.InitializeComponent();
+            PagePreLoader();
+                        
             //components
             if (Window.Current.Bounds.Width < 1200)
             {
@@ -99,7 +99,6 @@ namespace Calendar
                     ls.Add((lv as CheckBox).Tag.ToString());
                 }
             }
-            SelectedHolidayType.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 178, 208));
 
             calBase.WriteHolidayXml(ls);
 
@@ -117,10 +116,16 @@ namespace Calendar
                 if (jj == 5) break;
             }
             //--------------------
-
-            FillCalendar();
+            
+            calBase.ReadHolidayXml();
+            calBase.FillHolidaysList();
             MarkHolidays();
 
+            SelectedHolidayType.Foreground = Application.Current.Resources["MainFg"] as Brush;
+            SelectedHolidayType = All;
+            SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
+            UpdateNoteList(); 
+            
             butHolidayFlyout.Hide();
         }
 

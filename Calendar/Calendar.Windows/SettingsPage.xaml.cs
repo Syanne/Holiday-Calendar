@@ -67,10 +67,11 @@ namespace Calendar
                 if (themesFullScreen.Visibility == Visibility.Visible)
                     temp = (myFlip.SelectedItem as LocalFVItem).Tag;
                 else temp = (smallThemesPreview.SelectedItem as LocalFVItem).Tag;
-
-
+            
                 ApplicationData.Current.LocalSettings.Values["AppTheme"] =
                     String.Format("ms-appx:///themes/{0}.xaml", temp);
+                Application.Current.Resources.Source =
+                   new Uri("ms-appx:///themes/" + temp + ".xaml");
 
                 if (themesFullScreen.Visibility == Visibility.Visible)
                     themesFullScreen.Visibility = Visibility.Collapsed;
@@ -80,6 +81,11 @@ namespace Calendar
             //{
             //    BuyThis();
             //}
+        }
+
+        private void buttonTheme_Click(object sender, RoutedEventArgs e)
+        {
+            themesFullScreen.Visibility = Windows.UI.Xaml.Visibility.Visible;
         }
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -284,10 +290,6 @@ namespace Calendar
 
         #endregion
 
-        private void buttonTheme_Click(object sender, RoutedEventArgs e)
-        {
-            themesFullScreen.Visibility = Windows.UI.Xaml.Visibility.Visible;
-        }
 
     }
 }

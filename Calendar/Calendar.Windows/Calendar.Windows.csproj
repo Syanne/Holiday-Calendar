@@ -136,8 +136,8 @@
     <None Include="Calendar.Windows_StoreKey.pfx" />
     <None Include="Calendar.Windows_TemporaryKey.pfx" />
     <None Include="packages.config" />
-    <PRIResource Include="Holidays\uk\Resources.resw" />
     <PRIResource Include="Holidays\ru\Resources.resw" />
+    <PRIResource Include="Holidays\uk\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\arrow-left.png" />
@@ -150,13 +150,13 @@
     <Content Include="Assets\Square70x70Logo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <None Include="Package.StoreAssociation.xml" />
     <Content Include="Holidays\ru\Holidays.xml" />
     <Content Include="Holidays\ru\PersData.xml" />
     <Content Include="Holidays\ru\Themes.xml" />
     <Content Include="Holidays\uk\Holidays.xml" />
     <Content Include="Holidays\uk\PersData.xml" />
     <Content Include="Holidays\uk\Themes.xml" />
-    <None Include="Package.StoreAssociation.xml" />
     <Content Include="SelectTheme\BloodDrops-700.png" />
     <Content Include="SelectTheme\Bottle-700.png" />
     <Content Include="SelectTheme\Cherry-700.png" />
@@ -221,15 +221,15 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="XamlAnimatedGif, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\XamlAnimatedGif.1.0.4\lib\portable-win81+wpa81\XamlAnimatedGif.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
       <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="XamlAnimatedGif, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\XamlAnimatedGif.1.0.5\lib\portable-win81+wpa81\XamlAnimatedGif.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

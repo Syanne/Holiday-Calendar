@@ -116,7 +116,9 @@ namespace Calendar
             Brush mBgBrush = (Brush)Application.Current.Resources["MainFg"];
             Brush DayBg = (Brush)Application.Current.Resources["DayBg"];
             Brush DayFg = (Brush)Application.Current.Resources["DayFg"];
-                        
+
+            StandardClass standard = new StandardClass();
+
             //fill calendar
             ObservableCollection<GridViewItem> gviCalSource = new ObservableCollection<GridViewItem>();
             GridViewItem gvItem;
@@ -125,7 +127,9 @@ namespace Calendar
             {
                 gvItem = new GridViewItem()
                 {
-                    Content = calBase.Month[i]
+                    Content = calBase.Month[i],
+                    Height = standard.ItemSizeCorrector,
+                    Width = standard.ItemSizeCorrector
                 };
                 gvItem.Tapped += gvItem_Tapped;
 

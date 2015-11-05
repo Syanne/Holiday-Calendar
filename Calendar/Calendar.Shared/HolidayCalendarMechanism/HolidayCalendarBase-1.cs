@@ -69,8 +69,7 @@ namespace Calendar.HolidayCalendarMechanism
         public void FillHolidaysList()
         {
             var persCollection = CalendarResourcesManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
-
-
+            
             if (HolidayNameCollection.Count == 0)
             {
                 var collect = CalendarResourcesManager.doc.Root.Descendants("month").ElementAt(0).Descendants("holiday");
@@ -104,9 +103,12 @@ namespace Calendar.HolidayCalendarMechanism
         public void ReadHolidayXml()
         {
             //collections of holidays
-            var computational = CalendarResourcesManager.doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants("computational");
-            var persCollection = CalendarResourcesManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
-            var movable = CalendarResourcesManager.doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants("movable");
+            var computational = CalendarResourcesManager.doc.Root.Descendants("month").
+                ElementAt(SelectedDate.Month - 1).Descendants("computational");
+            var persCollection = CalendarResourcesManager.PersonalData.
+                Root.Descendants("theme").Descendants("holiday");
+            var movable = CalendarResourcesManager.doc.Root.Descendants("month").
+                ElementAt(SelectedDate.Month - 1).Descendants("movable");
 
             HolidayItemCollection = new ObservableCollection<HolidayItem>();
 

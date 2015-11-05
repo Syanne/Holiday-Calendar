@@ -41,41 +41,35 @@ namespace CalendarResources
                 }
             });
         }
-        
-        public static void BgTaskHelper()
+
+        public static void LoadPersonalData(bool one)
         {
-            var po = Package.Current.InstalledLocation.Path + resource.GetString("LocalHolidaysPath1");
+            doc = XDocument.Load(resource.GetString("LocalHolidaysPath"));
 
-            var fileeee = StorageFile.GetFileFromPathAsync(po).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-            String stamp = FileIO.ReadTextAsync(fileeee).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
-            doc = XDocument.Parse(stamp);
-
-            if (PersonalData == null)
+            try
             {
-                try
-                {
-                    //load file 
-                    StorageFolder localFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
-                    StorageFile sampleFile = localFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                // load file
 
-                    //read file
-                    var randomAccessStream = sampleFile.OpenReadAsync().AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                    String timestamp = FileIO.ReadTextAsync(sampleFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                StorageFolder localFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+                StorageFile sampleFile = localFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
-                    if (timestamp == "") throw new Exception();
+                //read file
+                var randomAccessStream = sampleFile.OpenReadAsync().AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                String timestamp = FileIO.ReadTextAsync(sampleFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
-                    PersonalData = XDocument.Parse(timestamp);
-                    if (PersonalData == null) throw new Exception();
-                }
-                //if it's the fist launch - load sample file
-                catch
-                {
-                    PersonalData = XDocument.Load(resource.GetString("LocalPresonalData"));
-                }
+                if (timestamp == "") throw new Exception();
+
+                PersonalData = XDocument.Parse(timestamp);
+                if (PersonalData == null)
+                    throw new Exception();
+            }
+            //if it's the fist launch - load basic file
+            catch
+            {
+               PersonalData = XDocument.Load(resource.GetString("LocalPresonalData"));
             }
         }
-               
+
 
         /// <summary>
         /// Log exceptions

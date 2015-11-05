@@ -22,6 +22,7 @@ namespace Calendar
 
         private async void ResourcesLoaderHere()
         {
+            
             //resources
             CalendarResourcesManager.resource = ResourceLoader.GetForCurrentView("Resources");
             try
