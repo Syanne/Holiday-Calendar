@@ -51,18 +51,21 @@ namespace Calendar
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            //if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            //{
-                var data = (myFlip.SelectedItem as LocalFVItem).Tag;
-                ApplicationData.Current.RoamingSettings.Values["AppTheme"] =
-                    String.Format("ms-appx:///themes/{0}.xaml", data);
+            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+            {
+                string temp = (myFlip.SelectedItem as LocalFVItem).Tag;
+
+                ApplicationData.Current.LocalSettings.Values["AppTheme"] =
+                    String.Format("ms-appx:///themes/{0}.xaml", temp);
+                Application.Current.Resources.Source =
+                   new Uri("ms-appx:///themes/" + temp + ".xaml");
 
                 this.Frame.Navigate(typeof(MainPage));
-            //}
-            //else
-            //{
-            //    CalendarResources.ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");
-            //}
+            }
+            else
+            {
+                CalendarResources.ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");
+            }
         }
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
