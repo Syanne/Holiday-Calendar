@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="addNote.Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="AllHol.Content" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="btnholCancel.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnHolidays.Content" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="changeNote.Content" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="delNote.Content" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="everyYear.Content" xml:space="preserve">
+    <value>Every year</value>
+  </data>
+  <data name="GoToDate.Text" xml:space="preserve">
+    <value>Jump to:</value>
+  </data>
+  <data name="Mine.Content" xml:space="preserve">
+    <value>My</value>
+  </data>
+  <data name="once.Content" xml:space="preserve">
+    <value>Once</value>
+  </data>
+  <data name="PersonalNote" xml:space="preserve">
+    <value>Add Note</value>
+  </data>
+  <data name="reclineButton.Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="topString.Text" xml:space="preserve">
+    <value>New Event:</value>
+  </data>
+  <data name="typesTopString.Text" xml:space="preserve">
+    <value>Select up to 3 types:</value>
+  </data>
+  <data name="Wd1.Content" xml:space="preserve">
+    <value>Sut</value>
+  </data>
+  <data name="Wd2.Content" xml:space="preserve">
+    <value>Mon</value>
+  </data>
+  <data name="Wd3.Content" xml:space="preserve">
+    <value>Tue</value>
+  </data>
+  <data name="Wd4.Content" xml:space="preserve">
+    <value>Wed</value>
+  </data>
+  <data name="Wd5.Content" xml:space="preserve">
+    <value>Thu</value>
+  </data>
+  <data name="Wd6.Content" xml:space="preserve">
+    <value>Fri</value>
+  </data>
+  <data name="Wd7.Content" xml:space="preserve">
+    <value>Sat</value>
+  </data>
+  <data name="assesBtn.Label" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="daysText.Text" xml:space="preserve">
+    <value>days prior to</value>
+  </data>
+  <data name="textTile.Text" xml:space="preserve">
+    <value>How it is convenient when someone reminds you of the birthday of your best friend! But what if it does your best friend? ? Who will remind you?
+
+If you turn on the live tile, you will remember about each event marked on the calendar. It's much better to enjoy the party, instead of feeling guilty all day!</value>
+  </data>
+  <data name="tileOff.Content" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="tileOn.Content" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="toastOff.Content" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="toastOn.Content" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="toastText1.Text" xml:space="preserve">
+    <value>Set the period (in hours) and number of days before the event, and then turn it on.
+Only for personal events.</value>
+  </data>
+  <data name="ApplicationDescription" xml:space="preserve">
+    <value>Imagine the perfect assistant who remembers about each holiday and event. The one who always reminds you about a birthday party in advance, so you would have a time to buy a gift. Someone, who lives in any computer or phone.  Maybe, this one?</value>
+  </data>
+  <data name="ApplicationDisplayName" xml:space="preserve">
+    <value>Holiday Calendar</value>
+  </data>
+  <data name="periodText.Text" xml:space="preserve">
+    <value>period (hours)</value>
+  </data>
+  <data name="c1.Content" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="c2.Content" xml:space="preserve">
+    <value>2 days</value>
+  </data>
+  <data name="c3.Content" xml:space="preserve">
+    <value>3 days</value>
+  </data>
+  <data name="c4.Content" xml:space="preserve">
+    <value>4 days</value>
+  </data>
+  <data name="c5.Content" xml:space="preserve">
+    <value>5 days</value>
+  </data>
+  <data name="AddNoteText" xml:space="preserve">
+    <value>AddNote</value>
+  </data>
+  <data name="chooseBtn.Content" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="preview.Text" xml:space="preserve">
+    <value>Click to preview:</value>
+  </data>
+  <data name="selectThemeTop.Text" xml:space="preserve">
+    <value>Select skin</value>
+  </data>
+  <data name="selectThemeBtn.Label" xml:space="preserve">
+    <value>Skin</value>
+  </data>
+  <data name="ApplicationShortName" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="LocalHolidaysPath" xml:space="preserve">
+    <value>Holidays/en/Holidays.xml</value>
+  </data>
+  <data name="LocalPresonalData" xml:space="preserve">
+    <value>Holidays/en/PersData.xml</value>
+  </data>
+  <data name="ChangeLangAppButt.Label" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="buy.Content" xml:space="preserve">
+    <value>I want it all!</value>
+  </data>
+  <data name="buyMeText.Text" xml:space="preserve">
+    <value>- notifications;
+- DatePicker button on the Main Page; 
+- color themes.</value>
+  </data>
+  <data name="shopBtn.Content" xml:space="preserve">
+    <value>Buy</value>
+  </data>
+  <data name="language.Text" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="settings.Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="ThemeBtn.Content" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="tileHeader.Text" xml:space="preserve">
+    <value>Live tile</value>
+  </data>
+  <data name="toastHeader.Text" xml:space="preserve">
+    <value>Reminder</value>
+  </data>
+  <data name="buyMeTitle.Text" xml:space="preserve">
+    <value>If you purchase this app you will be able to:</value>
+  </data>
+  <data name="Unlicensed" xml:space="preserve">
+    <value>To use this feature you have to purchase it</value>
+  </data>
+  <data name="UnlicensedButton" xml:space="preserve">
+    <value>Purchase</value>
+  </data>
+  <data name="UnlicensedCancel" xml:space="preserve">
+    <value>Next time</value>
+  </data>
+  <data name="dayOfWeek.Text" xml:space="preserve">
+    <value>The first day of the week: </value>
+  </data>
+  <data name="monday.Content" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="monday.Tag" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="sunday.Content" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="sunday.Tag" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Please, restart the application</value>
+  </data>
+  <data name="MineAsTag" xml:space="preserve">
+    <value>My</value>
+  </data>
+  <data name="Done.Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="SettingsHeader.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="LocalThemesPath" xml:space="preserve">
+    <value>Holidays/en/Themes.xml</value>
+  </data>
+  <data name="BuyMeTextMP" xml:space="preserve">
+    <value>- notifications;
+- DatePicker button on the Main Page; 
+- color themes.</value>
+  </data>
+  <data name="BuyMeTitleMP" xml:space="preserve">
+    <value>If you purchase this app you will be able to:</value>
+  </data>
+  <data name="GoToDateBtn.Content" xml:space="preserve">
+    <value>Jump</value>
+  </data>
+  <data name="settingsAppButton.Label" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="settingsTop.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="clickToPreview.Text" xml:space="preserve">
+    <value>Click on a screenshot to full-screen</value>
+  </data>
+  <data name="holidayTag.Label" xml:space="preserve">
+    <value>Holidays</value>
+  </data>
+</root>

@@ -1,0 +1,523 @@
+﻿<Page
+    x:Class="Calendar.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Calendar"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Foreground="#FF303030"
+    FontFamily="Minion Pro"  
+    >
+
+    <Page.Resources>
+        <!-- Default style for Windows.UI.Xaml.Controls.ToggleSwitch -->
+        <Style TargetType="ToggleSwitch" x:Key="SettingsToggle">
+            <Setter Property="Foreground" Value="{ThemeResource ToggleSwitchForegroundThemeBrush}" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
+            <Setter Property="MinWidth" Value="154" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleSwitch">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchCurtain"
+                                                                   Storyboard.TargetProperty="Fill">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchCurtainPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerBorder"
+                                                                   Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchTrackPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                   Storyboard.TargetProperty="Fill">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchThumbPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                   Storyboard.TargetProperty="Stroke">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchThumbPointerOverBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchCurtain"
+                                                                   Storyboard.TargetProperty="Fill">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchCurtainPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerBorder"
+                                                                   Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchTrackPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                   Storyboard.TargetProperty="Fill">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchThumbPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                   Storyboard.TargetProperty="Stroke">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchThumbPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HeaderContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchHeaderDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OffContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OnContentPresenter"
+                                                                   Storyboard.TargetProperty="Foreground">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OuterBorder"
+                                                                   Storyboard.TargetProperty="BorderBrush">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchOuterBorderDisabledBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="InnerBorder"
+                                                                   Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchTrackDisabledBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                   Storyboard.TargetProperty="Fill">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchThumbDisabledBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchKnob"
+                                                                   Storyboard.TargetProperty="Stroke">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchThumbDisabledBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SwitchCurtain"
+                                                                   Storyboard.TargetProperty="Fill">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ToggleSwitchCurtainDisabledBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ToggleStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition x:Name="DraggingToOnTransition"
+                                                  From="Dragging"
+                                                  To="On"
+                                                  GeneratedDuration="0">
+                                            <Storyboard>
+                                                <RepositionThemeAnimation TargetName="SwitchKnob" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOnOffset}" />
+                                                <RepositionThemeAnimation TargetName="SwitchCurtain" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CurtainCurrentToOnOffset}" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition x:Name="DraggingToOffTransition"
+                                                  From="Dragging"
+                                                  To="Off"
+                                                  GeneratedDuration="0">
+                                            <Storyboard>
+                                                <RepositionThemeAnimation TargetName="SwitchKnob" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobCurrentToOffOffset}" />
+                                                <RepositionThemeAnimation TargetName="SwitchCurtain" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CurtainCurrentToOffOffset}" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition x:Name="OnToOffTransition"
+                                                  From="On"
+                                                  To="Off"
+                                                  GeneratedDuration="0">
+                                            <Storyboard>
+                                                <RepositionThemeAnimation TargetName="SwitchKnob" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOnToOffOffset}" />
+                                                <RepositionThemeAnimation TargetName="SwitchCurtain" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CurtainOnToOffOffset}" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                        <VisualTransition x:Name="OffToOnTransition"
+                                                  From="Off"
+                                                  To="On"
+                                                  GeneratedDuration="0">
+                                            <Storyboard>
+                                                <RepositionThemeAnimation TargetName="SwitchKnob" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.KnobOffToOnOffset}" />
+                                                <RepositionThemeAnimation TargetName="SwitchCurtain" FromHorizontalOffset="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=TemplateSettings.CurtainOffToOnOffset}" />
+                                            </Storyboard>
+                                        </VisualTransition>
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Dragging" />
+                                    <VisualState x:Name="Off">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="CurtainTranslateTransform"
+                                                     Storyboard.TargetProperty="X"
+                                                     To="-44"
+                                                     Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="On">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="CurtainTranslateTransform"
+                                                     Storyboard.TargetProperty="X"
+                                                     To="0"
+                                                     Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="KnobTranslateTransform"
+                                                     Storyboard.TargetProperty="X"
+                                                     To="38"
+                                                     Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ContentStates">
+                                    <VisualState x:Name="OffContent">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="OffContentPresenter"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="OffContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>True</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="OnContent">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="OnContentPresenter"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0" />
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="OnContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <x:Boolean>True</x:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="FocusVisualWhite"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0" />
+                                            <DoubleAnimation Storyboard.TargetName="FocusVisualBlack"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="1"
+                                                     Duration="0" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <ContentPresenter x:Name="HeaderContentPresenter"
+                                          Foreground="{ThemeResource ToggleSwitchHeaderForegroundThemeBrush}"
+                                          Margin="6"
+                                          Grid.ColumnSpan="2"
+                                          Content="{TemplateBinding Header}"
+                                          ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                          FontWeight="Semilight"
+                                          AutomationProperties.AccessibilityView="Raw" />
+                                <Grid Grid.Row="1" Margin="{TemplateBinding Padding}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="7" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter x:Name="OffContentPresenter"
+                                              Foreground="#ff303030"
+                                              FontSize="16"
+                                              MinWidth="65"
+                                              Margin="6,5,0,16"
+                                              Opacity="0"
+                                              IsHitTestVisible="False"
+                                              Content="{TemplateBinding OffContent}"
+                                              ContentTemplate="{TemplateBinding OffContentTemplate}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              AutomationProperties.AccessibilityView="Raw" />
+                                    <ContentPresenter x:Name="OnContentPresenter"
+                                              Foreground="#ff303030"
+                                              FontSize="16"
+                                              MinWidth="65"
+                                              Margin="6,5,0,16"
+                                              Opacity="0"
+                                              IsHitTestVisible="False"
+                                              Content="{TemplateBinding OnContent}"
+                                              ContentTemplate="{TemplateBinding OnContentTemplate}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              AutomationProperties.AccessibilityView="Raw" />
+                                    <Grid Grid.Column="2" Background="Transparent" ManipulationMode="None">
+                                        <Grid x:Name="SwitchKnobBounds" Height="20" Margin="13,5,0,16">
+                                            <Border x:Name="OuterBorder"
+                                            BorderBrush="#ff303030"
+                                            BorderThickness="2">
+                                                <Border x:Name="InnerBorder"
+                                                Background="Transparent"
+                                                BorderBrush="{ThemeResource ToggleSwitchTrackBorderThemeBrush}"
+                                                BorderThickness="1">
+                                                    <ContentPresenter x:Name="SwitchCurtainBounds">
+                                                        <ContentPresenter x:Name="SwitchCurtainClip">
+                                                            <Rectangle x:Name="SwitchCurtain"
+                                                               Fill="{StaticResource MonthBg}"
+                                                               Width="48">
+                                                                <Rectangle.RenderTransform>
+                                                                    <TranslateTransform x:Name="CurtainTranslateTransform" X="-44" />
+                                                                </Rectangle.RenderTransform>
+                                                            </Rectangle>
+                                                        </ContentPresenter>
+                                                    </ContentPresenter>
+                                                </Border>
+                                            </Border>
+                                            <Rectangle x:Name="SwitchKnob"
+                                               Fill="#ff303030"
+                                               Stroke="#ff303030"
+                                               StrokeThickness="1"
+                                               HorizontalAlignment="Left"
+                                               Width="15">
+                                                <Rectangle.RenderTransform>
+                                                    <TranslateTransform x:Name="KnobTranslateTransform" />
+                                                </Rectangle.RenderTransform>
+                                            </Rectangle>
+                                            <Rectangle x:Name="FocusVisualWhite"
+                                               Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}"
+                                               StrokeEndLineCap="Square"
+                                               StrokeDashArray="1,1"
+                                               Opacity="0"
+                                               Margin="-3"
+                                               StrokeDashOffset="1.5" />
+                                            <Rectangle x:Name="FocusVisualBlack"
+                                               Stroke="{ThemeResource FocusVisualBlackStrokeThemeBrush}"
+                                               StrokeEndLineCap="Square"
+                                               StrokeDashArray="1,1"
+                                               Opacity="0"
+                                               Margin="-3"
+                                               StrokeDashOffset="0.5" />
+                                        </Grid>
+                                        <Thumb x:Name="SwitchThumb" AutomationProperties.AccessibilityView="Raw">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="Thumb">
+                                                    <Rectangle Fill="Transparent" />
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
+    <ScrollViewer 
+        Background="#FFF3F3F3"
+        ScrollViewer.VerticalScrollBarVisibility="Visible" 
+        VerticalScrollMode="Enabled">
+        <StackPanel RequestedTheme="Light" 
+                    Margin="5,10,5,0">
+            <TextBlock x:Uid="settingsTop"
+                       Height="50" Width="auto"
+                       HorizontalAlignment="Stretch"
+                       TextAlignment="Center"
+                       FontSize="22"
+                       Margin="5"
+                       />
+            <StackPanel VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch"
+                >
+
+                <!-- Элементы StackPanel ниже определяют отдельные разделы содержимого -->
+                <StackPanel HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch" 
+                        Margin="0,10, 10,10">
+                    <!-- Заголовок раздела 1 -->
+
+                    <TextBox x:Uid="language" 
+                           Background="Transparent"
+                           BorderThickness="0"
+                           Height="auto" MinWidth="190"
+                           TextAlignment="Left"
+                           FontSize="18"
+                           IsReadOnly="True"
+                           SelectionHighlightColor="#FF828282" 
+                           HorizontalAlignment="Stretch" 
+                           HorizontalContentAlignment="Stretch"
+                           VerticalAlignment="Center"
+                           Margin="0,10,135,0"/>
+                    <!-- Основная часть раздела 1 -->
+                    <ComboBox x:Name="comboLang" 
+                          BorderBrush="#ff303030"
+                          Background="Transparent"
+                          Width="120" Height="auto"  
+                          FontSize="16"
+                          Margin="10,-45,0,5" 
+                          SelectionChanged="ComboBox_SelectionChanged" 
+                          HorizontalAlignment="Right" >
+                        <ComboBoxItem Content="ru" FontSize="16" />
+                        <ComboBoxItem Content="uk" FontSize="16" />
+                    </ComboBox>
+
+                </StackPanel>
+                <!-- Раздел содержимого 2-->
+                <ListView HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        Margin="0, 10">
+
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <!-- Заголовок раздела 2 -->
+                    <TextBox x:Uid="tileHeader" 
+                           Background="Transparent"
+                           BorderThickness="0"
+                           Height="auto" MinWidth="175"
+                           TextAlignment="Left"
+                           FontSize="18"
+                           IsReadOnly="True"
+                           ManipulationMode="None"
+                           SelectionHighlightColor="#FF828282"                          
+                           HorizontalAlignment="Stretch" 
+                           HorizontalContentAlignment="Stretch" 
+                           VerticalAlignment="Center" />
+
+                    <!--toggle-->
+                    <ToggleSwitch x:Name="tileToggle" 
+            	            Style="{StaticResource SettingsToggle}" 
+                              Toggled="tileToggle_Toggled" 
+                              FontSize="12" 
+                              Height="auto"
+                              Width="auto" Margin="5,-2,0,0"
+                              BorderBrush="#ff303030"
+                              Background="Transparent" 
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Right"/>
+
+                </ListView>
+                <TextBox x:Uid="toastHeader" 
+                     Background="Transparent"
+                     Foreground="#ff303030"
+                         TextAlignment="Left"
+                         FontSize="18" Margin="0,20,0,15"
+                         BorderThickness="0"
+                         IsReadOnly="True" />
+
+                <StackPanel>
+                    <ComboBox x:Name="comboToast" 
+                          Height="auto" Width="150"
+                          Margin="5,0,10,0"                          
+                          IsHoldingEnabled="False" 
+                          ManipulationMode="None" 
+                          VerticalAlignment="Stretch" 
+                          HorizontalAlignment="Left" 
+                          BorderBrush="#ff303030"
+                          Background="Transparent" FontSize="18">
+
+                        <ComboBox.Header>
+                            <TextBlock x:Uid="daysText" 
+                           TextWrapping="Wrap" 
+                           FontSize="16" 
+                           Foreground="#ff303030"
+                           Grid.Row="2" Grid.Column="1"
+                           VerticalAlignment="Top" 
+                           Height="40" Width="120" 
+                           Margin="0" Padding="0" 
+                           HorizontalAlignment="Left"/>
+                        </ComboBox.Header>
+
+                        <ComboBoxItem x:Uid="c1" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
+                        <ComboBoxItem x:Uid="c2" Width="auto" HorizontalAlignment="Stretch"/>
+                        <ComboBoxItem x:Uid="c3" Width="auto" HorizontalAlignment="Stretch"/>
+                        <ComboBoxItem x:Uid="c4" Width="auto" HorizontalAlignment="Stretch"/>
+                        <ComboBoxItem x:Uid="c5" Width="auto" HorizontalAlignment="Stretch"/>
+                    </ComboBox>
+
+                    <ComboBox x:Name="comboPeriod" 
+                          Height="auto" Width="150" 
+                          FontSize="18"
+                          Margin="10,-93,5, 0"
+                          IsHoldingEnabled="False" 
+                          HorizontalAlignment="Right" 
+                          VerticalAlignment="Top" 
+                          ManipulationMode="None"
+                          BorderBrush="#ff303030"
+                          Background="Transparent">
+
+                        <ComboBox.Header>
+                            <TextBlock x:Uid="periodText" 
+                           TextWrapping="Wrap" 
+                           FontSize="16" 
+                           Foreground="#ff303030"
+                           Grid.Row="2" Grid.Column="1"
+                           VerticalAlignment="Top" 
+                           Height="40" Width="120" 
+                           Margin="10,0" Padding="0" 
+                           HorizontalAlignment="Left"/>
+                        </ComboBox.Header>
+
+                        <ComboBoxItem Content="4" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
+                        <ComboBoxItem Content="6" Width="auto" HorizontalAlignment="Stretch"/>
+                        <ComboBoxItem Content="8" Width="auto" HorizontalAlignment="Stretch"/>
+                        <ComboBoxItem Content="12" Width="auto" HorizontalAlignment="Stretch"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <ToggleSwitch x:Name="toastToggle"
+            	Style="{StaticResource SettingsToggle}" 
+                          Toggled="toastToggle_Toggled" 
+                          RequestedTheme="Light"
+                          BorderBrush="#ff303030"
+                          Background="Transparent"
+                          Width="190" Margin="15,10"
+                          HorizontalAlignment="Center"/>
+
+                <StackPanel Margin="20,10,20,0"
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch">
+                    <!-- Заголовок раздела 4 -->
+                    <TextBlock x:Uid="buyMeTitle" 
+                           Style="{StaticResource TitleTextBlockStyle}" 
+                           FontSize="18"
+                           TextWrapping="Wrap"
+                           Height="auto"
+                           HorizontalAlignment="Stretch"
+                           />
+                    <TextBlock x:Uid="buyMeText" 
+                           Style="{StaticResource BodyTextBlockStyle}" 
+                           FontSize="16"
+                           Margin="2,10" />
+                    <!-- Основная часть раздела 4 -->
+
+                    <Button x:Uid="shopBtn" x:Name="buy" 
+                    Margin="5,10" 
+                    FontSize="18"
+                    Width="100" Height="40" 
+                    HorizontalAlignment="Center" 
+                    HorizontalContentAlignment="Center"
+                    RequestedTheme="Light"
+                    BorderBrush="#ff303030"
+                    Background="Transparent" 
+                    Click="Button_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
