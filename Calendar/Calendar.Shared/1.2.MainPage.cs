@@ -68,7 +68,7 @@ namespace Calendar
         private void UpdateNoteList()
         {
 #if WINDOWS_PHONE_APP
-            ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("ddd d MMM yyyy");
+            ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("ddd d MMM yyyy").ToLower();
 #else
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif
@@ -103,7 +103,7 @@ namespace Calendar
         /// </summary>
         public void FillCalendar()
         {
-            monthNameButton.Content = calBase.SelectedDate.Date.ToString("MMMM yyyy");
+            monthNameButton.Content = calBase.SelectedDate.Date.ToString("MMMM yyyy").ToLower();
 
             //from first to last day in a month
             int jj = (calBase.Start == 7) ? calBase.Start : 0;
@@ -128,8 +128,12 @@ namespace Calendar
                 gvItem = new GridViewItem()
                 {
                     Content = calBase.Month[i],
+
+                #if WINDOWS_PHONE_APP
                     Height = standard.ItemSizeCorrector,
-                    Width = standard.ItemSizeCorrector
+                    Width = standard.ItemSizeCorrector,
+                    FontSize = standard.ItemFontSizeCorrector
+                #endif
                 };
                 gvItem.Tapped += gvItem_Tapped;
 
@@ -189,6 +193,7 @@ namespace Calendar
                 (calGrid.Items[x] as GridViewItem).Background = new SolidColorBrush(Color.FromArgb(200, 55, 55, 55));
                 (calGrid.Items[x] as GridViewItem).Foreground = brush;
                 (calGrid.Items[x] as GridViewItem).BorderBrush = brush;
+                
             }
         }
 

@@ -61,8 +61,8 @@ namespace Calendar
 
         private void doneBtn_Click(object sender, RoutedEventArgs e)
         {
-            //if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            //{
+            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+            {
                 string temp;
                 if (themesFullScreen.Visibility == Visibility.Visible)
                     temp = (myFlip.SelectedItem as LocalFVItem).Tag;
@@ -76,11 +76,11 @@ namespace Calendar
                 if (themesFullScreen.Visibility == Visibility.Visible)
                     themesFullScreen.Visibility = Visibility.Collapsed;
                 else this.Frame.Navigate(typeof(MainPage));
-            //}
-            //else
-            //{
-            //    BuyThis();
-            //}
+            }
+            else
+            {
+                BuyThis();
+            }
         }
 
         private void buttonTheme_Click(object sender, RoutedEventArgs e)
@@ -289,7 +289,5 @@ namespace Calendar
         }
 
         #endregion
-
-
     }
 }

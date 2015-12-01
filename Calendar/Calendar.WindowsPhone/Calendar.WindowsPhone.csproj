@@ -124,18 +124,15 @@
     <Content Include="Assets\StoreLogo.scale-240.png" />
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
-    <Content Include="Holidays\ru\Holidays.xml" />
-    <Content Include="Holidays\ru\PersData.xml" />
-    <Content Include="Holidays\ru\Themes.xml" />
-    <Content Include="Holidays\uk\Holidays.xml" />
-    <Content Include="Holidays\uk\PersData.xml" />
-    <Content Include="Holidays\uk\Themes.xml" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="SelectTheme\BloodDrops-700.png" />
     <Content Include="SelectTheme\Bottle-700.png" />
     <Content Include="SelectTheme\Cherry-700.png" />
+    <Content Include="SelectTheme\Cranberries-700.png" />
     <Content Include="SelectTheme\DarkBlue-700.png" />
     <Content Include="SelectTheme\Default-700.png" />
+    <Content Include="SelectTheme\Fall-700.png" />
+    <Content Include="SelectTheme\Fir-700.png" />
     <Content Include="SelectTheme\HotPink-700.png" />
     <Content Include="SelectTheme\MintGreen-700.png" />
     <Content Include="SelectTheme\Orange-700.png" />
@@ -157,50 +154,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Themes\BloodDrops.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Bottle.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\CalendarDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Cherry.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\DarkBlue.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Default.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\HotPink.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\MintGreen.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\Orange.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\PhoneDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <PRIResource Include="Holidays\ru\Resources.resw" />
-    <PRIResource Include="Holidays\uk\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="XamlAnimatedGif, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">

@@ -1,0 +1,17 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Calendar">
+    <Brush x:Key="MonthBg">#FFe1e4e8</Brush>
+    <Brush x:Key="WeekNamesBg">#FF50633b</Brush>
+    <Brush x:Key="WeekNamesFg">#FFf0f1f2</Brush>
+    <Brush x:Key="DayBg">#ff6d7e5a</Brush>
+    <Brush x:Key="DayFg">#ff303030</Brush>
+    <Brush x:Key="WeekendBg">#FF50633b</Brush>
+    <Brush x:Key="HolidayTypesBg">#FFe1e4e8</Brush>
+    <Brush x:Key="MainBg">#ff384629</Brush>
+    <Brush x:Key="MainFg">#FF303030</Brush>
+    <Brush x:Key="NotesBg">#FFfefdfe</Brush>
+    <Brush x:Key="SelectionFg">#FF919499</Brush>
+    <Brush x:Key="DaySelected">#FFe6f2ee</Brush>
+</ResourceDictionary>

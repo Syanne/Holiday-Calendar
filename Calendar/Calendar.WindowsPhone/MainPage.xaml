@@ -45,12 +45,13 @@
                 </GridViewItem>
                 <Button x:Name="monthNameButton" Height="50" 
                             HorizontalAlignment="Stretch" 
-                            Margin="70,0" FontSize="24" 
+                            Margin="70,0"
                             Foreground="#FF303030" 
                             VerticalAlignment="Center" 
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             BorderThickness="0" 
+                            FontSize="25"
                             Click="monthNameButton_Click"/>
 
                 <GridViewItem x:Name="butNext" 
@@ -85,25 +86,32 @@
                 <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd1" 
                               Name="fff"
                               Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" 
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
+                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
                 <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd2" 
                               Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" 
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
+                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
                 <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd3"
                               Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" 
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" />
+                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}" />
                 <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd4" 
                               Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" 
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
+                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
                 <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd5" 
                               Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" 
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
+                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
                 <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd6" 
                               Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" 
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
+                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
                 <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd7" 
                               Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}" 
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
+                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
             </GridView>
             
             
@@ -319,26 +327,26 @@
                         <Setter Property="FontFamily" Value="Minion Pro"/>
                         <Setter Property="Padding" Value="2"/>
                         <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="Margin" Value="2, 0"/>
+                        <Setter Property="Margin" Value="3, 0"/>
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                         <Setter Property="VerticalContentAlignment" Value="Center"/>
                     </Style>
                 </ListView.ItemContainerStyle>
 
-                <ListViewItem x:Name="All" x:Uid="AllHol" Tag="All" Tapped="holTypes_Tapped"/>
-                <ListViewItem x:Name="M" x:Uid="Mine" Tag="Per" Tapped="holTypes_Tapped"/>
-                <ListViewItem Tapped="holTypes_Tapped" />
-                <ListViewItem Tapped="holTypes_Tapped" />
-                <ListViewItem Tapped="holTypes_Tapped" />
-                <ListViewItem   HorizontalContentAlignment="Center"
+                <ListViewItem x:Name="All" x:Uid="AllHol" Tag="All" Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
+                <ListViewItem x:Name="M" x:Uid="Mine" Tag="Per" Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
+                <ListViewItem Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
+                <ListViewItem Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}" />
+                <ListViewItem Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}" />
+                <ListViewItem HorizontalContentAlignment="Center"
                                 VerticalContentAlignment="Center"
                                   Background="{StaticResource HolidayTypesBg}"
                                   Foreground="{StaticResource MainFg}" 
                                  Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
                                  Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
                                   Content="..."
-                                  FontSize="22"
+                                   FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"
                                   Tapped="GridViewItem_Tapped" />
 
             </ListView>

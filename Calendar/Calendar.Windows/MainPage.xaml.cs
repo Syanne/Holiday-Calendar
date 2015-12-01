@@ -49,8 +49,8 @@ namespace Calendar
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
             //have you bought my app?
-            //if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            //{
+            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+            {
                 calBase.Skip(Convert.ToInt32(gviPrev.Content), DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
                 //Shows month and year in the top of calGrid\
@@ -58,8 +58,8 @@ namespace Calendar
                 MarkHolidays();
 
                 DatePickerDp.Date = DateTimeOffset.Now;
-            //}
-            //else ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");            
+            }
+            else ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");            
         }
         
         private void monthNameButton_Click(object sender, RoutedEventArgs e)

@@ -22,14 +22,14 @@ namespace Calendar
         /// <summary>
         /// FontSize of calendar's item
         /// </summary>
-        //public double ItemFontSizeCorrector { get; set; }
+        public double ItemFontSizeCorrector { get; set; }
 
         public StandardClass()
         {
             ItemSizeCorrector = Window.Current.Bounds.Width / 8;
             MonthTopStringCorrector = ItemSizeCorrector * 7 + 24;
             DecadeSizeCorrector = Window.Current.Bounds.Width / 5;
-            //ItemFontSizeCorrector = Window.Current.Bounds.Width / 12;
+            ItemFontSizeCorrector = ItemSizeCorrector / 2;
         }
     }
 }

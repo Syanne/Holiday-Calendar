@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<themes>
+  <theme name="Default" text="исходная тема"/>  
+  <theme name="MintGreen" text="мятно-зеленый"/>  
+  <theme name="DarkBlue" text="ледяной синий"/>  
+  <theme name="HotPink" text="малина со сливками"/>  
+  <theme name="Cherry" text="спелая вишня"/>  
+  <theme name="Orange" text="сочный апельсиновый"/>
+  <theme name="Bottle" text="цветы в бутылке"/>
+  <theme name="BloodDrops" text="капли вина"/>
+  <theme name="Fir" text="зимнее настроение"/>
+  <theme name="Cranberries" text="калина в инее"/>
+  <theme name="Fall" text="воспоминания"/>
+</themes>
