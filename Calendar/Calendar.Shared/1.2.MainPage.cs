@@ -73,7 +73,7 @@ namespace Calendar
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif
             //fill list of holidays
-            if (SelectedHolidayType.Content.ToString() == All.Content.ToString())
+            if (SelectedHolidayType.Content.ToString().ToLower() == All.Content.ToString().ToLower())
                 noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
                     hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
 
@@ -169,7 +169,7 @@ namespace Calendar
             if (SelectedHolidayType.Content.ToString() == All.Content.ToString())
                 holItemSource = calBase.HolidayItemCollection;
             else holItemSource = calBase.HolidayItemCollection.Where(
-                h => h.HolidayTag == SelectedHolidayType.Content.ToString());
+                h => h.HolidayTag.ToLower() == SelectedHolidayType.Content.ToString().ToLower());
             
             SolidColorBrush standard = new SolidColorBrush(Colors.WhiteSmoke);
             SolidColorBrush hol = new SolidColorBrush(Color.FromArgb(255, 48, 48, 48));
@@ -192,8 +192,7 @@ namespace Calendar
                 (calGrid.Items[x] as GridViewItem).Style = (Style)this.Resources["TodayStyle"];
                 (calGrid.Items[x] as GridViewItem).Background = new SolidColorBrush(Color.FromArgb(200, 55, 55, 55));
                 (calGrid.Items[x] as GridViewItem).Foreground = brush;
-                (calGrid.Items[x] as GridViewItem).BorderBrush = brush;
-                
+                (calGrid.Items[x] as GridViewItem).BorderBrush = brush;                
             }
         }
 

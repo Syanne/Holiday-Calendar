@@ -77,7 +77,7 @@ namespace Calendar.HolidayCalendarMechanism
                 {
                     HolidayNameCollection.Add(new CheckBox
                     {
-                        Content = x.FirstAttribute.Value,
+                        Content = x.FirstAttribute.Value.ToLower(),
                         Tag = x.LastAttribute.Value
                     });
                 }
@@ -86,7 +86,7 @@ namespace Calendar.HolidayCalendarMechanism
             for (int i = 0; i < HolidayNameCollection.Count; i++)
                 foreach (XElement p in persCollection)
                 {
-                    if (p.LastAttribute.Value == HolidayNameCollection[i].Tag.ToString())
+                    if (p.LastAttribute.Value.ToLower() == HolidayNameCollection[i].Tag.ToString())
                     {
                         HolidayNameCollection[i].IsChecked = true; break;
                     }
@@ -116,7 +116,7 @@ namespace Calendar.HolidayCalendarMechanism
             foreach (XElement x in CalendarResourcesManager.doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants("day"))
             {
                 foreach (XElement pers in persCollection)
-                    if (x.FirstAttribute.Value != "" && x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
+                    if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                         HolidayItemCollection.Add(new HolidayItem
                         {
                             Date = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
@@ -126,10 +126,10 @@ namespace Calendar.HolidayCalendarMechanism
             }
 
             if(computational.Count() != 0)
+                foreach (XElement pers in persCollection)
             foreach (XElement x in computational)
             {
-                foreach (XElement pers in persCollection)
-                    if (x.FirstAttribute.Value != "" && x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
+                    if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                         HolidayItemCollection.Add(new HolidayItem
                         {
                             Date =

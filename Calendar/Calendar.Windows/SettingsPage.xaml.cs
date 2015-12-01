@@ -36,7 +36,9 @@ namespace Calendar
             {
                 rightSide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                leftSide.Width = Window.Current.Bounds.Width - 100;
+                //leftSide.Width = Window.Current.Bounds.Width - 50;
+                leftSide.HorizontalContentAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+                leftSide.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
             }
 
             //enable toggles

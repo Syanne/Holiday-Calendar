@@ -179,7 +179,7 @@ namespace Calendar
 
                 if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
                     noteList.ItemsSource = calBase.HolidayItemCollection.
-                        Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) && (hi.HolidayTag == SelectedHolidayType.Content.ToString()));
+                        Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) && (hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()));
                 else
                     noteList.ItemsSource = calBase.HolidayItemCollection.
                    Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);

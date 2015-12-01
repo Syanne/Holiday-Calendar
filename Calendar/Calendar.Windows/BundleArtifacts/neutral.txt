@@ -1,4 +1,4 @@
-MainPackage=C:\Users\Anna\Documents\Visual Studio 2013\Projects\App1\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.1.0.22_Bundle\Calendar.Windows_1.1.0.22_AnyCPU.appx
-SymbolPackage=C:\Users\Anna\Documents\Visual Studio 2013\Projects\App1\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.1.0.22_Test\Calendar.Windows_1.1.0.22_AnyCPU.appxsym
-ResourcePack=C:\Users\Anna\Documents\Visual Studio 2013\Projects\App1\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.1.0.22_Bundle\Calendar.Windows_1.1.0.22_language-ru.appx
-ResourcePack=C:\Users\Anna\Documents\Visual Studio 2013\Projects\App1\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.1.0.22_Bundle\Calendar.Windows_1.1.0.22_language-uk.appx
+MainPackage=C:\Users\Anna\Desktop\Calendar\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.1.0.27_Bundle\Calendar.Windows_1.1.0.27_AnyCPU.appx
+SymbolPackage=C:\Users\Anna\Desktop\Calendar\Calendar\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.1.0.27_Test\Calendar.Windows_1.1.0.27_AnyCPU.appxsym
+ResourcePack=C:\Users\Anna\Desktop\Calendar\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.1.0.27_Bundle\Calendar.Windows_1.1.0.27_language-ru.appx
+ResourcePack=C:\Users\Anna\Desktop\Calendar\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.1.0.27_Bundle\Calendar.Windows_1.1.0.27_language-uk.appx

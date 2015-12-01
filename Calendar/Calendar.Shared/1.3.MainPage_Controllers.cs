@@ -68,12 +68,12 @@ namespace Calendar
                     gvi.BorderBrush = (Brush)Application.Current.Resources["DaySelected"];
                 }
 
-                if (gviPrev.Style != (Style)this.Resources["TodayStyle"])
+                if (gviPrev.Style != (Style)this.Resources["TodayStyle"] && gviPrev != gvi)
                 {
                     gviPrev.BorderThickness = new Thickness(0);
+                    gviPrev = gvi;
                 }
 
-                gviPrev = gvi;
                 noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
             //move to previous or next month?
