@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <month id="1">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <day name="New Year's Day" date="1" />
+      <computational name="Birthday of Martin Luther King, Jr." dow="0" now="2" />     
+    </holiday>
+    
+    <holiday desc="British Holidays" name="UK">
+      <day name="New Year's Day" date="1" />
+      <day name="Plough Monday (the start of the new farming year)" date="12" />
+    </holiday>
+    
+    <holiday desc="Australian holidays" name="Au">
+      <day name="New Year's Day" date="1" />
+      <day name="Australia Day" date="26" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <day name="New Year's Day" date="1" />
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+      <day name="Epiphany" date="6" />
+      <day name="Orthodox Christmas" date="7" />
+    </holiday >
+
+    <holiday desc="Christian holidays (UK)" name="UkC">
+      <day name="Twelfth Night" date="5" />
+      <day name="Epiphany" date="6" />
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="International Holocaust Remembrance Day" date="27" />
+    </holiday >    
+   
+  </month>
+
+  <!--..........................2................................-->
+
+  <month id="2">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <computational name="Washington's Birthday" dow="0" now="2" />
+      <day name="Groundhog Day" date="2" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <computational name="Royal Hobart Regatta" dow="0" now="1" />
+    </holiday >
+    
+    <holiday desc="Canadian holidays" name="Ca">
+      <computational name="Islander Day" dow="0" now="2" />
+      <computational name="Family Day" dow="0" now="2" />
+      <computational name="Louis Riel Day" dow="0" now="2" />
+    </holiday >
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+    
+    <holiday desc="Christian holidays (UK)" name="UkC">
+      <day name="Candlemas Day" date="2" />
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="World Cancer Day" date="4" />
+      <day name="Day of Zero Tolerance for Female Genital Mutilation" date="6" />
+      <day name="World Radio Day" date="13" />
+      <day name="Valentine's Day" date="14" />
+      <day name="World Day of Social Justice" date="20" />
+      <day name="International Mother Language Day" date="21" />
+    </holiday >
+
+  </month>
+
+  <!--..........................3................................-->
+
+  <month id="3">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <computational name="Washington's Birthday" dow="0" now="2" />
+      <day name="International Women's Day" date="8" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <day name="St Piran's Day (Cornwall)" date="5" />
+      <day name="St. Patrick's Day" date="17" />
+      <computational name="Commonwealth Day" dow="0" now="1" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <computational name="Labour Day (Western Australia)" dow="0" now="0" />
+      <computational name="Canberra Day" dow="0" now="1" />
+      <computational name="Labour Day (Victoria)" dow="0" now="1" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <day name="St. Patrick's Day" date="17" />
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+      <day name="St. Patrick's Day" date="17" />
+    </holiday >
+
+    <holiday desc="Christian holidays (UK)" name="UkC">
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="Zero Discrimination Day" date="1" />
+      <day name="World Wildlife Day" date="3" />
+      <day name="International Women’s Day" date="8" />
+      <day name="International Day of Happiness" date="20" />
+      <day name="World Poetry Day" date="21" />
+      <day name="International Day of Norwuz" date="21" />
+      <day name="World Down Syndrome Day" date="21" />
+      <day name="International Day of Forests" date="21" />
+      <day name="International Day for the Elimination of Racial Discrimination" date="21" />
+      <day name="World Water Day" date="22" />
+      <day name="World Meteorology Day" date="23" />
+      <day name="World Tuberculosis Day" date="24" />
+      <day name="International Day for the Right to the Truth Concerning" date="24" />
+      <day name="International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade" date="25" />
+      <day name="International Day of Solidarity with Detained and Missing Staff Members" date="25" />
+    </holiday >
+
+  </month>
+
+  <!--..........................4................................-->
+
+  <month id="4">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <computational name="Washington's Birthday" dow="0" now="2" />
+      <day name="April Fools' Day" date="1" />
+      <day name="Earth Day" date="22" />
+      <computational name="Arbor Day" dow="4" now="6" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">      
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <day name="Anzac Day" date="25" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <day name="St. George's Day" date="23" />
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+    
+    <holiday desc="Christian holidays (UK)" name="UkC">
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="April Fools' Day" date="1" />
+      <day name="World Autism Awareness Day" date="2" />
+      <day name="International Day for Mine Awareness and Assistance in Mine Action" date="2" />
+      <day name="International Day of Sport for Development and Peace" date="4" />
+      <day name="Day of Remembrance of the Victims of the Rwanda Genocide" date="7" />
+      <day name="World Health Day" date="7" />
+      <day name="International Day of Human Space Flight" date="12" />
+      <day name="International Mother Earth Day" date="22" />
+      <day name="World Book and Copyright Day" date="23" />
+      <day name="World Malaria Day" date="25" />
+      <day name="World Intellectual Property Day" date="26" />
+      <day name="World Day for Safety and Health at Work" date="28" />
+      <day name="Day of Remembrance for all Victims of Chemical Warfare" date="29" />
+      <day name="International Jazz Day" date="30" />
+    </holiday >
+
+  </month>
+
+  <!--..........................5................................-->
+
+
+  <month id="5">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <computational name="Memorial Day" dow="0" now="6" />
+      <day name="Cinco de Mayo" date="5" />
+      <computational name="Mother's Day" dow="6" now="1" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <computational name="Early May" dow="0" now="0" />
+      <computational name="Spring Bank Holiday" dow="0" now="6" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+
+    <holiday desc="Christian holidays (UK)" name="UkC">
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="May Day" date="1" />
+      <day name="World Press Freedom Day" date="3" />
+      <day name="Time of Remembrance and Reconciliation for Those Who Lost Their Lives during the Second World War" date="8" />
+      <day name="World Migratory Bird Day" date="9" />
+      <day name="International Day of Families" date="15" />
+      <day name="World Telecommunication and Information Society Day" date="17" />
+      <day name="World Day for Cultural Diversity for Dialogue and Developmen" date="21" />
+      <day name="International Day for Biological Diversity" date="22" />
+      <day name="International Day to End Obstetric Fistula" date="23" />
+      <day name="International Day of UN Peacekeepers" date="29" />
+      <day name="World No-Tobacco Day" date="31" />
+    </holiday >
+
+  </month>
+
+  <!--..........................6................................-->
+
+
+  <month id="6">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <day name="Flag Day" date="14" />
+      <day name="Helen Keller Day" date="27" />
+      <computational name="Children's Day" dow="6" now="0" />
+      <computational name="Father's Day" dow="6" now="2" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <computational name="Queen's Official Birthday" dow="5" now="2" />
+      <day name="Midsummer’s Day" date="24" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <computational name="Western Australia Day" dow="0" now="0" />
+      <computational name="Queen's Official Birthday" dow="0" now="1" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <day name="National Aboriginal Day " date="21" />
+      <day name="Féte Nationale" date="24" />
+      <day name="Discovery Day" date="24" />
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="Global Day of Parents" date="1" />
+      <day name="The Day of the Full Moon" date="1" />
+      <day name="International Day of Innocent Children Victims of Aggression" date="4" />
+      <day name="World Environment Day" date="5" />
+      <day name="Russian Language Day at the UN " date="6" />
+      <day name="World Oceans Day" date="8" />
+      <day name="World Day Against Child Labour" date="12" />
+      <day name="International Albinism Awareness Day" date="13" />
+      <day name="World Blood Donor Day" date="14" />
+      <day name="World Elder Abuse Awareness Day" date="15" />
+      <day name="World Day to Combat Desertification and Drought" date="17" />
+      <day name="World Refugee Day" date="20" />
+      <day name="International Day of Yoga" date="21" />
+      <day name="United Nations Public Service Day" date="23" />
+      <day name="International Widows' Day" date="23" />
+      <day name="Day of the Seafarer" date="25" />
+      <day name="International Day against Drug Abuse and Illicit Trafficking" date="26" />
+      <day name="United Nations International Day in Support of Victims of Torture" date="26" />
+      <day name="International Albinism Awareness Day" date="26" />
+    </holiday >
+  </month>
+
+  <!--..........................7................................-->
+
+  <month id="7">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <day name="Independence Day" date="4" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <day name="Battle of the Boyne (Orangeman's Day)" date="12" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <day name="Canada Day" date="1" />
+      <day name="Nunavut Day" date="9" />
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="International Day of Cooperatives" date="4" />
+      <day name="World Population Day" date="11" />
+      <day name="World Youth Skills Day" date="15" />
+      <day name="Nelson Mandela International Day" date="18" />
+      <day name="World Hepatitis Day" date="28" />
+      <day name="International Day of Friendship" date="30" />
+      <day name="World Day against Trafficking in Persons" date="30" />
+    </holiday >
+
+  </month>
+
+  <!--..........................8................................-->
+
+
+  <month id="8">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <day name="Women's Equality Day" date="26" />
+      <computational name="Washington's Birthday" dow="0" now="2" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <computational name="Late Summer Bank Holiday" dow="0" now="6" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <computational name="Picnic Day" dow="0" now="0" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <computational name="Civic Holiday" dow="0" now="0" />
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="International Day of the World's Indigenous Peoples" date="9" />
+      <day name="International Youth Day" date="12" />
+      <day name="World Humanitarian Day" date="19" />
+      <day name="International Day for the Remembrance of the Slave Trade and Its Abolition " date="23" />
+      <day name="International Day against Nuclear Tests" date="29" />
+      <day name="International Day of the Victims of Enforced Disappearances" date="30" />
+    </holiday >
+
+  </month>
+
+  <!--..........................9................................-->
+
+  <month id="9">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <computational name="Labor Day" dow="0" now="0" />
+      <day name="Patriot Day" date="11" />
+      <day name="Constitution/Citizenship Day" date="17" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <day name="The Abbots Bromley Horn Dance" date="10" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <computational name="Family and Community Day" dow="0" now="6" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <computational name="Labour Day" dow="0" now="0" />
+    </holiday >
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="International Day of Charity" date="5" />
+      <day name="International Literacy Day" date="8" />
+      <day name="United Nations Day for South-South Cooperation" date="12" />
+      <day name="International Day of Democracy" date="15" />
+      <day name="International Day for the Preservation of the Ozone Layer" date="16" />
+      <day name="International Day of Peace" date="21" />
+      <day name="World Maritime Day" date="25" />
+      <day name="International Day for the Total Elimination of Nuclear Weapons" date="26" />
+      <day name="World Tourism Day" date="27" />
+    </holiday >
+
+  </month>
+
+  <!--..........................10...............................-->
+
+  <month id="10">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <computational name="Columbus Day" dow="0" now="1" />
+      <day name="GeCalendarResourcesManager-American Day" date="6" />
+      <day name="Leif Erikson Day" date="9" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <day name="Halloween" date="31" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <computational name="Labour Day" dow="0" now="0" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <computational name="Thanksgiving" dow="0" now="1" />
+    </holiday >
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+      <day name="Halloween" date="31" />
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="International Day of Older Persons" date="1" />
+      <day name="International Day of Non-Violence" date="2" />
+      <day name="World Teachers’ Day" date="5" />
+      <day name="World Habitat Day" date="5" />
+      <day name="World Post Day" date="9" />
+      <day name="International Day of the Girl Child " date="11" />
+      <day name="International Day for Disaster Reduction" date="13" />
+      <day name="International Day of Rural Women " date="15" />
+      <day name="World Food Day " date="16" />
+      <day name="International Day for the Eradication of Poverty" date="17" />
+      <day name="United Nations Day" date="24" />
+      <day name="World Development Information Day" date="24" />
+      <day name="World Day for Audiovisual Heritage" date="27" />
+      <day name="World Cities Day" date="31" />
+    </holiday >
+
+  </month>
+
+  <!--..........................11...............................-->
+
+
+  <month id="11">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <day name="Veterans Day" date="11" />
+      <computational name="Thanksgiving Day" dow="1" now="6" />
+      <computational name="Black Friday" dow="2" now="6" />      
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <day name="Bonfire Night" date="5" />
+      <day name="St. Andrew's Day (Scotland)" date="30" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <computational name="Recreation Day" dow="0" now="0" />
+      <computational name="Melbourne Cup (Victoria)" dow="1" now="0" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <day name="Remembrance Day" date="11" />
+    </holiday >
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="International Day to End Impunity for Crimes against Journalists" date="2" />
+      <day name="International Day for Preventing the Exploitation of the Environment in War and Armed Conflict" date="6" />
+      <day name="World Science Day for Peace and Development" date="10" />
+      <day name="World Diabetes Day" date="14" />
+      <day name="World Day of Remembrance for Road Traffic Victims" date="15" />
+      <day name="International Day for Tolerance" date="16" />
+      <day name="World Toilet Day" date="19" />
+      <day name="World Philosophy Day" date="19" />
+      <day name="Africa Industrialization Day " date="20" />
+      <day name="Universal Children’s Day" date="20" />
+      <day name="World Television Day" date="21" />
+      <day name="International Day for the Elimination of Violence against Women" date="25" />
+      <day name="International Day of Solidarity with the Palestinian People" date="29" />
+    </holiday >
+
+  </month>
+
+  <!--.........................12................................-->
+
+  <month id="12">
+    <!--.............National..............-->
+    <holiday desc="US Holidays" name="US">
+      <day name="Christmas (US)" date="25" />
+      <day name="Pearl Harbor Remembrance Day" date="7" />
+      <day name="Kwanzaa" date="26" />
+      <day name="New Year's Eve" date="31" />
+    </holiday>
+
+    <holiday desc="British Holidays" name="UK">
+      <day name="Christmas Day (British)" date="25" />
+      <day name="Boxing Day" date="26" />
+      <day name="Substitute Day" date="28" />
+    </holiday>
+
+    <holiday desc="Australian holidays" name="Au">
+      <day name="Christmas Eve" date="25" />
+      <day name="Christmas Day" date="25" />
+      <day name="Boxing Day" date="26" />
+      <day name="Proclamation Day" date="26" />
+      <day name="New Year's Eve" date="31" />
+    </holiday >
+
+    <holiday desc="Canadian holidays" name="Ca">
+      <day name="Christmas Day" date="25" />
+      <day name="Boxing Day" date="26" />
+    </holiday >
+
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays (US)" name="USC">
+      <day name="Immaculate Conception of the Virgin Mary" date="8" />
+      <day name="Christmas Eve" date="24" />
+      <day name="Christmas" date="25" />
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International Holidays" name="In">
+      <day name="World AIDS Day" date="1" />
+      <day name="International Day for the Abolition of Slavery" date="2" />
+      <day name="International Day of Persons with Disabilities" date="3" />
+      <day name="International Volunteer Day for Economic and Social Development " date="5" />
+      <day name="World Soil Day" date="5" />
+      <day name="International Civil Aviation Day" date="7" />
+      <day name="International Anti-Corruption Day " date="9" />
+      <day name="Human Rights Day" date="10" />
+      <day name="International Mountain Day" date="11" />
+      <day name="International Migrants Day" date="18" />
+      <day name="International Human Solidarity Day " date="20" />
+    </holiday >
+
+  </month>
+  
+</root>

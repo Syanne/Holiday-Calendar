@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PersonalData toast="2">
+  <theme>
+    <holiday desc="My" name="M"/>
+    <holiday desc="International Holidays" name="In"/>
+    <holiday desc="Canadian holidays" name="Ca"/>
+    <holiday desc="British Holidays" name="UK"/>
+  </theme>
+  <holidays>
+    <persDate name="" date="" month="" year=""/>
+  </holidays>
+</PersonalData>
