@@ -7,8 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" 
     MinWidth="1000"
-    Loaded="Page_Loaded"
-    
+    Loaded="Page_Loaded"    
+    Unloaded="Page_Unloaded"
     Grid.ColumnSpan="2">
 
     <Page.Resources>
@@ -25,7 +25,7 @@
     <Page.BottomAppBar>
         <AppBar x:Name="bottomMenuBar" 
                 Padding="2" 
-                Background="{StaticResource MainBg}" 
+                Background="{StaticResource MainColor}" 
                 Height="95" IsSticky="False" 
                 BorderThickness="0">
 
@@ -57,31 +57,28 @@
                   HorizontalScrollMode="Auto" 
                   VerticalScrollBarVisibility="Hidden">
 
-        <Grid Background="{StaticResource MainBg}" Name="mainBg"  >
+        <Grid Background="{StaticResource MainColor}" Name="mainBg"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="149*"/>
                 <RowDefinition Height="235*"/>
             </Grid.RowDefinitions>
 
-            <Grid Name="calBack" 
+            <StackPanel Name="calBack" 
                   Background="#FF303030" 
-                  Width="600"
                   HorizontalAlignment="Left" 
-                  Margin="10,10,5,10" 
-                  Grid.RowSpan="2" >
+                  Margin="0" >
 
                 <Grid x:Name="monthTopString" 
-                      Height="60" Width="482"
-                      VerticalAlignment="Top" 
+                      VerticalAlignment="Top"                       
                       HorizontalAlignment="Stretch" 
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                      Background="{StaticResource MonthBg}" 
-                      Margin="0,50,5,0">
+                      Background="Transparent" >
                     <Button x:Name="butPrev" 
                             Click="butPrev_Click" 
-                            Height="50" Width="50" 
-                            HorizontalAlignment="Center" 
-                            Margin="0,10,290,10" 
+                            Height="50"
+                            Width="50"
+                            HorizontalAlignment="Left" 
+                            Margin="20, 0, 10, 0"
                             BorderThickness="0" 
                             VerticalAlignment="Center" >
                         <Button.Background>
@@ -89,21 +86,21 @@
                         </Button.Background>
                     </Button>
                     <Button x:Name="monthNameButton" 
-                            Width="230" Height="50" 
+                            Width="auto" Height="auto" 
                             HorizontalAlignment="Center" 
-                            Margin="0,5" FontSize="24" 
-                            Foreground="#FF303030" 
+                            Margin="10, 0" 
+                            Foreground="#FFF0F0F2" 
                             VerticalAlignment="Center" 
                             HorizontalContentAlignment="Center" 
                             VerticalContentAlignment="Center" 
                             BorderThickness="0" 
                             Click="monthNameButton_Click"/>
-
                     <Button x:Name="butNext" 
                             Click="butNext_Click" 
-                            Height="50" Width="50" 
-                            HorizontalAlignment="Center" 
-                            Margin="290,10,0,10" 
+                            Height="50"
+                            Width="50"
+                            HorizontalAlignment="Right" 
+                            Margin="0, 0, 50, 0"
                             BorderThickness="0" 
                             VerticalAlignment="Center" >
                         <Button.Background>
@@ -113,12 +110,11 @@
                 </Grid>
 
                 <GridView x:Name="weekDayNames" 
-                          Height="80" Width="495" 
-                          Margin="0,120,0,0" 
-                          HorizontalAlignment="Stretch"  
-                          VerticalAlignment="Top" 
-                          VerticalContentAlignment="Stretch" 
-                          Foreground="#FF303030" 
+                          Margin="0,10,0,0" 
+                          HorizontalAlignment="Center" 
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Bottom" 
+                          Foreground="#FFF0F0F2" 
                           BorderThickness="0"
                           ManipulationMode="None" 
                           SelectionMode="None" 
@@ -126,17 +122,22 @@
                           IsDoubleTapEnabled="False" 
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-                    <GridViewItem Style="{StaticResource WeekNameStyle}" Foreground="{StaticResource WeekNamesFg}" x:Uid="Wd1"  />
-                    <GridViewItem Style="{StaticResource WeekNameStyle}" Foreground="{StaticResource WeekNamesFg}" x:Uid="Wd2"  />
-                    <GridViewItem Style="{StaticResource WeekNameStyle}" Foreground="{StaticResource WeekNamesFg}" x:Uid="Wd3"  />
-                    <GridViewItem Style="{StaticResource WeekNameStyle}" Foreground="{StaticResource WeekNamesFg}" x:Uid="Wd4" />
-                    <GridViewItem Style="{StaticResource WeekNameStyle}" Foreground="{StaticResource WeekNamesFg}" x:Uid="Wd5"  />
-                    <GridViewItem Style="{StaticResource WeekNameStyle}" Foreground="{StaticResource WeekNamesFg}" x:Uid="Wd6" />
-                    <GridViewItem Style="{StaticResource WeekNameStyle}" Foreground="{StaticResource WeekNamesFg}" x:Uid="Wd7" />
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+                    
+                    <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd1"  />
+                    <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd2"  />
+                    <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd3"  />
+                    <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd4" />
+                    <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd5"  />
+                    <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd6" />
+                    <GridViewItem Style="{StaticResource WeekNameStyle}" x:Uid="Wd7" />
                 </GridView>
 
                 <GridView x:Name="calGrid" 
-                      Width="495" Height="470"
                           ItemsSource="{Binding Source={StaticResource WeeksSource}}"
                           IsRightTapEnabled="False" 
                           IsDoubleTapEnabled="False" 
@@ -147,9 +148,7 @@
                           HorizontalContentAlignment="Center"
                           VerticalAlignment="Top"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                          Margin="0,200,0,10"
-                          Foreground="{StaticResource DayFg}"                             
-                          >
+                          Margin="0">
 
                     <GridView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -159,12 +158,36 @@
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <GridViewItem Tapped="gvItem_Tapped"
-                                          Content="{Binding Content}" 
-                                          Style="{Binding Style}" 
-                                          Background="{Binding Background}" 
-                                          Foreground="{Binding Foreground}"
-                                          BorderBrush="{Binding BorderBrush}"
-                                          BorderThickness="{Binding Thickness}"
+                                          Style="{Binding Style}"/>
+                        </DataTemplate>
+                    </GridView.ItemTemplate>                    
+                </GridView>
+
+                <GridView Name="gvDecades" 
+                          Visibility="Collapsed" 
+                          ItemsSource="{Binding Source={StaticResource WeeksSource}}"
+                          IsRightTapEnabled="False" 
+                          IsDoubleTapEnabled="False" 
+                          IsHoldingEnabled="False"
+                          ManipulationMode="None" 
+                          SelectionMode="None" 
+                          HorizontalAlignment="Center" 
+                          HorizontalContentAlignment="Center"
+                          VerticalAlignment="Top"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                          Margin="0">
+
+                    <GridView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
+                        </ItemsPanelTemplate>
+                    </GridView.ItemsPanel>
+
+                    <GridView.ItemTemplate>
+                        <DataTemplate>
+                            <GridViewItem Tapped="m1_Tapped"  
+                                          Style="{StaticResource DecadeMonthStyle}" 
+                                          Foreground="{StaticResource AdditionalColor}"
                                           />
                         </DataTemplate>
                     </GridView.ItemTemplate>
@@ -184,48 +207,18 @@
                         </GroupStyle>
                     </GridView.GroupStyle>
                 </GridView>
-
-
-                <GridView Name="gvDecades" 
-                          Visibility="Collapsed" 
-                          Width="495" Height="470" 
-                          Padding="40,0" Margin="45, 150, 45, 0" 
-                          IsItemClickEnabled="True" 
-                          IsRightTapEnabled="True" 
-                          IsDoubleTapEnabled="False" 
-                          ManipulationMode="None" 
-                          SelectionMode="None" 
-                          IsHoldingEnabled="False"  
-                          VerticalAlignment="Top"
-                          HorizontalAlignment="Stretch" 
-                          HorizontalContentAlignment="Center" 
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" >
-
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <GridViewItem Tapped="m1_Tapped"                                      
-                                          Height="100"
-                                          Width="125"
-                                          Content="{Binding Content}" 
-                                          Tag="{Binding Tag}"
-                                          Style="{StaticResource DecadeMonthStyle}" 
-                                          Foreground="{StaticResource MonthBg}"
-                                          BorderBrush="{StaticResource MonthBg}"
-                                          />
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>
-
+                
+                <TextBox x:Name="HolidayTitle" x:Uid="HolidayTitle"
+                         Background="Transparent" 
+                         Foreground="#FFF0F0F2"
+                         HorizontalAlignment="Center"
+                         BorderThickness="0"
+                         IsReadOnly="True"
+                         IsHoldingEnabled="False"/>
                 <ListView Name="HolidayList" 
-                          Width="auto" Height="80" 
+                          Width="auto" 
                           HorizontalAlignment="Center" 
-                          Margin="0,10,10,10" Padding="2, 6" 
+                          Margin="0, 10, 0, 0" 
                           BorderThickness="0" 
                           VerticalAlignment="Bottom" 
                           IsItemClickEnabled="True" 
@@ -236,17 +229,33 @@
                             <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
                         </ItemsPanelTemplate>
                     </ListView.ItemsPanel>
-                    <ListViewItem Name="All" x:Uid="AllHol" Tag="All" Style="{StaticResource HolidayFlyoutStyle}" Background="{StaticResource HolidayTypesBg}" Foreground="{StaticResource MainFg}" Tapped="holTypes_Tapped"/>
-                    <ListViewItem Name="M" x:Uid="Mine" Tag="Per" Style="{StaticResource HolidayFlyoutStyle}" Background="{StaticResource HolidayTypesBg}" Foreground="{StaticResource MainFg}" Tapped="holTypes_Tapped"/>
-                    <ListViewItem Style="{StaticResource HolidayFlyoutStyle}" Background="{StaticResource HolidayTypesBg}" Foreground="{StaticResource MainFg}" Tapped="holTypes_Tapped"/>
-                    <ListViewItem Style="{StaticResource HolidayFlyoutStyle}" Background="{StaticResource HolidayTypesBg}" Foreground="{StaticResource MainFg}" Tapped="holTypes_Tapped"/>
-                    <ListViewItem Style="{StaticResource HolidayFlyoutStyle}" Background="{StaticResource HolidayTypesBg}" Foreground="{StaticResource MainFg}" Tapped="holTypes_Tapped"/>
+                    <ListViewItem Name="All" x:Uid="AllHol" Tag="All" 
+                                  Style="{StaticResource HolidayFlyoutStyle}" 
+                                  Background="{StaticResource MainColor}" 
+                                  Foreground="#FFF0F0F2" 
+                                  Tapped="holTypes_Tapped" />
+                    <ListViewItem Name="M" x:Uid="Mine" Tag="Per" 
+                                  Style="{StaticResource HolidayFlyoutStyle}" 
+                                  Background="{StaticResource MainColor}" 
+                                  Foreground="#FFF0F0F2" 
+                                  Tapped="holTypes_Tapped"/>
+                    <ListViewItem Style="{StaticResource HolidayFlyoutStyle}" 
+                                  Background="{StaticResource MainColor}" 
+                                  Foreground="#FFF0F0F2" 
+                                  Tapped="holTypes_Tapped"/>
+                    <ListViewItem Style="{StaticResource HolidayFlyoutStyle}" 
+                                  Background="{StaticResource MainColor}" 
+                                  Foreground="#FFF0F0F2" 
+                                  Tapped="holTypes_Tapped"/>
+                    <ListViewItem Style="{StaticResource HolidayFlyoutStyle}" 
+                                  Background="{StaticResource MainColor}" 
+                                  Foreground="#FFF0F0F2" 
+                                  Tapped="holTypes_Tapped"/>
                     <ListViewItem 
                         Style="{StaticResource HolidayFlyoutStyle}"
-                        Background="{StaticResource HolidayTypesBg}"
-                        Foreground="{StaticResource MainFg}" 
+                        Background="{StaticResource MainColor}"
+                        Foreground="#FFF0F0F2" 
                         Content="..."
-                        FontSize="36"
                         Tapped="GridViewItem_Tapped" />
                     <FlyoutBase.AttachedFlyout>
                         <Flyout Opened="Flyout_Opened" Closed="butHolidayFlyout_Closed" AutomationProperties.ItemType="CheckBox" x:Name="butHolidayFlyout" Placement="Full" FlyoutPresenterStyle="{StaticResource ResourceKey=HolidayListStyle}">
@@ -277,35 +286,29 @@
                         </Flyout>
                     </FlyoutBase.AttachedFlyout>
                 </ListView>
-            </Grid>
+            </StackPanel>
 
             <!--notes-->
             <Grid Name="noteGridMain" 
-                  HorizontalAlignment="Stretch"
-                  Background="{StaticResource NotesBg}" 
-                  Margin="620,10,10,10"
-                  Grid.RowSpan="2">
+                  Background="#FFF6F6F9" 
+                  HorizontalAlignment="Left">
 
                 <TextBox Name="ClickedDayPage" 
                          VerticalAlignment="Top" 
-                         HorizontalAlignment="Stretch"
-                         Height="60" 
-                         BorderThickness="0,0,0,5" 
-                         BorderBrush="{StaticResource MainBg}" 
-                         FontSize="40" 
-                         Foreground="Black" 
+                         HorizontalAlignment="Center"
+                         Foreground="{StaticResource MainColor}" 
+                         BorderThickness="0" 
                          FontFamily="Minion Pro" 
-                         Margin="50" 
                          Background="Transparent" 
                          IsReadOnly="True" 
-                         TextAlignment="Center"/>
+                         TextAlignment="Center" />
                 <ListView Name="noteList" 
                           Foreground="Transparent"
-                          MinWidth="500" MaxHeight="700"
+                          Width="auto" Height="auto"
+                          HorizontalAlignment="Stretch"
                           ScrollViewer.HorizontalScrollMode="Disabled"
                           ScrollViewer.VerticalScrollMode="Enabled" 
-                          ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                          Margin="50,150,50,100" Padding="15,0" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"                          
                           ManipulationMode="None" SelectionMode="None">
 
                     <ListView.ItemContainerStyle>
@@ -317,16 +320,22 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ListViewItem Name="note" 
+                                        HorizontalAlignment="Stretch"
                                         Style="{StaticResource NoteStyle}" 
                                         Tag="{Binding HolidayTag}" 
-                                        Tapped="note_Tapped"                                       
-                                        BorderBrush="{StaticResource MainBg}">
+                                        Background="{Binding Background}"
+                                        MinHeight="{Binding Height}"
+                                        VerticalContentAlignment="Bottom"
+                                        Margin="-10, 0, -30, 0"
+                                        Tapped="note_Tapped" >
                                 <ListViewItem.Content>
                                     <TextBlock                                             
                                             Text="{Binding HolidayName}" 
+                                            FontSize="{Binding FontSize}"
+                                            Margin="50,20,50,20" 
                                             ManipulationMode="None" 
-                                            TextAlignment="Center"
-                                            Padding="5,0"
+                                            TextAlignment="Justify"
+                                            
                                             TextWrapping="Wrap" />
                                 </ListViewItem.Content>
                             </ListViewItem>
@@ -451,7 +460,9 @@
                             Margin="5,2" 
                             HorizontalAlignment="Left" 
                             Click="GoToDateBtn_Click"
-                            Style="{StaticResource MainButton}"/>
+                            Style="{StaticResource MainButton}"
+                            Background="{StaticResource MainColor}"
+                            />
 
                 </ListView>
 

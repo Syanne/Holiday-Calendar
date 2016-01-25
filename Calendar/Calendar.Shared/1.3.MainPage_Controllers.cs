@@ -45,8 +45,13 @@ namespace Calendar
 
             //end select "all"
             SelectedHolidayType = All;
-            SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
+            SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
             UpdateNoteList();            
+
+            #if !WINDOWS_PHONE_APP                
+                Window.Current.SizeChanged += Current_SizeChanged;
+                ShowHide();
+            #endif
         }
         
         void gvItem_Tapped(object sender, TappedRoutedEventArgs e)
@@ -62,17 +67,12 @@ namespace Calendar
 
                 UpdateNoteList();
 
-                if (gvi.Style != (Style)this.Resources["TodayStyle"])
-                {
-                    gvi.BorderThickness = new Thickness(2);
-                    gvi.BorderBrush = (Brush)Application.Current.Resources["DaySelected"];
-                }
-
-                if (gviPrev.Style != (Style)this.Resources["TodayStyle"] && gviPrev != gvi)
-                {
-                    gviPrev.BorderThickness = new Thickness(0);
-                    gviPrev = gvi;
-                }
+                gvi.Background = new SolidColorBrush(Color.FromArgb(100, 103, 103, 104));
+              
+                if (gviPrev != gvi)
+                    gviPrev.Background = new SolidColorBrush(Colors.Transparent);
+                
+                gviPrev = gvi;
 
                 noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
@@ -193,10 +193,11 @@ namespace Calendar
 
             calBase.ReadHolidayXml();
 
-            noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+            //noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+            UpdateNoteList();
 
             if (noteList.Items.Count > 1 && gviPrev.Style != (Style)this.Resources["TodayStyle"])
-                gviPrev.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
+                gviPrev.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
 
             AddNoteFlyout.Hide();
         }        
@@ -224,7 +225,8 @@ namespace Calendar
             calBase.ReadHolidayXml();
 
             if (gviPrev != null)
-                noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+                UpdateNoteList();
+                //noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
 
             if (noteList.Items.Count == 1)
                 if (gviPrev.Style == (Style)this.Resources["ThisMonthStyle"]) 
@@ -245,8 +247,9 @@ namespace Calendar
                 YearChecker());
 
                 calBase.ReadHolidayXml();
-                noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
-                    hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+                //noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
+                   // hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+                UpdateNoteList();
             }
             AddNoteFlyout.Hide();
         }

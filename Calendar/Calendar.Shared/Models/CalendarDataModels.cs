@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
@@ -7,11 +8,14 @@ namespace Calendar.Models
     /// <summary>
     /// all chosen holidays (from at least 3 categories of holidays)
     /// </summary>
-    public struct HolidayItem
+    public class HolidayItem
     {
         public int Date { get; set; }
         public string HolidayName { get; set; }
         public string HolidayTag { get; set; }
+        public Brush Background { get; set; }
+        public double Height { get; set; }
+        public double FontSize { get; set; }
     }
 
 

@@ -7,6 +7,8 @@ using System.Xml;
 using System.Xml.Linq;
 using CalendarResources;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace Calendar.HolidayCalendarMechanism
 {
@@ -121,7 +123,10 @@ namespace Calendar.HolidayCalendarMechanism
                         {
                             Date = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
                             HolidayName = x.Attributes().ElementAt(0).Value,
-                            HolidayTag = pers.LastAttribute.Value
+                            HolidayTag = pers.LastAttribute.Value,
+                            Background = new SolidColorBrush(Colors.Transparent),
+                            FontSize = 20, 
+                            Height = 50
                         });
             }
 
@@ -136,7 +141,10 @@ namespace Calendar.HolidayCalendarMechanism
                                 ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
                                 Convert.ToInt32(x.Attributes().ElementAt(2).Value)),
                             HolidayName = x.Attributes().ElementAt(0).Value,
-                            HolidayTag = pers.LastAttribute.Value
+                            HolidayTag = pers.LastAttribute.Value,
+                            Background = new SolidColorBrush(Colors.Transparent),
+                            FontSize = 20,
+                            Height = 50
                         });
             }
 
@@ -149,7 +157,10 @@ namespace Calendar.HolidayCalendarMechanism
                             {
                                 Date = Convert.ToInt32(x.Attribute("day").Value),
                                 HolidayName = x.Attribute("name").Value,
-                                HolidayTag = x.Parent.LastAttribute.Value
+                                HolidayTag = x.Parent.LastAttribute.Value,
+                                Background = new SolidColorBrush(Colors.Transparent),
+                                FontSize = 20,
+                                Height = 50
                             });
                         }
                 }
@@ -158,14 +169,20 @@ namespace Calendar.HolidayCalendarMechanism
             foreach (XElement pers in CalendarResourcesManager.PersonalData.Root.Descendants("holidays").Descendants("persDate"))
                 if (pers.Attribute("month").Value == SelectedDate.Month.ToString() && (pers.Attribute("year").Value == SelectedDate.Year.ToString() || pers.Attribute("year").Value == "0"))
                     HolidayItemCollection.Add(new HolidayItem 
-                    { Date = Convert.ToInt32(pers.Attribute("date").Value), 
+                    {   Date = Convert.ToInt32(pers.Attribute("date").Value), 
                         HolidayName = pers.Attribute("name").Value,
-                      HolidayTag = mine
+                        HolidayTag = mine,
+                        Background = new SolidColorBrush(Colors.Transparent),
+                        FontSize = 20,
+                        Height = 50
                     });
 
             HolidayItemCollection.Add(new HolidayItem { Date = 0,
                                                         HolidayName = CalendarResourcesManager.resource.GetString("PersonalNote"),
-                                                        HolidayTag = CalendarResourcesManager.resource.GetString("MineAsTag")
+                                                        HolidayTag = CalendarResourcesManager.resource.GetString("MineAsTag"),
+                                                        Background = new SolidColorBrush(Colors.Transparent),
+                                                        FontSize = 20,
+                                                        Height = 50
             });
         }
 

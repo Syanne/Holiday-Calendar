@@ -348,4 +348,7 @@
   <data name="holidayTag.Label" xml:space="preserve">
     <value>свята</value>
   </data>
+  <data name="HolidayTitle.Text" xml:space="preserve">
+    <value>свята у календарі:</value>
+  </data>
 </root>

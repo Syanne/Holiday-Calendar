@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.ApplicationModel.Store;
 using Windows.Storage;
 using Windows.Globalization;
+using Calendar.Models;
 
 namespace Calendar
 {
@@ -25,14 +26,7 @@ namespace Calendar
              
             this.InitializeComponent();
             PagePreLoader();
-                        
-            //components
-            if (Window.Current.Bounds.Width < 1200)
-            {
-                calBack.Width = 510;
-                noteGridMain.Margin = new Thickness(530, 10, 5, 10);
-                gvDecades.Margin = new Thickness(25, 150, 25, 0);
-            }
+         
         }              
 
         #region Calendar controls     
@@ -48,18 +42,13 @@ namespace Calendar
         
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
-            //have you bought my app?
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            {
                 calBase.Skip(Convert.ToInt32(gviPrev.Content), DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
                 //Shows month and year in the top of calGrid\
                 FillCalendar();
                 MarkHolidays();
 
-                DatePickerDp.Date = DateTimeOffset.Now;
-            }
-            else ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");            
+                DatePickerDp.Date = DateTimeOffset.Now;          
         }
         
         private void monthNameButton_Click(object sender, RoutedEventArgs e)
@@ -121,9 +110,10 @@ namespace Calendar
             calBase.FillHolidaysList();
             MarkHolidays();
 
-            SelectedHolidayType.Foreground = Application.Current.Resources["MainFg"] as Brush;
-            SelectedHolidayType = All;
-            SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
+            SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
+            SelectedHolidayType = sender as ListViewItem;
+            SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
+
             UpdateNoteList(); 
             
             butHolidayFlyout.Hide();
@@ -173,9 +163,9 @@ namespace Calendar
         {
             if ((sender as ListViewItem).Content != null)
             {
-                SelectedHolidayType.Foreground = Application.Current.Resources["MainFg"] as Brush;
+                SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
                 SelectedHolidayType = sender as ListViewItem;
-                SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
+                SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
                 if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
                     noteList.ItemsSource = calBase.HolidayItemCollection.
@@ -260,6 +250,109 @@ namespace Calendar
         }
         #endregion
 
-    }
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= Current_SizeChanged;
+        }
+        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            ShowHide();
+        }
 
+        /// <summary>
+        /// Changing property Height for gvMain and choosing, what to show -list or grid
+        /// </summary>
+        private void ShowHide()
+        {
+            if (sizeCorrection == null)
+                sizeCorrection = new WindowsStandardClass();
+
+            if (sizeCorrection.Count(Window.Current.Bounds.Height))
+            {
+                if (calGrid.Items.Count > 0)
+                    for (int i = 0; i < calGrid.Items.Count; i++)
+                    {
+                        (calGrid.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
+                        (calGrid.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
+                        (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 2;
+                    }
+
+                for (int i = 0; i < weekDayNames.Items.Count; i++)
+                {
+                    (weekDayNames.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
+                    (weekDayNames.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
+                    (weekDayNames.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 3;
+
+                    if (i < HolidayList.Items.Count)
+                    {
+                        (HolidayList.Items[i] as ListViewItem).Height = sizeCorrection.ItemSizeCorrector;
+                        (HolidayList.Items[i] as ListViewItem).Width = sizeCorrection.ItemSizeCorrector;
+                        (HolidayList.Items[i] as ListViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                    }
+                }
+
+                monthTopString.Width = sizeCorrection.MonthTopStringWidth;
+                monthTopString.Height = sizeCorrection.ItemSizeCorrector;
+                monthTopString.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/2, 0, 0);
+                monthNameButton.FontSize = sizeCorrection.ItemSizeCorrector / 3;
+
+                weekDayNames.Width = sizeCorrection.MonthTopStringWidth;
+                weekDayNames.Height = sizeCorrection.ItemSizeCorrector;
+
+                calGrid.Width = sizeCorrection.MonthTopStringWidth;
+                calGrid.Height = calGrid.Width;
+
+                gvDecades.Height = sizeCorrection.MonthTopStringWidth + sizeCorrection.ItemFontSizeCorrector + 10;
+                gvDecades.Width = sizeCorrection.MonthTopStringWidth;
+
+                if (gvDecades.Items.Count > 0)
+                    for (int i = 0; i < 12; i++)
+                    {
+                        (gvDecades.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector * 4 / 3;
+                        (gvDecades.Items[i] as GridViewItem).Width = sizeCorrection.MonthTopStringWidth / 3 - 20;
+                        (gvDecades.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;
+                    }
+
+                for (int i = 0; i < noteList.Items.Count; i++)
+                {
+                    (noteList.Items[i] as HolidayItem).FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                    (noteList.Items[i] as HolidayItem).Height = sizeCorrection.ItemSizeCorrector;
+                }
+
+                HolidayTitle.FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                HolidayList.Height = sizeCorrection.ItemSizeCorrector + 20;
+                HolidayList.Width = sizeCorrection.MonthTopStringWidth - sizeCorrection.ItemSizeCorrector;
+
+                ClickedDayPage.Height = sizeCorrection.ItemSizeCorrector + 20;
+                ClickedDayPage.Margin = monthTopString.Margin;
+                ClickedDayPage.FontSize = sizeCorrection.ItemFontSizeCorrector;
+                noteList.FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                noteList.Margin = new Thickness(0, HolidayList.Height * 2, 0, HolidayList.Height * 2);
+            }
+
+                //of width
+            if (Window.Current.Bounds.Width / 3 > sizeCorrection.MonthTopStringWidth)
+                {
+                    calBack.Width = Window.Current.Bounds.Width / 3;
+                    noteGridMain.Width = calBack.Width * 2;
+                    noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
+                }
+            else if (Window.Current.Bounds.Width / 2 > sizeCorrection.MonthTopStringWidth)
+                {
+                    calBack.Width = Window.Current.Bounds.Width / 2;
+                    noteGridMain.Width = calBack.Width;
+                    noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
+                }
+                else
+                {
+                    calBack.Width = monthTopString.Width + 50;
+                    noteGridMain.Width = calBack.Width;
+                    noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
+                }
+
+            calBack.Height = Window.Current.Bounds.Height;
+            noteGridMain.Height = Window.Current.Bounds.Height;
+            GoToDate.Margin = new Thickness(0, 0, 0, Window.Current.CoreWindow.Bounds.Height / 24);         
+        }
+    }
 }

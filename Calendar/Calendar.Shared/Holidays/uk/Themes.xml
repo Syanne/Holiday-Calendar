@@ -6,9 +6,8 @@
   <theme name="HotPink" text="малина з вершками"/>  
   <theme name="Cherry" text="стигла вишня"/>  
   <theme name="Orange" text="соковитий апельсин"/>
-  <theme name="Bottle" text="квіти у пляшці"/>
-  <theme name="BloodDrops" text="краплі червоного вина"/>
+  <theme name="Bottle" text="порожня пляшка"/>
+  <theme name="BloodDrops" text="сильний шторм"/>
   <theme name="Fir" text="зимовий настрій"/>
-  <theme name="Cranberries" text="калина на снігу"/>
   <theme name="Fall" text="осінні спогади"/>
 </themes>
