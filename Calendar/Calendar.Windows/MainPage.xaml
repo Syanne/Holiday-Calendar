@@ -210,7 +210,7 @@
                 
                 <TextBox x:Name="HolidayTitle" x:Uid="HolidayTitle"
                          Background="Transparent" 
-                         Foreground="#FFF0F0F2"
+                         Foreground="{StaticResource HolidayTitleColor}"
                          HorizontalAlignment="Center"
                          BorderThickness="0"
                          IsReadOnly="True"
@@ -325,6 +325,7 @@
                                         Tag="{Binding HolidayTag}" 
                                         Background="{Binding Background}"
                                         MinHeight="{Binding Height}"
+                                        FontSize="{Binding FontSize}"
                                         VerticalContentAlignment="Bottom"
                                         Margin="-10, 0, -30, 0"
                                         Tapped="note_Tapped" >

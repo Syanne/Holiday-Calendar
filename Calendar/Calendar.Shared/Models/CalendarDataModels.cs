@@ -16,6 +16,20 @@ namespace Calendar.Models
         public Brush Background { get; set; }
         public double Height { get; set; }
         public double FontSize { get; set; }
+
+
+        public HolidayItem Copy()
+        {
+            return new HolidayItem()
+            {
+                Date = this.Date,
+                HolidayName = this.HolidayName,
+                HolidayTag = this.HolidayTag,
+                Background = this.Background,
+                Height = this.Height,
+                FontSize = this.FontSize
+            };
+        }
     }
 
 

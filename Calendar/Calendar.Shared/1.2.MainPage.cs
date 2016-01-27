@@ -55,11 +55,14 @@ namespace Calendar
             SelectedHolidayType = All;
 
             fDay = 5;
-            gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
+           // gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
             startText = new StringBuilder(50);
             calBase = new HolidayCalendarBase(fDay);
 
             FillCalendar();
+
+            int x = calBase.Start - 1 + DateTime.Now.Day;
+            gviPrev = calGrid.Items[x] as GridViewItem;   
         }
 
         /// <summary>
@@ -73,16 +76,27 @@ namespace Calendar
 #else
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif
-            //fill list of holidays
 
+            double fSize = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
+            //fill list of holidays
             if (SelectedHolidayType.Content.ToString().ToLower() == All.Content.ToString().ToLower())
                 noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
-                    hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
-
+                    hi.Date == calBase.SelectedDate.Day || hi.Date == 0).Select(hi =>
+                    {
+                        hi.FontSize = fSize;
+                        return hi;
+                    });
+            
             else noteList.ItemsSource = calBase.HolidayItemCollection.
                                       Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) &&
-                                      (hi.HolidayTag == SelectedHolidayType.Content.ToString()));
+                                      (hi.HolidayTag == SelectedHolidayType.Content.ToString())).
+                                      Select(hi =>
+                                      {
+                                          hi.FontSize = fSize;
+                                          return hi;
+                                      });
 
+            //background color of every note
             var color = new SolidColorBrush(Color.FromArgb(255, 240, 240, 242));
             var transp = new SolidColorBrush(Colors.Transparent);
             for (int i = 0; i < noteList.Items.Count; i++)
@@ -194,11 +208,14 @@ namespace Calendar
             //today
             if (calBase.SelectedDate.Month == DateTime.Now.Month && calBase.SelectedDate.Year == DateTime.Now.Year)
             {
-                //Brush brush = (Brush)Application.Current.Resources["DayBg"];
                 int x = calBase.Start - 1 + DateTime.Now.Day;
                 (calGrid.Items[x] as GridViewItem).Style = (Style)this.Resources["TodayStyle"];
-                (calGrid.Items[x] as GridViewItem).Foreground = hol;
-                (calGrid.Items[x] as GridViewItem).BorderBrush = hol;                
+
+                if (gviPrev.Content.ToString() == (calGrid.Items[x] as GridViewItem).Content.ToString())
+                {
+                    (calGrid.Items[x] as GridViewItem).BorderThickness = new Thickness(3);
+                    (calGrid.Items[x] as GridViewItem).BorderBrush = (calGrid.Items[x] as GridViewItem).Foreground;
+                }
             }
         }
 

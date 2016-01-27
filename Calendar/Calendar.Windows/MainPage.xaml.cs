@@ -167,14 +167,56 @@ namespace Calendar
                 SelectedHolidayType = sender as ListViewItem;
                 SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
-                if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
+                double fSize = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
+
+                //special holidays
+                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
+                    SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+
                     noteList.ItemsSource = calBase.HolidayItemCollection.
-                        Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) && (hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()));
+                    Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
+                    Select(hi => hi = hi.Copy()).
+                    Select(hi =>
+                    {
+                        //change name = add date
+                        hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
+                            hi.Date, calBase.SelectedDate.Month, hi.HolidayName);
+                        hi.FontSize = fSize;
+                        return hi;
+                    });
+                }
                 else
-                    noteList.ItemsSource = calBase.HolidayItemCollection.
-                   Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
+
+                    //personal holidays
+                    if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
+                        noteList.ItemsSource = calBase.HolidayItemCollection.
+                        Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) &&
+                             (hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()));
+
+                    //all holidays
+                    else
+                        noteList.ItemsSource = calBase.HolidayItemCollection.
+                       Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);            
+
+                }
+
+                var color = new SolidColorBrush(Color.FromArgb(255, 240, 240, 242));
+                var transp = new SolidColorBrush(Colors.Transparent);
+                for (int i = 0; i < noteList.Items.Count; i++)
+                    if (i % 2 == 0)
+                        (noteList.Items[i] as HolidayItem).Background = color;
+                    else (noteList.Items[i] as HolidayItem).Background = transp;
 
                 MarkHolidays();
+
+                foreach (var elem in noteList.Items)
+                {
+                    (elem as HolidayItem).FontSize = fSize;
+                }
             }
         }
         #endregion

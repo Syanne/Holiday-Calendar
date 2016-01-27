@@ -23,21 +23,26 @@ namespace Calendar
 
             MarkHolidays();
 
-            //change data in the bottom menu (themes)
+            //change data in HolidayList 
             for (int i = 2; i < 5; i++)
             {
                 (HolidayList.Items.ElementAt(i) as ListViewItem).Content = "";
                 ToolTipService.SetToolTip((HolidayList.Items.ElementAt(i) as ListViewItem), "");
             }
 
+            //change foreground and tooltip for each HolidayList's item
+            var color = (SolidColorBrush)Application.Current.Resources["AdditionalColor"];
+            M.Foreground = color;
             int jj = 2;
             for (int j = 0; j < calBase.HolidayNameCollection.Count(); j++)
             {
                 if (calBase.HolidayNameCollection[j].IsChecked == true)
                 {
-                    (HolidayList.Items.ElementAt(jj) as ListViewItem).Content = calBase.HolidayNameCollection.ElementAt(j).Tag;
+                    var element = (HolidayList.Items.ElementAt(jj) as ListViewItem);
+                    element.Content = calBase.HolidayNameCollection.ElementAt(j).Tag;
                     ToolTip tt = new ToolTip() { Content = calBase.HolidayNameCollection.ElementAt(j).Content, Placement = PlacementMode.Top };
-                    ToolTipService.SetToolTip((HolidayList.Items.ElementAt(jj) as ListViewItem), tt);
+                    ToolTipService.SetToolTip(element, tt);
+                    element.Foreground = color;
                     jj++;
                 }
                 if (jj == 5) break;
@@ -57,8 +62,6 @@ namespace Calendar
         void gvItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GridViewItem gvi = sender as GridViewItem;
-
-            //if selected day is not TODAY or from ANOTHER month, do not make a border
             if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
             {
                 calBase.SelectedDate = new DateTime(calBase.SelectedDate.Year,
@@ -67,10 +70,13 @@ namespace Calendar
 
                 UpdateNoteList();
 
-                gvi.Background = new SolidColorBrush(Color.FromArgb(100, 103, 103, 104));
-              
+                //highlight selected day 
                 if (gviPrev != gvi)
-                    gviPrev.Background = new SolidColorBrush(Colors.Transparent);
+                {
+                    gvi.BorderThickness = new Thickness(3);
+                    gvi.BorderBrush = gvi.Foreground;
+                    gviPrev.BorderThickness = new Thickness(0);
+                }
                 
                 gviPrev = gvi;
 
@@ -196,7 +202,7 @@ namespace Calendar
             //noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
             UpdateNoteList();
 
-            if (noteList.Items.Count > 1 && gviPrev.Style != (Style)this.Resources["TodayStyle"])
+            if (noteList.Items.Count > 1)
                 gviPrev.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
 
             AddNoteFlyout.Hide();
@@ -226,12 +232,9 @@ namespace Calendar
 
             if (gviPrev != null)
                 UpdateNoteList();
-                //noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
 
             if (noteList.Items.Count == 1)
-                if (gviPrev.Style == (Style)this.Resources["ThisMonthStyle"]) 
-                    gviPrev.Foreground = new SolidColorBrush(Colors.Black);
-                else gviPrev.Foreground = new SolidColorBrush(Colors.DarkGray);
+                gviPrev.Foreground = new SolidColorBrush(Colors.White);
 
             AddNoteFlyout.Hide();
         }
@@ -247,8 +250,7 @@ namespace Calendar
                 YearChecker());
 
                 calBase.ReadHolidayXml();
-                //noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
-                   // hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+
                 UpdateNoteList();
             }
             AddNoteFlyout.Hide();
