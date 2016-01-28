@@ -102,18 +102,19 @@ namespace Calendar
                     ToolTipService.SetToolTip((HolidayList.Items.ElementAt(jj) as ListViewItem), tt);
                     jj++;
                 }
-                if (jj == 5) break;
+                if (jj > 5) break;
             }
             //--------------------
             
             calBase.ReadHolidayXml();
             calBase.FillHolidaysList();
-            MarkHolidays();
 
             SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
-            SelectedHolidayType = sender as ListViewItem;
+            //SelectedHolidayType = sender as ListViewItem;
+            SelectedHolidayType = All;
             SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
+            MarkHolidays();
             UpdateNoteList(); 
             
             butHolidayFlyout.Hide();
@@ -141,7 +142,8 @@ namespace Calendar
         void cb_Click(object sender, RoutedEventArgs e)
         {
             int counter = listOfHolidays.Items.Count(i => (i as CheckBox).IsChecked == true);
-            if (counter > 3) btnHolidays.IsEnabled = false;
+            if (counter > 3) 
+                btnHolidays.IsEnabled = false;
             else btnHolidays.IsEnabled = true;
         }
 
@@ -238,8 +240,6 @@ namespace Calendar
         {
             ChangeNoteController();
         }
-
-
 
         private void AddNoteFlyout_Opened(object sender, object e)
         {
@@ -344,7 +344,7 @@ namespace Calendar
                 calGrid.Width = sizeCorrection.MonthTopStringWidth;
                 calGrid.Height = calGrid.Width;
 
-                gvDecades.Height = sizeCorrection.MonthTopStringWidth + sizeCorrection.ItemFontSizeCorrector + 10;
+                gvDecades.Height = calGrid.Height + monthNameButton.Height + 10;
                 gvDecades.Width = sizeCorrection.MonthTopStringWidth;
 
                 if (gvDecades.Items.Count > 0)
@@ -368,8 +368,13 @@ namespace Calendar
                 ClickedDayPage.Height = sizeCorrection.ItemSizeCorrector + 20;
                 ClickedDayPage.Margin = monthTopString.Margin;
                 ClickedDayPage.FontSize = sizeCorrection.ItemFontSizeCorrector;
-                noteList.FontSize = sizeCorrection.ItemSizeCorrector / 3;
-                noteList.Margin = new Thickness(0, HolidayList.Height * 2, 0, HolidayList.Height * 2);
+                noteList.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/3, 0, 0);
+                noteList.Height = sizeCorrection.ItemSizeCorrector * 8;
+
+                GoToDateBtn.Height = sizeCorrection.ItemSizeCorrector / 2 - 10;
+                GoToDateBtn.FontSize = sizeCorrection.ItemFontSizeCorrector / 2.5;
+                DatePickerDp.FontSize = GoToDateBtn.FontSize;
+                GoToDate.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector, 0, 0);   
             }
 
                 //of width
@@ -388,13 +393,12 @@ namespace Calendar
                 else
                 {
                     calBack.Width = monthTopString.Width + 50;
-                    noteGridMain.Width = calBack.Width;
+                    noteGridMain.Width = calBack.Width *2;
                     noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
                 }
 
             calBack.Height = Window.Current.Bounds.Height;
-            noteGridMain.Height = Window.Current.Bounds.Height;
-            GoToDate.Margin = new Thickness(0, 0, 0, Window.Current.CoreWindow.Bounds.Height / 24);         
+            noteGridMain.Height = Window.Current.Bounds.Height;      
         }
     }
 }

@@ -80,7 +80,9 @@ namespace Calendar.HolidayCalendarMechanism
                     HolidayNameCollection.Add(new CheckBox
                     {
                         Content = x.FirstAttribute.Value.ToLower(),
-                        Tag = x.LastAttribute.Value
+                        Tag = x.LastAttribute.Value,
+                        FontSize = 18,
+                        Padding = new Windows.UI.Xaml.Thickness(10, 0, 10, 10)
                     });
                 }
             }

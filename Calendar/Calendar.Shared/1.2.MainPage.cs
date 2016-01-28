@@ -77,9 +77,9 @@ namespace Calendar
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif
 
-            double fSize = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
+            double fSize = (Window.Current.Bounds.Height / 36 > 26) ? 26 : Window.Current.Bounds.Height / 36;
             //fill list of holidays
-            if (SelectedHolidayType.Content.ToString().ToLower() == All.Content.ToString().ToLower())
+            if (SelectedHolidayType == All)
                 noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
                     hi.Date == calBase.SelectedDate.Day || hi.Date == 0).Select(hi =>
                     {
@@ -239,9 +239,11 @@ namespace Calendar
                 #if !WINDOWS_PHONE_APP
                     Height = sizeCorrection.DecadeHeightCorrector,
                     Width = sizeCorrection.DecadeWidthCorrector,
-                    FontSize = sizeCorrection.ItemFontSizeCorrector
+                    FontSize = sizeCorrection.ItemFontSizeCorrector,
                 #endif
+                    
                 });
+                decadeList.ElementAt(i - 1).Tapped += m1_Tapped;
             }
 
             gvDecades.ItemsSource = decadeList;

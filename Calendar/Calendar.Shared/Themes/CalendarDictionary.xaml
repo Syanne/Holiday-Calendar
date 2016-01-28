@@ -131,14 +131,13 @@
     </Style>
 
     <Style TargetType="FlyoutPresenter" x:Key="FlyoutAppBarStyle">
-        <Setter Property="MaxWidth" Value="400"/>
-        <Setter Property="MaxHeight" Value="730"/>
-        <Setter Property="MinWidth" Value="400"/>
-        <Setter Property="MinHeight" Value="600"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="Background" Value="#FFF6F6F9"/>
         <Setter Property="BorderThickness" Value="5"/>
         <Setter Property="BorderBrush" Value="#FF303030"/>
-        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
     </Style>
     
     <Style TargetType="Button" x:Key="MainButton">
@@ -148,7 +147,7 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <Style TargetType="Button" x:Key="ExtendMainButton" BasedOn="{StaticResource ResourceKey=MainButton}">
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Height" Value="50"/>
         <Setter Property="Width" Value="130"/>

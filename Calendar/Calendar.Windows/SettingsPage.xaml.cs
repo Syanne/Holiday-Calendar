@@ -32,15 +32,6 @@ namespace Calendar
         {
             this.InitializeComponent();
 
-            if (Window.Current.Bounds.Width < 1200)
-            {
-                rightSide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                //leftSide.Width = Window.Current.Bounds.Width - 50;
-                leftSide.HorizontalContentAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-                leftSide.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
-            }
-
             //enable toggles
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
@@ -164,7 +155,6 @@ namespace Calendar
             themesFullScreen.Visibility = Visibility.Visible;
         }
 
-
         private async void MyMessage(string text)
         {
             var dial = new MessageDialog(text);
@@ -172,7 +162,6 @@ namespace Calendar
             dial.Commands.Add(new UICommand("OK"));
             var command = await dial.ShowAsync();
         }
-
 
         #region BgTasks
 
@@ -292,5 +281,40 @@ namespace Calendar
         }
 
         #endregion
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged += Current_SizeChanged;
+            ShowHide();
+        }
+
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Window.Current.SizeChanged -= Current_SizeChanged;
+        }
+        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            ShowHide();
+        }
+
+         /// <summary>
+        /// Changing property Height for gvMain and choosing, what to show -list or grid
+        /// </summary>
+        private void ShowHide()
+        {
+            if (Window.Current.Bounds.Width > 1500)
+            {
+                leftSide.Width = Window.Current.Bounds.Width / 3;
+                rightSide.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                rightSide.Margin = new Thickness(leftSide.Width + 30, 120, 0, 0);
+            }
+            else 
+            {
+                rightSide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                leftSide.Width = Window.Current.Bounds.Width - 200;
+                ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
+        }
     }
 }

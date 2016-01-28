@@ -5,7 +5,9 @@
     xmlns:local="using:Calendar"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Loaded="Page_Loaded"
+    Unloaded="Page_Unloaded">
 
 
     <!-- Этот элемент StackPanel является корневой панелью для вертикальной компоновки разделов содержимого -->
@@ -46,29 +48,30 @@
         <!-- Элементы StackPanel ниже определяют отдельные разделы содержимого -->
 
         <ScrollViewer x:Name="leftSide"
-                      Width="600"
+                      MinWidth="600"
                       VerticalScrollMode="Enabled" 
                       VerticalScrollBarVisibility="Auto"
-                      Margin="10,140,0,0" 
-                      HorizontalAlignment="Left" VerticalAlignment="Top">
+                      Margin="10,120,0,0" 
+                      HorizontalAlignment="Left">
 
             <StackPanel HorizontalAlignment="Left" Margin="5,5,20,5">
 
                 <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
                         HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" 
-                        Margin="0,30,0,15">
+                        Margin="0,30,0,15"
+                        Orientation="Horizontal">
                     <!-- Заголовок раздела 1 -->
                     <TextBlock x:Uid="language" 
-                           Height="40" Width="300"
-                           Margin="0,0,0,20"
+                           Height="auto" Width="350"
+                           Margin="0,0,10,10"
                            HorizontalAlignment="Left"
                            Style="{StaticResource TitleTextBlockStyle}" 
                            FontSize="26" FontFamily="Minion Pro" />
                     <!-- Основная часть раздела 1 -->
                     <ComboBox Name="comboLang" 
                           Width="140" Height="30" 
-                          Margin="400,-65,20,20" 
+                          Margin="10,0,0,10" 
                           SelectionChanged="ComboBox_SelectionChanged" 
                           HorizontalAlignment="Left" >
                         <ComboBoxItem Content="ru" ></ComboBoxItem>
@@ -92,9 +95,9 @@
                     </ComboBox>-->
                 </StackPanel>
                 
-                <StackPanel x:Name="ThemeStack" Visibility="Collapsed">
+                <StackPanel x:Name="ThemeStack" Visibility="Collapsed" Orientation="Horizontal">
                     <TextBlock x:Uid="selectThemeTop" 
-                           Height="40" Width="300"
+                           Height="40" Width="350"
                            HorizontalAlignment="Left"
                            Style="{StaticResource TitleTextBlockStyle}" 
                            FontSize="26" FontFamily="Minion Pro"
@@ -103,22 +106,23 @@
                             Name="buttonTheme" 
                             Click="buttonTheme_Click"
                           Width="140" Height="40" 
-                          Margin="400,-65,20,20" 
+                          Margin="10,0,20,0" 
                           HorizontalAlignment="Left"
                           Background="#FF454545"
                           Foreground="#FFF6F6F9"/>
-                </StackPanel>
-                
+                </StackPanel>                
                 
                 <!-- Раздел содержимого 2-->
                 <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
                         Margin="0, 20"
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        HorizontalAlignment="Stretch" 
+                        VerticalAlignment="Stretch"
+                        Orientation="Horizontal">
                     <!-- Заголовок раздела 2 -->
                     <TextBlock x:Uid="tileHeader"
                            FontSize="26" 
                            FontFamily="Minion Pro" 
-                           Height="30" Width="300"
+                           Height="30" Width="350"
                            HorizontalAlignment="Left"
                            Style="{StaticResource TitleTextBlockStyle}" 
                            />
@@ -126,21 +130,22 @@
                     <ToggleSwitch Name="tileToggle" 
                               Toggled="tileToggle_Toggled" 
                               HorizontalAlignment="Left" 
-                              Margin="390,-40, 0, 0"
+                              Margin="10, 0, 10, 0"
                               FontFamily="Minion Pro" FontSize="16"  />
 
                 </StackPanel>
 
                 <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Margin="0,20">
+                        Margin="0,20"
+                        Orientation="Vertical">
                     <!-- Заголовок раздела 3 -->
                     <TextBlock x:Uid="toastHeader" 
                            Style="{StaticResource TitleTextBlockStyle}" 
                            FontSize="26" 
                            FontFamily="Minion Pro" 
                            Margin="0, 0, 0, 10" 
-                           Height="30" Width="300"
+                           Height="auto" Width="300"
                            HorizontalAlignment="Left"
                            />
                     <!-- Основная часть раздела 3 -->
@@ -148,7 +153,10 @@
                            Margin="0,10,0,30" 
                            TextWrapping="Wrap" 
                            LineHeight="25"
-                           FontSize="20" FontFamily="Minion Pro"/>
+                           FontSize="20" 
+                           HorizontalAlignment="Left"
+                           MaxWidth="500"
+                           FontFamily="Minion Pro"/>
                     <!--toggle-->
                     <TextBlock x:Uid="daysText" 
                            TextWrapping="Wrap" 
@@ -183,13 +191,16 @@
                     <ToggleSwitch Name="toastToggle"
                           Toggled="toastToggle_Toggled" 
                           HorizontalAlignment="Left" 
-                          Margin="390,-50,0,20" 
+                          Margin="360,-50,0,20" 
                           FontFamily="Minion Pro" FontSize="16"/>
                 </StackPanel>
 
                 <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
                             Margin="0, 20"
-                            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Stretch"
+                            MaxWidth="500"
+                            >
                     <!-- Заголовок раздела 4 -->
                     <TextBlock x:Uid="buyMeTitle" 
                                Style="{StaticResource TitleTextBlockStyle}" 
@@ -216,7 +227,7 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Grid x:Name="rightSide" Margin="700, 140, 100, 10">
+        <Grid x:Name="rightSide">
             <TextBlock x:Uid="selectThemeTop" 
                            Margin="0,30,0,0"
                            HorizontalAlignment="Center"
@@ -230,7 +241,7 @@
                       Tapped="smallThemesPreview_Tapped"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
-                      Margin="100, 70, 100, 100">
+                      Margin="50">
 
                 <FlipView.ItemTemplate>
                     <DataTemplate>

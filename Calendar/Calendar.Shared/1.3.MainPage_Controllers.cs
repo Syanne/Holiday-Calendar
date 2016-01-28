@@ -40,7 +40,12 @@ namespace Calendar
                 {
                     var element = (HolidayList.Items.ElementAt(jj) as ListViewItem);
                     element.Content = calBase.HolidayNameCollection.ElementAt(j).Tag;
-                    ToolTip tt = new ToolTip() { Content = calBase.HolidayNameCollection.ElementAt(j).Content, Placement = PlacementMode.Top };
+                    ToolTip tt = new ToolTip()
+                    {
+                        Content = calBase.HolidayNameCollection.ElementAt(j).Content,
+                        Placement = PlacementMode.Top,
+                        FontSize = 16
+                    };
                     ToolTipService.SetToolTip(element, tt);
                     element.Foreground = color;
                     jj++;
@@ -109,7 +114,6 @@ namespace Calendar
             MarkHolidays();
         }
 
-
         private void note_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (((sender as ListViewItem).Content as TextBlock).Text
@@ -129,7 +133,6 @@ namespace Calendar
                 addRecLists.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
         }
-
 
         #region month string controllers
         private void PreviousButtonController()
@@ -199,11 +202,13 @@ namespace Calendar
 
             calBase.ReadHolidayXml();
 
-            //noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
             UpdateNoteList();
 
             if (noteList.Items.Count > 1)
+            {
                 gviPrev.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
+                gviPrev.BorderBrush = gviPrev.Foreground;
+            }
 
             AddNoteFlyout.Hide();
         }        
@@ -214,7 +219,8 @@ namespace Calendar
         /// <returns>year</returns>
         private string YearChecker()
         {
-            RadioButton year = radioBtParent.Items.FirstOrDefault(item => (item as RadioButton).IsChecked == true) as RadioButton;
+            RadioButton year = radioBtParent.Items.FirstOrDefault(item => 
+                                (item as RadioButton).IsChecked == true) as RadioButton;
 
             if (year.Tag.ToString() == "0")
                 return "0";
@@ -234,7 +240,10 @@ namespace Calendar
                 UpdateNoteList();
 
             if (noteList.Items.Count == 1)
+            {
                 gviPrev.Foreground = new SolidColorBrush(Colors.White);
+                gviPrev.BorderBrush = gviPrev.Foreground;
+            }
 
             AddNoteFlyout.Hide();
         }
