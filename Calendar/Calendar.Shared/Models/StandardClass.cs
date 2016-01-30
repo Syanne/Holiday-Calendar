@@ -24,12 +24,21 @@ namespace Calendar
         /// </summary>
         public double ItemFontSizeCorrector { get; set; }
 
+        public double NoteGridHeight { get; set; }
+
+        public double NoteWidth { get; set; }
+
+        public double CalGridHeight { get; set; }
+
         public StandardClass()
         {
             ItemSizeCorrector = Window.Current.Bounds.Width / 8;
             MonthTopStringCorrector = ItemSizeCorrector * 7 + 24;
             DecadeSizeCorrector = Window.Current.Bounds.Width / 5;
             ItemFontSizeCorrector = ItemSizeCorrector / 2;
+            NoteGridHeight = Window.Current.Bounds.Height - 250;
+            NoteWidth = Window.Current.Bounds.Width;
+            CalGridHeight = Window.Current.Bounds.Height - ItemSizeCorrector*2 - 200;
         }
     }
 }

@@ -71,8 +71,5 @@
     <Page Include="$(MSBuildThisFileDirectory)Themes\Orange.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\PhoneDictionary.xaml">
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
 </Project>

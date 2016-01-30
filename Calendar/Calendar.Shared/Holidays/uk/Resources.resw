@@ -351,4 +351,13 @@
   <data name="HolidayTitle.Text" xml:space="preserve">
     <value>свята у календарі:</value>
   </data>
+  <data name="rateBut.Label" xml:space="preserve">
+    <value>оцінити</value>
+  </data>
+  <data name="settingsBut.Label" xml:space="preserve">
+    <value>налаштування</value>
+  </data>
+  <data name="styleBut.Label" xml:space="preserve">
+    <value>стиль</value>
+  </data>
 </root>

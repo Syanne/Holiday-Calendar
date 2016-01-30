@@ -4,40 +4,38 @@
     xmlns:local="using:Calendar">
     
     <x:String x:Key="AppName">Calendar</x:String>
-    <Color x:Key="AdjBack">#ff353535</Color>
-    <Color x:Key="AdjFore">#ff474747</Color>
     <!--CALENDAR-->
     <Style x:Key="CommonCalendarItemStyle" TargetType="GridViewItem">
         <Setter Property="FontFamily" Value="Minion Pro"/>
         <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Margin" Value="0, 0, 0, 10"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style x:Name="ThisMonthStyle" x:Key="ThisMonthStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style x:Name="AdjMonthStyle" x:Key="AdjMonthStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
         <Setter Property="Foreground" Value="#FF676768"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style x:Name="TodayStyle" x:Key="TodayStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
-        <Setter Property="Background" Value="#FF545455"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="#FF3c3c3c"/>
     </Style>
     
     <Style x:Name="WeekNameStyle" x:Key="WeekNameStyle" TargetType="GridViewItem" >
         <Setter Property="FontFamily" Value="Minion Pro"/>
         <Setter Property="Margin" Value="0"/>
-        <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="Foreground" Value="#FFF0F0F2"/>
     </Style>
 
     <Style x:Name="WeekendStyle" x:Key="WeekendStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="BorderBrush" Value="#ffbd97b4"/>
     </Style>
     <!--HOLIDAYS-->
@@ -89,11 +87,11 @@
 
     <!--NOTES-->
     <Style x:Name="NoteStyle" x:Key="NoteStyle" TargetType="ListViewItem">
-        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="FontFamily" Value="Minion Pro"/>
         <Setter Property="Foreground" Value="#FF343434"/>
-        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
     <!--ADD-CHANGE-DELETE HOLIDAY-->
     <Style TargetType="FlyoutPresenter" x:Key="NoteFlyoutStyle">
@@ -104,6 +102,15 @@
         <Setter Property="MinHeight" Value="330"/>
         <Setter Property="MaxHeight" Value="330"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="FlyoutPresenter" x:Key="WPNoteFlyoutStyle">
+        <Setter Property="Background" Value="#FFF6F6F9"/>
+        <Setter Property="BorderThickness" Value="5"/>
+        <Setter Property="BorderBrush" Value="#ff303030"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="Height" Value="330"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
     <Style TargetType="FlyoutPresenter" x:Key="HolidayListStyle">
         <Setter Property="Background" Value="#FFF6F6F9"/>
@@ -152,5 +159,4 @@
         <Setter Property="Height" Value="50"/>
         <Setter Property="Width" Value="130"/>
     </Style>
-
 </ResourceDictionary>

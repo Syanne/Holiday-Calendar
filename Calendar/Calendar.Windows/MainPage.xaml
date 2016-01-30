@@ -57,7 +57,7 @@
                   HorizontalScrollMode="Auto" 
                   VerticalScrollBarVisibility="Hidden">
 
-        <Grid Background="{StaticResource MainColor}" Name="mainBg"  >
+        <Grid Background="Transparent" Name="mainBg"  >
             <Grid.RowDefinitions>
                 <RowDefinition Height="149*"/>
                 <RowDefinition Height="235*"/>

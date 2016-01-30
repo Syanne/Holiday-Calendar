@@ -137,11 +137,15 @@ namespace Calendar
         #region month string controllers
         private void PreviousButtonController()
         {
-            if (calGrid.Visibility == Windows.UI.Xaml.Visibility.Visible)
+            if (gvDecades.Visibility != Windows.UI.Xaml.Visibility.Visible)
             {
+                int month = calBase.SelectedDate.Month;
                 calBase.Skip(-1);
+                if (month != calBase.SelectedDate.Month)
+                    calBase.ReadHolidayXml();
                 FillCalendar();
                 MarkHolidays();
+
             }
             else if (calBase.SelectedDate.Year >= 1920)
             {
@@ -152,9 +156,12 @@ namespace Calendar
 
         private void NextButtonController()
         {
-            if (calGrid.Visibility == Windows.UI.Xaml.Visibility.Visible)
+            if (gvDecades.Visibility != Windows.UI.Xaml.Visibility.Visible)
             {
+                int month = calBase.SelectedDate.Month;
                 calBase.Skip(1);
+                if (month != calBase.SelectedDate.Month)
+                    calBase.ReadHolidayXml();
                 FillCalendar();
                 MarkHolidays();
             }
@@ -185,6 +192,55 @@ namespace Calendar
                 calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+        }
+
+        private void HolidayTypesController(object sender)
+        {
+            if ((sender as ListViewItem).Content != null)
+            {
+                SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
+                SelectedHolidayType = sender as ListViewItem;
+                SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
+
+                double fSize = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
+
+                //special holidays
+                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
+                    SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+
+                    noteList.ItemsSource = calBase.HolidayItemCollection.
+                    Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
+                    Select(hi => hi = hi.Copy()).
+                    Select(hi =>
+                    {
+                        //change name = add date
+                        hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
+                            hi.Date, calBase.SelectedDate.Month, hi.HolidayName);
+                        hi.FontSize = fSize;
+                        return hi;
+                    });
+                }
+                else
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
+
+                    //personal holidays
+                    if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
+                        noteList.ItemsSource = calBase.HolidayItemCollection.
+                        Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) &&
+                             (hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()));
+
+                    //all holidays
+                    else
+                        noteList.ItemsSource = calBase.HolidayItemCollection.
+                       Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
+                }
+
+                NotesBackground();
+                MarkHolidays();
             }
         }
         #endregion

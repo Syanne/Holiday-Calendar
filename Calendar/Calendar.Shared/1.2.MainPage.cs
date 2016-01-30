@@ -97,13 +97,19 @@ namespace Calendar
                                       });
 
             //background color of every note
+            NotesBackground();
+        }
+
+        private void NotesBackground()
+        {
             var color = new SolidColorBrush(Color.FromArgb(255, 240, 240, 242));
             var transp = new SolidColorBrush(Colors.Transparent);
             for (int i = 0; i < noteList.Items.Count; i++)
+            {
                 if (i % 2 == 0)
                     (noteList.Items[i] as HolidayItem).Background = color;
                 else (noteList.Items[i] as HolidayItem).Background = transp;
-
+            }
         }
         
         #region Fill calendar
@@ -217,6 +223,8 @@ namespace Calendar
                     (calGrid.Items[x] as GridViewItem).BorderBrush = (calGrid.Items[x] as GridViewItem).Foreground;
                 }
             }
+
+            gviPrev.BorderBrush = gviPrev.Foreground;
         }
 
         /// <summary>

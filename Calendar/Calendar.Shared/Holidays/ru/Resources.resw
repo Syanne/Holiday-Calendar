@@ -285,7 +285,7 @@
     <value>приобретя это приложение Вы сможете:</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
-    <value>К сожалению, вы не можете воспользоваться этой функций. Пожалуйста, приобретите пакет дополнительных возможностей.</value>
+    <value>к сожалению, вы не можете воспользоваться этой функций. Пожалуйста, приобретите пакет дополнительных возможностей.</value>
   </data>
   <data name="UnlicensedButton" xml:space="preserve">
     <value>приобрести</value>
@@ -348,5 +348,14 @@
   </data>
   <data name="HolidayTitle.Text" xml:space="preserve">
     <value>отображаемые празники:</value>
+  </data>
+  <data name="rateBut.Label" xml:space="preserve">
+    <value>оценить</value>
+  </data>
+  <data name="settingsBut.Label" xml:space="preserve">
+    <value>настройки</value>
+  </data>
+  <data name="styleBut.Label" xml:space="preserve">
+    <value>стиль</value>
   </data>
 </root>

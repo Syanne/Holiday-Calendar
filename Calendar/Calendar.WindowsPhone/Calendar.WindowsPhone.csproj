@@ -106,14 +106,15 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\1.png" />
-    <Content Include="Assets\2.png" />
+    <Content Include="Assets\arrow-left-dark.png" />
+    <Content Include="Assets\arrow-left.png" />
+    <Content Include="Assets\arrow-right-dark.png" />
+    <Content Include="Assets\arrow-right.png" />
     <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\BadgeLogo.scale-240.png" />
     <Content Include="Assets\loading-page.gif" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-240.png" />
-    <Content Include="Assets\mystyle.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-240.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />

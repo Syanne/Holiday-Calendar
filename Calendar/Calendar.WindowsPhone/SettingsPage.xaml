@@ -272,7 +272,7 @@
                                                     <ContentPresenter x:Name="SwitchCurtainBounds">
                                                         <ContentPresenter x:Name="SwitchCurtainClip">
                                                             <Rectangle x:Name="SwitchCurtain"
-                                                               Fill="{StaticResource MonthBg}"
+                                                               Fill="{StaticResource MainColor}"
                                                                Width="48">
                                                                 <Rectangle.RenderTransform>
                                                                     <TranslateTransform x:Name="CurtainTranslateTransform" X="-44" />
@@ -323,7 +323,7 @@
             </Setter>
         </Style>
     </Page.Resources>
-    
+
     <ScrollViewer 
         Background="#FFF3F3F3"
         ScrollViewer.VerticalScrollBarVisibility="Visible" 
@@ -344,30 +344,31 @@
                 <!-- Элементы StackPanel ниже определяют отдельные разделы содержимого -->
                 <StackPanel HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" 
-                        Margin="0,10, 10,10">
+                        Margin="0,5">
+                    <!-- Заголовок раздела 1 -->
+                    <!-- Основная часть раздела 1 -->
                     <!-- Заголовок раздела 1 -->
 
                     <TextBox x:Uid="language" 
-                           Background="Transparent"
-                           BorderThickness="0"
-                           Height="auto" MinWidth="190"
-                           TextAlignment="Left"
-                           FontSize="18"
-                           IsReadOnly="True"
-                           SelectionHighlightColor="#FF828282" 
-                           HorizontalAlignment="Stretch" 
-                           HorizontalContentAlignment="Stretch"
-                           VerticalAlignment="Center"
-                           Margin="0,10,135,0"/>
-                    <!-- Основная часть раздела 1 -->
+                		Background="Transparent"
+                		BorderThickness="0"
+                		Height="auto" MinWidth="190"
+                		TextAlignment="Left"
+                		FontSize="18"
+                		IsReadOnly="True"
+                		SelectionHighlightColor="#FF828282" 
+                		HorizontalAlignment="Stretch" 
+                		HorizontalContentAlignment="Stretch"
+                		VerticalAlignment="Center"
+                		Margin="0,10,135,0"/>
                     <ComboBox x:Name="comboLang" 
-                          BorderBrush="#ff303030"
-                          Background="Transparent"
-                          Width="120" Height="auto"  
-                          FontSize="16"
-                          Margin="10,-45,0,5" 
-                          SelectionChanged="ComboBox_SelectionChanged" 
-                          HorizontalAlignment="Right" >
+                		BorderBrush="#ff303030"
+                		Background="Transparent"
+                		Width="120" Height="auto"  
+                		FontSize="16"
+                		Margin="10,-45,5,0" 
+                		SelectionChanged="ComboBox_SelectionChanged" 
+                		HorizontalAlignment="Right" >
                         <ComboBoxItem Content="ru" FontSize="16" />
                         <ComboBoxItem Content="uk" FontSize="16" />
                     </ComboBox>
@@ -376,8 +377,7 @@
                 <!-- Раздел содержимого 2-->
                 <ListView HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch"
-                        Margin="0, 10">
-
+                        Margin="0, 5">
 
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -405,7 +405,7 @@
                               Toggled="tileToggle_Toggled" 
                               FontSize="12" 
                               Height="auto"
-                              Width="auto" Margin="5,-2,0,0"
+                              Width="auto" Margin="5,-5,0,0"
                               BorderBrush="#ff303030"
                               Background="Transparent" 
                               VerticalAlignment="Center"
@@ -416,14 +416,14 @@
                      Background="Transparent"
                      Foreground="#ff303030"
                          TextAlignment="Left"
-                         FontSize="18" Margin="0,20,0,15"
+                         FontSize="18" Margin="0,5"
                          BorderThickness="0"
                          IsReadOnly="True" />
 
-                <StackPanel>
+                <Grid>
                     <ComboBox x:Name="comboToast" 
                           Height="auto" Width="150"
-                          Margin="5,0,10,0"                          
+                          Margin="5,0,5,0"                          
                           IsHoldingEnabled="False" 
                           ManipulationMode="None" 
                           VerticalAlignment="Stretch" 
@@ -453,7 +453,7 @@
                     <ComboBox x:Name="comboPeriod" 
                           Height="auto" Width="150" 
                           FontSize="18"
-                          Margin="10,-93,5, 0"
+                          Margin="5,0,5, 0"
                           IsHoldingEnabled="False" 
                           HorizontalAlignment="Right" 
                           VerticalAlignment="Top" 
@@ -478,7 +478,7 @@
                         <ComboBoxItem Content="8" Width="auto" HorizontalAlignment="Stretch"/>
                         <ComboBoxItem Content="12" Width="auto" HorizontalAlignment="Stretch"/>
                     </ComboBox>
-                </StackPanel>
+                </Grid>
 
                 <ToggleSwitch x:Name="toastToggle"
             	Style="{StaticResource SettingsToggle}" 

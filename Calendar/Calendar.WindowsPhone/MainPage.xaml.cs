@@ -26,7 +26,8 @@ namespace Calendar
         public MainPage()
         {
             if (ApplicationData.Current.LocalSettings.Values.Count == 0)
-                ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
+                ApplicationData.Current.LocalSettings.Values.Add("Language", 
+                    ApplicationLanguages.PrimaryLanguageOverride);
              
             //initialize page
             this.InitializeComponent();
@@ -69,7 +70,6 @@ namespace Calendar
             if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Visible)
             {
                 HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                Buttons.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 e.Handled = true;
             }
         }
@@ -124,26 +124,36 @@ namespace Calendar
 
         private void butPrev1_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            int month = calBase.SelectedDate.Month;
             calBase.AddDay(-1);
+            if (month != calBase.SelectedDate.Month)
+            {
+                calBase.ReadHolidayXml();
+                FillCalendar();
+                MarkHolidays();
+            }
             UpdateNoteList();
         }
 
         private void butNext1_Tapped(object sender, TappedRoutedEventArgs e)
         {
+            int month = calBase.SelectedDate.Month;
             calBase.AddDay(1);
+            if (month != calBase.SelectedDate.Month)
+            {
+                calBase.ReadHolidayXml();
+                FillCalendar();
+                MarkHolidays();
+            }
             UpdateNoteList();
         }
 
         private void DatePickerDp_DateChanged(object sender, DatePickerValueChangedEventArgs e)
         {
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            {
-                calBase.Skip(1, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
+            calBase.Skip(1, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
-                //Shows month and year in the top of calGrid\
-                FillCalendar();
-            }
-            else ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");
+            //Shows month and year in the top of calGrid
+            FillCalendar();
         }
 
         private void Done_Click(object sender, RoutedEventArgs e)
@@ -215,8 +225,10 @@ namespace Calendar
 
         private void HolidaysAppButton_Click(object sender, RoutedEventArgs e)
         {
-            HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            Buttons.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+                HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            else HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
         }
 
         private void StyleAppButton_Click(object sender, RoutedEventArgs e)
@@ -300,23 +312,7 @@ namespace Calendar
 
         private void holTypes_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            if ((sender as ListViewItem).Content != null)
-            {
-                SelectedHolidayType.Foreground = Application.Current.Resources["MainFg"] as Brush;
-                SelectedHolidayType = sender as ListViewItem;
-                SelectedHolidayType.Foreground = Application.Current.Resources["SelectionFg"] as Brush;
-
-                if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
-                    noteList.ItemsSource = calBase.HolidayItemCollection.
-                        Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) &&
-                        (hi.HolidayTag == SelectedHolidayType.Content.ToString()));
-
-                else
-                    noteList.ItemsSource = calBase.HolidayItemCollection.
-                   Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
-
-                MarkHolidays();
-            }
+            HolidayTypesController(sender);
         }
         #endregion
 
