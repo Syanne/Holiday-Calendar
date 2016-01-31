@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
 
-namespace Calendar.HolidayCalendarMechanism
+namespace Calendar.Mechanism
 {
     partial class HolidayCalendarBase
     {
@@ -123,7 +123,7 @@ namespace Calendar.HolidayCalendarMechanism
                     if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                         HolidayItemCollection.Add(new HolidayItem
                         {
-                            Date = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
+                            Day = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
                             HolidayName = x.Attributes().ElementAt(0).Value,
                             HolidayTag = pers.LastAttribute.Value,
                             Background = new SolidColorBrush(Colors.Transparent),
@@ -134,21 +134,21 @@ namespace Calendar.HolidayCalendarMechanism
 
             if(computational.Count() != 0)
                 foreach (XElement pers in persCollection)
-            foreach (XElement x in computational)
-            {
-                    if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
-                        HolidayItemCollection.Add(new HolidayItem
-                        {
-                            Date =
-                                ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
-                                Convert.ToInt32(x.Attributes().ElementAt(2).Value)),
-                            HolidayName = x.Attributes().ElementAt(0).Value,
-                            HolidayTag = pers.LastAttribute.Value,
-                            Background = new SolidColorBrush(Colors.Transparent),
-                            FontSize = 20,
-                            Height = 50
-                        });
-            }
+                    foreach (XElement x in computational)
+                    {
+                        if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
+                            HolidayItemCollection.Add(new HolidayItem
+                            {
+                                Day =
+                                    ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
+                                    Convert.ToInt32(x.Attributes().ElementAt(2).Value)),
+                                HolidayName = x.Attributes().ElementAt(0).Value,
+                                HolidayTag = pers.LastAttribute.Value,
+                                Background = new SolidColorBrush(Colors.Transparent),
+                                FontSize = 20,
+                                Height = 50
+                            });
+                    }
 
             if (movable.Count() != 0)
                 foreach (XElement x in movable)
@@ -157,7 +157,7 @@ namespace Calendar.HolidayCalendarMechanism
                         {
                             HolidayItemCollection.Add(new HolidayItem
                             {
-                                Date = Convert.ToInt32(x.Attribute("day").Value),
+                                Day = Convert.ToInt32(x.Attribute("day").Value),
                                 HolidayName = x.Attribute("name").Value,
                                 HolidayTag = x.Parent.LastAttribute.Value,
                                 Background = new SolidColorBrush(Colors.Transparent),
@@ -170,8 +170,10 @@ namespace Calendar.HolidayCalendarMechanism
             string mine = CalendarResourcesManager.resource.GetString("MineAsTag");
             foreach (XElement pers in CalendarResourcesManager.PersonalData.Root.Descendants("holidays").Descendants("persDate"))
                 if (pers.Attribute("month").Value == SelectedDate.Month.ToString() && (pers.Attribute("year").Value == SelectedDate.Year.ToString() || pers.Attribute("year").Value == "0"))
-                    HolidayItemCollection.Add(new HolidayItem 
-                    {   Date = Convert.ToInt32(pers.Attribute("date").Value), 
+                    HolidayItemCollection.Add(new HolidayItem
+                    {
+                        Day = Convert.ToInt32(pers.Attribute("date").Value),
+                        Year = Convert.ToInt32(pers.LastAttribute.Value),
                         HolidayName = pers.Attribute("name").Value,
                         HolidayTag = mine,
                         Background = new SolidColorBrush(Colors.Transparent),
@@ -179,7 +181,7 @@ namespace Calendar.HolidayCalendarMechanism
                         Height = 50
                     });
 
-            HolidayItemCollection.Add(new HolidayItem { Date = 0,
+            HolidayItemCollection.Add(new HolidayItem { Day = 0,
                                                         HolidayName = CalendarResourcesManager.resource.GetString("PersonalNote"),
                                                         HolidayTag = CalendarResourcesManager.resource.GetString("MineAsTag"),
                                                         Background = new SolidColorBrush(Colors.Transparent),

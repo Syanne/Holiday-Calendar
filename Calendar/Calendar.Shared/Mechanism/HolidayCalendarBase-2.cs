@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Popups;
 
-namespace Calendar.HolidayCalendarMechanism
+namespace Calendar.Mechanism
 {
     partial class HolidayCalendarBase 
     {

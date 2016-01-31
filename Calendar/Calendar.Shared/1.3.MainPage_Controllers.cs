@@ -7,6 +7,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Calendar.Models;
+using System.Collections.Generic;
 
 namespace Calendar
 {
@@ -63,7 +65,77 @@ namespace Calendar
                 ShowHide();
             #endif
         }
-        
+
+        #region calendar controllers      
+
+        private void ArrowButtonController(int value)
+        {
+            if (gvDecades.Visibility != Windows.UI.Xaml.Visibility.Visible)
+            {
+                int month = calBase.SelectedDate.Month;
+                calBase.Skip(value);
+                if (month != calBase.SelectedDate.Month)
+                    calBase.ReadHolidayXml();
+                FillCalendar();
+                MarkHolidays();
+                
+#if !WINDOWS_PHONE_APP
+                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
+                    SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+
+                    noteList.ItemsSource = calBase.HolidayItemCollection.
+                    Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
+                    Select(hi => hi = hi.Copy()).
+                    Select(hi =>
+                    {
+                        //change name = add date
+                        hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
+                            hi.Day, calBase.SelectedDate.Month, hi.HolidayName);
+                        hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
+                        return hi;
+                    });
+
+                NotesBackground();
+                }
+#endif
+            }
+            else 
+            {
+                calBase.Skip(1, calBase.SelectedDate.Month, calBase.SelectedDate.Year + value);
+                monthNameButton.Content = calBase.SelectedDate.Year;
+            }
+        }
+
+        private void MonthController()
+        {
+            if (gvDecades.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            {
+                monthNameButton.Content = calBase.SelectedDate.Year;
+
+                if (gvDecades.Items.Count == 0)
+                    InitializeDecades();
+
+                calGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
+                gvDecades.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            }
+            else
+            {
+                monthNameButton.Content = calBase.SelectedDate.ToString("MMMM yyyy");  
+                calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
+        #if !WINDOWS_PHONE_APP
+                HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+        #endif
+                gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+        }
+
         void gvItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GridViewItem gvi = sender as GridViewItem;
@@ -82,7 +154,7 @@ namespace Calendar
                     gvi.BorderBrush = gvi.Foreground;
                     gviPrev.BorderThickness = new Thickness(0);
                 }
-                
+
                 gviPrev = gvi;
 
                 noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -99,7 +171,6 @@ namespace Calendar
             }
         }
 
-
         private void m1_Tapped(object sender, TappedRoutedEventArgs e)
         {
             calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), calBase.SelectedDate.Year);
@@ -113,7 +184,9 @@ namespace Calendar
             FillCalendar();
             MarkHolidays();
         }
+        #endregion
 
+        #region notes controller
         private void note_Tapped(object sender, TappedRoutedEventArgs e)
         {
             if (((sender as ListViewItem).Content as TextBlock).Text
@@ -123,6 +196,7 @@ namespace Calendar
                 addNotetb.Text = "";
                 delChLists.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 addRecLists.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                onceCb.IsChecked = true;
             }
             else if ((sender as ListViewItem).Tag.ToString() == CalendarResourcesManager.resource.GetString("MineAsTag"))
             {
@@ -131,121 +205,20 @@ namespace Calendar
                 startText.Clear().Append(addNotetb.Text);
                 delChLists.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 addRecLists.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            }
-        }
 
-        #region month string controllers
-        private void PreviousButtonController()
-        {
-            if (gvDecades.Visibility != Windows.UI.Xaml.Visibility.Visible)
-            {
-                int month = calBase.SelectedDate.Month;
-                calBase.Skip(-1);
-                if (month != calBase.SelectedDate.Month)
-                    calBase.ReadHolidayXml();
-                FillCalendar();
-                MarkHolidays();
-
-            }
-            else if (calBase.SelectedDate.Year >= 1920)
-            {
-                calBase.Skip(1, calBase.SelectedDate.Month, calBase.SelectedDate.Year - 1);
-                monthNameButton.Content = calBase.SelectedDate.Year;
-            }
-        }
-
-        private void NextButtonController()
-        {
-            if (gvDecades.Visibility != Windows.UI.Xaml.Visibility.Visible)
-            {
-                int month = calBase.SelectedDate.Month;
-                calBase.Skip(1);
-                if (month != calBase.SelectedDate.Month)
-                    calBase.ReadHolidayXml();
-                FillCalendar();
-                MarkHolidays();
-            }
-            else if (calBase.SelectedDate.Year <= 2050)
-            {
-                calBase.Skip(1, calBase.SelectedDate.Month, calBase.SelectedDate.Year + 1);
-                monthNameButton.Content = calBase.SelectedDate.Year;
-            }
-        }
-
-        private void MonthController()
-        {
-            if (gvDecades.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
-            {
-                monthNameButton.Content = calBase.SelectedDate.Year;
-
-                if (gvDecades.Items.Count == 0)
-                    InitializeDecades();
-
-                calGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-
-                gvDecades.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            }
-            else
-            {
-                monthNameButton.Content = calBase.SelectedDate.ToString("MMMM yyyy");  
-                calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            }
-        }
-
-        private void HolidayTypesController(object sender)
-        {
-            if ((sender as ListViewItem).Content != null)
-            {
-                SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
-                SelectedHolidayType = sender as ListViewItem;
-                SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
-
-                double fSize = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
-
-                //special holidays
-                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
-                    SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                foreach (var item in noteList.Items)
                 {
-                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
-
-                    noteList.ItemsSource = calBase.HolidayItemCollection.
-                    Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
-                    Select(hi => hi = hi.Copy()).
-                    Select(hi =>
+                    if ((item as HolidayItem).HolidayName == addNotetb.Text)
                     {
-                        //change name = add date
-                        hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
-                            hi.Date, calBase.SelectedDate.Month, hi.HolidayName);
-                        hi.FontSize = fSize;
-                        return hi;
-                    });
+                        if ((item as HolidayItem).Year == 0)
+                            everyCb.IsChecked = true;
+                        else onceCb.IsChecked = true;
+                        break;
+                    }
                 }
-                else
-                {
-                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
-
-                    //personal holidays
-                    if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
-                        noteList.ItemsSource = calBase.HolidayItemCollection.
-                        Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) &&
-                             (hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()));
-
-                    //all holidays
-                    else
-                        noteList.ItemsSource = calBase.HolidayItemCollection.
-                       Where(hi => hi.Date == calBase.SelectedDate.Day || hi.Date == 0);
-                }
-
-                NotesBackground();
-                MarkHolidays();
             }
         }
-        #endregion
-
-        #region notes controller
+        
         private void AddNoteController()
         {
             if (addNotetb.Text != String.Empty)
@@ -319,6 +292,104 @@ namespace Calendar
                 UpdateNoteList();
             }
             AddNoteFlyout.Hide();
+        }
+        #endregion
+
+        #region holiday flyout controllers
+
+        private void SaveHolidayTypes()
+        {
+            List<string> ls = new List<string>();
+            foreach (var lv in listOfHolidays.Items)
+            {
+                if (lv is CheckBox && (lv as CheckBox).IsChecked == true)
+                {
+                    ls.Add((lv as CheckBox).Content.ToString());
+                    ls.Add((lv as CheckBox).Tag.ToString());
+                }
+            }
+
+            calBase.WriteHolidayXml(ls);
+
+            //-------dupblicates Loaded() --------
+            int jj = 2;
+            for (int j = 0; j < calBase.HolidayNameCollection.Count(); j++)
+            {
+                if (calBase.HolidayNameCollection[j].IsChecked == true)
+                {
+                    (HolidayList.Items.ElementAt(jj) as ListViewItem).Content = calBase.HolidayNameCollection.ElementAt(j).Tag;
+                    ToolTip tt = new ToolTip() { Content = calBase.HolidayNameCollection.ElementAt(j).Content, Placement = PlacementMode.Top };
+                    ToolTipService.SetToolTip((HolidayList.Items.ElementAt(jj) as ListViewItem), tt);
+                    jj++;
+                }
+                if (jj > 5) break;
+            }
+            //--------------------
+
+            calBase.ReadHolidayXml();
+            calBase.FillHolidaysList();
+
+            SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
+            SelectedHolidayType = All;
+            SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
+
+            MarkHolidays();
+            UpdateNoteList();
+
+            butHolidayFlyout.Hide();
+        }
+
+        private void HolidayTypesController(object sender)
+        {
+            if ((sender as ListViewItem).Content != null)
+            {
+                SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
+                SelectedHolidayType = sender as ListViewItem;
+                SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
+                
+                //special holidays
+                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
+                    SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+
+                    noteList.ItemsSource = calBase.HolidayItemCollection.
+                    Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
+                    Select(hi => hi = hi.Copy()).
+                    Select(hi =>
+                    {
+                        //change name = add date
+                        hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
+                            hi.Day, calBase.SelectedDate.Month, hi.HolidayName);
+            #if !WINDOWS_PHONE_APP
+                        hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
+            #endif
+                        return hi;
+                    });
+
+                #if WINDOWS_PHONE_APP
+                    noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                #endif
+                }
+                else
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
+
+                    //personal holidays
+                    if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
+                        noteList.ItemsSource = calBase.HolidayItemCollection.
+                        Where(hi => (hi.Day == calBase.SelectedDate.Day || hi.Day == 0) &&
+                             (hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()));
+
+                    //all holidays
+                    else
+                        noteList.ItemsSource = calBase.HolidayItemCollection.
+                       Where(hi => hi.Day == calBase.SelectedDate.Day || hi.Day == 0);
+                }
+
+                NotesBackground();
+                MarkHolidays();
+            }
         }
         #endregion
     }

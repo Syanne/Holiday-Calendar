@@ -82,6 +82,16 @@
         <Setter Property="Width" Value="400"/>
         <Setter Property="FontFamily" Value="Minion Pro"/>
         <Setter Property="FontSize" Value="18"/>
+        <Setter Property="RequestedTheme" Value="Light"/>
+    </Style>
+    <Style x:Name="CbHolidayStyleWP" x:Key="CbHolidayStyleWP" TargetType="CheckBox">
+        <Setter Property="Height" Value="auto"/>
+        <Setter Property="Width" Value="auto"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="FontFamily" Value="Minion Pro"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="RequestedTheme" Value="Light"/>
     </Style>
     <!--/CALENDAR BOTTOM MENU-->
 
@@ -105,10 +115,10 @@
     </Style>
     <Style TargetType="FlyoutPresenter" x:Key="WPNoteFlyoutStyle">
         <Setter Property="Background" Value="#FFF6F6F9"/>
-        <Setter Property="BorderThickness" Value="5"/>
+        <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="#ff303030"/>
         <Setter Property="Width" Value="auto"/>
-        <Setter Property="Height" Value="330"/>
+        <Setter Property="Height" Value="auto"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>

@@ -33,6 +33,8 @@ namespace Calendar
         //decades
         public double DecadeHeightCorrector { get; set; }
         public double DecadeWidthCorrector { get; set; }
+
+        public double NoteFontSizeCorrector { get; set; }
         
         public bool Count(double height)
         {
@@ -44,6 +46,7 @@ namespace Calendar
                 MonthTopStringWidth = ItemSizeCorrector * 7 + 24;
                 DecadeWidthCorrector = MonthTopStringWidth / 3 - 20;
                 DecadeHeightCorrector = ItemSizeCorrector * 2 - ItemFontSizeCorrector;
+                NoteFontSizeCorrector = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
 
                 return true;
             }

@@ -10,7 +10,8 @@ namespace Calendar.Models
     /// </summary>
     public class HolidayItem
     {
-        public int Date { get; set; }
+        public int Day { get; set; }
+        public int? Year { get; set; }
         public string HolidayName { get; set; }
         public string HolidayTag { get; set; }
         public Brush Background { get; set; }
@@ -22,7 +23,8 @@ namespace Calendar.Models
         {
             return new HolidayItem()
             {
-                Date = this.Date,
+                Day = this.Day,
+                Year = this.Year,
                 HolidayName = this.HolidayName,
                 HolidayTag = this.HolidayTag,
                 Background = this.Background,

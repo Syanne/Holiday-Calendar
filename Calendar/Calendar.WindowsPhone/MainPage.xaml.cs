@@ -83,7 +83,7 @@ namespace Calendar
         /// <param name="e"></param>
         private void butPrev_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            PreviousButtonController();
+            ArrowButtonController(-1);
         }
         /// <summary>
         /// Show previous month
@@ -92,7 +92,7 @@ namespace Calendar
         /// <param name="e"></param>
         private void butNext_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            NextButtonController();
+            ArrowButtonController(1);
         }
 
         /// <summary>
@@ -124,41 +124,77 @@ namespace Calendar
 
         private void butPrev1_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            int month = calBase.SelectedDate.Month;
-            calBase.AddDay(-1);
-            if (month != calBase.SelectedDate.Month)
-            {
-                calBase.ReadHolidayXml();
-                FillCalendar();
-                MarkHolidays();
-            }
-            UpdateNoteList();
+            NoteGridArrowsController(-1);
         }
 
         private void butNext1_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            int month = calBase.SelectedDate.Month;
-            calBase.AddDay(1);
-            if (month != calBase.SelectedDate.Month)
-            {
-                calBase.ReadHolidayXml();
-                FillCalendar();
-                MarkHolidays();
-            }
-            UpdateNoteList();
+            NoteGridArrowsController(1);
         }
 
-        private void DatePickerDp_DateChanged(object sender, DatePickerValueChangedEventArgs e)
+        private void NoteGridArrowsController(int value)
         {
-            calBase.Skip(1, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
+            if (ClickedDayPage.Text != calBase.SelectedDate.Date.ToString("MMMM"))
+            {
+                int month = calBase.SelectedDate.Month;
+                calBase.AddDay(value);
+                if (month != calBase.SelectedDate.Month)
+                {
+                    calBase.ReadHolidayXml();
+                    FillCalendar();
+                    MarkHolidays();
+                }
 
-            //Shows month and year in the top of calGrid
-            FillCalendar();
+                UpdateNoteList();                
+            }
+            else
+            {
+                ArrowButtonController(value); 
+                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
+                     SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+
+                    noteList.ItemsSource = calBase.HolidayItemCollection.
+                    Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
+                    Select(hi => hi = hi.Copy()).
+                    Select(hi =>
+                    {
+                        //change name = add date
+                        hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
+                            hi.Day, calBase.SelectedDate.Month, hi.HolidayName);
+                        return hi;
+                    });
+
+                    NotesBackground();
+                }
+            }
         }
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            calBase.Skip(DatePickerDp.Date.Day, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
+
+            //Shows month and year in the top of calGrid\
+            if (DatePickerDp.Date.Month != calBase.SelectedDate.Date.Month &&
+                DatePickerDp.Date.Year != calBase.SelectedDate.Date.Year)
+            {
+                FillCalendar();
+                MarkHolidays();
+            }
+            UpdateNoteList();
+
+            GridViewItem gvi = calGrid.Items.ElementAt(DatePickerDp.Date.Day + calBase.Start - 1) as GridViewItem;
+            //highlight selected day 
+            if (gviPrev != gvi)
+            {
+                gvi.BorderThickness = new Thickness(3);
+                gvi.BorderBrush = gvi.Foreground;
+                gviPrev.BorderThickness = new Thickness(0);
+                gviPrev = gvi;
+            }
+
+            DatePickerDp.Date = DateTimeOffset.Now;
         }
 
         #region AddNote flyout
@@ -225,10 +261,12 @@ namespace Calendar
 
         private void HolidaysAppButton_Click(object sender, RoutedEventArgs e)
         {
-            if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
-                HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            else HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-
+            if (gvDecades.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+            {
+                if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+                    HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                else HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
         }
 
         private void StyleAppButton_Click(object sender, RoutedEventArgs e)
@@ -257,22 +295,7 @@ namespace Calendar
         /// <param name="e">Clicked</param>
         private void btnHolidays_Click(object sender, RoutedEventArgs e)
         {
-            List<string> ls = new List<string>();
-            foreach (var lv in listOfHolidays.Items)
-            {
-                if (lv is CheckBox && (lv as CheckBox).IsChecked == true)
-                {
-                    ls.Add((lv as CheckBox).Content.ToString());
-                    ls.Add((lv as CheckBox).Tag.ToString());
-                }
-            }
-            SelectedHolidayType.Foreground = new SolidColorBrush(Color.FromArgb(255, 217, 178, 208));
-
-            calBase.WriteHolidayXml(ls);
-
-
-            FillCalendar();
-            butHolidayFlyout.Hide();
+            SaveHolidayTypes();
         }
 
         /// <summary>
@@ -284,12 +307,12 @@ namespace Calendar
         {
             FlyoutBase.ShowAttachedFlyout(HolidayList as FrameworkElement);
 
-            foreach (CheckBox ch in calBase.HolidayNameCollection)
-                ch.Style = (Style)this.Resources["CbHolidayStyle"];
-
             listOfHolidays.ItemsSource = calBase.HolidayNameCollection;
             foreach (CheckBox ic in listOfHolidays.Items.Where(i => i is CheckBox))
+            {
                 ic.Click += cb_Click;
+                ic.Style = (Style)this.Resources["CbHolidayStyleWP"];
+            }
         }
 
         /// <summary>
@@ -316,7 +339,10 @@ namespace Calendar
         }
         #endregion
 
-       
+        private void HolidayFlyout_Opened(object sender, object e)
+        {
+            listOfHolidays.Height = Window.Current.Bounds.Height - 60;
+        }
     }
 
 }

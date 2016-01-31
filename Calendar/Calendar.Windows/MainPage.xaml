@@ -258,9 +258,22 @@
                         Content="..."
                         Tapped="GridViewItem_Tapped" />
                     <FlyoutBase.AttachedFlyout>
-                        <Flyout Opened="Flyout_Opened" Closed="butHolidayFlyout_Closed" AutomationProperties.ItemType="CheckBox" x:Name="butHolidayFlyout" Placement="Full" FlyoutPresenterStyle="{StaticResource ResourceKey=HolidayListStyle}">
+                        <Flyout Opened="HolidayFlyout_Opened" 
+                                Closed="HolidayFlyout_Closed" 
+                                AutomationProperties.ItemType="CheckBox" 
+                                x:Name="butHolidayFlyout" 
+                                Placement="Full" 
+                                FlyoutPresenterStyle="{StaticResource ResourceKey=HolidayListStyle}">
                             <StackPanel >
-                                <TextBlock x:Uid="typesTopString" FontSize="24" FontFamily="Minion Pro" Padding="0,0,0,15" Height="auto" TextWrapping="WrapWholeWords" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Center" MaxLines="2"/>
+                                <TextBlock x:Uid="typesTopString" 
+                                           FontSize="24" 
+                                           FontFamily="Minion Pro" 
+                                           Padding="0,0,0,15" 
+                                           Height="auto" 
+                                           TextWrapping="WrapWholeWords" 
+                                           VerticalAlignment="Center" 
+                                           HorizontalAlignment="Center" 
+                                           TextAlignment="Center"/>
                                 <ListView x:Name="listOfHolidays" Width="auto" HorizontalAlignment="Stretch" Height="400" ManipulationMode="None" SelectionMode="None" VerticalAlignment="Center"/>
                                 <ListView HorizontalAlignment="Center" Height="auto" Padding="0" ManipulationMode="None" SelectionMode="None" >
                                     <ListView.ItemsPanel>
@@ -269,18 +282,18 @@
                                         </ItemsPanelTemplate>
                                     </ListView.ItemsPanel>
                                     <Button x:Uid="btnHolidays" x:Name="btnHolidays" 
-                                                    Click="btnHolidays_Click" 
-                                                    Margin="0, 10" 
-                                                    HorizontalAlignment="Center" 
-                                                    Height="50" Width="160" 
-                                                    FontSize="22"
-                                                    Style="{StaticResource MainButton}"/>
+                                            Click="btnHolidays_Click" 
+                                            Margin="0, 10" 
+                                            HorizontalAlignment="Center" 
+                                            Height="50" Width="160" 
+                                            FontSize="22"
+                                            Style="{StaticResource MainButton}"/>
                                     <Button x:Uid="btnholCancel" x:Name="btnholCancel" 
-                                                    Margin="0,10" HorizontalAlignment="Center" 
-                                                    Height="50" Width="160" 
-                                                    FontSize="22" 
-                                                    Click="btnholCancel_Click"
-                                                    Style="{StaticResource MainButton}"/>
+                                            Margin="0,10" HorizontalAlignment="Center" 
+                                            Height="50" Width="160" 
+                                            FontSize="22" 
+                                            Click="HolidayFlyoutCancel_Click"
+                                            Style="{StaticResource MainButton}"/>
                                 </ListView>
                             </StackPanel>
                         </Flyout>
@@ -378,8 +391,8 @@
                                             <ItemsWrapGrid Orientation="Horizontal"/>
                                         </ItemsPanelTemplate>
                                     </ListView.ItemsPanel>
-                                    <RadioButton x:Uid="once" FontSize="18" IsChecked="True" Tag="none" Width="150"/>
-                                    <RadioButton x:Uid="everyYear" FontSize="18" Tag="0" Width="150"/>
+                                    <RadioButton Name="onceCb" x:Uid="once" FontSize="18" IsChecked="True" Tag="none" Width="150"/>
+                                    <RadioButton Name="everyCb" x:Uid="everyYear" FontSize="18" Tag="0" Width="150"/>
                                 </ListView>
                                 <ListView 
                                           Name="delChLists" 

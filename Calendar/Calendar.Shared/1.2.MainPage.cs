@@ -1,4 +1,4 @@
-﻿using Calendar.HolidayCalendarMechanism;
+﻿using Calendar.Mechanism;
 using Calendar.Models;
 using System;
 using System.Collections.Generic;
@@ -61,8 +61,7 @@ namespace Calendar
 
             FillCalendar();
 
-            int x = calBase.Start - 1 + DateTime.Now.Day;
-            gviPrev = calGrid.Items[x] as GridViewItem;   
+            gviPrev = calGrid.Items.ElementAt(calBase.SelectedDate.Day + calBase.Start - 1) as GridViewItem;
         }
 
         /// <summary>
@@ -76,25 +75,16 @@ namespace Calendar
 #else
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif
-
-            double fSize = (Window.Current.Bounds.Height / 36 > 26) ? 26 : Window.Current.Bounds.Height / 36;
+            
             //fill list of holidays
             if (SelectedHolidayType == All)
                 noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
-                    hi.Date == calBase.SelectedDate.Day || hi.Date == 0).Select(hi =>
-                    {
-                        hi.FontSize = fSize;
-                        return hi;
-                    });
-            
+                    hi.Day == calBase.SelectedDate.Day || hi.Day == 0).
+                    Distinct(new HolidayNameComparer());
+
             else noteList.ItemsSource = calBase.HolidayItemCollection.
-                                      Where(hi => (hi.Date == calBase.SelectedDate.Day || hi.Date == 0) &&
-                                      (hi.HolidayTag == SelectedHolidayType.Content.ToString())).
-                                      Select(hi =>
-                                      {
-                                          hi.FontSize = fSize;
-                                          return hi;
-                                      });
+                                      Where(hi => (hi.Day == calBase.SelectedDate.Day || hi.Day == 0) &&
+                                      (hi.HolidayTag == SelectedHolidayType.Content.ToString()));
 
             //background color of every note
             NotesBackground();
@@ -104,11 +94,16 @@ namespace Calendar
         {
             var color = new SolidColorBrush(Color.FromArgb(255, 240, 240, 242));
             var transp = new SolidColorBrush(Colors.Transparent);
+            double fSize = (Window.Current.Bounds.Height / 36 > 26) ? 26 : Window.Current.Bounds.Height / 36;
+
             for (int i = 0; i < noteList.Items.Count; i++)
             {
                 if (i % 2 == 0)
                     (noteList.Items[i] as HolidayItem).Background = color;
                 else (noteList.Items[i] as HolidayItem).Background = transp;
+            #if !WINDOWS_PHONE_APP
+                (noteList.Items[i] as HolidayItem).FontSize = fSize;
+            #endif
             }
         }
         
@@ -119,7 +114,9 @@ namespace Calendar
         /// </summary>
         public void FillCalendar()
         {
-#if !WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
+            StandardClass standard = new StandardClass();
+#else
             bool flag = false;
             if (sizeCorrection == null)
             {
@@ -137,8 +134,6 @@ namespace Calendar
             Style weekndStyle = (Style)this.Resources["WeekendStyle"];
             Style dayStyle = (Style)this.Resources["ThisMonthStyle"];
             Brush DayFg = new SolidColorBrush(Colors.White);
-
-            StandardClass standard = new StandardClass();
 
             //fill calendar
             ObservableCollection<GridViewItem> gviCalSource = new ObservableCollection<GridViewItem>();
@@ -181,6 +176,7 @@ namespace Calendar
             }
             calGrid.ItemsSource = gviCalSource;
 
+
             #if !WINDOWS_PHONE_APP
             if (flag)
                 sizeCorrection = null;
@@ -206,7 +202,7 @@ namespace Calendar
             {
                 int current = Convert.ToInt32((calGrid.Items[i] as GridViewItem).Content);
                
-                if (holItemSource.Count(item => item.Date == current) != 0)
+                if (holItemSource.Count(item => item.Day == current) != 0)
                     (calGrid.Items[i] as GridViewItem).Foreground = hol;
                 else (calGrid.Items[i] as GridViewItem).Foreground = standard;
             }
@@ -236,6 +232,9 @@ namespace Calendar
             
             var decadeList = new List<GridViewItem>();
 
+            double DecadeWidthCorrector = Window.Current.Bounds.Width / 4;
+            double DecadeHeightCorrector = Window.Current.Bounds.Width / 4 - Window.Current.Bounds.Width / 16;
+
             //fill the list
             for (int i = 1; i <= 12; i++)
             {
@@ -243,17 +242,21 @@ namespace Calendar
                 decadeList.Add( new GridViewItem()
                 {
                     Content = dt.Date.ToString("MMM"),
-                    Tag = i,                    
-                #if !WINDOWS_PHONE_APP
+                    Tag = i,
+                #if WINDOWS_PHONE_APP
+                    Height = DecadeHeightCorrector,
+                    Width = DecadeWidthCorrector,
+                    FontSize = Window.Current.Bounds.Width / 16,
+                    Margin = new Thickness(5)
+                #else
                     Height = sizeCorrection.DecadeHeightCorrector,
                     Width = sizeCorrection.DecadeWidthCorrector,
                     FontSize = sizeCorrection.ItemFontSizeCorrector,
-                #endif
-                    
+                #endif                    
                 });
+
                 decadeList.ElementAt(i - 1).Tapped += m1_Tapped;
             }
-
             gvDecades.ItemsSource = decadeList;
         }
 
@@ -267,5 +270,4 @@ namespace Calendar
             var command = await dial.ShowAsync();
         }
     }
-
 }

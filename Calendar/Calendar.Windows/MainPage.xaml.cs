@@ -25,30 +25,29 @@ namespace Calendar
                 ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
              
             this.InitializeComponent();
-            PagePreLoader();
-         
+            PagePreLoader();         
         }              
 
-        #region Calendar controls     
+        #region Calendar controls
         private void butNext_Click(object sender, RoutedEventArgs e)
         {
-            NextButtonController();
+            ArrowButtonController(1);
         }
         
         private void butPrev_Click(object sender, RoutedEventArgs e)
         {
-            PreviousButtonController();
+            ArrowButtonController(-1);
         }
         
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
-                calBase.Skip(Convert.ToInt32(gviPrev.Content), DatePickerDp.Date.Month, DatePickerDp.Date.Year);
+            calBase.Skip(Convert.ToInt32(gviPrev.Content), DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
-                //Shows month and year in the top of calGrid\
-                FillCalendar();
-                MarkHolidays();
+            //Shows month and year in the top of calGrid\
+            FillCalendar();
+            MarkHolidays();
 
-                DatePickerDp.Date = DateTimeOffset.Now;          
+            DatePickerDp.Date = DateTimeOffset.Now;          
         }
         
         private void monthNameButton_Click(object sender, RoutedEventArgs e)
@@ -79,45 +78,7 @@ namespace Calendar
         /// <param name="e">Clicked</param>
         private void btnHolidays_Click(object sender, RoutedEventArgs e)
         {
-            List<string> ls = new List<string>();
-            foreach (var lv in listOfHolidays.Items)
-            {
-                if (lv is CheckBox && (lv as CheckBox).IsChecked == true)
-                {
-                    ls.Add((lv as CheckBox).Content.ToString());
-                    ls.Add((lv as CheckBox).Tag.ToString());
-                }
-            }
-
-            calBase.WriteHolidayXml(ls);
-
-            //-------dupblicates Loaded() --------
-            int jj = 2;
-            for (int j = 0; j < calBase.HolidayNameCollection.Count(); j++)
-            {
-                if (calBase.HolidayNameCollection[j].IsChecked == true)
-                {
-                    (HolidayList.Items.ElementAt(jj) as ListViewItem).Content = calBase.HolidayNameCollection.ElementAt(j).Tag;
-                    ToolTip tt = new ToolTip() { Content = calBase.HolidayNameCollection.ElementAt(j).Content, Placement = PlacementMode.Top };
-                    ToolTipService.SetToolTip((HolidayList.Items.ElementAt(jj) as ListViewItem), tt);
-                    jj++;
-                }
-                if (jj > 5) break;
-            }
-            //--------------------
-            
-            calBase.ReadHolidayXml();
-            calBase.FillHolidaysList();
-
-            SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
-            //SelectedHolidayType = sender as ListViewItem;
-            SelectedHolidayType = All;
-            SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
-
-            MarkHolidays();
-            UpdateNoteList(); 
-            
-            butHolidayFlyout.Hide();
+            SaveHolidayTypes();
         }
 
         /// <summary>
@@ -130,7 +91,7 @@ namespace Calendar
             FlyoutBase.ShowAttachedFlyout(HolidayList as FrameworkElement);
 
             listOfHolidays.ItemsSource = calBase.HolidayNameCollection;
-            foreach (CheckBox ic in listOfHolidays.Items.Where(i => i is CheckBox))
+            foreach (CheckBox ic in listOfHolidays.Items)
                 ic.Click += cb_Click;
         }
 
@@ -147,16 +108,16 @@ namespace Calendar
             else btnHolidays.IsEnabled = true;
         }
 
-        private void Flyout_Opened(object sender, object e)
+        private void HolidayFlyout_Opened(object sender, object e)
         {
             mainBg.Opacity = 0.3;
         }
-        private void butHolidayFlyout_Closed(object sender, object e)
+        private void HolidayFlyout_Closed(object sender, object e)
         {
             mainBg.Opacity = 1;
         }
 
-        private void btnholCancel_Click(object sender, RoutedEventArgs e)
+        private void HolidayFlyoutCancel_Click(object sender, RoutedEventArgs e)
         {
             butHolidayFlyout.Hide();
         }
@@ -288,7 +249,7 @@ namespace Calendar
                 calGrid.Width = sizeCorrection.MonthTopStringWidth;
                 calGrid.Height = calGrid.Width;
 
-                gvDecades.Height = calGrid.Height + monthNameButton.Height + 10;
+                gvDecades.Height = sizeCorrection.MonthTopStringWidth + monthNameButton.Height + 10;
                 gvDecades.Width = sizeCorrection.MonthTopStringWidth;
 
                 if (gvDecades.Items.Count > 0)
@@ -301,7 +262,7 @@ namespace Calendar
 
                 for (int i = 0; i < noteList.Items.Count; i++)
                 {
-                    (noteList.Items[i] as HolidayItem).FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                    (noteList.Items[i] as HolidayItem).FontSize = sizeCorrection.NoteFontSizeCorrector;
                     (noteList.Items[i] as HolidayItem).Height = sizeCorrection.ItemSizeCorrector;
                 }
 
@@ -311,7 +272,7 @@ namespace Calendar
 
                 ClickedDayPage.Height = sizeCorrection.ItemSizeCorrector + 20;
                 ClickedDayPage.Margin = monthTopString.Margin;
-                ClickedDayPage.FontSize = sizeCorrection.ItemFontSizeCorrector;
+                ClickedDayPage.FontSize = monthNameButton.FontSize;
                 noteList.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/3, 0, 0);
                 noteList.Height = sizeCorrection.ItemSizeCorrector * 8;
 

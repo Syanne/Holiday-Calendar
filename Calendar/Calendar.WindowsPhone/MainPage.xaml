@@ -61,7 +61,7 @@
             <Grid x:Name="monthTopString" 
                       VerticalAlignment="Top"                       
                       HorizontalAlignment="Stretch" 
-                      Margin="0, 20, 0, 10"
+                      Margin="0, 20, 0, 0"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                       Background="Transparent" >
                 <Button x:Name="butPrev" 
@@ -100,7 +100,7 @@
 
             <GridView x:Name="weekDayNames" 
                           Height="auto" 
-                          Margin="5" 
+                          Margin="5, 0" 
                           HorizontalAlignment="Stretch"  
                           VerticalAlignment="Top" 
                           VerticalContentAlignment="Stretch" 
@@ -220,58 +220,58 @@
                 <FlyoutBase.AttachedFlyout>
                     <!--AutomationProperties.ItemType="CheckBox"-->
                     <Flyout x:Name="butHolidayFlyout"
+                            Opened="HolidayFlyout_Opened"
+                                AutomationProperties.ItemType="CheckBox" 
                                 Placement="Full" 
-                                FlyoutPresenterStyle="{StaticResource ResourceKey=HolidayListStyle}">
+                                FlyoutPresenterStyle="{StaticResource ResourceKey=WPNoteFlyoutStyle}">
                         <StackPanel HorizontalAlignment="Stretch"
-                                    VerticalAlignment="Stretch">
+                                    VerticalAlignment="Stretch"
+                                    Orientation="Vertical">
+
                             <TextBlock x:Uid="typesTopString" 
-                                          Foreground="#ff303030"
-                                           RequestedTheme="Light"
-                                           FontFamily="Minion Pro"
-                                           FontSize="20" TextAlignment="Center"
-                                           Padding="5"
-                                           Height="auto" Width="0"
-                                       IsTextSelectionEnabled="False"
-                                       MinWidth="300"
-                                       MinHeight="30"
-                                       MaxLines="3"
-                                           VerticalAlignment="Top" 
-                                           HorizontalAlignment="Stretch" />
+                                        Foreground="#ff303030"
+                                        RequestedTheme="Light"
+                                        FontFamily="Minion Pro"
+                                        LineHeight="30"
+                                       TextWrapping="WrapWholeWords"
+                                        FontSize="20" TextAlignment="Center"
+                                        Padding="5"
+                                        Height="auto" Width="0"
+                                        IsTextSelectionEnabled="False"
+                                        MinWidth="300"
+                                        MinHeight="30"
+                                        VerticalAlignment="Top" 
+                                        HorizontalAlignment="Stretch" />
                             <ListView x:Name="listOfHolidays" 
                                         Padding="15,10"
-                                        Background="AliceBlue"
-                                          Height="400" 
-                                          SelectionMode="None" 
+                                        Background="Transparent"
+                                        SelectionMode="None" 
                                         HorizontalAlignment="Stretch"
-                                          VerticalAlignment="Stretch">
-
+                                        VerticalAlignment="Stretch"
+                                       ScrollViewer.IsVerticalRailEnabled="True"
+                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                      >
                             </ListView>
-                            <ListView HorizontalAlignment="Center" 
+                            
+                            <StackPanel HorizontalAlignment="Center" 
                                       VerticalAlignment="Bottom"
-                                          Height="auto" 
-                                          Padding="0" 
-                                          Foreground="#ff303030"
-                                          SelectionMode="None" >
+                                      Height="auto" 
+                                      Orientation="Horizontal">
 
-                                <ListView.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <ItemsWrapGrid Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </ListView.ItemsPanel>
                                 <Button x:Uid="btnHolidays" x:Name="btnHolidays" 
-                        												Click="btnHolidays_Click" 
-                        												Margin="0,10,10,10" 
-                        												HorizontalAlignment="Center" 
-                        												Height="50" Width="120" 
-                        												FontSize="20"
-                        												Style="{StaticResource MainButton}"/>
+                        				Click="btnHolidays_Click" 
+                        				Margin="0,10,10,10" 
+                        				HorizontalAlignment="Center" 
+                        				Height="50" Width="120" 
+                        				FontSize="20"
+                        				Style="{StaticResource MainButton}"/>
                                 <Button x:Uid="btnholCancel" x:Name="btnholCancel" 
-                        												Margin="10,10,0,10" HorizontalAlignment="Center" 
-                        												Height="50" Width="120" 
-                        												FontSize="20" 
-                        												Click="btnholCancel_Click"
-                        												Style="{StaticResource MainButton}"/>
-                            </ListView>
+                        				Margin="10,10,0,10" HorizontalAlignment="Center" 
+                        				Height="50" Width="120" 
+                        				FontSize="20" 
+                        				Click="btnholCancel_Click"
+                        				Style="{StaticResource MainButton}"/>
+                            </StackPanel>
                         </StackPanel>
                     </Flyout>
                 </FlyoutBase.AttachedFlyout>
@@ -432,8 +432,8 @@
                                         <ItemsWrapGrid Orientation="Horizontal"/>
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
-                                <RadioButton x:Uid="once" IsChecked="True" Tag="none" Width="150"/>
-                                <RadioButton x:Uid="everyYear" Tag="0" Width="150"/>
+                                <RadioButton Name="onceCb" x:Uid="once" IsChecked="True" Tag="none" Width="150"/>
+                                <RadioButton Name="everyCb" x:Uid="everyYear" Tag="0" Width="150"/>
                             </ListView>
                             <ListView 
                 			x:Name="delChLists" 
@@ -500,33 +500,29 @@
                 </ListView.ItemsPanel>
 
                 <TextBlock x:Uid="GoToDate"
-                    TextWrapping="NoWrap"
+                           TextWrapping="NoWrap"
                            TextAlignment="Right"
                            Width="120" Height="50"
                            Margin="0, 0, 5, 0" FontSize="20"
                            Foreground="#ff303030"
                            Padding="10"/>
                 <DatePicker x:Name="DatePickerDp" 
-        		HorizontalAlignment="Left"                 
-        		Height="50" Width="110"
-        		Margin="5,-3" Padding="0"
-        		VerticalAlignment="Center" 
-        		RequestedTheme="Light" 
-                MonthFormat="{}{month.solo.full}"
-                DateChanged="DatePickerDp_DateChanged"  
-                />
+        		            HorizontalAlignment="Left"                 
+        		            Height="50" Width="110"
+        		            Margin="5,-3" Padding="0"
+        		            VerticalAlignment="Center" 
+        		            RequestedTheme="Light" 
+                            />
 
-                <Button x:Name="Done" x:Uid="Done"
-        		FontSize="18" 
-        		Height="50" Width="110" 
-        		Margin="5,5,0,2" 
-        		HorizontalAlignment="Right" 
-        		Click="Done_Click"
-        		Style="{StaticResource MainButton}"/>
+                <Button x:Name="Done" x:Uid="GoToDateBtn"
+        		        FontSize="18" 
+        		        Height="50" Width="110" 
+        		        Margin="5,5,0,2" 
+        		        HorizontalAlignment="Right" 
+        		        Click="Done_Click"
+        		        Style="{StaticResource MainButton}"/>
 
             </ListView>
-
         </StackPanel>
-
     </Grid>
 </Page>
