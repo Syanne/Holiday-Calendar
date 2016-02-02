@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,25 +16,28 @@ namespace BackgroundUpdater
     {
         public static XDocument PersonalData;
         public static XDocument doc;
-        public static ResourceLoader resource;
 
-        public static void BgTaskHelper()
+        public static async void BgTaskHelper()
         {
-            var po = Package.Current.InstalledLocation.Path + resource.GetString("LocalHolidaysPath1");
+            string path = String.Format(@"ms-appx:///Holidays/{0}/Holidays.xml", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
+            string fileContent;
+            StorageFile f = StorageFile.GetFileFromApplicationUriAsync(new Uri(path)).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+            using (StreamReader sRead = new StreamReader(await f.OpenStreamForReadAsync()))
+                fileContent = await sRead.ReadToEndAsync();
 
-            var fileeee = StorageFile.GetFileFromPathAsync(po).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-            String stamp = FileIO.ReadTextAsync(fileeee).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
-            doc = XDocument.Parse(stamp);
-
-            if (PersonalData == null)
+            doc = XDocument.Parse(fileContent);
+            try
             {
-                //load file 
                 var storageFolder = ApplicationData.Current.RoamingFolder;
                 var file = storageFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                 string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
                 PersonalData = XDocument.Parse(text);
+            }
+            //if it's the fist launch - load basic file
+            catch
+            {
+                PersonalData = XDocument.Load(@"Holidays/" + CultureInfo.CurrentUICulture.TwoLetterISOLanguageName + "/PersData.xml");
             }
         }
 
@@ -42,7 +47,7 @@ namespace BackgroundUpdater
         /// </summary>
         public static void LoadPersonalData()
         {
-            doc = XDocument.Load(resource.GetString("LocalHolidaysPath"));
+            
             if (PersonalData == null)
             {
                     //load file 

@@ -78,21 +78,20 @@ namespace BackgroundTasks
         {
             XDocument PersonalData = new XDocument();
             List<HelpStruct> collection = new List<HelpStruct>();
+
             try
             {
-                PersonalData = XDocument.Load(ApplicationData.Current.RoamingFolder.Path + @"/PersData.xml");
+                var storageFolder = ApplicationData.Current.RoamingFolder;
+                var file = storageFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+
+                PersonalData = XDocument.Parse(text);
             }
+            //if it's the fist launch - load basic file
             catch
             {
-                try
-                {
-                    PersonalData = XDocument.Load(ApplicationData.Current.LocalFolder.Path + @"/PersData.xml");
-                }
-                catch
-                {
-                    PersonalData = XDocument.Load(@"Holidays/" + CultureInfo.CurrentUICulture.TwoLetterISOLanguageName + "/PersData.xml");
-                }
-            }
+                PersonalData = XDocument.Load(@"Holidays/" + CultureInfo.CurrentUICulture.TwoLetterISOLanguageName + "/PersData.xml");
+            }          
 
             finally
             {
@@ -104,10 +103,10 @@ namespace BackgroundTasks
                 var movable = doc.Root.Descendants("month").ElementAt(m - 1).Descendants("movable");
 
                 //looking for holidays from selected categories
-                foreach (XElement x in doc.Root.Descendants("month").ElementAt(m-1).Descendants("day"))
+                foreach (XElement x in doc.Root.Descendants("month").ElementAt(m - 1).Descendants("day"))
                 {
                     foreach (XElement pers in persCollection)
-                        if (x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
+                        if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                             collection.Add(new HelpStruct
                             {
                                 Day = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
@@ -116,35 +115,34 @@ namespace BackgroundTasks
                             });
                 }
 
-                //computational national an international holidays
-                foreach (XElement x in computational)
-                {
+                if (computational.Count() != 0)
                     foreach (XElement pers in persCollection)
-                        if (x.FirstAttribute.Value != "" && x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
-                            collection.Add(new HelpStruct
-                            {
-                                Day = ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
+                        foreach (XElement x in computational)
+                        {
+                            if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
+                                collection.Add(new HelpStruct
+                                {
+                                    Day = ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
                                                         Convert.ToInt32(x.Attributes().ElementAt(2).Value), GetStart()),
-                                Name = x.Attributes().ElementAt(0).Value,
-                                Month = m
-                            });
-                }
+                                    Name = x.Attributes().ElementAt(0).Value,
+                                    Month = m
+                                });
+                        }
 
-                //movable religious holidays
                 if (movable.Count() != 0)
                     foreach (XElement x in movable)
                         foreach (XElement pers in persCollection)
                         {
-                        if (x.Attribute("year").Value == y.ToString() && x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
-                        {
-                            collection.Add(new HelpStruct
+                            if (x.Attribute("year").Value == y.ToString() && x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
                             {
-                                Day = Convert.ToInt32(x.Attribute("day").Value),
-                                Name = x.Attribute("name").Value,
-                                Month = m
-                            });
+                                collection.Add(new HelpStruct
+                                {
+                                    Day = Convert.ToInt32(x.Attribute("day").Value),
+                                    Name = x.Attribute("name").Value,
+                                    Month = m
+                                });
+                            }
                         }
-                    }
 
                 foreach (XElement pers in PersonalData.Root.Descendants("holidays").Descendants("persDate"))
                     if (pers.Attribute("month").Value == m.ToString() && (pers.Attribute("year").Value == y.ToString() || pers.Attribute("year").Value == "0"))
@@ -154,7 +152,6 @@ namespace BackgroundTasks
                             Name = pers.Attribute("name").Value,
                             Month = m
                         });
-
             }
             return collection.Where(el=>el.Day >= d).OrderBy(el => el.Day).ToList();
         }

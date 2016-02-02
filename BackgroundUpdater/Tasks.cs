@@ -22,7 +22,6 @@ namespace BackgroundUpdater
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
 
             //load data
-            ResourceManager.resource = ResourceLoader.GetForCurrentView("Resources");
             ResourceManager.BgTaskHelper();
 
             //start updating
@@ -53,7 +52,6 @@ namespace BackgroundUpdater
             }
 
             int n = (dyn.Count > 5) ? 5 : dyn.Count();
-
 
             if (dyn.Count > 0)
                 for (int i = 1; i <= n; i++)
@@ -99,7 +97,7 @@ namespace BackgroundUpdater
             foreach (XElement x in ResourceManager.doc.Root.Descendants("month").ElementAt(m - 1).Descendants("day"))
             {
                 foreach (XElement pers in persCollection)
-                    if (x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
+                    if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                         collection.Add(new HelpStruct
                         {
                             Day = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
@@ -109,20 +107,19 @@ namespace BackgroundUpdater
             }
 
             if (computational.Count() != 0)
-                foreach (XElement x in computational)
-                {
-                    foreach (XElement pers in persCollection)
-                        if (x.FirstAttribute.Value != "" && x.Parent.FirstAttribute.Value == pers.FirstAttribute.Value)
+                foreach (XElement pers in persCollection)
+                    foreach (XElement x in computational)
+                    {
+                        if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                             collection.Add(new HelpStruct
                             {
                                 Day = ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
-                                                        Convert.ToInt32(x.Attributes().ElementAt(2).Value), GetStart()),
+                                                    Convert.ToInt32(x.Attributes().ElementAt(2).Value), GetStart()),
                                 Name = x.Attributes().ElementAt(0).Value,
                                 Month = m
                             });
-                }
+                    }
 
-            //movable religious holidays
             if (movable.Count() != 0)
                 foreach (XElement x in movable)
                     foreach (XElement pers in persCollection)
@@ -137,6 +134,7 @@ namespace BackgroundUpdater
                             });
                         }
                     }
+
             foreach (XElement pers in ResourceManager.PersonalData.Root.Descendants("holidays").Descendants("persDate"))
                 if (pers.Attribute("month").Value == m.ToString() && (pers.Attribute("year").Value == y.ToString() || pers.Attribute("year").Value == "0"))
                     collection.Add(new HelpStruct
@@ -176,9 +174,6 @@ namespace BackgroundUpdater
 
             return (R == 1) ? (10 + R) : R;
         }
-        // Although most HTTP servers do not require User-Agent header, others will reject the request or return 
-        // a different response if this header is missing. Use SetRequestHeader() to add custom headers. 
-
     }
 
     public sealed class ToastBackgroundTask : IBackgroundTask

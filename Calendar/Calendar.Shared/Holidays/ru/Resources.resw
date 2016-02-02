@@ -357,4 +357,7 @@
   <data name="styleBut.Label" xml:space="preserve">
     <value>стиль</value>
   </data>
+  <data name="LocalHolidaysPath1" xml:space="preserve">
+    <value>Holidays\ru\Holidays.xml</value>
+  </data>
 </root>

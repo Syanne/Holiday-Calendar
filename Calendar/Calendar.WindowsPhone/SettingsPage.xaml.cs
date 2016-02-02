@@ -132,7 +132,6 @@ namespace Calendar
             var command = await dial.ShowAsync();
         }
 
-
         #region BgTasks
 
         private void TileToggle(string name, string entryPoint)
