@@ -4,5 +4,5 @@
     xmlns:local="using:Calendar">
     <Brush x:Key="MainColor">#FF01837D</Brush>
     <Brush x:Key="AdditionalColor">#FF16AAA3</Brush>
-    <Brush x:Key="HolidayTitleColor">#FF4B7875</Brush>
+    <Brush x:Key="HolidayTitleColor">#FF74b5b3</Brush>
 </ResourceDictionary>

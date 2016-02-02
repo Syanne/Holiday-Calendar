@@ -60,7 +60,7 @@
     <Page Include="$(MSBuildThisFileDirectory)Themes\Fall.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\Fir.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Violet.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Themes\HotPink.xaml">

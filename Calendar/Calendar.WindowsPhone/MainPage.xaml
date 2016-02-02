@@ -314,8 +314,8 @@
                   Visibility="Collapsed">
 
             <Grid Height="60" 
-                      Margin="0, 20, 0, 10"
-                      VerticalAlignment="Top">
+                    Margin="0, 20, 0, 10"
+                    VerticalAlignment="Top">
                 <GridViewItem x:Name="butPrev1" 
                               Tapped="butPrev1_Tapped"
         		                Width="50" Height="50"

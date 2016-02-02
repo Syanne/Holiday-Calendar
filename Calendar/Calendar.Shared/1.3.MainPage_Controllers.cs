@@ -33,8 +33,8 @@ namespace Calendar
             }
 
             //change foreground and tooltip for each HolidayList's item
-            var color = (SolidColorBrush)Application.Current.Resources["AdditionalColor"];
-            M.Foreground = color;
+            var holColor = (SolidColorBrush)Application.Current.Resources["HolidayTitleColor"];
+            M.Foreground = holColor;
             int jj = 2;
             for (int j = 0; j < calBase.HolidayNameCollection.Count(); j++)
             {
@@ -49,7 +49,7 @@ namespace Calendar
                         FontSize = 16
                     };
                     ToolTipService.SetToolTip(element, tt);
-                    element.Foreground = color;
+                    element.Foreground = holColor;
                     jj++;
                 }
                 if (jj == 5) break;

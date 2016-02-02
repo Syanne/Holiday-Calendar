@@ -12,10 +12,10 @@
     Loaded="pageRoot_Loaded"
     NavigationCacheMode="Disabled"
     >
-    <Grid Background="#FF944377">
-        <Image gif:AnimationBehavior.SourceUri="Assets/loading-page.gif"
+    <Grid Background="#FFce3636">
+        <Image gif:AnimationBehavior.SourceUri="Assets/301.gif"
                  HorizontalAlignment="Center" VerticalAlignment="Center" 
-                Width="200" Height="288"/>
+                Width="100" Height="100"/>
 
     </Grid>
 </Page>

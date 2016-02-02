@@ -262,7 +262,6 @@
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
     <value>- Увімкнути повідомлення;
-- Користуватися кнопкою "Перейти";
 - Змінити оформлення календаря;</value>
   </data>
   <data name="shopBtn.Content" xml:space="preserve">
@@ -327,7 +326,6 @@
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- Увімкнути повідомлення;
-- Користуватися кнопкою "Перейти";
 - Змінити оформлення календаря;</value>
   </data>
   <data name="BuyMeTitleMP" xml:space="preserve">

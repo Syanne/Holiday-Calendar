@@ -3,6 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Calendar">
     <Brush x:Key="MainColor">#ff0356be</Brush>
-    <Brush x:Key="AdditionalColor">#FFe3e8ee</Brush>
-    <Brush x:Key="HolidayTitleColor">#ff00316b</Brush>      
+    <Brush x:Key="AdditionalColor">#ff0356be</Brush>
+    <Brush x:Key="HolidayTitleColor">#ff749acc</Brush>      
 </ResourceDictionary>
