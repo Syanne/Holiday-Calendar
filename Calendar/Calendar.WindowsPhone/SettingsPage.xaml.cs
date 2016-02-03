@@ -150,8 +150,6 @@ namespace Calendar
 
         private void ToastToggle(string name, string entryPoint)
         {
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            {
                 if (toastToggle.IsOn)
                 {
                     CalendarResourcesManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
@@ -170,11 +168,7 @@ namespace Calendar
 
                     toastToggle.IsOn = false;
                 }
-            }
-            else
-            {
-                BuyThis();
-            }
+            
         }
 
 

@@ -302,19 +302,21 @@ namespace Calendar
         /// </summary>
         private void ShowHide()
         {
-            if (Window.Current.Bounds.Width > 1500)
+            if (Window.Current.Bounds.Width > 1200)
             {
-                leftSide.Width = Window.Current.Bounds.Width / 3;
                 rightSide.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                rightSide.Width = Window.Current.Bounds.Width - 600;
+                smallThemesPreview.Width = rightSide.Width - 200;
                 ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                rightSide.Margin = new Thickness(leftSide.Width + 30, 120, 0, 0);
             }
             else 
             {
                 rightSide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                leftSide.Width = Window.Current.Bounds.Width - 200;
+                leftSide.Width = 600;
                 ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
+
+            myFlip.Width = Window.Current.Bounds.Width / 1.3;
         }
     }
 }

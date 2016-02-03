@@ -120,7 +120,9 @@ namespace Calendar
                 calGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-
+                #if !WINDOWS_PHONE_APP
+                HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                #endif
                 gvDecades.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
             else
@@ -131,6 +133,7 @@ namespace Calendar
 
         #if !WINDOWS_PHONE_APP
                 HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Visible;
         #endif
                 gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
@@ -329,7 +332,7 @@ namespace Calendar
             calBase.ReadHolidayXml();
             calBase.FillHolidaysList();
 
-            SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
+            SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
             SelectedHolidayType = All;
             SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
@@ -343,7 +346,7 @@ namespace Calendar
         {
             if ((sender as ListViewItem).Content != null)
             {
-                SelectedHolidayType.Foreground = Application.Current.Resources["AdditionalColor"] as Brush;
+                SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
                 SelectedHolidayType = sender as ListViewItem;
                 SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
                 

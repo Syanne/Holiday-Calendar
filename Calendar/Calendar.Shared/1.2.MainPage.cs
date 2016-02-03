@@ -94,7 +94,7 @@ namespace Calendar
         {
             var color = new SolidColorBrush(Color.FromArgb(255, 240, 240, 242));
             var transp = new SolidColorBrush(Colors.Transparent);
-            double fSize = (Window.Current.Bounds.Height / 36 > 26) ? 26 : Window.Current.Bounds.Height / 36;
+            double fSize = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
 
             for (int i = 0; i < noteList.Items.Count; i++)
             {
@@ -131,7 +131,6 @@ namespace Calendar
 
             //styles and brushes
             Style adjStyle = (Style)this.Resources["AdjMonthStyle"];
-            Style weekndStyle = (Style)this.Resources["WeekendStyle"];
             Style dayStyle = (Style)this.Resources["ThisMonthStyle"];
             Brush DayFg = new SolidColorBrush(Colors.White);
 
@@ -160,12 +159,6 @@ namespace Calendar
                 //adjMonths
                 if (i < calBase.Start || i >= calBase.End)
                     gvItem.Style = adjStyle;
-                //weekends
-                else if (i - jj == fDay || i - jj == 6)
-                {
-                    gvItem.Style = weekndStyle;
-                    if (i - jj == 6) jj += 7;
-                }
                 else
                 {
                     gvItem.Style = dayStyle;
@@ -175,7 +168,6 @@ namespace Calendar
                 gviCalSource.Add(gvItem);
             }
             calGrid.ItemsSource = gviCalSource;
-
 
             #if !WINDOWS_PHONE_APP
             if (flag)

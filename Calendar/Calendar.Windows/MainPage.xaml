@@ -58,10 +58,6 @@
                   VerticalScrollBarVisibility="Hidden">
 
         <Grid Background="Transparent" Name="mainBg"  >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="149*"/>
-                <RowDefinition Height="235*"/>
-            </Grid.RowDefinitions>
 
             <StackPanel Name="calBack" 
                   Background="#FF303030" 
@@ -146,7 +142,6 @@
                           SelectionMode="None" 
                           HorizontalAlignment="Center" 
                           HorizontalContentAlignment="Center"
-                          VerticalAlignment="Top"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           Margin="0">
 
@@ -208,7 +203,7 @@
                     </GridView.GroupStyle>
                 </GridView>
                 
-                <TextBox x:Name="HolidayTitle" x:Uid="HolidayTitle"
+                <TextBox Name="HolidayTitle" x:Uid="HolidayTitle"
                          Background="Transparent" 
                          Foreground="{StaticResource HolidayTitleColor}"
                          HorizontalAlignment="Center"
@@ -258,10 +253,10 @@
                         Content="..."
                         Tapped="GridViewItem_Tapped" />
                     <FlyoutBase.AttachedFlyout>
-                        <Flyout Opened="HolidayFlyout_Opened" 
+                        <Flyout x:Name="butHolidayFlyout" 
+                                Opened="HolidayFlyout_Opened" 
                                 Closed="HolidayFlyout_Closed" 
-                                AutomationProperties.ItemType="CheckBox" 
-                                x:Name="butHolidayFlyout" 
+                                AutomationProperties.ItemType="CheckBox"                                 
                                 Placement="Full" 
                                 FlyoutPresenterStyle="{StaticResource ResourceKey=HolidayListStyle}">
                             <StackPanel >
@@ -309,7 +304,7 @@
                 <TextBox Name="ClickedDayPage" 
                          VerticalAlignment="Top" 
                          HorizontalAlignment="Center"
-                         Foreground="{StaticResource MainColor}" 
+                         Foreground="#ff303030" 
                          BorderThickness="0" 
                          FontFamily="Minion Pro" 
                          Background="Transparent" 
@@ -346,10 +341,10 @@
                                     <TextBlock                                             
                                             Text="{Binding HolidayName}" 
                                             FontSize="{Binding FontSize}"
-                                            Margin="50,20,50,20" 
+                                            Padding="50,20,50,20" 
+                                            Margin="0"
                                             ManipulationMode="None" 
-                                            TextAlignment="Justify"
-                                            
+                                            TextAlignment="Justify"                                            
                                             TextWrapping="Wrap" />
                                 </ListViewItem.Content>
                             </ListViewItem>
@@ -360,8 +355,8 @@
                         <Flyout x:Name="AddNoteFlyout" 
                                 Opened="AddNoteFlyout_Opened" 
                                 Closed="AddNoteFlyout_Closed" 
-                                AutomationProperties.ItemType="CheckBox" 
                                 Opening="AddNoteFlyout_Opening" 
+                                AutomationProperties.ItemType="CheckBox" 
                                 FlyoutPresenterStyle="{StaticResource ResourceKey=NoteFlyoutStyle}" 
                                 Placement="Full">
 
@@ -455,18 +450,15 @@
                                 HorizontalAlignment="Center" 
                                 Height="auto" Width="auto"
                                 Margin="10, 5, 20, 5" 
-                                FontSize="20"
                                 VerticalAlignment="Center" 
                                 RequestedTheme="Light" 
                                 DayVisible="False" MonthFormat="{}{month.solo.full}"/>
                     <Button Name="GoToDateBtn" x:Uid="GoToDateBtn" 
-                            Tag="licensed" 
-                            FontSize="20" 
                             Height="auto" Width="auto" 
-                            Padding="20, 0, 20, 2"
-                            Margin="0, 5, 0, 6" 
+                            Padding="10,3"
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Click="GoToDateBtn_Click"
                             Style="{StaticResource MainButton}"
                             Background="{StaticResource MainColor}"

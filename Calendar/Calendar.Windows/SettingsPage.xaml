@@ -46,12 +46,12 @@
         </Grid>
 
         <!-- Элементы StackPanel ниже определяют отдельные разделы содержимого -->
-
+<StackPanel Orientation="Horizontal" Margin="0,120,0,10">
         <ScrollViewer x:Name="leftSide"
-                      MinWidth="600"
+                      MinWidth="520"
                       VerticalScrollMode="Enabled" 
-                      VerticalScrollBarVisibility="Auto"
-                      Margin="10,120,0,0" 
+                      VerticalScrollBarVisibility="Disabled"
+                      Margin="10" 
                       HorizontalAlignment="Left">
 
             <StackPanel HorizontalAlignment="Left" Margin="5,5,20,5">
@@ -153,7 +153,7 @@
                            Margin="0,10,0,30" 
                            TextWrapping="Wrap" 
                            LineHeight="25"
-                           FontSize="20" 
+                           FontSize="22" 
                            HorizontalAlignment="Left"
                            MaxWidth="500"
                            FontFamily="Minion Pro"/>
@@ -204,12 +204,12 @@
                     <!-- Заголовок раздела 4 -->
                     <TextBlock x:Uid="buyMeTitle" 
                                Style="{StaticResource TitleTextBlockStyle}" 
-                               FontSize="26" Margin="0, 0, 0, 10" 
+                               FontSize="26" Margin="0, 0, 0, 5" 
                                FontFamily="Minion Pro"/>
                     <TextBlock x:Uid="buyMeText" 
                                Style="{StaticResource BodyTextBlockStyle}" 
-                               FontSize="20" Margin="2,10" 
-                               LineHeight="30"
+                               FontSize="22" Margin="2,5,2,10" 
+                               LineHeight="26"
                                FontFamily="Minion Pro"/>
                     <!-- Основная часть раздела 4 -->
                 </StackPanel>
@@ -227,9 +227,9 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Grid x:Name="rightSide">
+        <Grid x:Name="rightSide" >
             <TextBlock x:Uid="selectThemeTop" 
-                           Margin="0,30,0,0"
+                           Margin="10"
                            HorizontalAlignment="Center"
                            Style="{StaticResource TitleTextBlockStyle}" 
                            FontSize="30" FontFamily="Minion Pro"  
@@ -241,7 +241,8 @@
                       Tapped="smallThemesPreview_Tapped"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Top"
-                      Margin="50">
+                      Padding="10, 0, 10, 50"
+                      Margin="0, 50, 50, 10">
 
                 <FlipView.ItemTemplate>
                     <DataTemplate>
@@ -271,6 +272,7 @@
             <Button Name="doneSmallBtn" x:Uid="ThemeBtn"
                 Click="doneBtn_Click"
                 Height="50" Width="140"
+                Margin="10, 20, 10, 50"
                 FontSize="22"
                 BorderThickness="0"
                 Background="#ff303030"
@@ -282,10 +284,12 @@
                     />
         </Grid>
 
+        </StackPanel>
+
         <Grid Name="themesFullScreen" Background="#FFEFEFF3" Visibility="Collapsed">
             <FlipView Name="myFlip"
                   Background="{x:Null}"
-                  Margin="100"
+                  Margin="10"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">
 
@@ -294,17 +298,6 @@
                         <StackPanel Tag="{Binding Tag}"                                
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                            <TextBox Text="{Binding Text}" 
-                                 Foreground="#ff303030"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 FontSize="26"
-                                 FontWeight="Bold"
-                                 Margin="0,5"
-                                 TextAlignment="Center"
-                                 Height="auto" Width="auto"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Top"/>
                             <Image Source="{Binding Image}"
                                Stretch="Fill"
                                Margin="20, 0"
@@ -352,7 +345,5 @@
                 VerticalContentAlignment="Center"
                 Margin="180, 0, 0, 20"/>
         </Grid>
-
-
     </Grid>
 </Page>

@@ -7,25 +7,29 @@
     <!--CALENDAR-->
     <Style x:Key="CommonCalendarItemStyle" TargetType="GridViewItem">
         <Setter Property="FontFamily" Value="Minion Pro"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="Margin" Value="0, 0, 0, 10"/>
+        <Setter Property="Margin" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style x:Name="ThisMonthStyle" x:Key="ThisMonthStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Stretch"/>
     </Style>
     <Style x:Name="AdjMonthStyle" x:Key="AdjMonthStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
         <Setter Property="Foreground" Value="#FF676768"/>
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
     <Style x:Name="TodayStyle" x:Key="TodayStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Background" Value="#FF3c3c3c"/>
     </Style>
-    
+    <Style x:Name="HolidayThisStyle" x:Key="HolidayThisStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
+        <Setter Property="Foreground" Value="#ffffffff"/>
+        <Setter Property="Background" Value="#ff855a7b"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="#ffbd97b4"/>
+    </Style>
     <Style x:Name="WeekNameStyle" x:Key="WeekNameStyle" TargetType="GridViewItem" >
         <Setter Property="FontFamily" Value="Minion Pro"/>
         <Setter Property="Margin" Value="0"/>
@@ -33,25 +37,6 @@
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
         <Setter Property="Foreground" Value="#FFF0F0F2"/>
     </Style>
-
-    <Style x:Name="WeekendStyle" x:Key="WeekendStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderBrush" Value="#ffbd97b4"/>
-    </Style>
-    <!--HOLIDAYS-->
-    <Style x:Name="HolidayThisStyle" x:Key="HolidayThisStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="Foreground" Value="#ffffffff"/>
-        <Setter Property="Background" Value="#ff855a7b"/>
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
-        <Setter Property="BorderBrush" Value="#ffbd97b4"/>
-    </Style>
-    <Style x:Name="HolidayWeekendStyle" x:Key="HolidayWeekendStyle" TargetType="GridViewItem" BasedOn="{StaticResource ResourceKey=CommonCalendarItemStyle}">
-        <Setter Property="Foreground" Value="#ffffffff"/>
-        <Setter Property="Background" Value="#FF6D265C"/>
-        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
-        <Setter Property="BorderBrush" Value="#ffbd97b4"/>
-    </Style>
-    <!--/HOLIDAYS-->
     <!--DECADES-->
     <Style x:Key="DecadeMonthStyle" TargetType="GridViewItem">
         <Setter Property="Foreground" Value="#ffffffff"/>

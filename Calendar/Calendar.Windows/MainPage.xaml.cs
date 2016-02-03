@@ -47,7 +47,8 @@ namespace Calendar
             FillCalendar();
             MarkHolidays();
 
-            DatePickerDp.Date = DateTimeOffset.Now;          
+            DatePickerDp.Date = DateTimeOffset.Now;
+            ShowHide();          
         }
         
         private void monthNameButton_Click(object sender, RoutedEventArgs e)
@@ -222,6 +223,7 @@ namespace Calendar
                         (calGrid.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
                         (calGrid.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
                         (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 2;
+                        (calGrid.Items[i] as GridViewItem).Padding = new Thickness(0, sizeCorrection.ItemSizeCorrector/5, 0, 0);
                     }
 
                 for (int i = 0; i < weekDayNames.Items.Count; i++)
@@ -242,15 +244,10 @@ namespace Calendar
                 monthTopString.Height = sizeCorrection.ItemSizeCorrector;
                 monthTopString.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/2, 0, 0);
                 monthNameButton.FontSize = sizeCorrection.ItemSizeCorrector / 3;
-
-                weekDayNames.Width = sizeCorrection.MonthTopStringWidth;
-                weekDayNames.Height = sizeCorrection.ItemSizeCorrector;
-
+                
                 calGrid.Width = sizeCorrection.MonthTopStringWidth;
                 calGrid.Height = calGrid.Width;
-
-                gvDecades.Height = sizeCorrection.MonthTopStringWidth + monthNameButton.Height + 10;
-                gvDecades.Width = sizeCorrection.MonthTopStringWidth;
+                gvDecades.Width = calBack.Width;
 
                 if (gvDecades.Items.Count > 0)
                     for (int i = 0; i < 12; i++)
@@ -276,9 +273,10 @@ namespace Calendar
                 noteList.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/3, 0, 0);
                 noteList.Height = sizeCorrection.ItemSizeCorrector * 8;
 
-                GoToDateBtn.Height = sizeCorrection.ItemSizeCorrector / 2 - 10;
-                GoToDateBtn.FontSize = sizeCorrection.ItemFontSizeCorrector / 2.5;
-                DatePickerDp.FontSize = GoToDateBtn.FontSize;
+                DatePickerDp.FontSize = sizeCorrection.ItemFontSizeCorrector / 2.5;
+                GoToDateBtn.FontSize = DatePickerDp.FontSize;
+                GoToDateBtn.Height = GoToDate.ActualHeight - 4;
+                GoToDateBtn.MinWidth = DatePickerDp.ActualWidth / 1.9;
                 GoToDate.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector, 0, 0);   
             }
 
