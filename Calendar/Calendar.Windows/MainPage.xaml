@@ -19,43 +19,6 @@
                 <ResourceDictionary>
                     <CollectionViewSource x:Name="WeeksSource" IsSourceGrouped="true" ItemsPath="smallCollection"/>
                 </ResourceDictionary>
-                <ResourceDictionary>
-                    <Flyout x:Name="messageBtnFlyout" Placement="Left" x:Key="messageBtnFlyout">
-                        <ListView x:Name="messageStackPanel"
-                                  Style="{StaticResource messageBtnLV}">
-                            <ListView.Header>
-                                <TextBlock x:Uid="messageTitle"
-                                       Padding="25"
-                                       HorizontalAlignment="Center"
-                                       TextAlignment="Center"
-                                       IsTextSelectionEnabled="False"
-                                       Foreground="#ff303030"
-                                       FontSize="26"/>
-                            </ListView.Header>
-                            <TextBlock x:Uid="messageBody"
-                                     HorizontalAlignment="Center"
-                                     TextAlignment="Justify"
-                                     Height="auto" Width="auto"
-                                     Padding="20"
-                                     FontSize="24"
-                                     Foreground="#ff303030"
-                                     IsTextSelectionEnabled="False"
-                                     TextWrapping="WrapWholeWords"/>
-                            <ListView.Footer>
-                                <StackPanel Orientation="Horizontal">
-                                    <HyperlinkButton Height="auto" Width="auto"
-                                                     HorizontalAlignment="Stretch"
-                                                     NavigateUri="mailto:?to=syanne.red@gmail.com&amp;subject=Holiday Calendar&amp;body=Hello, Syanne!"
-                                                     FontSize="24"
-                                                     Content="syanne.red@gmail.com">
-
-                                    </HyperlinkButton>
-                                </StackPanel>
-                            </ListView.Footer>
-                        </ListView>
-
-                    </Flyout>
-                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -67,7 +30,7 @@
                 Height="95" IsSticky="False" 
                 BorderThickness="0">
 
-            <Grid x:Name="bottomAppBarGrid" FlyoutBase.AttachedFlyout="{StaticResource messageBtnFlyout}">
+            <Grid x:Name="bottomAppBarGrid">
                 <AppBarButton Name="testMeBtn" 
                               Label="TestMe" 
                               Click="testMeBtn_Click" 
@@ -84,7 +47,13 @@
                               Height="90"
                               Margin="240,0,10,0" 
                               HorizontalAlignment="Left"
-                              Icon="Mail"/>               
+                              Icon="Message"/>
+                <AppBarButton Name="support" x:Uid="support"
+                              Click="support_Click"
+                              Height="90"
+                              Margin="360,0,10,0" 
+                              HorizontalAlignment="Left"
+                              Icon="Mail"/>
                 <AppBarButton x:Name="settingAppButton" x:Uid="settingsAppButton"
                               Click="settingAppButton_Click"
                               Width="100" 
@@ -100,7 +69,7 @@
                   HorizontalScrollMode="Auto" 
                   VerticalScrollBarVisibility="Hidden">
 
-        <Grid Background="Transparent" Name="mainBg" FlyoutBase.AttachedFlyout="{StaticResource messageBtnFlyout}" >
+        <Grid Background="Transparent" Name="mainBg">
 
             <StackPanel Name="calBack" 
                   Background="#FF303030" 
@@ -486,8 +455,9 @@
                         </Flyout>
                     </FlyoutBase.AttachedFlyout>
                 </ListView>
-                <StackPanel Name="AdStack" HorizontalAlignment="Center" Width="730">
-                    <UI:AdControl ApplicationId="0252394b-e6cb-45f0-8b40-7382fe45973c" 
+                <StackPanel Name="AdStack" HorizontalAlignment="Center" Width="730" Height="90">
+                    <UI:AdControl Name="adControl"
+                        ApplicationId="0252394b-e6cb-45f0-8b40-7382fe45973c" 
                       AdUnitId="11579726" 
                       HorizontalAlignment="Center" 
                       Height="90" 

@@ -13,6 +13,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.ApplicationModel.Resources;
 
 namespace Calendar
 {
@@ -62,22 +63,19 @@ namespace Calendar
 
 
             FillCalendar();
-#if !WINDOWS_PHONE_APP
             try
             {
                 Windows.ApplicationModel.Store.LicenseInformation license = Windows.ApplicationModel.Store.CurrentApp.LicenseInformation;
                 if (license.ProductLicenses["allstuff1"].IsActive)
                 {
-                    AdStack.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    adControl.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 }
             }
             finally
             {
-                gviPrev = calGrid.Items.ElementAt(calBase.SelectedDate.Day + calBase.Start - 1) as GridViewItem;
-                
+                gviPrev = calGrid.Items.ElementAt(calBase.SelectedDate.Day + calBase.Start - 1) as GridViewItem;                
             }
 
-#endif
         }
 
         /// <summary>
@@ -275,6 +273,16 @@ namespace Calendar
             var dial = new MessageDialog(text);
 
             dial.Commands.Add(new UICommand("Назад"));
+            var command = await dial.ShowAsync();
+        }
+
+        private async void NewVersionMessage()
+        {
+            var dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString("msgBody"),
+               ResourceLoader.GetForCurrentView("Resources").GetString("msgTitle"));
+
+            dial.Commands.Add(new UICommand("OK"));
+            
             var command = await dial.ShowAsync();
         }
     }

@@ -358,10 +358,7 @@
   <data name="styleBut.Label" xml:space="preserve">
     <value>стиль</value>
   </data>
-  <data name="messageBtn.Label" xml:space="preserve">
-    <value>про додаток</value>
-  </data>
-  <data name="messageBody.Text" xml:space="preserve">
+  <data name="msgBody" xml:space="preserve">
     <value>Звичний календар зазнав серйозних змін: у нас нова основна тема і оформлення в стилі Windows 10. А також:
 
 •  календар став краще адаптуватися під розмір Вашого екрану; 
@@ -379,7 +376,13 @@
 З повагою,
 Syanne.</value>
   </data>
-  <data name="messageTitle.Text" xml:space="preserve">
+  <data name="msgTitle" xml:space="preserve">
     <value>Шановний користувач!</value>
+  </data>
+  <data name="messageBtn.Label" xml:space="preserve">
+    <value>Про версію</value>
+  </data>
+  <data name="support.Label" xml:space="preserve">
+    <value>Підтримка</value>
   </data>
 </root>

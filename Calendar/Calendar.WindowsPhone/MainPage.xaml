@@ -29,6 +29,7 @@
                     >
             <CommandBar.PrimaryCommands>
                 <AppBarButton Name="SettinngsAppButton"
+                              Width="80"
                               x:Uid="settingsBut"
                               Click="SettinngsAppButton_Click"
                               Icon="Setting" 
@@ -54,6 +55,17 @@
                               Foreground="White" Icon="Shop"/>
 
             </CommandBar.PrimaryCommands>
+            
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Name="messageBtn" x:Uid="messageBtn"
+                              Click="messageBtn_Click"
+                              HorizontalAlignment="Left"
+                              Icon="Message"/>
+                <AppBarButton Name="support" x:Uid="support"
+                              Click="support_Click"
+                              HorizontalAlignment="Left"
+                              Icon="Mail"/>
+            </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -487,7 +499,7 @@
                 </FlyoutBase.AttachedFlyout>
             </ListView>
             <StackPanel Height="60" Background="Transparent">
-                <UI:AdControl Name="AdStack" 
+                <UI:AdControl Name="adControl" 
                   AutoRefreshIntervalInSeconds="60" 
                   AdUnitId="11579725" 
                   ApplicationId="8dfdedd2-be3b-4696-bfd7-5cba10338fba" 

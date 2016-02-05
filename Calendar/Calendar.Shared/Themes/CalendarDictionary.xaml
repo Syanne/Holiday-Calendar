@@ -2,7 +2,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Calendar">
-    <local:ResizeFlipView x:Key="SizeResource"/>
     <x:String x:Key="AppName">Calendar</x:String>
     <!--CALENDAR-->
     <Style x:Key="CommonCalendarItemStyle" TargetType="GridViewItem">
@@ -141,17 +140,6 @@
         <Setter Property="BorderBrush" Value="#FF303030"/>
     </Style>
 
-    <Style TargetType="FlyoutPresenter" x:Key="messageBtnFlyout">
-        <Setter Property="MinWidth" Value="{Binding Source={StaticResource SizeResource}, Path=MinWidth}"/>
-        <Setter Property="MinHeight" Value="{Binding Source={StaticResource SizeResource}, Path=MinHeight}"/>
-        <Setter Property="Width" Value="{Binding Source={StaticResource SizeResource}, Path=MinWidth}"/>
-        <Setter Property="Height" Value="{Binding Source={StaticResource SizeResource}, Path=MinHeight}"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Padding" Value="20"/>
-    </Style>
     <Style TargetType="ListView" x:Key="messageBtnLV">
         <Setter Property="Width" Value="{Binding Source={StaticResource SizeResource}, Path=StackPanelWidth}"/>
         <Setter Property="Background" Value="#FFF0F0F2"/>

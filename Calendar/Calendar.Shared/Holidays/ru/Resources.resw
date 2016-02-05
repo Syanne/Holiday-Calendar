@@ -360,10 +360,7 @@
   <data name="LocalHolidaysPath1" xml:space="preserve">
     <value>Holidays\ru\Holidays.xml</value>
   </data>
-  <data name="messageBtn.Label" xml:space="preserve">
-    <value>о приложении</value>
-  </data>
-  <data name="messageBody.Text" xml:space="preserve">
+  <data name="msgBody" xml:space="preserve">
     <value>Привычный календарь претерпел серьезные изменения: у нас новая основная тема и оформление в стиле Windows 10. А кроме того:
 
 •  календарь стал лучше адаптироваться под размер вашего экрана;
@@ -381,7 +378,13 @@
 С уважением,
 Syanne.</value>
   </data>
-  <data name="messageTitle.Text" xml:space="preserve">
+  <data name="msgTitle" xml:space="preserve">
     <value>Уважаемый пользователь!</value>
+  </data>
+  <data name="messageBtn.Label" xml:space="preserve">
+    <value>О версии</value>
+  </data>
+  <data name="support.Label" xml:space="preserve">
+    <value>Поддержка</value>
   </data>
 </root>

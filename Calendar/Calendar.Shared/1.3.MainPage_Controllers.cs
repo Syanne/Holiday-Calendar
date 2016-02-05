@@ -67,14 +67,15 @@ namespace Calendar
 
                 try
                 {
-                    var version = "alla";
+                    var version = Windows.ApplicationModel.Package.Current.Id.Version.ToString();
                     if (version != Windows.ApplicationModel.Package.Current.Id.Version.ToString())
-                        FlyoutBase.ShowAttachedFlyout(bottomAppBarGrid as FrameworkElement);
+                        NewVersionMessage();
+
                 }
                 catch
                 {
                     ApplicationData.Current.RoamingSettings.Values["AppVersion"] = Windows.ApplicationModel.Package.Current.Id.Version.ToString();
-                    FlyoutBase.ShowAttachedFlyout(mainBg);
+                    NewVersionMessage();
 
                 }
 
@@ -410,5 +411,17 @@ namespace Calendar
             }
         }
         #endregion
+
+
+        private void messageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NewVersionMessage();
+        }
+
+        private async void support_Click(object sender, RoutedEventArgs e)
+        {
+            var mailto = new Uri("mailto:?to=syanne.red@gmail.com&amp;subject=Holiday Calendar&amp;body=Hello, Syanne!");
+            await Windows.System.Launcher.LaunchUriAsync(mailto);
+        }
     }
 }

@@ -304,28 +304,5 @@ namespace Calendar
             noteGridMain.Height = Window.Current.Bounds.Height;      
         }
 
-        private void messageBtn_Click(object sender, RoutedEventArgs e)
-        {
-            messageBtnFlyout.Opened += messageBtnFlyout_Opened;
-            messageBtnFlyout.Closed += messageBtnFlyout_Closed;
-            FlyoutBase.ShowAttachedFlyout(bottomAppBarGrid as FrameworkElement);
-        }
-
-        void messageBtnFlyout_Opened(object sender, object e)
-        {
-            mainBg.Opacity = 0.3;
-        }
-
-        void messageBtnFlyout_Closed(object sender, object e)
-        {
-            mainBg.Opacity = 1;
-            messageBtnFlyout.Opened -= messageBtnFlyout_Opened;
-            messageBtnFlyout.Closed -= messageBtnFlyout_Closed;
-        }
-
-        private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
-        {
-
-        }
     }
 }
