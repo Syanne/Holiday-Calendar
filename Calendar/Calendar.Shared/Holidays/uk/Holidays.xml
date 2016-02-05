@@ -19,6 +19,13 @@
       <day name="Татьянин день (День студентов)" date="25" />
       <day name="День снятия блокады города Ленинграда" date="27" />
     </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="Новий рік" date="1" />
+      <day name="Католицьке Богоявлення" date="6" />
+      <day name="День бабусі" date="21" />
+      <day name="День дідуся" date="22" />
+      <day name="День пам’яті жертв Голокосту" date="27" />
+    </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
       <day name="Собор святого Іоанна Предтечі" date="3" />
@@ -70,6 +77,9 @@
       <day name="День российских студенческих отрядов" date="17" />
       <day name="День защитника Отечества" date="23" />
       <day name="День Сил специальных операций" date="27" />
+    </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="День Святого Валентина" date="14" />
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
@@ -127,6 +137,9 @@
       <day name="День работника культуры России" date="25" />
       <day name="День внутренних войск МВД России" date="27" />
       <day name="День специалиста юридической службы" date="29" />
+    </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="Міжнародний жіночий день" date="8" />
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
@@ -190,6 +203,9 @@
       <day name="Міжнародний день охраны труда" date="28" />
       <day name="День пожарной охраны" date="30" />
     </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="День сатири і гумору; День сміху" date="1" />
+    </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
       <day name="Собор Архангела Гавриїла" date="3" />
@@ -241,6 +257,20 @@
     </holiday >
     <holiday desc="Католицькі свята" name="к">
       <day name="День святого Ісідора" date="4" />
+      <movable day="24" month="4" year="2016" name="Католицький Великдень"/>
+      <movable day="25" month="4" year="2016" name="Великодній понеділок"/>
+      
+      <movable day="16" month="4" year="2017" name="Католицький Великдень"/>
+      <movable day="17" month="4" year="2017" name="Великодній понеділок"/>
+      
+      <movable day="1" month="4" year="2018" name="Католицький Великдень"/>
+      <movable day="2" month="4" year="2018" name="Великодній понеділок"/>
+      
+      <movable day="21" month="4" year="2019" name="Католицький Великдень"/>
+      <movable day="22" month="4" year="2019" name="Великодній понеділок"/>
+      
+      <movable day="12" month="4" year="2020" name="Католицький Великдень"/>
+      <movable day="13" month="4" year="2020" name="Великодній понеділок"/>
     </holiday >
     <!--.............Other.................-->
     <holiday desc="Міжнародні свята" name="м">
@@ -291,6 +321,11 @@
       <day name="Общероссийский день библиотек" date="27" />
       <day name="День пограничника" date="28" />
       <day name="День российской адвокатуры" date="31" />
+    </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="Свято весни і праці" date="1" />
+      <day name="Національне свято Третього травня" date="3" />
+      <day name="День матері" date="26" />
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
@@ -358,6 +393,9 @@
       <day name="День партизан и подпольщиков" date="29" />
       <day name="День экономиста" date="30" />
     </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="Свято Тіла і Крові Христових" date="23" />
+    </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
       <day name="Володимирської ікони Божої Матері" date="3" />
@@ -422,6 +460,8 @@
       <computational name="День системного администратора" dow="4" now="6" />
       <computational name="День Военно-Морского Флота" dow="6" now="6" />
     </holiday>
+    <holiday desc="Польські свята" name="пл">
+    </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
       <day name="Володимирської ікони Божої Матері" date="6" />
@@ -478,6 +518,10 @@
       <day name="День воинской славы России (Курская битва 1943)" date="23" />
       <computational name="День шахтёра" dow="6" now="6" />
       <day name="День российского кино" date="27" />
+    </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="Свято Війська Польського" date="15" />
+      <day name=" Католицьке Успіня Пресвятої Богородиці" date="15" />
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
@@ -543,6 +587,8 @@
       <day name="Всесвітній день туризма" date="27" />
       <day name="День работника атомной промышленности" date="28" />
       <computational name="День машиностроителя" dow="6" now="6" />
+    </holiday>
+    <holiday desc="Польські свята" name="пл">
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
@@ -612,6 +658,9 @@
       <day name="День памяти жертв политических репрессий" date="30" />
       <day name="День инженера-механика" date="30" />
       <day name="День работников СИЗО и тюрем" date="31" />
+    </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="День вчителя" date="15" />
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
@@ -690,6 +739,12 @@
       <day name="День морской пехоты" date="27" />
       <computational name="День матери" dow="6" now="6" />
     </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="День всіх святих" date="1" />
+      <day name="День поминання покійних" date="2" />
+      <day name="День незалежності Польщі" date="11" />
+      <day name="Анджейкі" date="30" />
+    </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">
       <day name="Казанської ікони Божої Матері" date="4" />
@@ -756,6 +811,11 @@
       <day name="День энергетика" date="22" />
       <day name="День воинской славы России (1790)" date="24" />
       <day name="День спасателя Российской Федерации" date="27" />
+    </holiday>
+    <holiday desc="Польські свята" name="пл">
+      <day name="Миколайки" date="6" />
+      <day name="Католицький сочельник" date="24" />
+      <day name="Різдво Христове" date="25" />
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Православні свята" name="х">

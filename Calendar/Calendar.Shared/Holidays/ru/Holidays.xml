@@ -284,6 +284,20 @@
     </holiday >
     <holiday desc="Католические праздники" name="к">
       <day name="День святого Исидора" date="4" />
+      <movable day="24" month="4" year="2016" name="Католическая Пасха"/>
+      <movable day="25" month="4" year="2016" name="Пасхальный понедельник"/>
+
+      <movable day="16" month="4" year="2017" name="Католическая Пасха"/>
+      <movable day="17" month="4" year="2017" name="Пасхальный понедельник"/>
+
+      <movable day="1" month="4" year="2018" name="Католическая Пасха"/>
+      <movable day="2" month="4" year="2018" name="Пасхальный понедельник"/>
+
+      <movable day="21" month="4" year="2019" name="Католическая Пасха"/>
+      <movable day="22" month="4" year="2019" name="Пасхальный понедельник"/>
+
+      <movable day="12" month="4" year="2020" name="Католическая Пасха"/>
+      <movable day="13" month="4" year="2020" name="Пасхальный понедельник"/>
     </holiday >
     <!--.............Other.................-->
     <holiday desc="Международные праздники" name="м">

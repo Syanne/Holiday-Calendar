@@ -5,6 +5,7 @@
     xmlns:local="using:Calendar"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="using:Microsoft.Advertising.Mobile.UI"
     NavigationCacheMode="Disabled"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
@@ -392,7 +393,7 @@
                         </ListViewItem>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-
+                
                 <FlyoutBase.AttachedFlyout>
                     <Flyout x:Name="AddNoteFlyout" 
                                 Opened="AddNoteFlyout_Opened" 
@@ -485,6 +486,19 @@
                     </Flyout>
                 </FlyoutBase.AttachedFlyout>
             </ListView>
+            <StackPanel Height="60" Background="Transparent">
+                <UI:AdControl Name="AdStack" 
+                  AutoRefreshIntervalInSeconds="60" 
+                  AdUnitId="11579725" 
+                  ApplicationId="8dfdedd2-be3b-4696-bfd7-5cba10338fba" 
+                  ErrorOccurred="AdControl_ErrorOccurred"
+                  HorizontalAlignment="Center" 
+                  Height="50" 
+                  IsAutoRefreshEnabled="True" 
+                  Margin="5" 
+                  VerticalAlignment="Top" 
+                  Width="480"/>
+            </StackPanel>
             <ListView x:Name="GoToDate" 
                           VerticalAlignment="Bottom" 
                           HorizontalContentAlignment="Center" 

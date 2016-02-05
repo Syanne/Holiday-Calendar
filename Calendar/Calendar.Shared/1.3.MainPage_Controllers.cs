@@ -9,6 +9,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Calendar.Models;
 using System.Collections.Generic;
+using Windows.Storage;
 
 namespace Calendar
 {
@@ -63,6 +64,20 @@ namespace Calendar
             #if !WINDOWS_PHONE_APP                
                 Window.Current.SizeChanged += Current_SizeChanged;
                 ShowHide();
+
+                try
+                {
+                    var version = "alla";
+                    if (version != Windows.ApplicationModel.Package.Current.Id.Version.ToString())
+                        FlyoutBase.ShowAttachedFlyout(bottomAppBarGrid as FrameworkElement);
+                }
+                catch
+                {
+                    ApplicationData.Current.RoamingSettings.Values["AppVersion"] = Windows.ApplicationModel.Package.Current.Id.Version.ToString();
+                    FlyoutBase.ShowAttachedFlyout(mainBg);
+
+                }
+
             #endif
         }
 

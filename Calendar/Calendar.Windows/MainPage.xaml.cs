@@ -1,5 +1,4 @@
 ﻿using CalendarResources;
-
 using System;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
@@ -25,7 +24,8 @@ namespace Calendar
                 ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
              
             this.InitializeComponent();
-            PagePreLoader();         
+            PagePreLoader();
+
         }              
 
         #region Calendar controls
@@ -270,14 +270,14 @@ namespace Calendar
                 ClickedDayPage.Height = sizeCorrection.ItemSizeCorrector + 20;
                 ClickedDayPage.Margin = monthTopString.Margin;
                 ClickedDayPage.FontSize = monthNameButton.FontSize;
-                noteList.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/3, 0, 0);
-                noteList.Height = sizeCorrection.ItemSizeCorrector * 8;
+                noteList.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/3, 0, 10);
+                noteList.Height = sizeCorrection.ItemSizeCorrector * 8 - 90;
 
                 DatePickerDp.FontSize = sizeCorrection.ItemFontSizeCorrector / 2.5;
                 GoToDateBtn.FontSize = DatePickerDp.FontSize;
                 GoToDateBtn.Height = GoToDate.ActualHeight - 4;
                 GoToDateBtn.MinWidth = DatePickerDp.ActualWidth / 1.9;
-                GoToDate.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector, 0, 0);   
+                AdStack.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector / 2, 0, sizeCorrection.ItemSizeCorrector / 2);   
             }
 
                 //of width
@@ -302,6 +302,30 @@ namespace Calendar
 
             calBack.Height = Window.Current.Bounds.Height;
             noteGridMain.Height = Window.Current.Bounds.Height;      
+        }
+
+        private void messageBtn_Click(object sender, RoutedEventArgs e)
+        {
+            messageBtnFlyout.Opened += messageBtnFlyout_Opened;
+            messageBtnFlyout.Closed += messageBtnFlyout_Closed;
+            FlyoutBase.ShowAttachedFlyout(bottomAppBarGrid as FrameworkElement);
+        }
+
+        void messageBtnFlyout_Opened(object sender, object e)
+        {
+            mainBg.Opacity = 0.3;
+        }
+
+        void messageBtnFlyout_Closed(object sender, object e)
+        {
+            mainBg.Opacity = 1;
+            messageBtnFlyout.Opened -= messageBtnFlyout_Opened;
+            messageBtnFlyout.Closed -= messageBtnFlyout_Closed;
+        }
+
+        private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
+        {
+
         }
     }
 }

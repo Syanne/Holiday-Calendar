@@ -36,7 +36,7 @@ namespace Calendar
             MonthTopStringCorrector = ItemSizeCorrector * 7 + 24;
             DecadeSizeCorrector = Window.Current.Bounds.Width / 5;
             ItemFontSizeCorrector = ItemSizeCorrector / 2;
-            NoteGridHeight = Window.Current.Bounds.Height - 250;
+            NoteGridHeight = Window.Current.Bounds.Height - 310;
             NoteWidth = Window.Current.Bounds.Width;
             CalGridHeight = Window.Current.Bounds.Height - ItemSizeCorrector*2 - 200;
         }

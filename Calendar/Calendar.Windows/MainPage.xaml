@@ -5,6 +5,7 @@
     xmlns:local="using:Calendar"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     mc:Ignorable="d" 
     MinWidth="1000"
     Loaded="Page_Loaded"    
@@ -18,6 +19,43 @@
                 <ResourceDictionary>
                     <CollectionViewSource x:Name="WeeksSource" IsSourceGrouped="true" ItemsPath="smallCollection"/>
                 </ResourceDictionary>
+                <ResourceDictionary>
+                    <Flyout x:Name="messageBtnFlyout" Placement="Left" x:Key="messageBtnFlyout">
+                        <ListView x:Name="messageStackPanel"
+                                  Style="{StaticResource messageBtnLV}">
+                            <ListView.Header>
+                                <TextBlock x:Uid="messageTitle"
+                                       Padding="25"
+                                       HorizontalAlignment="Center"
+                                       TextAlignment="Center"
+                                       IsTextSelectionEnabled="False"
+                                       Foreground="#ff303030"
+                                       FontSize="26"/>
+                            </ListView.Header>
+                            <TextBlock x:Uid="messageBody"
+                                     HorizontalAlignment="Center"
+                                     TextAlignment="Justify"
+                                     Height="auto" Width="auto"
+                                     Padding="20"
+                                     FontSize="24"
+                                     Foreground="#ff303030"
+                                     IsTextSelectionEnabled="False"
+                                     TextWrapping="WrapWholeWords"/>
+                            <ListView.Footer>
+                                <StackPanel Orientation="Horizontal">
+                                    <HyperlinkButton Height="auto" Width="auto"
+                                                     HorizontalAlignment="Stretch"
+                                                     NavigateUri="mailto:?to=syanne.red@gmail.com&amp;subject=Holiday Calendar&amp;body=Hello, Syanne!"
+                                                     FontSize="24"
+                                                     Content="syanne.red@gmail.com">
+
+                                    </HyperlinkButton>
+                                </StackPanel>
+                            </ListView.Footer>
+                        </ListView>
+
+                    </Flyout>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
@@ -29,19 +67,24 @@
                 Height="95" IsSticky="False" 
                 BorderThickness="0">
 
-            <Grid>
-                <AppBarButton Name="assesBtn" x:Uid="assesBtn" 
-                              Click="assesBtn_Click" 
-                              Icon="SolidStar" 
-                              Margin="120,0,10,0" 
-                              Height="90"/>
+            <Grid x:Name="bottomAppBarGrid" FlyoutBase.AttachedFlyout="{StaticResource messageBtnFlyout}">
                 <AppBarButton Name="testMeBtn" 
                               Label="TestMe" 
                               Click="testMeBtn_Click" 
                               Icon="Accept" 
                               Margin="10,0" 
                               Height="90"/>
-                
+                <AppBarButton Name="assesBtn" x:Uid="assesBtn" 
+                              Click="assesBtn_Click" 
+                              Icon="SolidStar" 
+                              Margin="120,0,10,0" 
+                              Height="90"/>
+                <AppBarButton Name="messageBtn" x:Uid="messageBtn"
+                              Click="messageBtn_Click"
+                              Height="90"
+                              Margin="240,0,10,0" 
+                              HorizontalAlignment="Left"
+                              Icon="Mail"/>               
                 <AppBarButton x:Name="settingAppButton" x:Uid="settingsAppButton"
                               Click="settingAppButton_Click"
                               Width="100" 
@@ -57,7 +100,7 @@
                   HorizontalScrollMode="Auto" 
                   VerticalScrollBarVisibility="Hidden">
 
-        <Grid Background="Transparent" Name="mainBg"  >
+        <Grid Background="Transparent" Name="mainBg" FlyoutBase.AttachedFlyout="{StaticResource messageBtnFlyout}" >
 
             <StackPanel Name="calBack" 
                   Background="#FF303030" 
@@ -269,8 +312,11 @@
                                            VerticalAlignment="Center" 
                                            HorizontalAlignment="Center" 
                                            TextAlignment="Center"/>
-                                <ListView x:Name="listOfHolidays" Width="auto" HorizontalAlignment="Stretch" Height="400" ManipulationMode="None" SelectionMode="None" VerticalAlignment="Center"/>
-                                <ListView HorizontalAlignment="Center" Height="auto" Padding="0" ManipulationMode="None" SelectionMode="None" >
+                                <ListView x:Name="listOfHolidays" Width="auto" HorizontalAlignment="Stretch" Height="auto" ManipulationMode="None" SelectionMode="None" VerticalAlignment="Stretch"/>
+                                <ListView HorizontalAlignment="Center" 
+                                          Height="auto" Padding="0" 
+                                          ManipulationMode="None" 
+                                          SelectionMode="None" >
                                     <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsWrapGrid Orientation="Horizontal"/>
@@ -278,13 +324,13 @@
                                     </ListView.ItemsPanel>
                                     <Button x:Uid="btnHolidays" x:Name="btnHolidays" 
                                             Click="btnHolidays_Click" 
-                                            Margin="0, 10" 
+                                            Margin="0" 
                                             HorizontalAlignment="Center" 
                                             Height="50" Width="160" 
                                             FontSize="22"
                                             Style="{StaticResource MainButton}"/>
                                     <Button x:Uid="btnholCancel" x:Name="btnholCancel" 
-                                            Margin="0,10" HorizontalAlignment="Center" 
+                                            Margin="0" HorizontalAlignment="Center" 
                                             Height="50" Width="160" 
                                             FontSize="22" 
                                             Click="HolidayFlyoutCancel_Click"
@@ -351,6 +397,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
 
+                    
                     <FlyoutBase.AttachedFlyout>
                         <Flyout x:Name="AddNoteFlyout" 
                                 Opened="AddNoteFlyout_Opened" 
@@ -439,7 +486,14 @@
                         </Flyout>
                     </FlyoutBase.AttachedFlyout>
                 </ListView>
-
+                <StackPanel Name="AdStack" HorizontalAlignment="Center" Width="730">
+                    <UI:AdControl ApplicationId="0252394b-e6cb-45f0-8b40-7382fe45973c" 
+                      AdUnitId="11579726" 
+                      HorizontalAlignment="Center" 
+                      Height="90" 
+                      VerticalAlignment="Top" 
+                      Width="728"/>
+                </StackPanel>
                 <StackPanel Name="GoToDate" 
                           VerticalAlignment="Bottom" 
                           IsRightTapEnabled="False" 

@@ -12,6 +12,7 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Calendar
 {
@@ -55,13 +56,28 @@ namespace Calendar
             SelectedHolidayType = All;
 
             fDay = 5;
-           // gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
+            // gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
             startText = new StringBuilder(50);
             calBase = new HolidayCalendarBase(fDay);
 
-            FillCalendar();
 
-            gviPrev = calGrid.Items.ElementAt(calBase.SelectedDate.Day + calBase.Start - 1) as GridViewItem;
+            FillCalendar();
+#if !WINDOWS_PHONE_APP
+            try
+            {
+                Windows.ApplicationModel.Store.LicenseInformation license = Windows.ApplicationModel.Store.CurrentApp.LicenseInformation;
+                if (license.ProductLicenses["allstuff1"].IsActive)
+                {
+                    AdStack.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                }
+            }
+            finally
+            {
+                gviPrev = calGrid.Items.ElementAt(calBase.SelectedDate.Day + calBase.Start - 1) as GridViewItem;
+                
+            }
+
+#endif
         }
 
         /// <summary>

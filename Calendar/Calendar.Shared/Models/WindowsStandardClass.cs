@@ -53,4 +53,27 @@ namespace Calendar
             else return false;
         }
     }
+
+
+    public class ResizeFlipView
+    {
+        public double MinWidth { get; set; }
+        public double MinHeight { get; set; }
+        public double StackPanelWidth { get; set; }
+        public ResizeFlipView()
+        {
+            if (Window.Current.Bounds.Width > 1000)
+                MinWidth = Window.Current.Bounds.Width;
+            else MinWidth = 1000;
+
+            if (Window.Current.Bounds.Height > 700)
+                MinHeight = Window.Current.Bounds.Height;
+            else MinHeight = 700;
+
+            if (MinWidth > 1500)
+                StackPanelWidth = MinWidth / 2;
+            else StackPanelWidth = 950;
+
+        }
+    }
 }
