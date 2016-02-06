@@ -4,7 +4,7 @@
     <holiday desc="мои" name="мои"/>
     <holiday desc="международные праздники" name="м"/>
     <holiday desc="международные праздники +" name="м+"/>
-    <holiday desc="международные профессиональные праздники" name="про"/>
+    <holiday desc="профессиональные праздники" name="про"/>
   </theme>
   <holidays>
     <persDate name="" date="" month="" year=""/>

@@ -281,7 +281,12 @@
                                            VerticalAlignment="Center" 
                                            HorizontalAlignment="Center" 
                                            TextAlignment="Center"/>
-                                <ListView x:Name="listOfHolidays" Width="auto" HorizontalAlignment="Stretch" Height="auto" ManipulationMode="None" SelectionMode="None" VerticalAlignment="Stretch"/>
+                                <ListView x:Name="listOfHolidays" 
+                                          Width="auto" MinHeight="440" 
+                                          HorizontalAlignment="Stretch" 
+                                          ManipulationMode="None" 
+                                          SelectionMode="None" 
+                                          VerticalAlignment="Stretch"/>
                                 <ListView HorizontalAlignment="Center" 
                                           Height="auto" Padding="0" 
                                           ManipulationMode="None" 

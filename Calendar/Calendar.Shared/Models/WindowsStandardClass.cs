@@ -44,8 +44,8 @@ namespace Calendar
                 ItemSizeCorrector = this.ApplicationHeight / 12;
                 ItemFontSizeCorrector = ItemSizeCorrector / 2;
                 MonthTopStringWidth = ItemSizeCorrector * 7 + 24;
-                DecadeWidthCorrector = MonthTopStringWidth / 3 - 20;
-                DecadeHeightCorrector = ItemSizeCorrector * 2 - ItemFontSizeCorrector;
+                DecadeWidthCorrector = MonthTopStringWidth / 3 - 4;
+                DecadeHeightCorrector = ItemSizeCorrector * 4 / 3;
                 NoteFontSizeCorrector = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
 
                 return true;

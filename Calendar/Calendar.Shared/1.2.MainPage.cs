@@ -165,8 +165,9 @@ namespace Calendar
                 #else
                     Height = sizeCorrection.ItemSizeCorrector,
                     Width = sizeCorrection.ItemSizeCorrector,
-                    FontSize = sizeCorrection.ItemFontSizeCorrector
-                #endif
+                    FontSize = sizeCorrection.ItemFontSizeCorrector,
+                    Padding = new Thickness(0, sizeCorrection.ItemSizeCorrector/5, 0, 0)
+#endif
                 };
                 gvItem.Tapped += gvItem_Tapped;
 

@@ -29,7 +29,7 @@
                     >
             <CommandBar.PrimaryCommands>
                 <AppBarButton Name="SettinngsAppButton"
-                              Width="80"
+                              Width="100"
                               x:Uid="settingsBut"
                               Click="SettinngsAppButton_Click"
                               Icon="Setting" 

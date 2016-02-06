@@ -35,7 +35,7 @@ namespace CalendarResources
                     return XDocument.Parse(text);
                 }
                 //if it's the fist launch - load basic file
-                catch
+                catch(Exception e)
                 {
                     return XDocument.Load(resource.GetString("LocalPresonalData"));
                 }
@@ -95,7 +95,7 @@ namespace CalendarResources
             }
             catch (Exception e)
             {
-                Logging(e);
+                MyMessage(e.Message);
             }
         }
         
@@ -128,28 +128,35 @@ namespace CalendarResources
         /// <param name="year">selected year (or 0)</param> 
         public static void SavePersonal(string name, string day, string month, string year)
         {
-            //add all nodes
-            using (XmlWriter writer = PersonalData.Root.Element("holidays").CreateWriter())
+            try
             {
-                writer.WriteStartElement("persDate");
+                //add all nodes
+                using (XmlWriter writer = PersonalData.Root.Element("holidays").CreateWriter())
+                {
+                    writer.WriteStartElement("persDate");
 
-                writer.WriteStartAttribute("name");
-                writer.WriteString(name);
-                writer.WriteEndAttribute();
-                writer.WriteStartAttribute("date");
-                writer.WriteString(day);
-                writer.WriteEndAttribute();
-                writer.WriteStartAttribute("month");
-                writer.WriteString(month);
-                writer.WriteEndAttribute();
-                writer.WriteStartAttribute("year");
-                writer.WriteString(year);
-                writer.WriteEndAttribute();
+                    writer.WriteStartAttribute("name");
+                    writer.WriteString(name);
+                    writer.WriteEndAttribute();
+                    writer.WriteStartAttribute("date");
+                    writer.WriteString(day);
+                    writer.WriteEndAttribute();
+                    writer.WriteStartAttribute("month");
+                    writer.WriteString(month);
+                    writer.WriteEndAttribute();
+                    writer.WriteStartAttribute("year");
+                    writer.WriteString(year);
+                    writer.WriteEndAttribute();
 
-                writer.WriteEndElement();
+                    writer.WriteEndElement();
+                }
+                //save changes
+                SaveDocumentAsync();
             }
-            //save changes
-            SaveDocumentAsync();
+            catch (Exception e)
+            {
+                MyMessage(e.Message);
+            }
         }
 
         /// <summary>
@@ -178,7 +185,7 @@ namespace CalendarResources
             }
             catch (Exception e)
             {
-                Logging(e);
+                MyMessage(e.Message);
             }
         }
 
@@ -204,8 +211,16 @@ namespace CalendarResources
             }
             catch (Exception e)
             {
-                Logging(e);
+                MyMessage(e.Message);
             }
+        }
+
+        private static async void MyMessage(string text)
+        {
+            var dial = new MessageDialog(text);
+
+            dial.Commands.Add(new UICommand("OK"));
+            var command = await dial.ShowAsync();
         }
     }
     

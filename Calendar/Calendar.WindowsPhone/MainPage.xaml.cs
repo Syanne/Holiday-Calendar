@@ -140,9 +140,7 @@ namespace Calendar
                 calBase.AddDay(value);
                 if (month != calBase.SelectedDate.Month)
                 {
-                    calBase.ReadHolidayXml();
-                    FillCalendar();
-                    MarkHolidays();
+                    ArrowButtonController(value); 
                 }
 
                 UpdateNoteList();                
@@ -255,7 +253,7 @@ namespace Calendar
 
         private async void RateAppButton_Click(object sender, RoutedEventArgs e)
         {
-            var uri = new Uri("ms-windows-store:PDP?PFN=36856Syanne.29333A1B8D628_x48427g2pbxee");
+            var uri = new Uri("ms-windows-store:reviewapp?appid=" + CurrentApp.AppId);
             await Windows.System.Launcher.LaunchUriAsync(uri);
         }
 

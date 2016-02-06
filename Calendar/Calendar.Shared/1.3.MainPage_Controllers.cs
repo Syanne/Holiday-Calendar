@@ -24,6 +24,8 @@ namespace Calendar
             calBase.ReadHolidayXml();
             calBase.FillHolidaysList();
 
+            //var limit = ApplicationData.Current.RoamingStorageQuota;
+
             MarkHolidays();
 
             //change data in HolidayList 
@@ -76,7 +78,6 @@ namespace Calendar
                 {
                     ApplicationData.Current.RoamingSettings.Values["AppVersion"] = Windows.ApplicationModel.Package.Current.Id.Version.ToString();
                     NewVersionMessage();
-
                 }
 
             #endif
@@ -92,8 +93,15 @@ namespace Calendar
                 calBase.Skip(value);
                 if (month != calBase.SelectedDate.Month)
                     calBase.ReadHolidayXml();
+
+
                 FillCalendar();
                 MarkHolidays();
+                gviPrev = calGrid.Items.ElementAt(calBase.Start) as GridViewItem;
+
+                int val = calBase.SelectedDate.Day * (-1) + 1;
+                calBase.SelectedDate = calBase.SelectedDate.AddDays(val);
+                RefreshSelectedDay(gviPrev);
                 
 #if !WINDOWS_PHONE_APP
                 if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
@@ -119,8 +127,7 @@ namespace Calendar
             }
             else 
             {
-                calBase.Skip(1, calBase.SelectedDate.Month, calBase.SelectedDate.Year + value);
-                monthNameButton.Content = calBase.SelectedDate.Year;
+                monthNameButton.Content = (int)monthNameButton.Content + value;
             }
         }
 
@@ -158,50 +165,82 @@ namespace Calendar
         void gvItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
             GridViewItem gvi = sender as GridViewItem;
-            if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
-            {
-                calBase.SelectedDate = new DateTime(calBase.SelectedDate.Year,
-                                                    calBase.SelectedDate.Month,
-                                                    Convert.ToInt32(gvi.Content));
-
-                UpdateNoteList();
-
-                //highlight selected day 
-                if (gviPrev != gvi)
+            
+#if !WINDOWS_PHONE_APP
+            if(gvi != gviPrev)
+#endif
+                if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
                 {
-                    gvi.BorderThickness = new Thickness(3);
-                    gvi.BorderBrush = gvi.Foreground;
-                    gviPrev.BorderThickness = new Thickness(0);
+                    calBase.SelectedDate = new DateTime(calBase.SelectedDate.Year,
+                                                        calBase.SelectedDate.Month,
+                                                        Convert.ToInt32(gvi.Content));
+
+                    //highlight selected day
+                    //if - for WP application, do not delete it
+                    if (gvi != gviPrev)
+                    {
+                        RefreshSelectedDay(gvi);
+                        gviPrev.BorderThickness = new Thickness(0);
+                        gviPrev = gvi;
+                    }
+
+                    noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
+                //move to previous or next month?
+                else
+                {
+                    if (Convert.ToInt32(gvi.Content) > 20)
+                        ArrowButtonController(-1);
+                    else ArrowButtonController(1);
+                }
+        }
 
-                gviPrev = gvi;
+        private void RefreshSelectedDay(GridViewItem item)
+        {
+            UpdateNoteList();
+            item.BorderThickness = new Thickness(3);
+            item.BorderBrush = item.Foreground;
+        }
 
-                noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            }
-            //move to previous or next month?
-            else
-            {
-                if (Convert.ToInt32(gvi.Content) > 20)
-                    calBase.Skip(-1);
-                else calBase.Skip(1);
+        private void ChangeDate(int gotoMonth, int gotoYear)
+        {
+            int month = calBase.SelectedDate.Month;
+            calBase.Skip(1, gotoMonth, gotoYear);
+            if (month != calBase.SelectedDate.Month)
+                calBase.ReadHolidayXml();
 
-                FillCalendar();
-                MarkHolidays();
-            }
+            //Shows month and year in the top of calGrid\
+            FillCalendar();
+            gviPrev = calGrid.Items.ElementAt(calBase.Start) as GridViewItem;
+            MarkHolidays();
+            RefreshSelectedDay(gviPrev);
         }
 
         private void m1_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), calBase.SelectedDate.Year);
+            int year = Convert.ToInt32(monthNameButton.Content);
+            int month = Convert.ToInt32((sender as GridViewItem).Tag);
 
-            //Shows month and year in the top of calGrid
-            monthNameButton.Content = calBase.SelectedDate.ToString("MMMM yyyy");
+            if (month != calBase.SelectedDate.Month || year != calBase.SelectedDate.Year)
+            {
+                ChangeDate(month, year);
 
-            calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            FillCalendar();
-            MarkHolidays();
+                //Shows month and year in the top of calGrid
+                monthNameButton.Content = calBase.SelectedDate.ToString("MMMM yyyy");
+
+                calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
+#if !WINDOWS_PHONE_APP
+                HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Visible;
+#endif
+            }
+            else
+            {
+                MonthController();
+            }
         }
         #endregion
 
@@ -411,7 +450,6 @@ namespace Calendar
             }
         }
         #endregion
-
 
         private void messageBtn_Click(object sender, RoutedEventArgs e)
         {

@@ -41,14 +41,14 @@ namespace Calendar
         
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
-            calBase.Skip(Convert.ToInt32(gviPrev.Content), DatePickerDp.Date.Month, DatePickerDp.Date.Year);
+            if (DatePickerDp.Date.Month != calBase.SelectedDate.Month ||
+                DatePickerDp.Date.Year != calBase.SelectedDate.Year)
+            {
+                ChangeDate(DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
-            //Shows month and year in the top of calGrid\
-            FillCalendar();
-            MarkHolidays();
-
-            DatePickerDp.Date = DateTimeOffset.Now;
-            ShowHide();          
+                DatePickerDp.Date = DateTimeOffset.Now;
+                //ShowHide();
+            }
         }
         
         private void monthNameButton_Click(object sender, RoutedEventArgs e)
@@ -247,13 +247,13 @@ namespace Calendar
                 
                 calGrid.Width = sizeCorrection.MonthTopStringWidth;
                 calGrid.Height = calGrid.Width;
-                gvDecades.Width = calBack.Width;
+                gvDecades.Width = sizeCorrection.MonthTopStringWidth;
 
                 if (gvDecades.Items.Count > 0)
                     for (int i = 0; i < 12; i++)
                     {
-                        (gvDecades.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector * 4 / 3;
-                        (gvDecades.Items[i] as GridViewItem).Width = sizeCorrection.MonthTopStringWidth / 3 - 20;
+                        (gvDecades.Items[i] as GridViewItem).Height = sizeCorrection.DecadeHeightCorrector;
+                        (gvDecades.Items[i] as GridViewItem).Width = sizeCorrection.DecadeWidthCorrector;
                         (gvDecades.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;
                     }
 
@@ -286,18 +286,21 @@ namespace Calendar
                     calBack.Width = Window.Current.Bounds.Width / 3;
                     noteGridMain.Width = calBack.Width * 2;
                     noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
+                    support.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
             else if (Window.Current.Bounds.Width / 2 > sizeCorrection.MonthTopStringWidth)
                 {
                     calBack.Width = Window.Current.Bounds.Width / 2;
                     noteGridMain.Width = calBack.Width;
                     noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
+                    support.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
                 else
                 {
                     calBack.Width = monthTopString.Width + 50;
                     noteGridMain.Width = calBack.Width *2;
                     noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
+                    support.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 }
 
             calBack.Height = Window.Current.Bounds.Height;
