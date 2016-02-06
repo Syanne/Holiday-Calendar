@@ -259,10 +259,8 @@
     <value>получить все!</value>
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
-    <value>- включить уведомления;
-
- 
-- изменить оформление календаря;
+    <value>- включить всплывающие уведомления;
+- изменить цветовое оформление;
 - отключить рекламу.</value>
   </data>
   <data name="shopBtn.Content" xml:space="preserve">
@@ -284,7 +282,7 @@
     <value>напоминание</value>
   </data>
   <data name="buyMeTitle.Text" xml:space="preserve">
-    <value>приобретя это приложение Вы сможете:</value>
+    <value>приобретя это приложение вы сможете:</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
     <value>к сожалению, вы не можете воспользоваться этой функций. Пожалуйста, приобретите пакет дополнительных возможностей.</value>
@@ -326,14 +324,12 @@
     <value>Holidays/ru/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
-    <value>- включить уведомления;
-
- 
-- изменить оформление календаря;
+    <value>- включить всплывающие уведомления;
+- изменить цветовое оформление;
 - отключить рекламу.</value>
   </data>
   <data name="BuyMeTitleMP" xml:space="preserve">
-    <value>приобретя это приложение Вы сможете:</value>
+    <value>приобретя это приложение вы сможете:</value>
   </data>
   <data name="GoToDateBtn.Content" xml:space="preserve">
     <value>перейти</value>

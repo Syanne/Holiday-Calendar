@@ -342,7 +342,7 @@
                 >
 
                 <!-- Элементы StackPanel ниже определяют отдельные разделы содержимого -->
-                <StackPanel HorizontalAlignment="Stretch" 
+                <Grid HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch" 
                         Margin="0,5">
                     <!-- Заголовок раздела 1 -->
@@ -352,46 +352,40 @@
                     <TextBox x:Uid="language" 
                 		Background="Transparent"
                 		BorderThickness="0"
-                		Height="auto" MinWidth="190"
+                		Height="auto" Width="210"
                 		TextAlignment="Left"
-                		FontSize="18"
+                		FontSize="20"
                 		IsReadOnly="True"
                 		SelectionHighlightColor="#FF828282" 
-                		HorizontalAlignment="Stretch" 
+                		HorizontalAlignment="Left" 
                 		HorizontalContentAlignment="Stretch"
                 		VerticalAlignment="Center"
-                		Margin="0,10,135,0"/>
+                		Margin="5"/>
                     <ComboBox x:Name="comboLang" 
                 		BorderBrush="#ff303030"
                 		Background="Transparent"
                 		Width="120" Height="auto"  
                 		FontSize="16"
-                		Margin="10,-45,5,0" 
+                		Margin="5, 5, 30, 5" 
                 		SelectionChanged="ComboBox_SelectionChanged" 
                 		HorizontalAlignment="Right" >
                         <ComboBoxItem Content="ru" FontSize="16" />
                         <ComboBoxItem Content="uk" FontSize="16" />
                     </ComboBox>
 
-                </StackPanel>
+                </Grid>
                 <!-- Раздел содержимого 2-->
-                <ListView HorizontalAlignment="Stretch" 
+                <Grid HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch"
                         Margin="0, 5">
-
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
 
                     <!-- Заголовок раздела 2 -->
                     <TextBox x:Uid="tileHeader" 
                            Background="Transparent"
                            BorderThickness="0"
-                           Height="auto" MinWidth="175"
+                           Height="auto" MinWidth="150"
                            TextAlignment="Left"
-                           FontSize="18"
+                           FontSize="20"
                            Margin="5"
                            IsReadOnly="True"
                            ManipulationMode="None"
@@ -406,26 +400,26 @@
                               Toggled="tileToggle_Toggled" 
                               FontSize="12" 
                               Height="auto"
-                              Width="170"
-                              Margin="5,-5,0,0"
+                              MinWidth="180"
+                              Margin="5,0,5,5"
                               BorderBrush="#ff303030"
                               Background="Transparent" 
                               VerticalAlignment="Center"
                               HorizontalAlignment="Right"/>
 
-                </ListView>
+                </Grid>
                 <TextBox x:Uid="toastHeader" 
                      Background="Transparent"
                      Foreground="#ff303030"
                          TextAlignment="Left"
-                         FontSize="18" Margin="0,5"
+                         FontSize="20" Margin="5,10,5,15"
                          BorderThickness="0"
                          IsReadOnly="True" />
 
-                <Grid>
+                <Grid Margin="5">
                     <ComboBox x:Name="comboToast" 
                           Height="auto" Width="150"
-                          Margin="5,0,5,0"                          
+                          Margin="5, 0"                          
                           IsHoldingEnabled="False" 
                           ManipulationMode="None" 
                           VerticalAlignment="Stretch" 
@@ -436,12 +430,11 @@
                         <ComboBox.Header>
                             <TextBlock x:Uid="daysText" 
                            TextWrapping="Wrap" 
-                           FontSize="16" 
+                           FontSize="18" 
                            Foreground="#ff303030"
-                           Grid.Row="2" Grid.Column="1"
-                           VerticalAlignment="Top" 
-                           Height="40" Width="120" 
-                           Margin="0" Padding="0" 
+                           VerticalAlignment="Bottom"
+                           Height="40" MinWidth="120" 
+                           Margin="2, 0" Padding="0" 
                            HorizontalAlignment="Left"/>
                         </ComboBox.Header>
 
@@ -455,7 +448,7 @@
                     <ComboBox x:Name="comboPeriod" 
                           Height="auto" Width="150" 
                           FontSize="18"
-                          Margin="5,0,5, 0"
+                          Margin="5, 0"
                           IsHoldingEnabled="False" 
                           HorizontalAlignment="Right" 
                           VerticalAlignment="Top" 
@@ -466,12 +459,11 @@
                         <ComboBox.Header>
                             <TextBlock x:Uid="periodText" 
                            TextWrapping="Wrap" 
-                           FontSize="16" 
+                           FontSize="18" 
                            Foreground="#ff303030"
-                           Grid.Row="2" Grid.Column="1"
-                           VerticalAlignment="Top" 
-                           Height="40" Width="120" 
-                           Margin="10,0" Padding="0" 
+                           VerticalAlignment="Bottom"                           
+                           Height="40" MinWidth="120" 
+                           Margin="0" Padding="0" 
                            HorizontalAlignment="Left"/>
                         </ComboBox.Header>
 
@@ -488,16 +480,16 @@
                           RequestedTheme="Light"
                           BorderBrush="#ff303030"
                           Background="Transparent"
-                          Width="190" Margin="15,10"
+                          Width="190" Margin="15,5"
                           HorizontalAlignment="Center"/>
 
-                <StackPanel Margin="20,10,20,0"
+                <StackPanel Margin="20,20,20,0"
                             HorizontalAlignment="Stretch" 
                             VerticalAlignment="Stretch">
                     <!-- Заголовок раздела 4 -->
                     <TextBlock x:Uid="buyMeTitle" 
                            Style="{StaticResource TitleTextBlockStyle}" 
-                           FontSize="18"
+                           FontSize="20"
                            TextWrapping="Wrap"
                            Height="auto"
                            HorizontalAlignment="Stretch"

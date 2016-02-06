@@ -213,7 +213,7 @@
     <value>Святковий календар</value>
   </data>
   <data name="periodText.Text" xml:space="preserve">
-    <value>період (год)</value>
+    <value>період (години)</value>
   </data>
   <data name="c1.Content" xml:space="preserve">
     <value>1 день</value>
@@ -266,7 +266,7 @@
 - прибрати рекламні банери.</value>
   </data>
   <data name="shopBtn.Content" xml:space="preserve">
-    <value>купить</value>
+    <value>придбати</value>
   </data>
   <data name="language.Text" xml:space="preserve">
     <value>мова</value>
@@ -284,7 +284,7 @@
     <value>нагадування</value>
   </data>
   <data name="buyMeTitle.Text" xml:space="preserve">
-    <value>придбавши цей додаток Ви зможете:</value>
+    <value>придбавши цей додаток ви зможете:</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
     <value>Нажаль, Ви не можете скористуватися цією опцією. Будь ласка, придбайте пакет додаткових можливостей</value>
@@ -331,7 +331,7 @@
 - прибрати рекламні банери.</value>
   </data>
   <data name="BuyMeTitleMP" xml:space="preserve">
-    <value>придбавши цей додаток Ви зможете:</value>
+    <value>придбавши цей додаток ви зможете:</value>
   </data>
   <data name="GoToDateBtn.Content" xml:space="preserve">
     <value>перейти</value>
