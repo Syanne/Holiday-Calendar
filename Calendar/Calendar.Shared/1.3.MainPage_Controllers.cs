@@ -101,7 +101,8 @@ namespace Calendar
 
                 int val = calBase.SelectedDate.Day * (-1) + 1;
                 calBase.SelectedDate = calBase.SelectedDate.AddDays(val);
-                RefreshSelectedDay(gviPrev);
+                UpdateNoteList();
+                gviPrev.BorderBrush = gviPrev.Foreground;
                 
 #if !WINDOWS_PHONE_APP
                 if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
@@ -179,8 +180,9 @@ namespace Calendar
                     //if - for WP application, do not delete it
                     if (gvi != gviPrev)
                     {
-                        RefreshSelectedDay(gvi);
-                        gviPrev.BorderThickness = new Thickness(0);
+                        UpdateNoteList();
+                        gvi.BorderBrush = gvi.Foreground;
+                        gviPrev.BorderBrush = new SolidColorBrush(Colors.Transparent);
                         gviPrev = gvi;
                     }
 
@@ -190,30 +192,31 @@ namespace Calendar
                 else
                 {
                     if (Convert.ToInt32(gvi.Content) > 20)
-                        ArrowButtonController(-1);
-                    else ArrowButtonController(1);
+                    {
+                        var date = calBase.SelectedDate.AddMonths(-1);
+                        ChangeDate((int)gvi.Content, date.Month, date.Year);
+                    }
+                    else
+                    {
+                        var date = calBase.SelectedDate.AddMonths(1);
+                        ChangeDate((int)gvi.Content, date.Month, date.Year);
+                    }
                 }
         }
 
-        private void RefreshSelectedDay(GridViewItem item)
-        {
-            UpdateNoteList();
-            item.BorderThickness = new Thickness(3);
-            item.BorderBrush = item.Foreground;
-        }
-
-        private void ChangeDate(int gotoMonth, int gotoYear)
+        private void ChangeDate(int gotoDay, int gotoMonth, int gotoYear)
         {
             int month = calBase.SelectedDate.Month;
-            calBase.Skip(1, gotoMonth, gotoYear);
+            calBase.Skip(gotoDay, gotoMonth, gotoYear);
             if (month != calBase.SelectedDate.Month)
                 calBase.ReadHolidayXml();
 
             //Shows month and year in the top of calGrid\
             FillCalendar();
-            gviPrev = calGrid.Items.ElementAt(calBase.Start) as GridViewItem;
+            gviPrev = calGrid.Items.ElementAt(calBase.Start + gotoDay - 1) as GridViewItem;
             MarkHolidays();
-            RefreshSelectedDay(gviPrev);
+            UpdateNoteList();
+            gviPrev.BorderBrush = gviPrev.Foreground;
         }
 
         private void m1_Tapped(object sender, TappedRoutedEventArgs e)
@@ -223,7 +226,7 @@ namespace Calendar
 
             if (month != calBase.SelectedDate.Month || year != calBase.SelectedDate.Year)
             {
-                ChangeDate(month, year);
+                ChangeDate(1, month, year);
 
                 //Shows month and year in the top of calGrid
                 monthNameButton.Content = calBase.SelectedDate.ToString("MMMM yyyy");
@@ -274,6 +277,36 @@ namespace Calendar
                         break;
                     }
                 }
+            }
+            //note from one of the types (if its type is selected)
+            else if (SelectedHolidayType != M && SelectedHolidayType != All)
+            {
+                //change selected day
+                int index = calBase.Start + (int)((sender as ListViewItem).Content as TextBlock).Tag - 1;
+                GridViewItem gvi = calGrid.Items[index] as GridViewItem;
+
+                HolidayTypesController(All);
+#if !WINDOWS_PHONE_APP
+                if (gvi != gviPrev)
+#endif
+                    if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
+                    {
+                        calBase.SelectedDate = new DateTime(calBase.SelectedDate.Year,
+                                                            calBase.SelectedDate.Month,
+                                                            Convert.ToInt32(gvi.Content));
+
+                        //highlight selected day
+                        //if - for WP application, do not delete it
+                        if (gvi != gviPrev)
+                        {
+                            UpdateNoteList();
+                            gvi.BorderBrush = gvi.Foreground;
+                            gviPrev.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                            gviPrev = gvi;
+                        }
+
+                        noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    }
             }
         }
         
@@ -397,12 +430,12 @@ namespace Calendar
             butHolidayFlyout.Hide();
         }
 
-        private void HolidayTypesController(object sender)
+        private void HolidayTypesController(ListViewItem sender)
         {
-            if ((sender as ListViewItem).Content != null)
+            if (sender.Content != null)
             {
                 SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
-                SelectedHolidayType = sender as ListViewItem;
+                SelectedHolidayType = sender;
                 SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
                 
                 //special holidays

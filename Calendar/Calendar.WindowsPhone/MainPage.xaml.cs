@@ -333,7 +333,7 @@ namespace Calendar
 
         private void holTypes_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            HolidayTypesController(sender);
+            HolidayTypesController(sender as ListViewItem);
         }
         #endregion
 

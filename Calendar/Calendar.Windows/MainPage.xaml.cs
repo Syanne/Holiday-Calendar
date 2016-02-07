@@ -44,7 +44,7 @@ namespace Calendar
             if (DatePickerDp.Date.Month != calBase.SelectedDate.Month ||
                 DatePickerDp.Date.Year != calBase.SelectedDate.Year)
             {
-                ChangeDate(DatePickerDp.Date.Month, DatePickerDp.Date.Year);
+                ChangeDate(1, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
                 DatePickerDp.Date = DateTimeOffset.Now;
                 //ShowHide();
@@ -125,7 +125,7 @@ namespace Calendar
 
         private void holTypes_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            HolidayTypesController(sender);
+            HolidayTypesController(sender as ListViewItem);
         }
         #endregion
 
@@ -222,8 +222,7 @@ namespace Calendar
                     {
                         (calGrid.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
                         (calGrid.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
-                        (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 2;
-                        (calGrid.Items[i] as GridViewItem).Padding = new Thickness(0, sizeCorrection.ItemSizeCorrector/5, 0, 0);
+                        (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 2;                        
                     }
 
                 for (int i = 0; i < weekDayNames.Items.Count; i++)

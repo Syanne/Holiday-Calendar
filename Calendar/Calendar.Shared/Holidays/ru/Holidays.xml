@@ -681,8 +681,19 @@
       <day name="Международный день глухонемых" date="27" />
     </holiday >
     <holiday desc="профессиональные праздники" name="про">
-      <day name="Международный день солидарности журналистов 	" date="8" />
-      <day name="День программиста" date="13" />
+      <day name="Международный день солидарности журналистов" date="8" />
+      <movable day="13" month="9" year="2015" name="День программиста"/>
+      <movable day="12" month="9" year="2016" name="День программиста"/>
+      <movable day="13" month="9" year="2017" name="День программиста"/>
+      <movable day="13" month="9" year="2018" name="День программиста"/>
+      <movable day="13" month="9" year="2019" name="День программиста"/>
+      <movable day="12" month="9" year="2020" name="День программиста"/>
+      <movable day="13" month="9" year="2021" name="День программиста"/>
+      <movable day="13" month="9" year="2022" name="День программиста"/>
+      <movable day="13" month="9" year="2023" name="День программиста"/>
+      <movable day="12" month="9" year="2024" name="День программиста"/>
+      <movable day="13" month="9" year="2025" name="День программиста"/>
+      <movable day="13" month="9" year="2026" name="День программиста"/>
       <day name="Международный день переводчика" date="30" />
     </holiday>
   </month>

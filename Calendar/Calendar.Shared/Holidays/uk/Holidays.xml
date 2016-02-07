@@ -624,6 +624,18 @@
     <holiday desc="професійні свята" name="про">
       <day name="Міжнародний день солідарності журналістів" date="8" />
       <day name="День програміста" date="13" />
+      <movable day="13" month="9" year="2015" name="День програміста"/>
+      <movable day="12" month="9" year="2016" name="День програміста"/>
+      <movable day="13" month="9" year="2017" name="День програміста"/>
+      <movable day="13" month="9" year="2018" name="День програміста"/>
+      <movable day="13" month="9" year="2019" name="День програміста"/>
+      <movable day="12" month="9" year="2020" name="День програміста"/>
+      <movable day="13" month="9" year="2021" name="День програміста"/>
+      <movable day="13" month="9" year="2022" name="День програміста"/>
+      <movable day="13" month="9" year="2023" name="День програміста"/>
+      <movable day="12" month="9" year="2024" name="День програміста"/>
+      <movable day="13" month="9" year="2025" name="День програміста"/>
+      <movable day="13" month="9" year="2026" name="День програміста"/>
       <day name="Міжнародний день перекладача" date="30" />
     </holiday>
   </month>

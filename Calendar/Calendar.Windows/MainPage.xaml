@@ -337,7 +337,8 @@
                           ScrollViewer.HorizontalScrollMode="Disabled"
                           ScrollViewer.VerticalScrollMode="Enabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Auto"                          
-                          ManipulationMode="None" SelectionMode="None">
+                          ManipulationMode="None" SelectionMode="None"
+                            >
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -355,12 +356,14 @@
                                         MinHeight="{Binding Height}"
                                         FontSize="{Binding FontSize}"
                                         VerticalContentAlignment="Bottom"
+                                        
                                         Margin="-10, 0, -30, 0"
                                         Tapped="note_Tapped" >
                                 <ListViewItem.Content>
                                     <TextBlock                                             
                                             Text="{Binding HolidayName}" 
                                             FontSize="{Binding FontSize}"
+                                            Tag="{Binding Day}"
                                             Padding="50,20,50,20" 
                                             Margin="0"
                                             ManipulationMode="None" 
