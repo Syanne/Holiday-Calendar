@@ -13,6 +13,8 @@
                     <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="#ff303030" />
                     <SolidColorBrush x:Key="ListViewItemSelectedForegroundThemeBrush" Color="#ff303030" />
                     <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="#ff303030" />
+                    <SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="#FF5C5C5C" />
+                    <SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="White" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>

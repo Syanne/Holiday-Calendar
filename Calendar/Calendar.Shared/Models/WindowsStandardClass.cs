@@ -41,8 +41,8 @@ namespace Calendar
             if (height != this.ApplicationHeight)
             {
                 this.ApplicationHeight = height;
-                ItemSizeCorrector = this.ApplicationHeight / 12;
-                ItemFontSizeCorrector = ItemSizeCorrector / 2;
+                ItemSizeCorrector = this.ApplicationHeight / 12 ;
+                ItemFontSizeCorrector = ItemSizeCorrector / 2 - 6;
                 MonthTopStringWidth = ItemSizeCorrector * 7 + 24;
                 DecadeWidthCorrector = MonthTopStringWidth / 3 - 4;
                 DecadeHeightCorrector = ItemSizeCorrector * 4 / 3;

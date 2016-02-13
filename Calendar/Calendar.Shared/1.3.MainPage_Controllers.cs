@@ -61,26 +61,26 @@ namespace Calendar
             //end select "all"
             SelectedHolidayType = All;
             SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
-            UpdateNoteList();            
+            UpdateNoteList();
 
-            #if !WINDOWS_PHONE_APP                
-                Window.Current.SizeChanged += Current_SizeChanged;
-                ShowHide();
+#if !WINDOWS_PHONE_APP
+            Window.Current.SizeChanged += Current_SizeChanged;
+            ShowHide();
 
-                try
-                {
-                    var version = Windows.ApplicationModel.Package.Current.Id.Version.ToString();
-                    if (version != Windows.ApplicationModel.Package.Current.Id.Version.ToString())
-                        NewVersionMessage();
-
-                }
-                catch
-                {
-                    ApplicationData.Current.RoamingSettings.Values["AppVersion"] = Windows.ApplicationModel.Package.Current.Id.Version.ToString();
+            try
+            {
+                var version = ApplicationData.Current.RoamingSettings.Values["AppVersion"].ToString();
+                if (version != Windows.ApplicationModel.Package.Current.Id.Version.ToString())
                     NewVersionMessage();
-                }
 
-            #endif
+            }
+            catch
+            {
+                ApplicationData.Current.RoamingSettings.Values["AppVersion"] = Windows.ApplicationModel.Package.Current.Id.Version.ToString();
+                NewVersionMessage();
+            }
+
+#endif
         }
 
         #region calendar controllers      
@@ -182,7 +182,7 @@ namespace Calendar
                     {
                         UpdateNoteList();
                         gvi.BorderBrush = gvi.Foreground;
-                        gviPrev.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                        gviPrev.BorderBrush = TransparentBrush;
                         gviPrev = gvi;
                     }
 
@@ -301,7 +301,7 @@ namespace Calendar
                         {
                             UpdateNoteList();
                             gvi.BorderBrush = gvi.Foreground;
-                            gviPrev.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                            gviPrev.BorderBrush = TransparentBrush;
                             gviPrev = gvi;
                         }
 

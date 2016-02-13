@@ -141,7 +141,6 @@
     </Style>
 
     <Style TargetType="ListView" x:Key="messageBtnLV">
-        <Setter Property="Width" Value="{Binding Source={StaticResource SizeResource}, Path=StackPanelWidth}"/>
         <Setter Property="Background" Value="#FFF0F0F2"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
     </Style>

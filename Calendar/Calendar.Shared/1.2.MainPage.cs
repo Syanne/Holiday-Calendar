@@ -57,7 +57,6 @@ namespace Calendar
             SelectedHolidayType = All;
 
             fDay = 5;
-            // gviPrev = new GridViewItem() { Content = DateTime.Now.Day };
             startText = new StringBuilder(50);
             calBase = new HolidayCalendarBase(fDay);
 
@@ -106,15 +105,14 @@ namespace Calendar
 
         private void NotesBackground()
         {
-            var color = new SolidColorBrush(Color.FromArgb(255, 240, 240, 242));
             var transp = new SolidColorBrush(Colors.Transparent);
             double fSize = (Window.Current.Bounds.Height / 36 > 30) ? 30 : Window.Current.Bounds.Height / 36;
 
             for (int i = 0; i < noteList.Items.Count; i++)
             {
                 if (i % 2 == 0)
-                    (noteList.Items[i] as HolidayItem).Background = color;
-                else (noteList.Items[i] as HolidayItem).Background = transp;
+                    (noteList.Items[i] as HolidayItem).Background = DarkNoteBackground;
+                else (noteList.Items[i] as HolidayItem).Background = TransparentBrush;
             #if !WINDOWS_PHONE_APP
                 (noteList.Items[i] as HolidayItem).FontSize = fSize;
             #endif

@@ -12,6 +12,8 @@
 
     <Page.Resources>
         <ResourceDictionary>
+            <SolidColorBrush x:Name="TransparentBrush" x:Key="MainNoteBackground" Color="Transparent"/>
+            <SolidColorBrush x:Name="DarkNoteBackground" x:Key="DarkNoteBackground" Color="#FFF0F0F2"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="themes/CalendarDictionary.xaml" x:Name="Main"/>
                 <ResourceDictionary>

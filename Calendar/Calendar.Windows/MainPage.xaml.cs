@@ -222,7 +222,7 @@ namespace Calendar
                     {
                         (calGrid.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
                         (calGrid.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
-                        (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 2;                        
+                        (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;                        
                     }
 
                 for (int i = 0; i < weekDayNames.Items.Count; i++)
@@ -297,7 +297,7 @@ namespace Calendar
                 else
                 {
                     calBack.Width = monthTopString.Width + 50;
-                    noteGridMain.Width = calBack.Width *2;
+                    noteGridMain.Width = calBack.Width * 2;
                     noteGridMain.Margin = new Thickness(calBack.Width, 0, 0, 0);
                     support.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 }
