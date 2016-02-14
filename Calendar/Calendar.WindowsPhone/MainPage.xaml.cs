@@ -65,10 +65,10 @@ namespace Calendar
                 noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 e.Handled = true;
             }
-
             //else - hide holidayList
-            if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Visible)
+            else if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Visible)
             {
+                HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 e.Handled = true;
             }
@@ -262,8 +262,15 @@ namespace Calendar
             if (gvDecades.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
             {
                 if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
+                {
                     HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                else HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                }
+                else
+                {
+                    HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                }
             }
         }
 
@@ -328,7 +335,7 @@ namespace Calendar
 
         private void btnholCancel_Click(object sender, RoutedEventArgs e)
         {
-            butHolidayFlyout.Hide();
+            HolidayFlyout.Hide();
         }
 
         private void holTypes_Tapped(object sender, TappedRoutedEventArgs e)
@@ -346,6 +353,17 @@ namespace Calendar
         {
             //System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
         }
+
+        private void nextGVI_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            ArrowButtonController(1);
+        }
+
+        private void prevGVI_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
+        {
+            ArrowButtonController(-1);
+        }
+
     }
 
 }

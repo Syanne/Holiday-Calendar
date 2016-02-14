@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="36856Syanne.29333A1B8D628" Publisher="CN=5000CAD8-2080-4E79-B7DE-8E8CE6E3F9B3" Version="1.1.0.27" />
+  <Identity Name="36856Syanne.29333A1B8D628" Publisher="CN=5000CAD8-2080-4E79-B7DE-8E8CE6E3F9B3" Version="1.2.0.31" />
   <Properties>
     <DisplayName>Праздничный календарь</DisplayName>
     <PublisherDisplayName>Syanne</PublisherDisplayName>
@@ -15,8 +15,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Calendar.Windows.App">
-      <m2:VisualElements DisplayName="Праздничный календарь" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="Calendar.Windows" ForegroundText="light" BackgroundColor="#ce3636">
-        <m2:DefaultTile ShortName="Календарь" Wide310x150Logo="Assets\Wide310x150Logo.png" DefaultSize="wide310x150Logo" Square70x70Logo="Assets\Square70x70Logo.png">
+      <m2:VisualElements DisplayName="ms-resource:ApplicationDisplayName" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png" Description="ms-resource:ApplicationDescription" ForegroundText="light" BackgroundColor="#ce3636">
+        <m2:DefaultTile ShortName="ms-resource:ApplicationShortName" Wide310x150Logo="Assets\Wide310x150Logo.png" DefaultSize="wide310x150Logo" Square70x70Logo="Assets\Square70x70Logo.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
             <m2:ShowOn Tile="wide310x150Logo" />
@@ -45,5 +45,6 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="internetClientServer" />
   </Capabilities>
 </Package>

@@ -120,7 +120,7 @@ namespace Calendar
 
         private void HolidayFlyoutCancel_Click(object sender, RoutedEventArgs e)
         {
-            butHolidayFlyout.Hide();
+            HolidayFlyout.Hide();
         }
 
         private void holTypes_Tapped(object sender, TappedRoutedEventArgs e)

@@ -71,8 +71,28 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid>
-        <StackPanel Name="calBack" Background="#FF303030">
+    <Grid Background="#FF303030">
+        <GridViewItem Name="nextGVI"
+                      Width="50"
+                      PointerEntered="nextGVI_PointerWheelChanged"
+                        Background="Transparent"          
+                        VerticalAlignment="Stretch" 
+                        Tapped="butNext_Tapped" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Right" 
+                        Margin="0"/>
+        <GridViewItem Name="prevGVI"
+                      Width="50"   
+                      PointerEntered="prevGVI_PointerWheelChanged"
+                        Background="Transparent"            
+                        VerticalAlignment="Stretch" 
+                        Tapped="butPrev_Tapped" 
+                        BorderThickness="0"
+                        HorizontalAlignment="Left" 
+                        Margin="0"/>
+        <StackPanel Name="calBack" 
+                    Background="#FF303030" 
+                    HorizontalAlignment="Center">
             <Grid x:Name="monthTopString" 
                       VerticalAlignment="Top"                       
                       HorizontalAlignment="Stretch" 
@@ -217,6 +237,16 @@
 
             </GridView>
 
+                <TextBox Name="HolidayTitle" x:Uid="HolidayTitle"
+                         Background="Transparent" 
+                         Foreground="White"
+                         FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"
+                         HorizontalAlignment="Center"
+                         VerticalContentAlignment="Center"
+                         BorderThickness="0"
+                         IsReadOnly="True"
+                         Visibility="Collapsed"
+                         IsHoldingEnabled="False"/>
             <ListView x:Name="HolidayList" Height="auto"
                           Margin="0" Padding="0"
                           BorderThickness="0" 
@@ -234,7 +264,7 @@
 
                 <FlyoutBase.AttachedFlyout>
                     <!--AutomationProperties.ItemType="CheckBox"-->
-                    <Flyout x:Name="butHolidayFlyout"
+                    <Flyout x:Name="HolidayFlyout"
                             Opened="HolidayFlyout_Opened"
                                 AutomationProperties.ItemType="CheckBox" 
                                 Placement="Full" 
@@ -304,7 +334,7 @@
                         <Setter Property="Margin" Value="3, 0"/>
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                        <Setter Property="VerticalContentAlignment" Value="Top"/>
                     </Style>
                 </ListView.ItemContainerStyle>
 
@@ -509,7 +539,7 @@
                   HorizontalAlignment="Center" 
                   Height="50" 
                   IsAutoRefreshEnabled="True" 
-                  Margin="5" 
+                  Margin="0, 5" 
                   VerticalAlignment="Top" 
                   Width="480"/>
             </StackPanel>

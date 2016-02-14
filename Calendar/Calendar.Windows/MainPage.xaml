@@ -268,7 +268,7 @@
                         Content="..."
                         Tapped="GridViewItem_Tapped" />
                     <FlyoutBase.AttachedFlyout>
-                        <Flyout x:Name="butHolidayFlyout" 
+                        <Flyout x:Name="HolidayFlyout" 
                                 Opened="HolidayFlyout_Opened" 
                                 Closed="HolidayFlyout_Closed" 
                                 AutomationProperties.ItemType="CheckBox"                                 

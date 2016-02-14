@@ -427,7 +427,7 @@ namespace Calendar
             MarkHolidays();
             UpdateNoteList();
 
-            butHolidayFlyout.Hide();
+            HolidayFlyout.Hide();
         }
 
         private void HolidayTypesController(ListViewItem sender)
