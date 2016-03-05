@@ -167,7 +167,7 @@
                     </GridView.ItemsPanel>
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <GridViewItem Tapped="gvItem_Tapped"
+                            <GridViewItem Tapped="Day_Tapped"
                                           Style="{Binding Style}"/>
                         </DataTemplate>
                     </GridView.ItemTemplate>                    
@@ -195,7 +195,7 @@
 
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <GridViewItem Tapped="m1_Tapped"  
+                            <GridViewItem Tapped="DecadeGridItem_Tapped"  
                                           Style="{StaticResource DecadeMonthStyle}" 
                                           Foreground="{StaticResource AdditionalColor}"
                                           />

@@ -4,7 +4,7 @@ namespace Calendar
 {
 
     /// <summary>
-    /// Size corrector, actually.
+    /// Size corrector for mobile app
     /// Makes the application's GUI scalable
     /// </summary>
     public class StandardClass

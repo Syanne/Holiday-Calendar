@@ -26,7 +26,12 @@ namespace Calendar
             this.InitializeComponent();
             PagePreLoader();
 
-        }              
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            PageLoadedController(sender);
+        }
 
         #region Calendar controls
         private void butNext_Click(object sender, RoutedEventArgs e)
@@ -38,16 +43,18 @@ namespace Calendar
         {
             ArrowButtonController(-1);
         }
-        
+        private void Day_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DayController(sender);
+        }
+
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
             if (DatePickerDp.Date.Month != calBase.SelectedDate.Month ||
                 DatePickerDp.Date.Year != calBase.SelectedDate.Year)
             {
                 ChangeDate(1, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
-
                 DatePickerDp.Date = DateTimeOffset.Now;
-                //ShowHide();
             }
         }
         
@@ -68,7 +75,12 @@ namespace Calendar
             gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             FillCalendar();
             MarkHolidays();
-        }        
+        }
+
+        private void DecadeGridItem_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DecadeItemController(sender);
+        }
         #endregion
 
         #region Kind of Holiday menu & flyout
@@ -129,13 +141,16 @@ namespace Calendar
         }
         #endregion
 
-        #region AddNote flyout
-       
+        #region Notes
+        private void note_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            NoteController(sender);
+        }
+
         private void addNote_Click(object sender, RoutedEventArgs e)
         {
             AddNoteController();
         }
-
 
         private void delNote_Click(object sender, RoutedEventArgs e)
         {

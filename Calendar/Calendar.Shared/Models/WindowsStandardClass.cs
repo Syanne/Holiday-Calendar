@@ -6,23 +6,16 @@ using Windows.UI.Xaml;
 namespace Calendar
 {
     /// <summary>
-    /// Size corrector, actually.
+    /// Size corrector for windows app
     /// Makes the application's GUI scalable
     /// </summary>
     public class WindowsStandardClass
     {
         private double height;
-        public double ApplicationHeight {
-            get
-            {
-                return height;
-            }
-            set
-            {
-                if (value < 724)
-                    height = 724;
-                else height = value;
-            }
+        public double ApplicationHeight
+        {
+            get { return height; }
+            set { height = (value < 724) ? 724 : value; }
         }
 
         //calendar
@@ -34,8 +27,16 @@ namespace Calendar
         public double DecadeHeightCorrector { get; set; }
         public double DecadeWidthCorrector { get; set; }
 
+        /// <summary>
+        /// Font Size for notes
+        /// </summary>
         public double NoteFontSizeCorrector { get; set; }
         
+        /// <summary>
+        /// counts new sizes for items
+        /// </summary>
+        /// <param name="height">application height</param>
+        /// <returns>is app height changed</returns>
         public bool Count(double height)
         {
             if (height != this.ApplicationHeight)

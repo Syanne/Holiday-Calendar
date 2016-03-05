@@ -4,6 +4,9 @@ using System.Xml.Linq;
 
 namespace Calendar
 {
+    /// <summary>
+    /// Item in FlipView for styles 
+    /// </summary>
     public class LocalFVItem
     {
         public string Image { get; set; }
@@ -11,6 +14,9 @@ namespace Calendar
         public string Text { get; set; }
     }
 
+    /// <summary>
+    /// Days in calendar
+    /// </summary>
     public sealed class SampleDataSource
     {
         private ObservableCollection<LocalFVItem> _itemSource = new ObservableCollection<LocalFVItem>();

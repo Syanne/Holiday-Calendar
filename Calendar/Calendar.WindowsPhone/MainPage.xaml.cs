@@ -37,6 +37,11 @@ namespace Calendar
             PagePreLoader();
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            PageLoadedController(sender);
+        }
+
         /// <summary>
         /// back button pressed
         /// </summary>
@@ -105,6 +110,11 @@ namespace Calendar
             MonthController();
         }
 
+        private void Day_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DayController(sender);
+        }
+
         private void Decade_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), calBase.SelectedDate.Year);
@@ -118,10 +128,19 @@ namespace Calendar
             FillCalendar();
         }
 
+        private void DecadeGridItem_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DecadeItemController(sender);
+        }
+
         #endregion
 
         #region Notes
 
+        private void note_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            NoteController(sender);
+        }
         private void butPrev1_Tapped(object sender, TappedRoutedEventArgs e)
         {
             NoteGridArrowsController(-1);
@@ -137,7 +156,7 @@ namespace Calendar
             if (ClickedDayPage.Text != calBase.SelectedDate.Date.ToString("MMMM"))
             {
                 int month = calBase.SelectedDate.Month;
-                calBase.AddDay(value);
+                calBase.SelectedDate.AddDays(value);
                 if (month != calBase.SelectedDate.Month)
                 {
                     ArrowButtonController(value); 
@@ -236,7 +255,7 @@ namespace Calendar
             }
         }
 
-        private void reclineButton_Click(object sender, RoutedEventArgs e)
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             AddNoteFlyout.Hide();
         }

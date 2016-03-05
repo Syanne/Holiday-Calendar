@@ -39,8 +39,6 @@ namespace Calendar.Mechanism
 
         public ObservableCollection<HolidayItem> HolidayItemCollection { get; private set; }
         public ObservableCollection<CheckBox> HolidayNameCollection { get; private set; }
-
-
         private int firstDay;
 
         public HolidayCalendarBase(int firstDay)
@@ -56,11 +54,6 @@ namespace Calendar.Mechanism
             endPosition = 0;
 
             FillMonth();
-        }
-
-        public void AddDay(int day)
-        {
-            SelectedDate = SelectedDate.AddDays(day);
         }
 
         #region Standard holidays

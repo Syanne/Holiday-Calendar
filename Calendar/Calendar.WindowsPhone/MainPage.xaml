@@ -195,7 +195,7 @@
 
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <GridViewItem Tapped="gvItem_Tapped" />
+                        <GridViewItem Tapped="Day_Tapped" />
                     </DataTemplate>
                 </GridView.ItemTemplate>
             </GridView>
@@ -224,7 +224,7 @@
 
                 <GridView.ItemTemplate>
                     <DataTemplate>
-                        <GridViewItem Tapped="m1_Tapped"                                      
+                        <GridViewItem Tapped="DecadeGridItem_Tapped"                                      
                                           Height="{Binding Source={StaticResource SizeResource}, Path=DecadeSizeCorrector}"
                                           Width="{Binding Source={StaticResource SizeResource}, Path=DecadeSizeCorrector}"
                                           Content="{Binding Content}" 
@@ -520,7 +520,7 @@
                 				HorizontalAlignment="Center" 
                 				Style="{StaticResource ExtendMainButton}" Margin="0,0,10,0"/>
                                 <Button x:Name="reclineButton" x:Uid="reclineButton" 
-                				Click="reclineButton_Click" 
+                				Click="CancelButton_Click" 
                 				VerticalAlignment="Bottom" 
                 				HorizontalAlignment="Center" 
                 				Style="{StaticResource ExtendMainButton}" Margin="10,0,0,0"/>

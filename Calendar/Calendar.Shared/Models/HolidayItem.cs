@@ -33,41 +33,4 @@ namespace Calendar.Models
             };
         }
     }
-
-
-    /// <summary>
-    /// Days in Week
-    /// </summary>
-    public class Group
-    {
-        /// <summary>
-        /// represents the week
-        /// </summary>
-        public ObservableCollection<CalendarItem> smallCollection { get; set; }
-        public Group()
-        {
-            smallCollection = new ObservableCollection<CalendarItem>();
-        }
-    }
-
-    /// <summary>
-    /// represents the day (calendar item)
-    /// </summary>
-    public class CalendarItem
-    {
-        public Style Style { get; set; }
-        public int Content { get; set; }
-        public Brush Foreground { get; set; }
-        public Brush Background { get; set; }
-        public Brush BorderBrush { get; set; }
-        public Thickness Thickness { get; set; }
-    }
-
-    public class LvItem
-    {
-        public string Name { get; set; }
-        public string Text { get; set; }
-        public string Tag { get; set; }
-    }
-
 }

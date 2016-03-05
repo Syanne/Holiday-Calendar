@@ -35,7 +35,7 @@ namespace CalendarResources
                     return XDocument.Parse(text);
                 }
                 //if it's the fist launch - load basic file
-                catch(Exception e)
+                catch
                 {
                     return XDocument.Load(resource.GetString("LocalPresonalData"));
                 }

@@ -347,7 +347,7 @@
     <value>праздники</value>
   </data>
   <data name="HolidayTitle.Text" xml:space="preserve">
-    <value>отображаемые празники:</value>
+    <value>отображаемые праздники:</value>
   </data>
   <data name="rateBut.Label" xml:space="preserve">
     <value>оценить</value>

@@ -23,6 +23,12 @@ namespace Calendar
     /// 
     public sealed partial class MainPage : Page
     {
+        /// <summary>
+        /// true - Day Selected,
+        /// false - Holiday's selection changed
+        /// </summary>
+        bool HolidaysFlag = true;
+
         #if !WINDOWS_PHONE_APP
         WindowsStandardClass sizeCorrection;
         #endif
@@ -46,6 +52,7 @@ namespace Calendar
         /// Text in the note
         /// </summary>
         StringBuilder startText { get; set; }
+
 
         /// <summary>
         /// first day of week
@@ -103,6 +110,9 @@ namespace Calendar
             NotesBackground();
         }
 
+        /// <summary>
+        /// alternating backgrounds for notes
+        /// </summary>
         private void NotesBackground()
         {
             var transp = new SolidColorBrush(Colors.Transparent);
@@ -129,6 +139,7 @@ namespace Calendar
 #if WINDOWS_PHONE_APP
             StandardClass standard = new StandardClass();
 #else
+            //a flag for initial sizing
             bool flag = false;
             if (sizeCorrection == null)
             {
@@ -141,7 +152,7 @@ namespace Calendar
             //from first to last day in a month
             int jj = (calBase.Start == 7) ? calBase.Start : 0;
 
-            //styles and brushes
+            //styles and brushes for day-items
             Style adjStyle = (Style)this.Resources["AdjMonthStyle"];
             Style dayStyle = (Style)this.Resources["ThisMonthStyle"];
             Brush DayFg = new SolidColorBrush(Colors.White);
@@ -152,10 +163,12 @@ namespace Calendar
             
             for (int i = 0; i < 42; i++)
             {
+                //a day
                 gvItem = new GridViewItem()
                 {
                     Content = calBase.Month[i],
 
+                    //sizing
                 #if WINDOWS_PHONE_APP
                     Height = standard.ItemSizeCorrector,
                     Width = standard.ItemSizeCorrector,
@@ -167,7 +180,7 @@ namespace Calendar
                     Padding = new Thickness(0, sizeCorrection.ItemSizeCorrector / 5, 0, sizeCorrection.ItemSizeCorrector / 5)
                 #endif
                 };
-                gvItem.Tapped += gvItem_Tapped;
+                gvItem.Tapped += Day_Tapped;
 
                 //adjMonths
                 if (i < calBase.Start || i >= calBase.End)
@@ -189,10 +202,11 @@ namespace Calendar
         }
 
         /// <summary>
-        /// Day Styles (weekend, today, holiday)
+        /// Day Styles (today or holiday)
         /// </summary>
         private void MarkHolidays()
         {
+            //collection of HolidayItems
             IEnumerable<HolidayItem> holItemSource;
             if (SelectedHolidayType.Content.ToString() == All.Content.ToString())
                 holItemSource = calBase.HolidayItemCollection;
@@ -233,12 +247,8 @@ namespace Calendar
         /// </summary>
         private void InitializeDecades()
         {
-            DateTime dt = new DateTime(2000, 1, 1);
-            
+            DateTime dt = new DateTime(2000, 1, 1);            
             var decadeList = new List<GridViewItem>();
-
-            double DecadeWidthCorrector = Window.Current.Bounds.Width / 4;
-            double DecadeHeightCorrector = Window.Current.Bounds.Width / 4 - Window.Current.Bounds.Width / 16;
 
             //fill the list
             for (int i = 1; i <= 12; i++)
@@ -248,25 +258,29 @@ namespace Calendar
                 {
                     Content = dt.Date.ToString("MMM"),
                     Tag = i,
+                    //sizing
                 #if WINDOWS_PHONE_APP
-                    Height = DecadeHeightCorrector,
-                    Width = DecadeWidthCorrector,
+                    Height = Window.Current.Bounds.Width / 4 - Window.Current.Bounds.Width / 16,
+                    Width = Window.Current.Bounds.Width / 4,
                     FontSize = Window.Current.Bounds.Width / 16,
                     Margin = new Thickness(5)
-                #else
+#else
                     Height = sizeCorrection.DecadeHeightCorrector,
                     Width = sizeCorrection.DecadeWidthCorrector,
                     FontSize = sizeCorrection.ItemFontSizeCorrector,
                 #endif                    
                 });
 
-                decadeList.ElementAt(i - 1).Tapped += m1_Tapped;
+                decadeList.ElementAt(i - 1).Tapped += DecadeGridItem_Tapped;
             }
             gvDecades.ItemsSource = decadeList;
         }
 
 #endregion
-        
+        /// <summary>
+        /// alert
+        /// </summary>
+        /// <param name="text">message</param>
         private async void MyMessage(string text)
         {
             var dial = new MessageDialog(text);
@@ -275,6 +289,9 @@ namespace Calendar
             var command = await dial.ShowAsync();
         }
 
+        /// <summary>
+        /// The message about a new version
+        /// </summary>
         private async void NewVersionMessage()
         {
             var dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString("msgBody"),
