@@ -77,15 +77,6 @@ namespace Calendar
         {
             BuyButtonController();
         }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplicationLanguages.PrimaryLanguageOverride = (comboLang.SelectedItem as ComboBoxItem).Content.ToString();
-            ApplicationData.Current.RoamingSettings.Values["Language"] = (comboLang.SelectedItem as ComboBoxItem).Content;
-
-            MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
-            this.Frame.Navigate(typeof(MainPage));
-        }
         
         private void buy_Click(object sender, RoutedEventArgs e)
         {

@@ -20,8 +20,8 @@ namespace Calendar
         public MainPage()
         {
             //language
-            if (ApplicationData.Current.LocalSettings.Values.Count == 0)
-                ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
+            //if (ApplicationData.Current.LocalSettings.Values.Count == 0)
+            //    ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
              
             this.InitializeComponent();
             PagePreLoader();

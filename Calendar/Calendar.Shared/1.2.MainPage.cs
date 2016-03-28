@@ -180,8 +180,12 @@ namespace Calendar
                     Padding = new Thickness(0, sizeCorrection.ItemSizeCorrector / 5, 0, sizeCorrection.ItemSizeCorrector / 5)
                 #endif
                 };
-                gvItem.Tapped += Day_Tapped;
 
+#if WINDOWS_PHONE_APP
+                gvItem.Tapped += gvItem_Tapped;
+#else
+                gvItem.Tapped += Day_Tapped;
+#endif
                 //adjMonths
                 if (i < calBase.Start || i >= calBase.End)
                     gvItem.Style = adjStyle;
@@ -195,10 +199,10 @@ namespace Calendar
             }
             calGrid.ItemsSource = gviCalSource;
 
-            #if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP
             if (flag)
                 sizeCorrection = null;
-            #endif
+#endif
         }
 
         /// <summary>
@@ -259,7 +263,7 @@ namespace Calendar
                     Content = dt.Date.ToString("MMM"),
                     Tag = i,
                     //sizing
-                #if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
                     Height = Window.Current.Bounds.Width / 4 - Window.Current.Bounds.Width / 16,
                     Width = Window.Current.Bounds.Width / 4,
                     FontSize = Window.Current.Bounds.Width / 16,
@@ -268,10 +272,13 @@ namespace Calendar
                     Height = sizeCorrection.DecadeHeightCorrector,
                     Width = sizeCorrection.DecadeWidthCorrector,
                     FontSize = sizeCorrection.ItemFontSizeCorrector,
-                #endif                    
+#endif
                 });
-
+#if WINDOWS_PHONE_APP
+                decadeList.ElementAt(i - 1).Tapped += m1_Tapped;
+#else
                 decadeList.ElementAt(i - 1).Tapped += DecadeGridItem_Tapped;
+#endif
             }
             gvDecades.ItemsSource = decadeList;
         }

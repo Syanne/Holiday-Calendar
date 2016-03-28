@@ -195,7 +195,7 @@
 
                     <GridView.ItemTemplate>
                         <DataTemplate>
-                            <GridViewItem Tapped="DecadeGridItem_Tapped"  
+                            <GridViewItem Tapped="DecadeGridItem_Tapped"     
                                           Style="{StaticResource DecadeMonthStyle}" 
                                           Foreground="{StaticResource AdditionalColor}"
                                           />

@@ -116,13 +116,13 @@ namespace Calendar
             }
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ApplicationLanguages.PrimaryLanguageOverride = (comboLang.SelectedItem as ComboBoxItem).Content.ToString();
-            ApplicationData.Current.RoamingSettings.Values["Language"] = (comboLang.SelectedItem as ComboBoxItem).Content;
+        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    ApplicationLanguages.PrimaryLanguageOverride = (comboLang.SelectedItem as ComboBoxItem).Content.ToString();
+        //    ApplicationData.Current.RoamingSettings.Values["Language"] = (comboLang.SelectedItem as ComboBoxItem).Content;
 
-            MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
-        }
+        //    MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
+        //}
 
         //private void comboDOW_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{

@@ -338,43 +338,7 @@
                        Margin="5"
                        />
             <StackPanel VerticalAlignment="Stretch" 
-                HorizontalAlignment="Stretch"
-                >
-
-                <!-- Элементы StackPanel ниже определяют отдельные разделы содержимого -->
-                <Grid HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Stretch" 
-                        Margin="0,5">
-                    <!-- Заголовок раздела 1 -->
-                    <!-- Основная часть раздела 1 -->
-                    <!-- Заголовок раздела 1 -->
-
-                    <TextBox x:Uid="language" 
-                		Background="Transparent"
-                		BorderThickness="0"
-                		Height="auto" Width="210"
-                		TextAlignment="Left"
-                		FontSize="20"
-                		IsReadOnly="True"
-                		SelectionHighlightColor="#FF828282" 
-                		HorizontalAlignment="Left" 
-                		HorizontalContentAlignment="Stretch"
-                		VerticalAlignment="Center"
-                		Margin="5"/>
-                    <ComboBox x:Name="comboLang" 
-                		BorderBrush="#ff303030"
-                		Background="Transparent"
-                		Width="120" Height="auto"  
-                		FontSize="16"
-                		Margin="5, 5, 30, 5" 
-                		SelectionChanged="ComboBox_SelectionChanged" 
-                		HorizontalAlignment="Right" >
-                        <ComboBoxItem Content="ru" FontSize="16" />
-                        <ComboBoxItem Content="uk" FontSize="16" />
-                    </ComboBox>
-
-                </Grid>
-                <!-- Раздел содержимого 2-->
+                HorizontalAlignment="Stretch">
                 <Grid HorizontalAlignment="Stretch" 
                         VerticalAlignment="Stretch"
                         Margin="0, 5">

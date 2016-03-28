@@ -88,7 +88,7 @@ namespace Calendar
         /// <param name="value">previous (1) or next (-1)</param>
         private void ArrowButtonController(int value)
         {
-            if (gvDecades.Visibility != Windows.UI.Xaml.Visibility.Visible)
+            if (gvDecades.Visibility != Visibility.Visible)
             {
                 int month = calBase.SelectedDate.Month;
                 calBase.Skip(value);
@@ -147,9 +147,8 @@ namespace Calendar
                 calGrid.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                #if !WINDOWS_PHONE_APP
+
                 HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                #endif
                 gvDecades.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
             else
@@ -459,10 +458,14 @@ namespace Calendar
                 if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
                     SelectedHolidayType.Content.ToString() != M.Content.ToString())
                 {
+
+#if WINDOWS_PHONE_APP
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+#else
                     ClickedDayPage.Text = calBase.HolidayNameCollection.
                                             FirstOrDefault(elem => (string)elem.Tag == (string)sender.Content).
                                             Content.ToString();
-
+#endif
                     //notes 
                     buffer = calBase.HolidayItemCollection.
                                            Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower());
@@ -489,9 +492,9 @@ namespace Calendar
                             hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
                                 hi.Day, calBase.SelectedDate.Month, hi.HolidayName);
 
-                        #if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP
                             hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
-                        #endif
+#endif
 
                             return hi;
                          }).
@@ -503,15 +506,15 @@ namespace Calendar
                 NotesBackground();
                 MarkHolidays();
 
-                #if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
                     noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                #endif
+#endif
 
                 gviPrev.BorderBrush = new SolidColorBrush(Colors.Transparent);
                 HolidaysFlag = false;
             }
         }
-        #endregion
+#endregion
 
         private void messageBtn_Click(object sender, RoutedEventArgs e)
         {

@@ -30,13 +30,13 @@
     <Content Include="$(MSBuildThisFileDirectory)Holidays\ru\Holidays.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Holidays\ru\PersData.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Holidays\ru\Themes.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Themes.xml" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\ru\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\uk\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Themes\BloodDrops.xaml">

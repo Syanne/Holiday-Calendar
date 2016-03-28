@@ -23,11 +23,12 @@ namespace Calendar
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        bool prevSender = false;
         public MainPage()
         {
-            if (ApplicationData.Current.LocalSettings.Values.Count == 0)
-                ApplicationData.Current.LocalSettings.Values.Add("Language", 
-                    ApplicationLanguages.PrimaryLanguageOverride);
+            //if (ApplicationData.Current.LocalSettings.Values.Count == 0)
+            //    ApplicationData.Current.LocalSettings.Values.Add("Language", 
+            //        ApplicationLanguages.PrimaryLanguageOverride);
              
             //initialize page
             this.InitializeComponent();
@@ -61,22 +62,20 @@ namespace Calendar
                 calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                e.Handled = true;
             }
 
             //close noteList, if it's visible
             if (noteGridMain.Visibility == Windows.UI.Xaml.Visibility.Visible)
             {
                 noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                e.Handled = true;
             }
             //else - hide holidayList
             else if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Visible)
             {
                 HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                e.Handled = true;
             }
+            e.Handled = true;
         }
 
         #region Calendar controls
@@ -88,7 +87,9 @@ namespace Calendar
         /// <param name="e"></param>
         private void butPrev_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            ArrowButtonController(-1);
+            if (prevSender != true)
+                ArrowButtonController(-1);
+            else prevSender = false;
         }
         /// <summary>
         /// Show previous month
@@ -97,7 +98,9 @@ namespace Calendar
         /// <param name="e"></param>
         private void butNext_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            ArrowButtonController(1);
+            if (prevSender != true)
+                ArrowButtonController(1);
+            else prevSender = false;
         }
 
         /// <summary>
@@ -110,7 +113,7 @@ namespace Calendar
             MonthController();
         }
 
-        private void Day_Tapped(object sender, TappedRoutedEventArgs e)
+        private void gvItem_Tapped(object sender, TappedRoutedEventArgs e)
         {
             DayController(sender);
         }
@@ -128,7 +131,7 @@ namespace Calendar
             FillCalendar();
         }
 
-        private void DecadeGridItem_Tapped(object sender, TappedRoutedEventArgs e)
+        private void m1_Tapped(object sender, TappedRoutedEventArgs e)
         {
             DecadeItemController(sender);
         }
@@ -156,35 +159,39 @@ namespace Calendar
             if (ClickedDayPage.Text != calBase.SelectedDate.Date.ToString("MMMM"))
             {
                 int month = calBase.SelectedDate.Month;
-                calBase.SelectedDate.AddDays(value);
+                calBase.SelectedDate = calBase.SelectedDate.AddDays(value);
                 if (month != calBase.SelectedDate.Month)
                 {
-                    ArrowButtonController(value); 
+                    calBase.ReadHolidayXml();
+
+                    FillCalendar();
+                    MarkHolidays();
+                    gviPrev = calGrid.Items.ElementAt(calBase.Start + calBase.SelectedDate.Day - 1) as GridViewItem;
+
+                    gviPrev.BorderBrush = gviPrev.Foreground;
                 }
 
-                UpdateNoteList();                
+                UpdateNoteList();
             }
             else
             {
-                ArrowButtonController(value); 
-                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
-                     SelectedHolidayType.Content.ToString() != M.Content.ToString())
-                {
-                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+                ArrowButtonController(value);
 
-                    noteList.ItemsSource = calBase.HolidayItemCollection.
-                    Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
-                    Select(hi => hi = hi.Copy()).
-                    Select(hi =>
-                    {
+                ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
+
+                noteList.ItemsSource = calBase.HolidayItemCollection.
+                Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower() && hi.Day != 0).
+                Select(hi => hi = hi.Copy()).
+                Select(hi =>
+                {
                         //change name = add date
                         hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
-                            hi.Day, calBase.SelectedDate.Month, hi.HolidayName);
-                        return hi;
-                    });
+                        hi.Day, calBase.SelectedDate.Month, hi.HolidayName);
+                    return hi;
+                });
 
-                    NotesBackground();
-                }
+                NotesBackground();
+
             }
         }
 
@@ -255,7 +262,7 @@ namespace Calendar
             }
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void reclineButton_Click(object sender, RoutedEventArgs e)
         {
             AddNoteFlyout.Hide();
         }
@@ -376,11 +383,13 @@ namespace Calendar
         private void nextGVI_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {
             ArrowButtonController(1);
+            prevSender = true;
         }
 
         private void prevGVI_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {
             ArrowButtonController(-1);
+            prevSender = true;
         }
 
     }
