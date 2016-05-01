@@ -26,11 +26,12 @@ namespace Calendar
             this.InitializeComponent();
             PagePreLoader();
 
+
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            PageLoadedController(sender);
+            PageLoadedController();
         }
 
         #region Calendar controls
@@ -104,22 +105,8 @@ namespace Calendar
             FlyoutBase.ShowAttachedFlyout(HolidayList as FrameworkElement);
 
             listOfHolidays.ItemsSource = calBase.HolidayNameCollection;
-            foreach (CheckBox ic in listOfHolidays.Items)
-                ic.Click += cb_Click;
         }
 
-        /// <summary>
-        /// check the number of selected themes for holiday list
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void cb_Click(object sender, RoutedEventArgs e)
-        {
-            int counter = listOfHolidays.Items.Count(i => (i as CheckBox).IsChecked == true);
-            if (counter > 3) 
-                btnHolidays.IsEnabled = false;
-            else btnHolidays.IsEnabled = true;
-        }
 
         private void HolidayFlyout_Opened(object sender, object e)
         {
@@ -270,16 +257,11 @@ namespace Calendar
                         (gvDecades.Items[i] as GridViewItem).Width = sizeCorrection.DecadeWidthCorrector;
                         (gvDecades.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;
                     }
-
-                for (int i = 0; i < noteList.Items.Count; i++)
-                {
-                    (noteList.Items[i] as HolidayItem).FontSize = sizeCorrection.NoteFontSizeCorrector;
-                    (noteList.Items[i] as HolidayItem).Height = sizeCorrection.ItemSizeCorrector;
-                }
+                
 
                 HolidayTitle.FontSize = sizeCorrection.ItemSizeCorrector / 3;
                 HolidayList.Height = sizeCorrection.ItemSizeCorrector + 20;
-                HolidayList.Width = sizeCorrection.MonthTopStringWidth - sizeCorrection.ItemSizeCorrector;
+                scrollHolidays.Width = sizeCorrection.MonthTopStringWidth - sizeCorrection.ItemSizeCorrector;
 
                 ClickedDayPage.Height = sizeCorrection.ItemSizeCorrector + 20;
                 ClickedDayPage.Margin = monthTopString.Margin;

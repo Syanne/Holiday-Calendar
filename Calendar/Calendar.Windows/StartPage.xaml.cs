@@ -36,9 +36,8 @@ namespace Calendar
                     new Uri("ms-appx:///Themes/Default.xaml");
             }                                  
             CalendarResourcesManager.PersonalData = await CalendarResourcesManager.LoadPersonalData();
-                                                                              
-            //if (CalendarResourcesManager.PersonalData != null)
-                this.Frame.Navigate(typeof(MainPage));
+
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

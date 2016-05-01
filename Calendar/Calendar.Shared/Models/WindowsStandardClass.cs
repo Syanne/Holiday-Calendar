@@ -43,7 +43,7 @@ namespace Calendar
             {
                 this.ApplicationHeight = height;
                 ItemSizeCorrector = this.ApplicationHeight / 12 ;
-                ItemFontSizeCorrector = ItemSizeCorrector / 2 - 6;
+                ItemFontSizeCorrector = ItemSizeCorrector / 2 - 8;
                 MonthTopStringWidth = ItemSizeCorrector * 7 + 24;
                 DecadeWidthCorrector = MonthTopStringWidth / 3 - 4;
                 DecadeHeightCorrector = ItemSizeCorrector * 4 / 3;

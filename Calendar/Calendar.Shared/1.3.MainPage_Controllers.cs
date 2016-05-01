@@ -20,47 +20,13 @@ namespace Calendar
     /// 
     public sealed partial class MainPage : Page
     {
-        private void PageLoadedController(object sender)
+        private void PageLoadedController()
         {
             calBase.ReadHolidayXml();
             calBase.FillHolidaysList();
+            PrepareHolidayPanel();
 
             MarkHolidays();
-
-            //change data in HolidayList 
-            for (int i = 2; i < 5; i++)
-            {
-                (HolidayList.Items.ElementAt(i) as ListViewItem).Content = "";
-                ToolTipService.SetToolTip((HolidayList.Items.ElementAt(i) as ListViewItem), "");
-            }
-
-            //change foreground and tooltip for each HolidayList's item
-            var holColor = (SolidColorBrush)Application.Current.Resources["HolidayTitleColor"];
-            M.Foreground = holColor;
-            int jj = 2;
-            for (int j = 0; j < calBase.HolidayNameCollection.Count(); j++)
-            {
-                if (calBase.HolidayNameCollection[j].IsChecked == true)
-                {
-                    var element = (HolidayList.Items.ElementAt(jj) as ListViewItem);
-                    element.Content = calBase.HolidayNameCollection.ElementAt(j).Tag;
-                    ToolTip tt = new ToolTip()
-                    {
-                        Content = calBase.HolidayNameCollection.ElementAt(j).Content,
-                        Placement = PlacementMode.Top,
-                        FontSize = 16
-                    };
-                    ToolTipService.SetToolTip(element, tt);
-                    element.Foreground = holColor;
-                    jj++;
-                }
-                if (jj == 5) break;
-            }
-
-            //end select "all"
-            SelectedHolidayType = All;
-            SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
-            UpdateNoteList();
 
 #if !WINDOWS_PHONE_APP
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -80,7 +46,88 @@ namespace Calendar
 #endif
         }
 
-        #region calendar controllers
+
+        private void PrepareHolidayPanel()
+        {
+            Style style = (Style)this.Resources["HolidayFlyoutStyle"]; 
+            Brush foreg = (SolidColorBrush)Application.Current.Resources["HolidayTitleColor"];
+            Brush bg = (SolidColorBrush)Application.Current.Resources["MainColor"];
+            var listOfLVI = new List<ListViewItem>();
+
+            //all and personal
+            listOfLVI.Add(new ListViewItem
+            {
+                Tag = "All",
+                Content = CalendarResourcesManager.resource.GetString("AllHol"),
+                Foreground = new SolidColorBrush(Colors.White),
+            });
+
+            listOfLVI.Add(new ListViewItem
+            {
+                Tag = "Per",
+                Content = CalendarResourcesManager.resource.GetString("MineAsTag"),
+                Foreground = foreg,
+            });
+            
+            var subcollection = calBase.HolidayNameCollection.Where(el => el.IsChecked == true);
+
+            for(int i = 0; i < subcollection.Count(); i++)
+            {
+                listOfLVI.Add(new ListViewItem
+                {
+                    Content = subcollection.ElementAt(i).Tag,
+                    Foreground = foreg,
+                });
+
+
+                ToolTip tt = new ToolTip()
+                {
+                    Content = subcollection.ElementAt(i).Content,
+                    Placement = PlacementMode.Top,
+                    FontSize = 16
+                };
+                ToolTipService.SetToolTip(listOfLVI[i + 2], tt);
+            }
+
+            listOfLVI.Add(new ListViewItem
+            {
+                Content = "...",
+                Foreground = foreg
+            });
+
+            //tapped
+            for (int i = 0; i < listOfLVI.Count; i++)
+            {
+                listOfLVI[i].Background = bg;
+                listOfLVI[i].Style = style;
+#if !WINDOWS_PHONE_APP
+                if(sizeCorrection != null)
+                {
+                    listOfLVI[i].Height = sizeCorrection.ItemSizeCorrector;
+                    listOfLVI[i].Width = sizeCorrection.ItemSizeCorrector;
+                    listOfLVI[i].FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                }
+#else
+                listOfLVI[i].Height = Window.Current.Bounds.Width / 8;
+                listOfLVI[i].Width = Window.Current.Bounds.Width / 8;
+                listOfLVI[i].FontSize = Window.Current.Bounds.Width / 18;
+                listOfLVI[i].Margin = new Thickness(5, 0, 5, 10);
+#endif
+                if (i == listOfLVI.Count - 1)
+                    listOfLVI.Last().Tapped += GridViewItem_Tapped;
+                else listOfLVI[i].Tapped += holTypes_Tapped;
+            }
+
+            //set source
+            HolidayList.ItemsSource = listOfLVI;
+            //end select "all"
+            SelectedHolidayType = listOfLVI[0];
+            
+            UpdateNoteList();
+        }
+
+
+#region calendar controllers
 
         /// <summary>
         /// Actions for arrows
@@ -103,10 +150,9 @@ namespace Calendar
                 calBase.SelectedDate = calBase.SelectedDate.AddDays(val);
                 UpdateNoteList();
                 gviPrev.BorderBrush = gviPrev.Foreground;
-                
+
 #if !WINDOWS_PHONE_APP
-                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
-                    SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                if (SelectedHolidayType!= (HolidayList.Items[0] as ListViewItem) && SelectedHolidayType != (HolidayList.Items[1] as ListViewItem))
                 {
                     ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
 
@@ -157,10 +203,10 @@ namespace Calendar
                 calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
-        #if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP
                 HolidayList.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Visible;
-        #endif
+#endif
                 gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
         }
@@ -184,7 +230,8 @@ namespace Calendar
                     {
                         UpdateNoteList();
                         gvi.BorderBrush = gvi.Foreground;
-                        gviPrev.BorderBrush = TransparentBrush;
+                        if (gviPrev != null)
+                            gviPrev.BorderBrush = TransparentBrush;
                         gviPrev = gvi;
                     }
 
@@ -247,12 +294,12 @@ namespace Calendar
                 MonthController();
             }
         }
-        #endregion
+#endregion
 
-        #region notes controller
+#region notes controller
         private void NoteController(object sender)
         {
-            if (HolidaysFlag == true)
+            if (gviPrev != null)
             {
                 //new note
                 if (((sender as ListViewItem).Content as TextBlock).Text ==
@@ -295,12 +342,12 @@ namespace Calendar
                 GridViewItem gvi = calGrid.Items[index] as GridViewItem;
 
                 //if type "All" selected - show whole list of holidays
-                if (SelectedHolidayType == All)
-                    HolidayTypesController(All);
+                if (SelectedHolidayType == (HolidayList.Items[0] as ListViewItem))
+                    HolidayTypesController(SelectedHolidayType);
                 else
                 {
                     SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
-                    SelectedHolidayType = All;
+                    SelectedHolidayType = (HolidayList.Items[0] as ListViewItem);
                     SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
                 }
 
@@ -312,11 +359,9 @@ namespace Calendar
 
                             UpdateNoteList();
                             gvi.BorderBrush = gvi.Foreground;
-                            gviPrev.BorderBrush = TransparentBrush;
                             gviPrev = gvi;
 
                         noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                        HolidaysFlag = true;
                     }
             }
         }
@@ -416,26 +461,13 @@ namespace Calendar
 
             calBase.WriteHolidayXml(ls);
 
-            //-------dupblicates Loaded() --------
-            int jj = 2;
-            for (int j = 0; j < calBase.HolidayNameCollection.Count(); j++)
-            {
-                if (calBase.HolidayNameCollection[j].IsChecked == true)
-                {
-                    (HolidayList.Items.ElementAt(jj) as ListViewItem).Content = calBase.HolidayNameCollection.ElementAt(j).Tag;
-                    ToolTip tt = new ToolTip() { Content = calBase.HolidayNameCollection.ElementAt(j).Content, Placement = PlacementMode.Top };
-                    ToolTipService.SetToolTip((HolidayList.Items.ElementAt(jj) as ListViewItem), tt);
-                    jj++;
-                }
-                if (jj > 5) break;
-            }
-            //--------------------
+            PrepareHolidayPanel();
 
             calBase.ReadHolidayXml();
             calBase.FillHolidaysList();
 
             SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
-            SelectedHolidayType = All;
+            SelectedHolidayType = (HolidayList.Items[0] as ListViewItem);
             SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
             MarkHolidays();
@@ -455,8 +487,7 @@ namespace Calendar
                 SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
                 
                 //special holidays
-                if (SelectedHolidayType.Content.ToString() != All.Content.ToString() &&
-                    SelectedHolidayType.Content.ToString() != M.Content.ToString())
+                if (SelectedHolidayType != (HolidayList.Items[0] as ListViewItem) && SelectedHolidayType != (HolidayList.Items[1] as ListViewItem))
                 {
 
 #if WINDOWS_PHONE_APP
@@ -475,7 +506,7 @@ namespace Calendar
                     ClickedDayPage.Text = sender.Content.ToString();
 
                     //personal holidays
-                    if (SelectedHolidayType.Content.ToString() != All.Content.ToString())
+                    if (SelectedHolidayType != (HolidayList.Items[0] as ListViewItem))
                         buffer = calBase.HolidayItemCollection.
                         Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower() &&
                                     hi.Day != 0);
@@ -509,9 +540,11 @@ namespace Calendar
 #if WINDOWS_PHONE_APP
                     noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
 #endif
-
-                gviPrev.BorderBrush = new SolidColorBrush(Colors.Transparent);
-                HolidaysFlag = false;
+                if (gviPrev != null)
+                {
+                    gviPrev.BorderBrush = new SolidColorBrush(Colors.Transparent);
+                    gviPrev = null;
+                }
             }
         }
 #endregion

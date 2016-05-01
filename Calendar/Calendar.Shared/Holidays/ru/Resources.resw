@@ -120,7 +120,7 @@
   <data name="addNote.Content" xml:space="preserve">
     <value>сохранить</value>
   </data>
-  <data name="AllHol.Content" xml:space="preserve">
+  <data name="AllHol" xml:space="preserve">
     <value>все</value>
   </data>
   <data name="btnholCancel.Content" xml:space="preserve">
@@ -183,9 +183,6 @@
   <data name="daysText.Text" xml:space="preserve">
     <value>показать за</value>
   </data>
-  <data name="Mine.Content" xml:space="preserve">
-    <value>мои</value>
-  </data>
   <data name="textTile.Text" xml:space="preserve">
     <value>Удержать в памяти все важные даты почти невозможно. И c этой задачей прекрасно справится живая плитка. Она напомнит и о встрече с другом, и о том, какой сегодня праздник. Теперь вам будет что отметить за чашечкой кофе!</value>
   </data>
@@ -208,7 +205,7 @@
     <value>Обновленный календарь с живой плиткой, большими наборами государственных*, международных и религиозных** праздников. Этот календарь всегда поможет вам найти повод для праздника!</value>
   </data>
   <data name="ApplicationDisplayName" xml:space="preserve">
-    <value>Праздничный календарь</value>
+    <value>Календарь + Праздники</value>
   </data>
   <data name="periodText.Text" xml:space="preserve">
     <value>период (часы)</value>

@@ -14,6 +14,26 @@
         <ResourceDictionary>
             <SolidColorBrush x:Name="TransparentBrush" x:Key="MainNoteBackground" Color="Transparent"/>
             <SolidColorBrush x:Name="DarkNoteBackground" x:Key="DarkNoteBackground" Color="#FFF0F0F2"/>
+            <Style x:Key="DecadeMonthStyle" TargetType="GridViewItem">
+                <Setter Property="Foreground" Value="#ffffffff"/>
+                <Setter Property="FontFamily" Value="Minion Pro"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="1"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="AllowDrop" Value="False"/>
+                <Setter Property="IsDoubleTapEnabled" Value="False"/>
+                <Setter Property="IsRightTapEnabled" Value="False"/>
+                <Setter Property="IsHoldingEnabled" Value="False"/>
+            </Style>
+
+            <Style x:Name="NoteStyle" x:Key="NoteStyle" TargetType="ListViewItem">
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FontFamily" Value="Minion Pro"/>
+                <Setter Property="Foreground" Value="#FF343434"/>
+                <Setter Property="Width" Value="auto"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="themes/CalendarDictionary.xaml" x:Name="Main"/>
                 <ResourceDictionary>
@@ -237,7 +257,7 @@
 
             </GridView>
 
-                <TextBox Name="HolidayTitle" x:Uid="HolidayTitle"
+            <TextBox Name="HolidayTitle" x:Uid="HolidayTitle"
                          Background="Transparent" 
                          Foreground="White"
                          FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"
@@ -247,33 +267,48 @@
                          IsReadOnly="True"
                          Visibility="Collapsed"
                          IsHoldingEnabled="False"/>
-            <ListView x:Name="HolidayList" Height="auto"
-                          Margin="0" Padding="0"
+
+            <ScrollViewer Name="scrollHolidays"
+                          HorizontalScrollMode="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          IsHorizontalRailEnabled="True"
+                          VerticalScrollBarVisibility="Disabled"
+                        IsVerticalRailEnabled="False"
+                        IsVerticalScrollChainingEnabled="False"
+                        VerticalScrollMode="Disabled"
+                        Margin="10, 0" 
                           BorderThickness="0" 
+                          Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
+                          VerticalAlignment="Bottom" 
+                              >
+                <ListView Name="HolidayList"
+                          Padding="0"
+                          BorderThickness="0" 
+                          Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
                           VerticalAlignment="Bottom"
                           IsItemClickEnabled="True" 
                           SelectionMode="None" 
                           HorizontalAlignment="Center"
                           Visibility="Collapsed">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <ItemsWrapGrid Orientation="Horizontal"></ItemsWrapGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
 
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <ItemsWrapGrid Orientation="Horizontal"/>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
 
-                <FlyoutBase.AttachedFlyout>
-                    <!--AutomationProperties.ItemType="CheckBox"-->
-                    <Flyout x:Name="HolidayFlyout"
+                    <FlyoutBase.AttachedFlyout>
+                        <!--AutomationProperties.ItemType="CheckBox"-->
+                        <Flyout x:Name="HolidayFlyout"
                             Opened="HolidayFlyout_Opened"
                                 AutomationProperties.ItemType="CheckBox" 
                                 Placement="Full" 
                                 FlyoutPresenterStyle="{StaticResource ResourceKey=WPNoteFlyoutStyle}">
-                        <StackPanel HorizontalAlignment="Stretch"
+                            <StackPanel HorizontalAlignment="Stretch"
                                     VerticalAlignment="Stretch"
                                     Orientation="Vertical">
 
-                            <TextBlock x:Uid="typesTopString" 
+                                <TextBlock x:Uid="typesTopString" 
                                         Foreground="#ff303030"
                                         RequestedTheme="Light"
                                         FontFamily="Minion Pro"
@@ -287,7 +322,7 @@
                                         MinHeight="30"
                                         VerticalAlignment="Top" 
                                         HorizontalAlignment="Stretch" />
-                            <ListView x:Name="listOfHolidays" 
+                                <ListView x:Name="listOfHolidays" 
                                         Padding="15,10"
                                         Background="Transparent"
                                         SelectionMode="None" 
@@ -296,61 +331,34 @@
                                        ScrollViewer.IsVerticalRailEnabled="True"
                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                                       >
-                            </ListView>
-                            
-                            <StackPanel HorizontalAlignment="Center" 
+                                </ListView>
+
+                                <StackPanel HorizontalAlignment="Center" 
                                       VerticalAlignment="Bottom"
                                       Height="auto" 
                                       Orientation="Horizontal">
 
-                                <Button x:Uid="btnHolidays" x:Name="btnHolidays" 
+                                    <Button x:Uid="btnHolidays" x:Name="btnHolidays" 
                         				Click="btnHolidays_Click" 
                         				Margin="0,10,10,10" 
                         				HorizontalAlignment="Center" 
                         				Height="50" Width="120" 
                         				FontSize="20"
                         				Style="{StaticResource MainButton}"/>
-                                <Button x:Uid="btnholCancel" x:Name="btnholCancel" 
+                                    <Button x:Uid="btnholCancel" x:Name="btnholCancel" 
                         				Margin="10,10,0,10" HorizontalAlignment="Center" 
                         				Height="50" Width="120" 
                         				FontSize="20" 
                         				Click="btnholCancel_Click"
                         				Style="{StaticResource MainButton}"/>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Flyout>
-                </FlyoutBase.AttachedFlyout>
+                        </Flyout>
+                    </FlyoutBase.AttachedFlyout>
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Height" Value="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
-                        <Setter Property="Width" Value="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="FontSize" Value="20"/>
-                        <Setter Property="FontFamily" Value="Minion Pro"/>
-                        <Setter Property="Padding" Value="2"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="Margin" Value="3, 0"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                        <Setter Property="VerticalContentAlignment" Value="Top"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
 
-                <ListViewItem x:Name="All" x:Uid="AllHol" Tag="All" Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
-                <ListViewItem x:Name="M" x:Uid="Mine" Tag="Per" Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
-                <ListViewItem Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"/>
-                <ListViewItem Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}" />
-                <ListViewItem Tapped="holTypes_Tapped" FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}" />
-                <ListViewItem HorizontalContentAlignment="Center"
-                              VerticalContentAlignment="Center"
-                              Height="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
-                              Width="{Binding Source={StaticResource SizeResource}, Path=ItemSizeCorrector}"
-                              Content="..."
-                              FontSize="{Binding Source={StaticResource SizeResource}, Path=ItemFontSizeCorrector}"
-                              Tapped="GridViewItem_Tapped" />
-            </ListView>
+                </ListView>
+            </ScrollViewer>
         </StackPanel>
 
         <StackPanel Name="noteGridMain" 
@@ -416,28 +424,26 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ListViewItem 
-                		Style="{StaticResource NoteStyle}" 
-                		Tag="{Binding HolidayTag}"
-                		Background="{Binding Background}"
-                        MinHeight="{Binding Source={StaticResource SizeResource}, Path = ItemSizeCorrector}"
-                        Margin="0"
-                        Width="{Binding Source={StaticResource SizeResource}, Path = NoteWidth}"
-                        HorizontalContentAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                		Tapped="note_Tapped">
-                            <TextBlock                                             
-                			Text="{Binding HolidayName}"
-                			TextAlignment="Left"
-                            Width="auto"
-                            HorizontalAlignment="Stretch"
-                            FontSize="20"
-                			Padding="10, 15"
-                			TextWrapping="Wrap" />
+                        <ListViewItem   Style="{StaticResource NoteStyle}" 
+                		                Tag="{Binding HolidayTag}"
+                		                Background="{Binding Background}"
+                                        MinHeight="{Binding Source={StaticResource SizeResource}, Path = ItemSizeCorrector}"
+                                        Margin="0"
+                                        Width="{Binding Source={StaticResource SizeResource}, Path = NoteWidth}"
+                                        HorizontalContentAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                		                Tapped="note_Tapped">
+                            <TextBlock  Text="{Binding HolidayName}"
+                			            TextAlignment="Left"
+                                        Width="auto"
+                                        HorizontalAlignment="Stretch"
+                                        FontSize="20"
+                			            Padding="10, 15"
+                			            TextWrapping="Wrap" />
                         </ListViewItem>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
+
                 <FlyoutBase.AttachedFlyout>
                     <Flyout x:Name="AddNoteFlyout" 
                                 Opened="AddNoteFlyout_Opened" 

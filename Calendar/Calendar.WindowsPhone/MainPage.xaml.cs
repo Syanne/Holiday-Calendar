@@ -40,7 +40,7 @@ namespace Calendar
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            PageLoadedController(sender);
+            PageLoadedController();
         }
 
         /// <summary>
@@ -326,7 +326,15 @@ namespace Calendar
         /// <param name="e">Clicked</param>
         private void btnHolidays_Click(object sender, RoutedEventArgs e)
         {
-            SaveHolidayTypes();
+            try
+            {
+
+                SaveHolidayTypes();
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
 
         /// <summary>
@@ -341,23 +349,9 @@ namespace Calendar
             listOfHolidays.ItemsSource = calBase.HolidayNameCollection;
             foreach (CheckBox ic in listOfHolidays.Items.Where(i => i is CheckBox))
             {
-                ic.Click += cb_Click;
                 ic.Style = (Style)this.Resources["CbHolidayStyleWP"];
             }
         }
-
-        /// <summary>
-        /// check the number of selected themes for holiday list
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        void cb_Click(object sender, RoutedEventArgs e)
-        {
-            int counter = listOfHolidays.Items.Count(i => (i as CheckBox).IsChecked == true);
-            if (counter > 3) btnHolidays.IsEnabled = false;
-            else btnHolidays.IsEnabled = true;
-        }
-
 
         private void btnholCancel_Click(object sender, RoutedEventArgs e)
         {

@@ -9,16 +9,22 @@
                 <ResourceDictionary x:Key="Default">
                     <SolidColorBrush x:Key="ComboBoxItemPointerOverBackgroundThemeBrush" Color="#99303030" />
                     <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush" Color="#FF303030" />
+                    
                     <SolidColorBrush x:Key="ListViewItemPointerOverBackgroundThemeBrush" Color="#4DFFFFFF" />
                     <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="#ff303030" />
                     <SolidColorBrush x:Key="ListViewItemSelectedForegroundThemeBrush" Color="#ff303030" />
                     <SolidColorBrush x:Key="ListViewItemSelectedPointerOverBackgroundThemeBrush" Color="#ff303030" />
-                    <SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="#FF5C5C5C" />
-                    <SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="White" />
+                    
                     <SolidColorBrush x:Key="GridViewItemPointerOverBackgroundThemeBrush" Color="#4DFFFFFF" />
                     <SolidColorBrush x:Key="GridViewItemSelectedBackgroundThemeBrush" Color="#ff303030" />
                     <SolidColorBrush x:Key="GridViewItemSelectedForegroundThemeBrush" Color="#ff303030" />
                     <SolidColorBrush x:Key="GridViewItemSelectedPointerOverBackgroundThemeBrush" Color="#ff303030" />
+
+                    <SolidColorBrush x:Key="ButtonForegroundThemeBrush" Color="#FFFFFFFF" />
+                    <SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="#FF5C5C5C" />
+                    <SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="White" />
+                    <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush" Color="Transparent" />
+                    <SolidColorBrush x:Key="ButtonPressedForegroundThemeBrush" Color="Transparent" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>

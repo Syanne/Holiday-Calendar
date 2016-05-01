@@ -23,12 +23,6 @@ namespace Calendar
     /// 
     public sealed partial class MainPage : Page
     {
-        /// <summary>
-        /// true - Day Selected,
-        /// false - Holiday's selection changed
-        /// </summary>
-        bool HolidaysFlag = true;
-
         #if !WINDOWS_PHONE_APP
         WindowsStandardClass sizeCorrection;
         #endif
@@ -61,7 +55,7 @@ namespace Calendar
 
         void PagePreLoader()
         {
-            SelectedHolidayType = All;
+            SelectedHolidayType = (HolidayList.Items[0] as ListViewItem);
 
             fDay = 5;
             startText = new StringBuilder(50);
@@ -97,7 +91,7 @@ namespace Calendar
 #endif
             
             //fill list of holidays
-            if (SelectedHolidayType == All)
+            if (SelectedHolidayType == (HolidayList.Items[0] as ListViewItem))
                 noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
                     hi.Day == calBase.SelectedDate.Day || hi.Day == 0).
                     Distinct(new HolidayNameComparer());
@@ -212,7 +206,7 @@ namespace Calendar
         {
             //collection of HolidayItems
             IEnumerable<HolidayItem> holItemSource;
-            if (SelectedHolidayType.Content.ToString() == All.Content.ToString())
+            if (SelectedHolidayType == (HolidayList.Items[0] as ListViewItem))
                 holItemSource = calBase.HolidayItemCollection;
             else holItemSource = calBase.HolidayItemCollection.Where(
                 h => h.HolidayTag.ToLower() == SelectedHolidayType.Content.ToString().ToLower());
@@ -236,13 +230,14 @@ namespace Calendar
                 int x = calBase.Start - 1 + DateTime.Now.Day;
                 (calGrid.Items[x] as GridViewItem).Style = (Style)this.Resources["TodayStyle"];
 
+                if(gviPrev != null)
                 if (gviPrev.Content.ToString() == (calGrid.Items[x] as GridViewItem).Content.ToString())
                 {
                     (calGrid.Items[x] as GridViewItem).BorderThickness = new Thickness(3);
                     (calGrid.Items[x] as GridViewItem).BorderBrush = (calGrid.Items[x] as GridViewItem).Foreground;
                 }
             }
-
+            if(gviPrev != null)
             gviPrev.BorderBrush = gviPrev.Foreground;
         }
 
