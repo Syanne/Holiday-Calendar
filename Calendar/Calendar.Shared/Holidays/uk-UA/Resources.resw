@@ -154,7 +154,7 @@
     <value>назва події:</value>
   </data>
   <data name="typesTopString.Text" xml:space="preserve">
-    <value>оберіть не більше 3 видів свят:</value>
+    <value>категорії:</value>
   </data>
   <data name="Wd1.Content" xml:space="preserve">
     <value>пн</value>

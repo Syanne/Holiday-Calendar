@@ -362,8 +362,9 @@
     <ReservedNames>
       <ReservedName>Праздничный календарь</ReservedName>
       <ReservedName>Святковий Календар</ReservedName>
-      <ReservedName>Holiday Calendar</ReservedName>
       <ReservedName>Calendar &amp; Holidays</ReservedName>
+      <ReservedName>Календарь + Праздники</ReservedName>
+      <ReservedName>Календар + Свята</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
   <AccountPackageIdentityNames>
@@ -375,17 +376,17 @@
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>1.2.0.36</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>1.2.0.42</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>1.2.0.36</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>1.2.0.42</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>1.2.0.36</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>1.2.0.42</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>
