@@ -6,36 +6,18 @@
       <day name="New Year's Day" date="1" />
       <computational name="Birthday of Martin Luther King, Jr." dow="0" now="2" />     
     </holiday>
-    
-    <holiday desc="United Kingdom" name="uk">
-      <day name="New Year's Day" date="1" />
-      <day name="Plough Monday (the start of the new farming year)" date="12" />
-    </holiday>
-    
-    <holiday desc="Australia" name="au">
-      <day name="New Year's Day" date="1" />
-      <day name="Australia Day" date="26" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <day name="New Year's Day" date="1" />
     </holiday >
-
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
       <day name="Epiphany" date="6" />
       <day name="Orthodox Christmas" date="7" />
-    </holiday >
-
-    <holiday desc="Christian holidays (UK)" name="ukc">
-      <day name="Twelfth Night" date="5" />
-      <day name="Epiphany" date="6" />
     </holiday >
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Holocaust Remembrance Day" date="27" />
     </holiday >    
-   
   </month>
 
   <!--..........................2................................-->
@@ -46,25 +28,13 @@
       <computational name="Washington's Birthday" dow="0" now="2" />
       <day name="Groundhog Day" date="2" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <computational name="Royal Hobart Regatta" dow="0" now="1" />
-    </holiday >
-    
     <holiday desc="Canada" name="ca">
       <computational name="Islander Day" dow="0" now="2" />
       <computational name="Family Day" dow="0" now="2" />
       <computational name="Louis Riel Day" dow="0" now="2" />
     </holiday >
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
-    </holiday >
-    
-    <holiday desc="Christian holidays (UK)" name="ukc">
-      <day name="Candlemas Day" date="2" />
+    <holiday desc="Christian holidays" name="ch">
     </holiday >
 
     <!--.............Other.................-->
@@ -79,36 +49,19 @@
   </month>
 
   <!--..........................3................................-->
-
   <month id="3">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
       <computational name="Washington's Birthday" dow="0" now="2" />
       <day name="International Women's Day" date="8" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <day name="St Piran's Day (Cornwall)" date="5" />
-      <day name="St. Patrick's Day" date="17" />
-      <computational name="Commonwealth Day" dow="0" now="1" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <computational name="Labour Day (Western Australia)" dow="0" now="0" />
-      <computational name="Canberra Day" dow="0" now="1" />
-      <computational name="Labour Day (Victoria)" dow="0" now="1" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <day name="St. Patrick's Day" date="17" />
     </holiday >
 
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
       <day name="St. Patrick's Day" date="17" />
-    </holiday >
-
-    <holiday desc="Christian holidays (UK)" name="ukc">
     </holiday >
     <!--.............Other.................-->
     <holiday desc="International" name="in">
@@ -128,7 +81,6 @@
       <day name="International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade" date="25" />
       <day name="International Day of Solidarity with Detained and Missing Staff Members" date="25" />
     </holiday >
-
   </month>
 
   <!--..........................4................................-->
@@ -142,24 +94,14 @@
       <computational name="Arbor Day" dow="4" now="6" />
     </holiday>
 
-    <holiday desc="United Kingdom" name="uk">      
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <day name="Anzac Day" date="25" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <day name="St. George's Day" date="23" />
     </holiday >
-
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
-    </holiday >
-    
+    <holiday desc="Christian holidays" name="ch">
+    </holiday >    
     <holiday desc="Christian holidays (UK)" name="ukc">
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="April Fools' Day" date="1" />
@@ -177,11 +119,9 @@
       <day name="Day of Remembrance for all Victims of Chemical Warfare" date="29" />
       <day name="International Jazz Day" date="30" />
     </holiday >
-
   </month>
 
   <!--..........................5................................-->
-
 
   <month id="5">
     <!--.............National..............-->
@@ -190,23 +130,10 @@
       <day name="Cinco de Mayo" date="5" />
       <computational name="Mother's Day" dow="6" now="1" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <computational name="Early May" dow="0" now="0" />
-      <computational name="Spring Bank Holiday" dow="0" now="6" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-    </holiday >
-
     <holiday desc="Canada" name="ca">
     </holiday >
-
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
-    </holiday >
-
-    <holiday desc="Christian holidays (UK)" name="ukc">
+    <holiday desc="Christian holidays" name="ch">
     </holiday >
     <!--.............Other.................-->
     <holiday desc="International" name="in">
@@ -222,7 +149,6 @@
       <day name="International Day of UN Peacekeepers" date="29" />
       <day name="World No-Tobacco Day" date="31" />
     </holiday >
-
   </month>
 
   <!--..........................6................................-->
@@ -236,17 +162,6 @@
       <computational name="Children's Day" dow="6" now="0" />
       <computational name="Father's Day" dow="6" now="2" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <computational name="Queen's Official Birthday" dow="5" now="2" />
-      <day name="Midsummer’s Day" date="24" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <computational name="Western Australia Day" dow="0" now="0" />
-      <computational name="Queen's Official Birthday" dow="0" now="1" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <day name="National Aboriginal Day " date="21" />
       <day name="Féte Nationale" date="24" />
@@ -254,9 +169,8 @@
     </holiday >
 
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="Global Day of Parents" date="1" />
@@ -288,23 +202,13 @@
     <holiday desc="United States" name="us">
       <day name="Independence Day" date="4" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <day name="Battle of the Boyne (Orangeman's Day)" date="12" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <day name="Canada Day" date="1" />
       <day name="Nunavut Day" date="9" />
     </holiday >
-
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Cooperatives" date="4" />
@@ -315,35 +219,21 @@
       <day name="International Day of Friendship" date="30" />
       <day name="World Day against Trafficking in Persons" date="30" />
     </holiday >
-
   </month>
 
   <!--..........................8................................-->
-
-
   <month id="8">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
       <day name="Women's Equality Day" date="26" />
       <computational name="Washington's Birthday" dow="0" now="2" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <computational name="Late Summer Bank Holiday" dow="0" now="6" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <computational name="Picnic Day" dow="0" now="0" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <computational name="Civic Holiday" dow="0" now="0" />
     </holiday >
-
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of the World's Indigenous Peoples" date="9" />
@@ -353,11 +243,9 @@
       <day name="International Day against Nuclear Tests" date="29" />
       <day name="International Day of the Victims of Enforced Disappearances" date="30" />
     </holiday >
-
   </month>
 
   <!--..........................9................................-->
-
   <month id="9">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
@@ -365,22 +253,12 @@
       <day name="Patriot Day" date="11" />
       <day name="Constitution/Citizenship Day" date="17" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <day name="The Abbots Bromley Horn Dance" date="10" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <computational name="Family and Community Day" dow="0" now="6" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <computational name="Labour Day" dow="0" now="0" />
     </holiday >
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Charity" date="5" />
@@ -397,7 +275,6 @@
   </month>
 
   <!--..........................10...............................-->
-
   <month id="10">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
@@ -405,23 +282,13 @@
       <day name="GeCalendarResourcesManager-American Day" date="6" />
       <day name="Leif Erikson Day" date="9" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <day name="Halloween" date="31" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <computational name="Labour Day" dow="0" now="0" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <computational name="Thanksgiving" dow="0" now="1" />
     </holiday >
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
       <day name="Halloween" date="31" />
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Older Persons" date="1" />
@@ -439,12 +306,9 @@
       <day name="World Day for Audiovisual Heritage" date="27" />
       <day name="World Cities Day" date="31" />
     </holiday >
-
   </month>
 
   <!--..........................11...............................-->
-
-
   <month id="11">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
@@ -452,24 +316,12 @@
       <computational name="Thanksgiving Day" dow="1" now="6" />
       <computational name="Black Friday" dow="2" now="6" />      
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <day name="Bonfire Night" date="5" />
-      <day name="St. Andrew's Day (Scotland)" date="30" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <computational name="Recreation Day" dow="0" now="0" />
-      <computational name="Melbourne Cup (Victoria)" dow="1" now="0" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <day name="Remembrance Day" date="11" />
     </holiday >
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day to End Impunity for Crimes against Journalists" date="2" />
@@ -486,11 +338,9 @@
       <day name="International Day for the Elimination of Violence against Women" date="25" />
       <day name="International Day of Solidarity with the Palestinian People" date="29" />
     </holiday >
-
   </month>
 
   <!--.........................12................................-->
-
   <month id="12">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
@@ -499,33 +349,16 @@
       <day name="Kwanzaa" date="26" />
       <day name="New Year's Eve" date="31" />
     </holiday>
-
-    <holiday desc="United Kingdom" name="uk">
-      <day name="Christmas Day (British)" date="25" />
-      <day name="Boxing Day" date="26" />
-      <day name="Substitute Day" date="28" />
-    </holiday>
-
-    <holiday desc="Australia" name="au">
-      <day name="Christmas Eve" date="25" />
-      <day name="Christmas Day" date="25" />
-      <day name="Boxing Day" date="26" />
-      <day name="Proclamation Day" date="26" />
-      <day name="New Year's Eve" date="31" />
-    </holiday >
-
     <holiday desc="Canada" name="ca">
       <day name="Christmas Day" date="25" />
       <day name="Boxing Day" date="26" />
     </holiday >
-
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian holidays" name="ch">
       <day name="Immaculate Conception of the Virgin Mary" date="8" />
       <day name="Christmas Eve" date="24" />
       <day name="Christmas" date="25" />
     </holiday >
-
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="World AIDS Day" date="1" />
@@ -540,7 +373,5 @@
       <day name="International Migrants Day" date="18" />
       <day name="International Human Solidarity Day " date="20" />
     </holiday >
-
-  </month>
-  
+  </month>  
 </root>

@@ -51,15 +51,23 @@ namespace Calendar
         /// <summary>
         /// first day of week
         /// </summary>
-        int fDay { get; set; }
+        int Weekend { get; set; }
 
         void PagePreLoader()
         {
             SelectedHolidayType = (HolidayList.Items[0] as ListViewItem);
 
-            fDay = 5;
+            try
+            {
+                string theDay = ResourceLoader.GetForCurrentView("Resources").GetString("Weekend");
+                Weekend = Convert.ToInt32(theDay);
+            }
+            catch
+            {
+                Weekend = 5;
+            }
             startText = new StringBuilder(50);
-            calBase = new HolidayCalendarBase(fDay);
+            calBase = new HolidayCalendarBase(Weekend);
 
 
             FillCalendar();
@@ -85,7 +93,7 @@ namespace Calendar
         private void UpdateNoteList()
         {
 #if WINDOWS_PHONE_APP
-            ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("ddd d MMM yyyy").ToLower();
+            ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("d").ToLower();
 #else
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif

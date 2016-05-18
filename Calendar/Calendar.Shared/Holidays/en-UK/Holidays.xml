@@ -1,0 +1,848 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <month id="1">
+    <!--.............National..............-->    
+    <holiday desc="United Kingdom" name="uk">
+      <day name="New Year's Day" date="1" />
+      <day name="Plough Monday (the start of the new farming year)" date="12" />
+    </holiday>    
+    <holiday desc="Ireland" name="ie">
+      <day name="New Year's Day" date="1" />
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <day name="Twelfth Night" date="5" />
+      <day name="Epiphany" date="6" />
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="International Holocaust Remembrance Day" date="27" />
+    </holiday >    
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Polar Bear Plunge Day" />
+      <day date="2" name="Buffet Day" />
+      <day date="2" name="Run It up the Flagpole and See If Anyone Salutes It Day" />
+      <day date="2" name="Science Fiction Day" />
+      <day date="3" name="Fruitcake Toss Day" />
+      <day date="3" name="Festival of Sleep Day" />
+      <day date="4" name="Trivia Day" />
+      <day date="5" name="Bird Day" />
+      <day date="6" name="Bean Day" />
+      <day date="7" name="Old Rock Day" />
+      <day date="8" name="Earth's Rotation Day" />
+      <day date="9" name="Static Electricity Day" />
+      <day date="9" name="Word Nerd Day" />
+      <day date="10" name="Cut Your Energy Costs Day" />
+      <day date="11" name="Learn Your Name in Morse Code Day" />
+      <day date="11" name="Clean Off Your Desk Day" />
+      <day date="12" name="Marzipan Day" />
+      <day date="13" name="Make Your Dreams Come True Day" />
+      <day date="14" name="Organize Your Home Day" />
+      <day date="15" name="Strawberry Ice Cream Day" />
+      <day date="16" name="Nothing Day" />
+      <day date="16" name="Soup Swap Day" />
+      <day date="17" name="Benjamin Franklin Day" />
+      <day date="17" name="Kid Inventors' Day" />
+      <day date="17" name="Ditch New Year's Resolution Day" />
+      <day date="18" name="Thesaurus Day" />
+      <day date="19" name="Tin Can Day" />
+      <day date="19" name="Popcorn Day" />
+      <day date="20" name="Penguin Awareness Day" />
+      <day date="21" name="Squirrel Appreciation Day" />
+      <day date="22" name="Hot Sauce Day" />
+      <day date="23" name="Handwriting Day" />
+      <day date="24" name="Compliment Day" />
+      <day date="24" name="Macintosh Computer Day" />
+      <day date="25" name="Opposite Day" />
+      <day date="26" name="Spouse's Day" />
+      <day date="27" name="Chocolate Cake Day" />
+      <day date="27" name="e-Day" />
+      <day date="28" name="Data Privacy Day" />
+      <day date="29" name="Puzzle Day" />
+      <day date="30" name="Croissant Day" />
+      <day date="31" name="Backwards Day" />
+    </holiday >    
+   
+  </month>
+
+  <!--..........................2................................-->
+  <month id="2">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <day name="Valentine's Day" date="14" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <day name="Candlemas Day" date="2" />
+      <movable day="28" year="2017" name="Shrove Tuesday (Pancake Day)"/> 
+      <movable day="13" year="2018" name="Shrove Tuesday (Pancake Day)"/> 
+      <movable day="14" year="2018" name="Ash Wednesday"/> 
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="World Cancer Day" date="4" />
+      <day name="Day of Zero Tolerance for Female Genital Mutilation" date="6" />
+      <day name="World Radio Day" date="13" />
+      <day name="Valentine's Day" date="14" />
+      <day name="World Day of Social Justice" date="20" />
+      <day name="International Mother Language Day" date="21" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Work Naked Day" />
+      <day date="2" name="Day of the Crêpe" />
+      <day date="2" name="Play Your Ukulele Day" />
+      <day date="3" name="Carrot Cake Day" />
+      <day date="4" name="Thank Your Mailman Day" />
+      <day date="4" name="Create a Vacuum Day" />
+      <day date="4" name="Stuffed Mushroom Day" />
+      <day date="5" name="National Weatherperson's Day" />
+      <day date="5" name="Chocolate Fondue Day" />
+      <day date="6" name="Eat Ice Cream for Breakfast Day" />
+      <day date="6" name="Lame Duck Day" />
+      <day date="7" name="e-Day" />
+      <day date="7" name="Send a Card to a Friend Day" />
+      <day date="8" name="Laugh and Get Rich Day" />
+      <day date="8" name="Clean Out Your Computer Day" />
+      <day date="9" name="Toothache Day" />
+      <day date="9" name="Bagel and Lox Day" />
+      <day date="10" name="Umbrella Day" />
+      <day date="11" name="Make a Friend Day" />
+      <day date="11" name="Don't Cry Over Spilled Milk Day" />
+      <day date="12" name="Darwin Day" />
+      <day date="13" name="World Radio Day" />
+      <day date="14" name="Ferris Wheel Day" />
+      <day date="14" name="Library Lovers Day" />
+      <day date="15" name="Gumdrop Day" />
+      <day date="16" name="Do a Grouch a Favor Day" />
+      <day date="17" name="Random Act of Kindness Day" />
+      <day date="18" name="Battery Day" />
+      <day date="19" name="Chocolate Mint Day" />
+      <day date="22" name="Single Tasking Day" />
+      <day date="22" name="Be Humble Day" />
+      <day date="23" name="International Dog Biscuit Appreciation Day" />
+      <day date="24" name="Tortilla Chip Day" />
+      <day date="26" name="Pistachio Day" />
+      <day date="26" name="Tell a Fairy Tale Day" />
+      <day date="27" name="No Brainer Day" />
+      <day date="27" name="World Sword Swallowers Day" />
+      <day date="28" name="Public Sleeping Day" />
+    </holiday>
+  </month>
+ 
+  <!--..........................3................................-->
+  <month id="3">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <day name="St Piran's Day (Cornwall)" date="5" />
+      <day name="International Women’s Day" date="8" />
+      <day name="St. Patrick's Day" date="17" /> 
+      <movable day="26" year="2017" name="Mothering Sunday"/>
+      <movable day="11" year="2018" name="Mothering Sunday"/>
+      <movable day="27" year="2016" name="Daylight Saving Time"/>
+      <movable day="26" year="2017" name="Daylight Saving Time"/>
+      <movable day="25" year="2018" name="Daylight Saving Time"/>
+      <movable day="31" year="2019" name="Daylight Saving Time"/>
+      <computational name="Commonwealth Day" dow="0" now="1" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <day name="St. Patrick's Day" date="17" /> 
+      <day name="March equinox" date="20" /> 
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <movable day="1" year="2017" name="Ash Wednesday"/>  
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="Zero Discrimination Day" date="1" />
+      <day name="World Wildlife Day" date="3" />
+      <day name="International Women’s Day" date="8" />
+      <day name="International Day of Happiness" date="20" />
+      <day name="World Poetry Day" date="21" />
+      <day name="International Day of Norwuz" date="21" />
+      <day name="World Down Syndrome Day" date="21" />
+      <day name="International Day of Forests" date="21" />
+      <day name="International Day for the Elimination of Racial Discrimination" date="21" />
+      <day name="World Water Day" date="22" />
+      <day name="World Meteorology Day" date="23" />
+      <day name="World Tuberculosis Day" date="24" />
+      <day name="International Day for the Right to the Truth Concerning" date="24" />
+      <day name="International Day of Remembrance of the Victims of Slavery and the Transatlantic Slave Trade" date="25" />
+      <day name="International Day of Solidarity with Detained and Missing Staff Members" date="25" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="World Compliment Day" />
+      <day date="1" name="Plan a Solo Vacation Day" />
+      <day date="2" name="Old Stuff Day" />
+      <day date="3" name="I Want You to be Happy Day" />
+      <day date="4" name="March Forth and do Something Day" />
+      <day date="5" name="Learn What Your Name Means Day" />
+      <day date="5" name="Cinco de Marcho" />
+      <day date="6" name="Dentist’s Day" />
+      <day date="7" name="Alexander Graham Bell Day" />
+      <day date="8" name="Proofreading Day" />
+      <day date="10" name="Mario Day" />
+      <day date="11" name="Oatmeal Nut Waffle Day" />
+      <day date="12" name="Alfred Hitchcock Day" />
+      <day date="13" name="Jewel Day" />
+      <day date="14" name="Napping Day" />
+      <day date="14" name="Pi Day" />
+      <day date="15" name="Everything You Think is Wrong Day" />
+      <day date="15" name="Absolutely Incredible Kid Day" />
+      <day date="16" name="Every Thing You Do is Right Day" />
+      <day date="17" name="Submarine Day" />
+      <day date="18" name="Awkward Moments Day" />
+      <day date="19" name="Let's Laugh Day" />
+      <day date="20" name="World Storytelling Day" />
+      <day date="20" name="Proposal Day" />
+      <day date="21" name="Common Courtesy Day" />
+      <day date="22" name="International Goof Off Day" />
+      <day date="23" name="OK Day" />
+      <day date="23" name="Puppy Day" />
+      <day date="23" name="Near Miss Day" />
+      <day date="24" name="Chocolate Covered Raisins Day" />
+      <day date="25" name="Waffle Day" />
+      <day date="25" name="Tolkien Reading Day" />
+      <day date="26" name="Make Up Your Own Holiday Day" />
+      <day date="27" name="Spanish Paella Day" />
+      <day date="28" name="Something on a Stick Day" />
+      <day date="29" name="Smoke and Mirrors Day" />
+      <day date="30" name="Take a Walk in the Park Day" />
+      <day date="31" name="Bunsen Burner Day" />
+    </holiday>
+  </month>
+
+  <!--..........................4................................-->
+  <month id="4">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">   
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <movable day="14" year="2017" name="Mothering Sunday"/>
+    </holiday>
+    <!--.............Religious.............-->    
+    <holiday desc="Christian holidays" name="ch">
+      <movable day="16" year="2017" name="Easter"/>
+      <movable day="17" year="2017" name="Easter Monday"/>
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="April Fools' Day" date="1" />
+      <day name="World Autism Awareness Day" date="2" />
+      <day name="International Day for Mine Awareness and Assistance in Mine Action" date="2" />
+      <day name="International Day of Sport for Development and Peace" date="4" />
+      <day name="Day of Remembrance of the Victims of the Rwanda Genocide" date="7" />
+      <day name="World Health Day" date="7" />
+      <day name="International Day of Human Space Flight" date="12" />
+      <day name="International Mother Earth Day" date="22" />
+      <day name="World Book and Copyright Day" date="23" />
+      <day name="World Malaria Day" date="25" />
+      <day name="World Intellectual Property Day" date="26" />
+      <day name="World Day for Safety and Health at Work" date="28" />
+      <day name="Day of Remembrance for all Victims of Chemical Warfare" date="29" />
+      <day name="International Jazz Day" date="30" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Fun at Work Day" />
+      <day date="1" name="Walk to Work Day" />
+      <day date="3" name="World Party Day" />
+      <day date="4" name="Square Root Day" />
+      <day date="4" name="Tell a Lie Day" />
+      <day date="5" name="Read a Road Map Day" />
+      <day date="5" name="First Contact Day" />
+      <day date="6" name="Sorry Charlie Day" />
+      <day date="10" name="Siblings Day" />
+      <day date="11" name="Barbershop Quartet Day" />
+      <day date="12" name="Be Kind to Lawyers Day" />
+      <day date="12" name="Grilled Cheese Day" />
+      <day date="12" name="Yuri's Night" />
+      <day date="13" name="Scrabble Day" />
+      <day date="14" name="International Moment of Laughter Day" />
+      <day date="14" name="Reach as High as You Can Day" />
+      <day date="14" name="Look up the Sky Day" />
+      <day date="16" name="Eggs Benedict Day" />
+      <day date="16" name="Wear Pajamas to Work Day" />
+      <day date="16" name="Record Store Day" />
+      <day date="17" name="Haiku Poetry Day" />
+      <day date="18" name="Columnist Day" />
+      <day date="20" name="Look Alike Day" />
+      <day date="22" name="Jelly Bean Day" />
+      <day date="23" name="Take a Chance Day" />
+      <day date="23" name="Impossible Astronaut Day" />
+      <day date="23" name="Lover's Day" />
+      <day date="24" name="Poem in Your Pocket Day" />
+      <day date="25" name="DNA Day" />
+      <day date="26" name="Pretzel Day" />
+      <day date="26" name="Richter Scale Day" />
+      <day date="27" name="World Pinhole Photography Day" />
+      <day date="28" name="Take Our Daughters and Sons to Work Day" />
+      <day date="29" name="Zipper Day" />
+      <day date="30" name="Honesty Day" />
+    </holiday>
+  </month>
+
+  <!--..........................5................................-->
+  <month id="5">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <computational name="Early May" dow="0" now="0" />
+      <computational name="Spring Bank Holiday" dow="0" now="6" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <movable day="2" year="2016" name="May Day"/>
+      <movable day="1" year="2017" name="May Day"/>
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <movable day="22" year="2016" name="Trinity Sunday"/>
+      <movable day="31" year="2018" name="Corpus Christi"/>
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="May Day" date="1" />
+      <day name="World Press Freedom Day" date="3" />
+      <day name="Time of Remembrance and Reconciliation for Those Who Lost Their Lives during the Second World War" date="8" />
+      <day name="World Migratory Bird Day" date="9" />
+      <day name="International Day of Families" date="15" />
+      <day name="World Telecommunication and Information Society Day" date="17" />
+      <day name="World Day for Cultural Diversity for Dialogue and Developmen" date="21" />
+      <day name="International Day for Biological Diversity" date="22" />
+      <day name="International Day to End Obstetric Fistula" date="23" />
+      <day name="International Day of UN Peacekeepers" date="29" />
+      <day name="World No-Tobacco Day" date="31" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Batman Day" />
+      <day date="4" name="Star Wars Day" />
+      <day date="6" name="No Pants Day" />
+      <day date="6" name="Space Day" />
+      <day date="6" name="Military Spouse Appreciation Day" />
+      <day date="6" name="Beverage Day" />
+      <day date="7" name="Herb Day" />
+      <day date="7" name="Free Comic Book Day" />
+      <day date="9" name="Europe Day" />
+      <day date="9" name="Lost Sock Memorial Day" />
+      <day date="10" name="Clean Up Your Room Day" />
+      <day date="11" name="National School Nurse Day" />
+      <day date="11" name="Twilight Zone Day" />
+      <day date="12" name="Limerick Day" />
+      <day date="13" name="Frog Jumping Day" />
+      <day date="14" name="Astronomy Day" />
+      <day date="14" name="Dance Like a Chicken Day" />
+      <day date="15" name="Chocolate Chip Day" />
+      <day date="17" name="Pack Rat Day" />
+      <day date="18" name="No Dirty Dishes Day" />
+      <day date="19" name="May Ray Day" />
+      <day date="20" name="Pizza Party Day" />
+      <day date="20" name="Be a Millionaire Day" />
+      <day date="21" name="Talk Like Yoda Day" />
+      <day date="22" name="Buy a Musical Instrument Day" />
+      <day date="24" name="Scavenger Hunt Day" />
+      <day date="25" name="Sing Out Day" />
+      <day date="25" name="Towel Day" />
+      <day date="26" name="World Lindy Hop Day" />
+      <day date="27" name="Sun Screen Day" />
+      <day date="28" name="Hamburger Day" />
+      <day date="29" name="Put a Pillow on Your Fridge Day" />
+      <day date="30" name="My Bucket's Got a Hole Day" />
+      <day date="31" name="Macaroon Day" />
+    </holiday>
+  </month>
+
+  <!--..........................6................................-->
+  <month id="6">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <computational name="Queen's Official Birthday" dow="5" now="2" />
+      <day name="Midsummer’s Day" date="24" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <computational name="June Bank Holiday" dow="1" now="0" />
+      <day name="Summer solstice" date="21" />
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <day name="Nativity of St John the Baptist" date="24" />
+      <movable day="11" year="2017" name="Trinity Sunday"/>
+      <movable day="15" year="2017" name="Corpus Christi"/>
+      <movable day="3" year="2016" name="Sacred Heart"/>
+      <movable day="23" year="2017" name="Sacred Heart"/>
+      <movable day="8" year="2018" name="Sacred Heart"/>
+      <movable day="28" year="2019" name="Sacred Heart"/>
+      <movable day="19" year="2020" name="Sacred Heart"/>
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="Global Day of Parents" date="1" />
+      <day name="The Day of the Full Moon" date="1" />
+      <day name="International Day of Innocent Children Victims of Aggression" date="4" />
+      <day name="World Environment Day" date="5" />
+      <day name="Russian Language Day at the UN " date="6" />
+      <day name="World Oceans Day" date="8" />
+      <day name="World Day Against Child Labour" date="12" />
+      <day name="International Albinism Awareness Day" date="13" />
+      <day name="World Blood Donor Day" date="14" />
+      <day name="World Elder Abuse Awareness Day" date="15" />
+      <day name="World Day to Combat Desertification and Drought" date="17" />
+      <day name="World Refugee Day" date="20" />
+      <day name="International Day of Yoga" date="21" />
+      <day name="United Nations Public Service Day" date="23" />
+      <day name="International Widows' Day" date="23" />
+      <day name="Day of the Seafarer" date="25" />
+      <day name="International Day against Drug Abuse and Illicit Trafficking" date="26" />
+      <day name="United Nations International Day in Support of Victims of Torture" date="26" />
+      <day name="International Albinism Awareness Day" date="26" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Say Something Nice Day" />
+      <day date="2" name="Leave the Office Early Day" />
+      <day date="3" name="Repeat Day" />
+      <day date="3" name="National Doughnut Day" />
+      <day date="4" name="Hug Your Cat Day" />
+      <day date="6" name="Drive In Movie Day" />
+      <day date="7" name="VCR Day" />
+      <day date="8" name="Best Friends Day" />
+      <day date="9" name="Donald Duck Day" />
+      <day date="10" name="Iced Tea Day" />
+      <day date="11" name="Corn on the Cob Day" />
+      <day date="12" name="Red Rose Day" />
+      <day date="13" name="Sewing Machine Day" />
+      <day date="14" name="Bourbon Day" />
+      <day date="15" name="Nature Photography Day" />
+      <day date="16" name="Bloomsday" />
+      <day date="17" name="Eat your Vegetables Day" />
+      <day date="18" name="World Juggling Day" />
+      <day date="18" name="International Picnic Day" />
+      <day date="18" name="International Panic Day" />
+      <day date="19" name="Sauntering Day" />
+      <day date="21" name="Daylight Appreciation Day" />
+      <day date="22" name="Onion Ring Day" />
+      <day date="23" name="Typewriter Day" />
+      <day date="24" name="Take Your Dog to Work Day" />
+      <day date="24" name="Swim a Lap Day" />
+      <day date="25" name="Please Take my Children to Work Day" />
+      <day date="26" name="Chocolate Pudding Day" />
+      <day date="27" name="Helen Keller Day" />
+      <day date="28" name="Tau Day" />
+      <day date="29" name="Camera Day" />
+      <day date="30" name="Meteor Watch Day" />
+    </holiday>
+  </month>
+
+  <!--..........................7................................-->
+  <month id="7">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <day name="Battle of the Boyne (Orangeman's Day)" date="12" />
+      <computational name="The Trooping of the Colors" dow="6" now="1" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="International Day of Cooperatives" date="4" />
+      <day name="World Population Day" date="11" />
+      <day name="World Youth Skills Day" date="15" />
+      <day name="Nelson Mandela International Day" date="18" />
+      <day name="World Hepatitis Day" date="28" />
+      <day name="International Day of Friendship" date="30" />
+      <day name="World Day against Trafficking in Persons" date="30" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="International Joke Day" />
+      <day date="2" name="I Forgot Day" />
+      <day date="2" name="World UFO Day" />
+      <day date="3" name="Compliment Your Mirror Day" />
+      <day date="3" name="International Plastic Bag Free Day" />
+      <day date="4" name="Sidewalk Egg Frying Day" />
+      <day date="5" name="Workaholics Day" />
+      <day date="6" name="World Kissing Day" />
+      <day date="7" name="Tell the Truth Day" />
+      <day date="8" name="Video Games Day" />
+      <day date="8" name="Math 2.0 Day" />
+      <day date="9" name="Sugar Cookie Day" />
+      <day date="10" name="Teddy Bears' Picnic Day" />
+      <day date="10" name="Clerihew Day" />
+      <day date="11" name="Cheer Up the Lonely Day" />
+      <day date="12" name="Simplicity Day" />
+      <day date="13" name="Embrace Your Geekness Day" />
+      <day date="14" name="Pandemonium Day" />
+      <day date="15" name="Gummi Worm Day" />
+      <day date="16" name="Corn Fritters Day" />
+      <day date="17" name="Yellow Pig Day" />
+      <day date="18" name="Caviar Day" />
+      <day date="19" name="Stick Out Your Tongue Day" />
+      <day date="20" name="Space Exploration Day" />
+      <day date="21" name="Junk Food Day" />
+      <day date="22" name="Pi Approximation Day" />
+      <day date="23" name="Vanilla Ice Cream Day" />
+      <day date="24" name="Ice Cream Day" />
+      <day date="24" name="Cousins Day" />
+      <day date="25" name="Culinarians Day" />
+      <day date="26" name="Uncle and Aunt Day" />
+      <day date="27" name="Take your Pants for a Walk Day" />
+      <day date="28" name="Milk Chocolate Day" />
+      <day date="29" name="Lasagna Day" />
+      <day date="30" name="National Cheesecake Day" />
+      <day date="31" name="Uncommon Musical Instrument Day" />
+    </holiday>
+  </month>
+
+  <!--..........................8................................-->
+  <month id="8">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <computational name="Late Summer Bank Holiday" dow="0" now="6" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <computational name="August Bank Holiday" dow="1" now="0" />
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <day name="Assumption of Mary" date="15" />
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="International Day of the World's Indigenous Peoples" date="9" />
+      <day name="International Youth Day" date="12" />
+      <day name="World Humanitarian Day" date="19" />
+      <day name="International Day for the Remembrance of the Slave Trade and Its Abolition " date="23" />
+      <day name="International Day against Nuclear Tests" date="29" />
+      <day name="International Day of the Victims of Enforced Disappearances" date="30" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Girlfriend's Day" />
+      <day date="2" name="Ice Cream Sandwich Day" />
+      <day date="3" name="Watermelon Day" />
+      <day date="4" name="Single Working Women's Day" />
+      <day date="5" name="Work Like a Dog Day" />
+      <day date="5" name="International Beer Day" />
+      <day date="6" name="Fresh Breath Day" />
+      <day date="7" name="Sisters' Day" />
+      <day date="7" name="Lighthouse Day" />
+      <day date="8" name="Happiness Happens Day" />
+      <day date="9" name="Book Lovers Day" />
+      <day date="10" name="Lazy Day" />
+      <day date="11" name="Son and Daughter Day" />
+      <day date="12" name="Middle Child Day" />
+      <day date="13" name="Left-Handers Day" />
+      <day date="14" name="Creamsicle Day" />
+      <day date="15" name="Relaxation Day" />
+      <day date="16" name="Tell a Joke Day" />
+      <day date="17" name="Thrift Shop Day" />
+      <day date="18" name="Mail Order Catalog Day" />
+      <day date="19" name="World Photo Day" />
+      <day date="20" name="Chocolate Pecan Pie Day" />
+      <day date="21" name="Spumoni Day" />
+      <day date="22" name="Be An Angel Day" />
+      <day date="23" name="Ride Like the Wind Day" />
+      <day date="24" name="Pluto Demoted Day" />
+      <day date="25" name="Kiss and Make up Day" />
+      <day date="26" name="Dog Appreciation Day" />
+      <day date="27" name="The Duchess Who Wasn't Day" />
+      <day date="28" name="Bow Tie Day" />
+      <day date="29" name="According to Hoyle Day" />
+      <day date="30" name="Frankenstein Day" />
+      <day date="31" name="Eat Outside Day" />
+    </holiday>
+  </month>
+
+  <!--..........................9................................-->
+  <month id="9">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <day name="The Abbots Bromley Horn Dance" date="10" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <movable day="22" year="2016" name="Mothering Sunday"/>
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <day name="Nativity of Mary" date="8" />
+    </holiday >
+    
+      <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="International Day of Charity" date="5" />
+      <day name="International Literacy Day" date="8" />
+      <day name="United Nations Day for South-South Cooperation" date="12" />
+      <day name="International Day of Democracy" date="15" />
+      <day name="International Day for the Preservation of the Ozone Layer" date="16" />
+      <day name="International Day of Peace" date="21" />
+      <day name="World Maritime Day" date="25" />
+      <day name="International Day for the Total Elimination of Nuclear Weapons" date="26" />
+      <day name="World Tourism Day" date="27" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Emma Nutt Day" />
+      <day date="1" name="No Rhyme or Reason Day" />
+      <day date="2" name="Bison Ten Yell Day" />
+      <day date="3" name="Skyscraper Day" />
+      <day date="4" name="Eat an Extra Dessert Day" />
+      <day date="5" name="Be Late for Something Day" />
+      <day date="5" name="Cheese Pizza Day" />
+      <day date="6" name="Fight Procrastination Day" />
+      <day date="6" name="Read a Book Day" />
+      <day date="7" name="Salami Day" />
+      <day date="8" name="Pardon Day" />
+      <day date="9" name="Teddy Bear Day" />
+      <day date="10" name="Swap Ideas Day" />
+      <day date="11" name="Make Your Bed Day" />
+      <day date="12" name="Chocolate Milkshake Day" />
+      <day date="13" name="Positive Thinking Day" />
+      <day date="13" name="Roald Dahl Day" />
+      <day date="14" name="Hug Your Hound Day" />
+      <day date="15" name="Make a Hat Day" />
+      <day date="16" name="Collect Rocks Day" />
+      <day date="16" name="Guacamole Day" />
+      <day date="17" name="International Country Music Day" />
+      <day date="18" name="Rice Krispie Treat Day" />
+      <day date="19" name="National Gymnastics Day" />
+      <day date="19" name="International Talk Like a Pirate Day" />
+      <day date="20" name="Punch Day" />
+      <day date="21" name="Miniature Golf Day" />
+      <day date="22" name="Hobbit Day" />
+      <day date="23" name="Checkers Day" />
+      <day date="24" name="Punctuation Day" />
+      <day date="25" name="Comic Book Day" />
+      <day date="26" name="Love Note Day" />
+      <day date="27" name="Crush a Can Day" />
+      <day date="28" name="Ask a Stupid Question Day" />
+      <day date="28" name="Good Neighbor Day" />
+      <day date="29" name="International Coffee Day" />
+      <day date="30" name="Hot Mulled Cider Day" />   
+    </holiday>
+
+  </month>
+
+  <!--..........................10...............................-->
+  <month id="10">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <day name="Halloween" date="31" />
+      <movable day="30" year="2016" name="Daylight Saving Time"/>
+      <movable day="29" year="2017" name="Daylight Saving Time"/>
+      <movable day="28" year="2018" name="Daylight Saving Time"/>
+      <movable day="27" year="2019" name="Daylight Saving Time"/>
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <computational name="October Bank Holiday" dow="1" now="6" />
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <day name="All Souls' Day" date="31" />
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="International Day of Older Persons" date="1" />
+      <day name="International Day of Non-Violence" date="2" />
+      <day name="World Teachers’ Day" date="5" />
+      <day name="World Habitat Day" date="5" />
+      <day name="World Post Day" date="9" />
+      <day name="International Day of the Girl Child " date="11" />
+      <day name="International Day for Disaster Reduction" date="13" />
+      <day name="International Day of Rural Women " date="15" />
+      <day name="World Food Day " date="16" />
+      <day name="International Day for the Eradication of Poverty" date="17" />
+      <day name="United Nations Day" date="24" />
+      <day name="World Development Information Day" date="24" />
+      <day name="World Day for Audiovisual Heritage" date="27" />
+      <day name="World Cities Day" date="31" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Balloons Around the World Day" />
+      <day date="1" name="Card Making Day" />
+      <day date="2" name="Phileas Fogg Wager Day" />
+      <day date="4" name="Taco Day" />
+      <day date="5" name="Chic Spy Day" />
+      <day date="6" name="Mad Hatter Day" />
+      <day date="7" name="World Smile Day" />
+      <day date="7" name="Frappé Day" />
+      <day date="8" name="Astronomy Day" />
+      <day date="8" name="Pierogi Day" />
+      <day date="8" name="International Observe the Moon Night" />
+      <day date="9" name="Curious Events Day" />
+      <day date="10" name="Handbag Day" />
+      <day date="11" name="It's My Party Day" />
+      <day date="12" name="Old Farmers Day" />
+      <day date="13" name="International Skeptics Day" />
+      <day date="15" name="I Love Lucy Day" />
+      <day date="16" name="Dictionary Day" />
+      <day date="17" name="Wear Something Gaudy Day" />
+      <day date="17" name="National Clean Out Your Virtual Desktop Day" />
+      <day date="18" name="Ada Lovelace Day" />
+      <day date="18" name="Chocolate Cupcake Day" />
+      <day date="20" name="International Sloth Day" />
+      <day date="21" name="Count your Buttons Day" />
+      <day date="22" name="Caps Lock Day" />
+      <day date="23" name="Mole Day" />
+      <day date="24" name="Bologna Day" />
+      <day date="25" name="Sourest Day" />
+      <day date="26" name="Howl at the Moon Day" /> and Night
+      <day date="27" name="American Beer Day" />
+      <day date="28" name="International Animation Day" />
+      <day date="29" name="Internet Day" />
+      <day date="30" name="Candy Corn Day" />
+      <day date="31" name="Magic Day" />
+    </holiday>
+
+  </month>
+
+  <!--..........................11...............................-->
+  <month id="11">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <day name="Guy Fawkes Night (Bonfire Night)" date="5" />
+      <day name="Remembrance Day / Poppy Day" date="11" />
+      <day name="St. Andrew's Day (Scotland)" date="30" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <movable day="20" year="2016" name="Feast of Christ the King"/>
+      <movable day="26" year="2017" name="Feast of Christ the King"/>
+      <movable day="25" year="2018" name="Feast of Christ the King"/>
+      <movable day="27" year="2017" name="Advent Sunday"/>
+    </holiday >
+
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="International Day to End Impunity for Crimes against Journalists" date="2" />
+      <day name="International Day for Preventing the Exploitation of the Environment in War and Armed Conflict" date="6" />
+      <day name="World Science Day for Peace and Development" date="10" />
+      <day name="World Diabetes Day" date="14" />
+      <day name="World Day of Remembrance for Road Traffic Victims" date="15" />
+      <day name="International Day for Tolerance" date="16" />
+      <day name="World Toilet Day" date="19" />
+      <day name="World Philosophy Day" date="19" />
+      <day name="Africa Industrialization Day " date="20" />
+      <day name="Universal Children’s Day" date="20" />
+      <day name="World Television Day" date="21" />
+      <day name="International Day for the Elimination of Violence against Women" date="25" />
+      <day name="International Day of Solidarity with the Palestinian People" date="29" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Author's Day" />
+      <day date="2" name="Deviled Eggs Day" />
+      <day date="3" name="Sandwich Day" />
+      <day date="3" name="Men Make Dinner Day" />
+      <day date="4" name="Common Sense Day" />
+      <day date="6" name="Zero Tasking Day" />
+      <day date="6" name="Saxophone Day" />
+      <day date="7" name="Bittersweet Chocolate with Almonds Day" />
+      <day date="8" name="Tongue Twister Day" />
+      <day date="9" name="Chaos Never Dies Day" />
+      <day date="10" name="Forget Me Not Day" />
+      <day date="10" name="Vanilla Cupcake Day" />
+      <day date="11" name="Origami Day" />
+      <day date="12" name="Happy Hour Day" />
+      <day date="13" name="World Kindness Day" />
+      <day date="13" name="Sadie Hawkins Day" />
+      <day date="14" name="Spicy Guacamole Day" />
+      <day date="14" name="Pickle Day" />
+      <day date="15" name="Clean Out Your Refrigerator Day" />
+      <day date="16" name="Fast Food Day" />
+      <day date="17" name="Take A Hike Day" />
+      <day date="17" name="Use Less Stuff Day" />
+      <day date="18" name="Push Button Phone Day" />
+      <day date="20" name="National Absurdity Day" />
+      <day date="21" name="World Hello Day" />
+      <day date="22" name="Go For a Ride Day" />
+      <day date="23" name="Fibonacci Day" />
+      <day date="24" name="Celebrate Your Unique Talent Day" />
+      <day date="25" name="Shopping Reminder Day" />
+      <day date="25" name="Buy Nothing Day" />
+      <day date="26" name="Cake Day" />
+      <day date="28" name="Red Planet Day" />
+      <day date="29" name="Electronic Greeting Card Day" />
+      <day date="30" name="Computer Security Day" />
+    </holiday>
+  </month>
+
+  <!--.........................12................................-->
+  <month id="12">
+    <!--.............National..............-->
+    <holiday desc="United Kingdom" name="uk">
+      <day name="Boxing Day" date="26" />
+      <day name="Substitute Day" date="28" />
+      <day name="New Year’s Eve" date="31" />
+    </holiday>
+    <holiday desc="Ireland" name="ie">
+      <movable day="21" year="2016" name="Shortest Day of the Year"/>   
+      <day name="St. Stephen's Day" date="26" />
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian holidays" name="ch">
+      <movable day="3" year="2017" name="Advent Sunday"/>
+      <movable day="2" year="2018" name="Advent Sunday"/>
+      <movable day="11" year="2016" name="Gaudete Sunday"/>
+      <movable day="17" year="2017" name="Gaudete Sunday"/>
+      <movable day="16" year="2018" name="Gaudete Sunday"/>
+      <movable day="15" year="2019" name="Gaudete Sunday"/>
+      <day name="Immaculate Conception of the Virgin Mary" date="8" />
+      <day name="Christmas Eve" date="24" />
+      <day name="Christmas" date="25" />
+    </holiday >
+    <!--.............Other.................-->
+    <holiday desc="International" name="in">
+      <day name="World AIDS Day" date="1" />
+      <day name="International Day for the Abolition of Slavery" date="2" />
+      <day name="International Day of Persons with Disabilities" date="3" />
+      <day name="International Volunteer Day for Economic and Social Development " date="5" />
+      <day name="World Soil Day" date="5" />
+      <day name="International Civil Aviation Day" date="7" />
+      <day name="International Anti-Corruption Day " date="9" />
+      <day name="Human Rights Day" date="10" />
+      <day name="International Mountain Day" date="11" />
+      <day name="International Migrants Day" date="18" />
+      <day name="International Human Solidarity Day " date="20" />
+    </holiday >
+    <holiday desc="Fun Holidays" name="fh">
+      <day date="1" name="Eat a Red Apple Day" />
+      <day date="2" name="Fritters Day" />
+      <day date="3" name="Make a Gift Day" />
+      <day date="4" name="Wear Brown Shoes Day" />
+      <day date="5" name="Day of the Ninja" />
+      <day date="6" name="Put on Your Own Shoes Day" />
+      <day date="6" name="Microwave Oven Day" />
+      <day date="7" name="Letter Writing Day" />
+      <day date="8" name="Pretend to Be a Time Traveler Day" />
+      <day date="9" name="Christmas Card Day" />
+      <day date="9" name="Official Lost and Found Day" />
+      <day date="10" name="Dewey Decimal System Day" />
+      <day date="10" name="Jane Addams Day" />
+      <day date="11" name="Noodle Ring Day" />
+      <day date="12" name="Gingerbread House Day" />
+      <day date="13" name="Christmas Jumper Day" />
+      <day date="14" name="Monkey Day" />
+      <day date="16" name="Chocolate Covered Anything Day" />
+      <day date="17" name="Wright Brothers Day" />
+      <day date="18" name="Free Shipping Day" />
+      <day date="19" name="Underdog Day" />
+      <day date="19" name="Ugly Sweater Day" />
+      <day date="20" name="Sangria Day" />
+      <day date="21" name="International Dalek Remembrance Day" />
+      <day date="22" name="Date Nut Bread Day" />
+      <day date="23" name="Festivus" />
+      <day date="24" name="Eggnog Day" />
+      <day date="25" name="Grav Mass Day" />
+      <day date="25" name="A'phabet Day" /> or No &quot;L&quot; Day" />
+      <day date="26" name="Thank You Note Day" />
+      <day date="27" name="No Interruptions Day" />
+      <day date="28" name="Card Playing Day" />
+      <day date="29" name="Pepper Pot Day" />
+      <day date="30" name="Bicarbonate of Soda Day" />
+      <day date="31" name="Make Up Your Mind Day" />
+  </holiday>
+  </month>
+  
+</root>

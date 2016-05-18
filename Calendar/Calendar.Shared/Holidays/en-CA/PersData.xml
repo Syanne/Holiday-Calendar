@@ -3,7 +3,6 @@
   <theme>
     <holiday desc="International" name="in"/>
     <holiday desc="Canada" name="ca"/>
-    <holiday desc="United Kingdom" name="uk"/>
   </theme>
   <holidays>
     <persDate name="" date="" month="" year=""/>

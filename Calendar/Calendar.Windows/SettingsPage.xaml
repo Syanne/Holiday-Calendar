@@ -40,6 +40,7 @@
                        VerticalAlignment="Center" 
                        TextAlignment="Center"
                        TextLineBounds="TrimToCapHeight"
+                       FontFamily="Minion Pro"
                        FontSize="36" FontWeight="SemiBold"
                        Padding="0,10,0,0"
                        Foreground="#FF303030"/>
@@ -274,6 +275,7 @@
                 Height="50" Width="140"
                 Margin="10, 20, 10, 50"
                 FontSize="22"
+                FontFamily="Minion Pro"
                 BorderThickness="0"
                 Background="#ff303030"
                 Foreground="#ffffffff"
@@ -311,6 +313,7 @@
             <TextBox Name="SlideNumberTb"
                  Margin="50, 20" Height="50"
                  FontSize="22"
+                 FontFamily="Minion Pro"
                  TextAlignment="Center" 
                  Background="Transparent"
                  Foreground="#ff303030"

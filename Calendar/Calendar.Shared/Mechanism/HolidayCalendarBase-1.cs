@@ -83,7 +83,7 @@ namespace Calendar.Mechanism
             for (int i = 0; i < HolidayNameCollection.Count; i++)
                 foreach (XElement p in persCollection)
                 {
-                    if (p.LastAttribute.Value.ToLower() == HolidayNameCollection[i].Tag.ToString())
+                    if (p.LastAttribute.Value.ToLower() == HolidayNameCollection[i].Tag.ToString().ToLower())
                     {
                         HolidayNameCollection[i].IsChecked = true; break;
                     }

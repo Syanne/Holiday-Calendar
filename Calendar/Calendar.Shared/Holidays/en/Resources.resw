@@ -118,100 +118,91 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="addNote.Content" xml:space="preserve">
-    <value>Save</value>
+    <value>save</value>
   </data>
-  <data name="AllHol.Content" xml:space="preserve">
-    <value>All</value>
+  <data name="AllHol" xml:space="preserve">
+    <value>all</value>
   </data>
   <data name="btnholCancel.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>cancel</value>
   </data>
   <data name="btnHolidays.Content" xml:space="preserve">
-    <value>Accept</value>
+    <value>save</value>
   </data>
   <data name="changeNote.Content" xml:space="preserve">
-    <value>Modify</value>
+    <value>edit</value>
   </data>
   <data name="delNote.Content" xml:space="preserve">
-    <value>Remove</value>
+    <value>remove</value>
   </data>
   <data name="everyYear.Content" xml:space="preserve">
-    <value>Every year</value>
+    <value>every year</value>
   </data>
   <data name="GoToDate.Text" xml:space="preserve">
-    <value>Jump to:</value>
-  </data>
-  <data name="Mine.Content" xml:space="preserve">
-    <value>My</value>
+    <value>go to</value>
   </data>
   <data name="once.Content" xml:space="preserve">
-    <value>Once</value>
+    <value>once</value>
   </data>
   <data name="PersonalNote" xml:space="preserve">
-    <value>Add Note</value>
+    <value>add note</value>
   </data>
   <data name="reclineButton.Content" xml:space="preserve">
-    <value>Cancel</value>
+    <value>cancel</value>
   </data>
   <data name="topString.Text" xml:space="preserve">
-    <value>New Event:</value>
+    <value>set text:</value>
   </data>
   <data name="typesTopString.Text" xml:space="preserve">
-    <value>Select up to 3 types:</value>
+    <value>types</value>
   </data>
   <data name="Wd1.Content" xml:space="preserve">
-    <value>Sut</value>
+    <value>sun</value>
   </data>
   <data name="Wd2.Content" xml:space="preserve">
-    <value>Mon</value>
+    <value>mon</value>
   </data>
   <data name="Wd3.Content" xml:space="preserve">
-    <value>Tue</value>
+    <value>tue</value>
   </data>
   <data name="Wd4.Content" xml:space="preserve">
-    <value>Wed</value>
+    <value>wed</value>
   </data>
   <data name="Wd5.Content" xml:space="preserve">
-    <value>Thu</value>
+    <value>thu</value>
   </data>
   <data name="Wd6.Content" xml:space="preserve">
-    <value>Fri</value>
+    <value>fri</value>
   </data>
   <data name="Wd7.Content" xml:space="preserve">
-    <value>Sat</value>
+    <value>sat</value>
   </data>
   <data name="assesBtn.Label" xml:space="preserve">
-    <value>Rate</value>
+    <value>rate</value>
   </data>
   <data name="daysText.Text" xml:space="preserve">
-    <value>days prior to</value>
-  </data>
-  <data name="textTile.Text" xml:space="preserve">
-    <value>How it is convenient when someone reminds you of the birthday of your best friend! But what if it does your best friend? ? Who will remind you?
-
-If you turn on the live tile, you will remember about each event marked on the calendar. It's much better to enjoy the party, instead of feeling guilty all day!</value>
+    <value>show in</value>
   </data>
   <data name="tileOff.Content" xml:space="preserve">
-    <value>Off</value>
+    <value>off</value>
   </data>
   <data name="tileOn.Content" xml:space="preserve">
-    <value>On</value>
+    <value>on</value>
   </data>
   <data name="toastOff.Content" xml:space="preserve">
-    <value>Off</value>
+    <value>off</value>
   </data>
   <data name="toastOn.Content" xml:space="preserve">
-    <value>On</value>
+    <value>on</value>
   </data>
   <data name="toastText1.Text" xml:space="preserve">
-    <value>Set the period (in hours) and number of days before the event, and then turn it on.
-Only for personal events.</value>
+    <value>set the period and amount of days before the notification</value>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Imagine the perfect assistant who remembers about each holiday and event. The one who always reminds you about a birthday party in advance, so you would have a time to buy a gift. Someone, who lives in any computer or phone.  Maybe, this one?</value>
+    <value>Calendar app with large set of holidays </value>
   </data>
   <data name="ApplicationDisplayName" xml:space="preserve">
-    <value>Holiday Calendar</value>
+    <value>Calendar + Holidays</value>
   </data>
   <data name="periodText.Text" xml:space="preserve">
     <value>period (hours)</value>
@@ -232,19 +223,19 @@ Only for personal events.</value>
     <value>5 days</value>
   </data>
   <data name="AddNoteText" xml:space="preserve">
-    <value>AddNote</value>
+    <value>add record</value>
   </data>
   <data name="chooseBtn.Content" xml:space="preserve">
-    <value>Accept</value>
+    <value>select</value>
   </data>
   <data name="preview.Text" xml:space="preserve">
-    <value>Click to preview:</value>
+    <value>preview: </value>
   </data>
   <data name="selectThemeTop.Text" xml:space="preserve">
-    <value>Select skin</value>
+    <value>color theme:</value>
   </data>
   <data name="selectThemeBtn.Label" xml:space="preserve">
-    <value>Skin</value>
+    <value>themes</value>
   </data>
   <data name="ApplicationShortName" xml:space="preserve">
     <value>Calendar</value>
@@ -256,97 +247,132 @@ Only for personal events.</value>
     <value>Holidays/en/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
-    <value>Language</value>
+    <value>language</value>
   </data>
   <data name="buy.Content" xml:space="preserve">
-    <value>I want it all!</value>
+    <value>i want it!</value>
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
-    <value>- notifications;
-- DatePicker button on the Main Page; 
-- color themes.</value>
+    <value>- enable toast notifications;
+- color themes;
+- turn off adverts.</value>
   </data>
   <data name="shopBtn.Content" xml:space="preserve">
-    <value>Buy</value>
+    <value>buy</value>
   </data>
   <data name="language.Text" xml:space="preserve">
-    <value>Language:</value>
+    <value>language</value>
   </data>
   <data name="settings.Title" xml:space="preserve">
-    <value>Settings</value>
+    <value>settings</value>
   </data>
   <data name="ThemeBtn.Content" xml:space="preserve">
-    <value>Select</value>
+    <value>select</value>
   </data>
   <data name="tileHeader.Text" xml:space="preserve">
-    <value>Live tile</value>
+    <value>live tile</value>
   </data>
   <data name="toastHeader.Text" xml:space="preserve">
-    <value>Reminder</value>
+    <value>toast</value>
   </data>
   <data name="buyMeTitle.Text" xml:space="preserve">
-    <value>If you purchase this app you will be able to:</value>
+    <value>in-app purchase allows you to</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
-    <value>To use this feature you have to purchase it</value>
+    <value>sorry, you have to purchase the application</value>
   </data>
   <data name="UnlicensedButton" xml:space="preserve">
-    <value>Purchase</value>
+    <value>purchase</value>
   </data>
   <data name="UnlicensedCancel" xml:space="preserve">
-    <value>Next time</value>
+    <value>next time</value>
   </data>
   <data name="dayOfWeek.Text" xml:space="preserve">
-    <value>The first day of the week: </value>
+    <value>the first day of the week</value>
   </data>
   <data name="monday.Content" xml:space="preserve">
-    <value>Monday</value>
+    <value>monday</value>
   </data>
   <data name="monday.Tag" xml:space="preserve">
-    <value>5</value>
+    <value>0</value>
   </data>
   <data name="sunday.Content" xml:space="preserve">
-    <value>Sunday</value>
+    <value>sunday</value>
   </data>
   <data name="sunday.Tag" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="Restart" xml:space="preserve">
-    <value>Please, restart the application</value>
+    <value>please, reload the application</value>
   </data>
   <data name="MineAsTag" xml:space="preserve">
-    <value>My</value>
+    <value>my</value>
   </data>
   <data name="Done.Content" xml:space="preserve">
-    <value>Close</value>
+    <value>close</value>
   </data>
   <data name="SettingsHeader.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>settings</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
     <value>Holidays/en/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
-    <value>- notifications;
-- DatePicker button on the Main Page; 
-- color themes.</value>
+    <value>- toast notifications;
+- color themes;
+- turn off adverts.</value>
   </data>
   <data name="BuyMeTitleMP" xml:space="preserve">
-    <value>If you purchase this app you will be able to:</value>
-  </data>
-  <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>\Holidays\en\Holidays.xml</value>
+    <value>in-app purchase allows you to</value>
   </data>
   <data name="GoToDateBtn.Content" xml:space="preserve">
-    <value>Jump</value>
+    <value>go to</value>
   </data>
   <data name="settingsAppButton.Label" xml:space="preserve">
-    <value>Settings</value>
+    <value>settings</value>
   </data>
   <data name="settingsTop.Text" xml:space="preserve">
-    <value>Settings</value>
+    <value>settings</value>
   </data>
   <data name="clickToPreview.Text" xml:space="preserve">
-    <value>Click on a screenshot to full-screen</value>
+    <value>click to enlarge</value>
+  </data>
+  <data name="holidayTag.Label" xml:space="preserve">
+    <value>holidays</value>
+  </data>
+  <data name="HolidayTitle.Text" xml:space="preserve">
+    <value>your holidays: </value>
+  </data>
+  <data name="rateBut.Label" xml:space="preserve">
+    <value>rate</value>
+  </data>
+  <data name="settingsBut.Label" xml:space="preserve">
+    <value>settings</value>
+  </data>
+  <data name="styleBut.Label" xml:space="preserve">
+    <value>style</value>
+  </data>
+  <data name="LocalHolidaysPath1" xml:space="preserve">
+    <value>Holidays\en\Holidays.xml</value>
+  </data>
+  <data name="msgBody" xml:space="preserve">
+    <value>Thank you for installing the application! Your comments and suggestions are very important. You can send them on syanne.red@gmail.com or leave it on the application page.
+
+If you want to turn off adverts you can buy the package of services. It also includes color themes and toast notifications.
+
+Sincerely,
+Syanne.</value>
+  </data>
+  <data name="msgTitle" xml:space="preserve">
+    <value>Dear user!</value>
+  </data>
+  <data name="messageBtn.Label" xml:space="preserve">
+    <value>version</value>
+  </data>
+  <data name="support.Label" xml:space="preserve">
+    <value>support</value>
+  </data>
+  <data name="Weekend" xml:space="preserve">
+    <value>0</value>
   </data>
 </root>

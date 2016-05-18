@@ -377,4 +377,7 @@ Syanne.</value>
   <data name="support.Label" xml:space="preserve">
     <value>поддержка</value>
   </data>
+  <data name="Weekend" xml:space="preserve">
+    <value>0</value>
+  </data>
 </root>

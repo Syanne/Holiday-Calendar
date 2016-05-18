@@ -27,16 +27,29 @@
     <Compile Include="$(MSBuildThisFileDirectory)UniversalRL.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\ru\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\ru\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\ru\Themes.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-AU\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-AU\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-AU\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-CA\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-CA\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-CA\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-UK\Funs.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-UK\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-UK\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-UK\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-US\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-US\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-US\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Holidays\en\Themes.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\ru\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en-AU\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en-CA\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en-UK\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en-US\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Themes\BloodDrops.xaml">
