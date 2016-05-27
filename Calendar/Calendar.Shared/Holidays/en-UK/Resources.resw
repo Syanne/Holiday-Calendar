@@ -270,7 +270,7 @@
     <value>select</value>
   </data>
   <data name="tileHeader.Text" xml:space="preserve">
-    <value>liva tile</value>
+    <value>live tile</value>
   </data>
   <data name="toastHeader.Text" xml:space="preserve">
     <value>toast</value>

@@ -22,17 +22,6 @@
                     <StackPanel Tag="{Binding Tag}"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                        <TextBox Text="{Binding Text}" 
-                                 Foreground="#ff303030"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 FontSize="26"
-                                 FontWeight="Bold"
-                                 Margin="0,20"
-                                 TextAlignment="Center"
-                                 Height="auto" Width="auto"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Top"/>
                         <Image Source="{Binding Image}"
                                Stretch="UniformToFill"
                                Margin="60, 0"

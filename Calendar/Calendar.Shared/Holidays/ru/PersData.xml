@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <PersonalData toast="2">
   <theme>
-    <holiday desc="мои" name="мои"/>
     <holiday desc="международные праздники" name="м"/>
     <holiday desc="международные праздники +" name="м+"/>
     <holiday desc="профессиональные праздники" name="про"/>

@@ -5,18 +5,40 @@
     <holiday desc="Australia" name="au">
       <day name="New Year's Day" date="1" />
       <day name="Australia Day" date="26" />
+      <movable day="28" year="2019" name="Australia Day"/>
+      <movable day="27" year="2020" name="Australia Day"/>
+      <movable day="28" year="2017" name="Chinese New Year"/>
+      <movable day="25" year="2020" name="Chinese New Year"/>
     </holiday >
-
+    <holiday desc="Tasmania" name="tas">
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
-      <day name="Epiphany" date="6" />
-      <day name="Orthodox Christmas" date="7" />
-    </holiday >
-
-    <holiday desc="Christian holidays (UK)" name="ukc">
+    <holiday desc="Christian" name="ch">
       <day name="Twelfth Night" date="5" />
       <day name="Epiphany" date="6" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="31" year="2018" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable day="21" year="2019" name="Tu Bishvat/Tu B'Shevat"/>
+    </holiday >
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Christmas Day" date="7" />
+      <day name="Orthodox New Year" date="14" />
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Holocaust Remembrance Day" date="27" />
@@ -25,21 +47,48 @@
   </month>
 
   <!--..........................2................................-->
-
   <month id="2">
     <!--.............National..............-->
 
     <holiday desc="Australia" name="au">
-      <computational name="Royal Hobart Regatta" dow="0" now="1" />
+      <movable day="16" year="2018" name="Chinese New Year"/>
+      <movable day="5" year="2019" name="Chinese New Year"/>
+      <day name="Valentine's Day" date="14" />
     </holiday >
-   
-    <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Tasmania" name="tas">
+      <movable day="13" year="2017" name="Royal Hobart Regatta"/>
+      <movable day="12" year="2018" name="Royal Hobart Regatta"/>
+      <movable day="11" year="2019" name="Royal Hobart Regatta"/>
+      <movable day="10" year="2020" name="Royal Hobart Regatta"/>
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+    </holiday>
+    <!--.............Religious.............-->    
+    <holiday desc="Christian" name="ch">
+      <movable day="28" year="2017" name="Shrove Tuesday (Pancake Day)"/>
+      <movable day="13" year="2018" name="Shrove Tuesday (Pancake Day)"/>
+      <movable day="25" year="2020" name="Shrove Tuesday (Pancake Day)"/>
+      <movable day="14" year="2018" name="Ash Wednesday"/>
+      <movable day="26" year="2020" name="Ash Wednesday"/>
     </holiday >
-    
-    <holiday desc="Christian holidays (UK)" name="ukc">
-      <day name="Candlemas Day" date="2" />
-    </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="11" year="2017" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable day="10" year="2020" name="Tu Bishvat/Tu B'Shevat"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
 
     <!--.............Other.................-->
     <holiday desc="International" name="in">
@@ -54,21 +103,52 @@
   </month>
 
   <!--..........................3................................-->
-
   <month id="3">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
-      <computational name="Labour Day (Western Australia)" dow="0" now="0" />
-      <computational name="Canberra Day" dow="0" now="1" />
-      <computational name="Labour Day (Victoria)" dow="0" now="1" />
-    </holiday >
-    <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
       <day name="St. Patrick's Day" date="17" />
+      <day name="Harmony Day" date="21" />
+      <computational name="National Close the Gap Day" dow="3" now="3" />
     </holiday >
-
-    <holiday desc="Christian holidays (UK)" name="ukc">
+    <holiday desc="Tasmania" name="tas">
+      <computational name="Labour Day" dow="1" now="1" />
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+      <computational name="Labour Day" dow="1" now="0" />
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+      <computational name="Labour Day" dow="1" now="1" />
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+      <computational name="Adelaide Cup" dow="1" now="1" />
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+      <computational name="Canberra Day" dow="1" now="1" />
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian" name="ch">
+      <movable day="5" year="2019" name="Shrove Tuesday (Pancake Day)"/>
+      <movable day="1" year="2017" name="Ash Wednesday"/>
+      <movable day="6" year="2019" name="Ash Wednesday"/>
+      <movable day="25" year="2018" name="Palm Sunday"/>
+      <movable day="29" year="2018" name="Maundy Thursday"/>
+      <movable day="31" year="2018" name="Holy Saturday"/>
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="12" year="2017" name="Purim"/>
+      <movable day="1" year="2018" name="Purim"/>
+      <movable day="21" year="2019" name="Purim"/>
+      <movable day="10" year="2020" name="Purim"/>
+      <movable day="31" year="2018" name="Passover (first day)"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="Zero Discrimination Day" date="1" />
@@ -91,20 +171,115 @@
   </month>
 
   <!--..........................4................................-->
-
   <month id="4">
     <!--.............National..............-->
 
     <holiday desc="Australia" name="au">
-      <day name="Anzac Day" date="25" />
+      <day name="ANZAC Day" date="25" />
     </holiday >
+    <holiday desc="Tasmania" name="tas">
+      <movable day="18" year="2017" name="Easter Tuesday"/>
+      <movable day="3" year="2018" name="Easter Tuesday"/>
+      <movable day="23" year="2019" name="Easter Tuesday"/>
+      <movable day="14" year="2020" name="Easter Tuesday"/>
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
-    </holiday >
     
-    <holiday desc="Christian holidays (UK)" name="ukc">
+    <holiday desc="Christian" name="ch">
+      <movable day="9" year="2017" name="Palm Sunday"/>
+      <movable day="14" year="2019" name="Palm Sunday"/>
+      <movable day="5" year="2020" name="Palm Sunday"/>
+      
+      <movable day="13" year="2017" name="Maundy Thursday"/>
+      <movable day="18" year="2019" name="Maundy Thursday"/>
+      <movable day="9" year="2020" name="Maundy Thursday"/>
+
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+
+      <movable day="16" year="2017" name="Easter Day"/>
+      <movable day="1" year="2018" name="Easter Day"/>
+      <movable day="21" year="2019" name="Easter Day"/>
+      <movable day="12" year="2020" name="Easter Day"/>
+
+      <movable day="17" year="2017" name="Easter Monday"/>
+      <movable day="2" year="2018" name="Easter Monday"/>
+      <movable day="22" year="2019" name="Easter Monday"/>
+      <movable day="13" year="2020" name="Easter Monday"/>
     </holiday >
 
+    <holiday desc="Jewish" name="jw">
+      <movable day="11" year="2017" name="Passover (first day)"/>
+      <movable day="20" year="2019" name="Passover (first day)"/>
+      <movable day="9" year="2020" name="Passover (first day)"/>
+
+      <movable day="18" year="2017" name="Last Day of Passover"/>
+      <movable day="7" year="2018" name="Last Day of Passover"/>
+      <movable day="27" year="2019" name="Last Day of Passover"/>
+      <movable day="16" year="2020" name="Last Day of Passover"/>
+
+      <movable day="24" year="2017" name="Yom HaShoah"/>
+      <movable day="11" year="2018" name="Yom HaShoah"/>
+      <movable day="21" year="2020" name="Yom HaShoah"/>
+
+      <movable day="19" year="2018" name="Yom Ha'atzmaut"/>
+      <movable day="29" year="2020" name="Yom Ha'atzmaut"/>
+    </holiday>
+
+    <holiday desc="Orthodox Church" name="ot">
+      <movable day="14" year="2017" name="Good Friday"/>
+      <movable day="6" year="2018" name="Good Friday"/>
+      <movable day="26" year="2019" name="Good Friday"/>
+      <movable day="17" year="2020" name="Good Friday"/>
+
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="7" year="2018" name="Holy Saturday"/>
+      <movable day="27" year="2019" name="Holy Saturday"/>
+      <movable day="18" year="2020" name="Holy Saturday"/>
+
+      <movable day="16" year="2017" name="Easter"/>
+      <movable day="8" year="2018" name="Easter"/>
+      <movable day="28" year="2019" name="Easter"/>
+      <movable day="19" year="2020" name="Easter"/>
+
+      <movable day="17" year="2017" name="Easter Monday"/>
+      <movable day="9" year="2018" name="Easter Monday"/>
+      <movable day="29" year="2019" name="Easter Monday"/>
+      <movable day="20" year="2020" name="Easter Monday"/>
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="April Fools' Day" date="1" />
@@ -126,18 +301,63 @@
   </month>
 
   <!--..........................5................................-->
-
-
   <month id="5">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
+      <day name="National Sorry Day" date="26" />
+      <computational name="Mother's Day" dow="0" now="1" />
     </holiday >
+    <holiday desc="Tasmania" name="tas">
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+      <movable day="1" year="2017" name="May Day"/>
+      <movable day="7" year="2018" name="May Day"/>
+      <movable day="6" year="2019" name="May Day"/>
+      <movable day="4" year="2020" name="May Day"/>
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+      <computational name="Labour Day" dow="1" now="0" />
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
-    </holiday >
+    <holiday desc="Christian" name="ch">
+      <movable day="25" year="2017" name="Ascension Day"/>
+      <movable day="10" year="2018" name="Ascension Day"/>
+      <movable day="30" year="2019" name="Ascension Day"/>
+      <movable day="21" year="2020" name="Ascension Day"/>
 
-    <holiday desc="Christian holidays (UK)" name="ukc">
+      <movable day="20" year="2018" name="Pentecost"/>
+      <movable day="31" year="2020" name="Pentecost"/>
+      <movable day="21" year="2018" name="Whit Monday"/>
+      <movable day="27" year="2018" name="Trinity Sunday"/>
+      <movable day="31" year="2018" name="Corpus Christi"/>
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="1" year="2019" name="Yom HaShoah"/>
+      <movable day="2" year="2017" name="Yom Ha'atzmaut"/>
+      <movable day="9" year="2019" name="Yom Ha'atzmaut"/>
+
+      <movable day="14" year="2017" name="Lag BaOmer"/>
+      <movable day="3" year="2018" name="Lag BaOmer"/>
+      <movable day="23" year="2019" name="Lag BaOmer"/>
+      <movable day="12" year="2020" name="Lag BaOmer"/>
+      
+      <movable day="31" year="2017" name="Shavuot"/>
+      <movable day="20" year="2018" name="Shavuot"/>
+      <movable day="29" year="2020" name="Shavuot"/>
+    </holiday>
+
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="May Day" date="1" />
@@ -159,13 +379,53 @@
   <month id="6">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
-      <computational name="Western Australia Day" dow="0" now="0" />
-      <computational name="Queen's Official Birthday" dow="0" now="1" />
     </holiday >
+    <holiday desc="Tasmania" name="tas">
+      <computational name="Queen's Birthday" dow="1" now="1" />
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+      <computational name="Western Australia Day" dow="1" now="0" />
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+      <computational name="Queen's Birthday" dow="1" now="1" />
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+      <computational name="Queen's Birthday" dow="1" now="1" />
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+      <computational name="Queen's Birthday" dow="1" now="1" />
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+      <computational name="Queen's Birthday" dow="1" now="1" />
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+      <computational name="Queen's Birthday" dow="1" now="1" />
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
-    </holiday >
+    <holiday desc="Christian" name="ch">
+      <movable day="4" year="2017" name="Pentecost"/>
+      <movable day="9" year="2019" name="Pentecost"/>
 
+      <movable day="5" year="2017" name="Whit Monday"/>
+      <movable day="10" year="2019" name="Whit Monday"/>
+      <movable day="1" year="2020" name="Whit Monday"/>
+
+      <movable day="11" year="2017" name="Trinity Sunday"/>
+      <movable day="16" year="2019" name="Trinity Sunday"/>
+      <movable day="7" year="2020" name="Trinity Sunday"/>
+
+      <movable day="11" year="2017" name="Corpus Christi"/>
+      <movable day="16" year="2019" name="Corpus Christi"/>
+      <movable day="7" year="2020" name="Corpus Christi"/>
+    </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="12" year="2016" name="Shavuot"/>
+      <movable day="9" year="2019" name="Shavuot"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="Global Day of Parents" date="1" />
@@ -191,15 +451,36 @@
   </month>
 
   <!--..........................7................................-->
-
   <month id="7">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
+      <computational name="First Day of NAIDOC Week" dow="0" now="0" />
     </holiday >
+    <holiday desc="Tasmania" name="tas">
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian" name="ch">
     </holiday >
-
+    <holiday desc="Jewish" name="jw">
+      <movable day="22" year="2018" name="Tisha B'Av"/>
+      <movable day="30" year="2020" name="Tisha B'Av"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Cooperatives" date="4" />
@@ -214,17 +495,42 @@
   </month>
 
   <!--..........................8................................-->
-
-
   <month id="8">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
-      <computational name="Picnic Day" dow="0" now="0" />
     </holiday >
+    <holiday desc="Western Australia" name="wa">
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+      <computational name="Bank Holiday" dow="1" now="0" />
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+      <computational name="Picnic Day" dow="1" now="0" />
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+      <movable day="10" year="2016" name="Royal National Agricultural Show Day Queensland"/>
+      <movable day="16" year="2017" name="Royal National Agricultural Show Day Queensland"/>
+      <movable day="15" year="2018" name="Royal National Agricultural Show Day Queensland"/>
+      <movable day="14" year="2019" name="Royal National Agricultural Show Day Queensland"/>
+      <movable day="12" year="2020" name="Royal National Agricultural Show Day Queensland"/>
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian" name="ch">
+      <day name="Assumption of Mary" date="15" />
     </holiday >
-
+    <holiday desc="Jewish" name="jw">
+      <movable day="14" year="2016" name="Tisha B'Av"/>
+      <movable day="1" year="2017" name="Tisha B'Av"/>
+      <movable day="11" year="2019" name="Tisha B'Av"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of the World's Indigenous Peoples" date="9" />
@@ -237,16 +543,50 @@
   </month>
 
   <!--..........................9................................-->
-
   <month id="9">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
-      <computational name="Family and Community Day" dow="0" now="6" />
+      <computational name="Father’s Day" dow="0" now="0" />
     </holiday >
+    <holiday desc="Western Australia" name="wa">
+      <movable day="26" year="2016" name="Queen's Birthday"/>
+      <movable day="30" year="2019" name="Queen's Birthday"/>
+      <movable day="28" year="2020" name="Queen's Birthday"/>
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+      <movable day="26" year="2016" name="Family &amp; Community Day"/>
+      <movable day="25" year="2017" name="Family &amp; Community Day"/>
+      <movable day="24" year="2018" name="Family &amp; Community Day"/>
+      <movable day="30" year="2019" name="Family &amp; Community Day"/>
+      <movable day="28" year="2020" name="Family &amp; Community Day"/>
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian" name="ch">
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="21" year="2017" name="Rosh Hashana"/>
+      <movable day="10" year="2018" name="Rosh Hashana"/>
+      <movable day="30" year="2019" name="Rosh Hashana"/>
+      <movable day="19" year="2020" name="Rosh Hashana"/>
 
+      <movable day="30" year="2017" name="Yom Kippur"/>
+      <movable day="19" year="2018" name="Yom Kippur"/>
+      <movable day="28" year="2020" name="Yom Kippur"/>
+      <movable day="24" year="2018" name="First Day of Sukkot"/>
+      <movable day="30" year="2018" name="Last Day of Sukkot"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Charity" date="5" />
@@ -263,16 +603,84 @@
   </month>
 
   <!--..........................10...............................-->
-
   <month id="10">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
-      <computational name="Labour Day" dow="0" now="0" />
-    </holiday >
-    <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
       <day name="Halloween" date="31" />
+      <movable day="30" year="2016" name="Diwali/Deepavali"/>
+      <movable day="19" year="2017" name="Diwali/Deepavali"/>
+      <movable day="27" year="2019" name="Diwali/Deepavali"/>
     </holiday >
+    <holiday desc="Western Australia" name="wa">
+      <movable day="2" year="2017" name="Queen's Birthday"/>
+      <movable day="1" year="2018" name="Queen's Birthday"/>
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+      <movable day="3" year="2016" name="Labour Day"/>
+      <movable day="2" year="2017" name="Labour Day"/>
+      <movable day="1" year="2018" name="Labour Day"/>
+      <movable day="7" year="2019" name="Labour Day"/>
+      <movable day="5" year="2020" name="Labour Day"/>
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+      <movable day="3" year="2016" name="Labour Day"/>
+      <movable day="2" year="2017" name="Labour Day"/>
+      <movable day="1" year="2018" name="Labour Day"/>
+      <movable day="7" year="2019" name="Labour Day"/>
+      <movable day="5" year="2020" name="Labour Day"/>
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+      <movable day="3" year="2016" name="Labour Day"/>
+      <movable day="2" year="2017" name="Labour Day"/>
+      <movable day="1" year="2018" name="Labour Day"/>
+      <movable day="7" year="2019" name="Labour Day"/>
+      <movable day="5" year="2020" name="Labour Day"/>
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+      <movable day="3" year="2016" name="Queen's Birthday"/>
+      <movable day="2" year="2017" name="Queen's Birthday"/>
+      <movable day="1" year="2018" name="Queen's Birthday"/>
+      <movable day="7" year="2019" name="Queen's Birthday"/>
+      <movable day="5" year="2020" name="Queen's Birthday"/>
+      <computational name="Labour Day" dow="1" now="0" />
+    </holiday>
+    <!--.............Religious.............-->
+    <holiday desc="Christian" name="ch">
+      <day name="Feast of St Francis of Assisi" date="4" />
+    </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="3" year="2016" name="Rosh Hashana"/>
+      <movable day="12" year="2016" name="Yom Kippur"/>
+      <movable day="9" year="2019" name="Yom Kippur"/>
+
+      <movable day="17" year="2016" name="First Day of Sukkot"/>
+      <movable day="5" year="2017" name="First Day of Sukkot"/>
+      <movable day="14" year="2019" name="First Day of Sukkot"/>
+      <movable day="3" year="2020" name="First Day of Sukkot"/>
+
+      <movable day="23" year="2016" name="Last Day of Sukkot"/>
+      <movable day="11" year="2017" name="Last Day of Sukkot"/>
+      <movable day="20" year="2019" name="Last Day of Sukkot"/>
+      <movable day="9" year="2020" name="Last Day of Sukkot"/>
+
+      <movable day="24" year="2016" name="Shmini Atzeret"/>
+      <movable day="12" year="2017" name="Shmini Atzeret"/>
+      <movable day="1" year="2018" name="Shmini Atzeret"/>
+      <movable day="21" year="2019" name="Shmini Atzeret"/>
+      <movable day="10" year="2020" name="Shmini Atzeret"/>
+
+      <movable day="25" year="2016" name="Simchat Torah"/>
+      <movable day="13" year="2017" name="Simchat Torah"/>
+      <movable day="2" year="2018" name="Simchat Torah"/>
+      <movable day="22" year="2019" name="Simchat Torah"/>
+      <movable day="11" year="2020" name="Simchat Torah"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
 
     <!--.............Other.................-->
     <holiday desc="International" name="in">
@@ -298,12 +706,38 @@
   <month id="11">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
-      <computational name="Recreation Day" dow="0" now="0" />
-      <computational name="Melbourne Cup (Victoria)" dow="1" now="0" />
+      <day name="Remembrance Day" date="11" />
+      <movable day="7" year="2018" name="Diwali/Deepavali"/>
+      <movable day="14" year="2020" name="Diwali/Deepavali"/>
     </holiday >
+    <holiday desc="Tasmania" name="tas">
+      <computational name="Recreation Day" dow="1" now="0" />
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+      <computational name="Melbourne Cup" dow="2" now="0" />
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian" name="ch">
+      <day name="All Saints' Day" date="1" />
+      <day name="All Souls' Day" date="2" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Sermon on the Entry of the Mother of God into the Temple" date="21" />
+    </holiday>
 
     <!--.............Other.................-->
     <holiday desc="International" name="in">
@@ -324,22 +758,53 @@
   </month>
 
   <!--.........................12................................-->
-
   <month id="12">
     <!--.............National..............-->
     <holiday desc="Australia" name="au">
-      <day name="Christmas Eve" date="25" />
+      <day name="Christmas Eve" date="24" />
       <day name="Christmas Day" date="25" />
       <day name="Boxing Day" date="26" />
-      <day name="Proclamation Day" date="26" />
       <day name="New Year's Eve" date="31" />
     </holiday >
+    <holiday desc="Tasmania" name="tas">
+      <day name="Christmas/Boxing Day Holiday" date="27" />
+    </holiday>
+    <holiday desc="Western Australia" name="wa">
+      <day name="Christmas/Boxing Day Holiday" date="27" />
+    </holiday>
+    <holiday desc="Victoria" name="vc">
+      <day name="Christmas/Boxing Day Holiday" date="27" />
+    </holiday>
+    <holiday desc="South Australia" name="sa">
+      <day name="Proclamation Day" date="27" />
+    </holiday>
+    <holiday desc="Australian Capital Territory" name="act">
+      <day name="Christmas/Boxing Day Holiday" date="27" />
+    </holiday>
+    <holiday desc="New South Wales" name="nsw">
+      <day name="Christmas/Boxing Day Holiday" date="27" />
+    </holiday>
+    <holiday desc="Northern Territory" name="nt">
+      <day name="Christmas/Boxing Day Holiday" date="27" />
+    </holiday>
+    <holiday desc="Queensland" name="qld">
+      <day name="Christmas/Boxing Day Holiday" date="27" />
+    </holiday>
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays (US)" name="usc">
+    <holiday desc="Christian" name="ch">
       <day name="Immaculate Conception of the Virgin Mary" date="8" />
       <day name="Christmas Eve" date="24" />
       <day name="Christmas" date="25" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="25" year="2016" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="13" year="2017" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="3" year="2018" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="23" year="2019" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="11" year="2020" name="Chanukah/Hanukkah (first day)"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
 
     <!--.............Other.................-->
     <holiday desc="International" name="in">

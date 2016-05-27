@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <themes>
-  <theme name="Default" text="Default"/>  
-  <theme name="MintGreen" text="Mint Green"/>  
-  <theme name="DarkBlue" text="Ice Blue"/>  
-  <theme name="HotPink" text="Raspberry"/>  
-  <theme name="Cherry" text="Ripe Cherry"/>  
-  <theme name="Orange" text="Juicy"/>
-  <theme name="Bottle" text="Cold"/>
-  <theme name="BloodDrops" text="Stormy"/>
-  <theme name="Violet" text="Violet"/>
-  <theme name="Fall" text="Fall"/>
+  <theme name="Default"/>  
+  <theme name="MintGreen"/>  
+  <theme name="DarkBlue"/>  
+  <theme name="HotPink"/>  
+  <theme name="Cherry"/>  
+  <theme name="Orange"/>
+  <theme name="Bottle"/>
+  <theme name="BloodDrops"/>
+  <theme name="Violet"/>
+  <theme name="Fall"/>
 </themes>

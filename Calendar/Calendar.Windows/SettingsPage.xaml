@@ -46,7 +46,6 @@
                        Foreground="#FF303030"/>
         </Grid>
 
-        <!-- Элементы StackPanel ниже определяют отдельные разделы содержимого -->
         <StackPanel Orientation="Horizontal" Margin="0,120,0,10">
             <ScrollViewer x:Name="leftSide"
                       MinWidth="520"

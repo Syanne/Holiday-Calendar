@@ -4,16 +4,21 @@
     <!--.............National..............-->
     <holiday desc="United States" name="us">
       <day name="New Year's Day" date="1" />
-      <computational name="Birthday of Martin Luther King, Jr." dow="0" now="2" />     
+      <computational name="Martin Luther King, Jr." dow="1" now="2" />     
     </holiday>
-    <holiday desc="Canada" name="ca">
-      <day name="New Year's Day" date="1" />
-    </holiday >
     <!--.............Religious.............-->
-    <holiday desc="Christian holidays" name="ch">
+    <holiday desc="Christian" name="ch">
       <day name="Epiphany" date="6" />
-      <day name="Orthodox Christmas" date="7" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="31" year="2018" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable day="21" year="2019" name="Tu Bishvat/Tu B'Shevat"/>
+    </holiday >
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Discourse On the Day of the Baptism of Christ" date="6" />
+      <day name="Christmas Day" date="7" />
+      <day name="Orthodox New Year" date="14" />
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Holocaust Remembrance Day" date="27" />
@@ -21,21 +26,25 @@
   </month>
 
   <!--..........................2................................-->
-
   <month id="2">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
-      <computational name="Washington's Birthday" dow="0" now="2" />
+      <computational name="Washington's Birthday" dow="1" now="2" />
       <day name="Groundhog Day" date="2" />
     </holiday>
-    <holiday desc="Canada" name="ca">
-      <computational name="Islander Day" dow="0" now="2" />
-      <computational name="Family Day" dow="0" now="2" />
-      <computational name="Louis Riel Day" dow="0" now="2" />
-    </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
+      <day name="Candlemas" date="2" />
+      <movable day="14" year="2018" name="Ash Wednesday"/>
+      <day name="St. Valentine's Day" date="14" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="11" year="2017" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable day="10" year="2020" name="Tu Bishvat/Tu B'Shevat"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Sermon on the Meeting of our Lord in the Temple" date="2" />
+    </holiday>
 
     <!--.............Other.................-->
     <holiday desc="International" name="in">
@@ -52,17 +61,28 @@
   <month id="3">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
-      <computational name="Washington's Birthday" dow="0" now="2" />
       <day name="International Women's Day" date="8" />
     </holiday>
-    <holiday desc="Canada" name="ca">
-      <day name="St. Patrick's Day" date="17" />
-    </holiday >
-
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
       <day name="St. Patrick's Day" date="17" />
+      <day name="St. Joseph's Day" date="19" />
+      <movable day="1" year="2017" name="Ash Wednesday"/>
+      <movable day="25" year="2018" name="Palm Sunday"/>
+      <movable day="29" year="2018" name="Maundy Thursday"/>
+      <movable day="31" year="2018" name="Holy Saturday"/>
     </holiday >
+    
+    <holiday desc="Jewish" name="jw">
+      <movable day="12" year="2017" name="Purim"/>
+      <movable day="1" year="2018" name="Purim"/>
+      <movable day="21" year="2019" name="Purim"/>
+      <movable day="10" year="2020" name="Purim"/>
+      <movable day="31" year="2018" name="Passover (first day)"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Sermon on the Annunciation" date="25" />
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="Zero Discrimination Day" date="1" />
@@ -84,24 +104,78 @@
   </month>
 
   <!--..........................4................................-->
-
   <month id="4">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
-      <computational name="Washington's Birthday" dow="0" now="2" />
       <day name="April Fools' Day" date="1" />
       <day name="Earth Day" date="22" />
-      <computational name="Arbor Day" dow="4" now="6" />
+      <computational name="Arbor Day" dow="5" now="6" />
     </holiday>
-
-    <holiday desc="Canada" name="ca">
-      <day name="St. George's Day" date="23" />
-    </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
-    </holiday >    
-    <holiday desc="Christian holidays (UK)" name="ukc">
+      <movable day="9" year="2017" name="Palm Sunday"/>
+      <movable day="14" year="2019" name="Palm Sunday"/>
+      <movable day="5" year="2020" name="Palm Sunday"/>
+      
+      <movable day="13" year="2017" name="Maundy Thursday"/>
+      <movable day="18" year="2019" name="Maundy Thursday"/>
+      <movable day="9" year="2020" name="Maundy Thursday"/>
+      
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="20" year="2019" name="Holy Saturday"/>
+      <movable day="11" year="2020" name="Holy Saturday"/>
+      
+      <movable day="16" year="2017" name="Easter Sunday"/>
+      <movable day="1" year="2018" name="Easter Sunday"/>
+      <movable day="21" year="2019" name="Easter Sunday"/>
+      <movable day="12" year="2020" name="Easter Sunday"/>
+      
+      <movable day="17" year="2017" name="Easter Monday"/>
+      <movable day="2" year="2018" name="Easter Monday"/>
+      <movable day="22" year="2019" name="Easter Monday"/>
+      <movable day="13" year="2020" name="Easter Monday"/>
     </holiday >
+    
+    <holiday desc="Jewish" name="jw">
+      <movable day="11" year="2017" name="Passover (first day)"/>
+      <movable day="20" year="2019" name="Passover (first day)"/>
+      <movable day="9" year="2020" name="Passover (first day)"/>
+
+      <movable day="18" year="2017" name="Last Day of Passover"/>
+      <movable day="7" year="2018" name="Last Day of Passover"/>
+      <movable day="27" year="2019" name="Last Day of Passover"/>
+      <movable day="16" year="2020" name="Last Day of Passover"/>
+
+      <movable day="24" year="2017" name="Yom HaShoah"/>
+      <movable day="11" year="2018" name="Yom HaShoah"/>
+      <movable day="21" year="2020" name="Yom HaShoah"/>
+      
+      <movable day="19" year="2018" name="Yom Ha'atzmaut"/>
+      <movable day="29" year="2020" name="Yom Ha'atzmaut"/>
+
+    </holiday>
+    
+    <holiday desc="Orthodox Church" name="ot">
+      <movable day="14" year="2017" name="Good Friday"/>
+      <movable day="6" year="2018" name="Good Friday"/>
+      <movable day="26" year="2019" name="Good Friday"/>
+      <movable day="17" year="2020" name="Good Friday"/>
+      
+      <movable day="15" year="2017" name="Holy Saturday"/>
+      <movable day="7" year="2018" name="Holy Saturday"/>
+      <movable day="27" year="2019" name="Holy Saturday"/>
+      <movable day="18" year="2020" name="Holy Saturday"/>
+
+      <movable day="16" year="2017" name="Easter"/>
+      <movable day="8" year="2018" name="Easter"/>
+      <movable day="28" year="2019" name="Easter"/>
+      <movable day="19" year="2020" name="Easter"/>
+      
+      <movable day="17" year="2017" name="Easter Monday"/>
+      <movable day="9" year="2018" name="Easter Monday"/>
+      <movable day="29" year="2019" name="Easter Monday"/>
+      <movable day="20" year="2020" name="Easter Monday"/>
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="April Fools' Day" date="1" />
@@ -128,13 +202,42 @@
     <holiday desc="United States" name="us">
       <computational name="Memorial Day" dow="0" now="6" />
       <day name="Cinco de Mayo" date="5" />
-      <computational name="Mother's Day" dow="6" now="1" />
+      <computational name="Mother's Day" dow="0" now="1" />
     </holiday>
     <holiday desc="Canada" name="ca">
     </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
+      <movable day="25" year="2017" name="Ascension Day"/>
+      <movable day="10" year="2018" name="Ascension Day"/>
+      <movable day="30" year="2019" name="Ascension Day"/>
+      <movable day="21" year="2020" name="Ascension Day"/>
+
+      <movable day="20" year="2018" name="Pentecost"/>
+      <movable day="31" year="2020" name="Pentecost"/>      
+      <movable day="21" year="2018" name="Whit Monday"/>
+      <movable day="27" year="2018" name="Trinity Sunday"/>
+      <movable day="31" year="2018" name="Corpus Christi"/>
     </holiday >
+
+    <holiday desc="Jewish" name="jw">
+      <movable day="1" year="2019" name="Yom HaShoah"/>
+      <movable day="2" year="2017" name="Yom Ha'atzmaut"/>
+      <movable day="9" year="2019" name="Yom Ha'atzmaut"/>
+
+      <movable day="14" year="2017" name="Lag BaOmer"/>
+      <movable day="3" year="2018" name="Lag BaOmer"/>
+      <movable day="23" year="2019" name="Lag BaOmer"/>
+      <movable day="12" year="2020" name="Lag BaOmer"/>
+      
+      <movable day="31" year="2017" name="Shavuot"/>
+      <movable day="20" year="2018" name="Shavuot"/>
+      <movable day="29" year="2020" name="Shavuot"/>
+    </holiday>
+
+    <holiday desc="Orthodox Church" name="ot">
+      
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="May Day" date="1" />
@@ -152,25 +255,38 @@
   </month>
 
   <!--..........................6................................-->
-
-
   <month id="6">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
       <day name="Flag Day" date="14" />
       <day name="Helen Keller Day" date="27" />
-      <computational name="Children's Day" dow="6" now="0" />
-      <computational name="Father's Day" dow="6" now="2" />
+      <computational name="Children's Day" dow="0" now="0" />
+      <computational name="Father's Day" dow="0" now="2" />
     </holiday>
-    <holiday desc="Canada" name="ca">
-      <day name="National Aboriginal Day " date="21" />
-      <day name="Féte Nationale" date="24" />
-      <day name="Discovery Day" date="24" />
-    </holiday >
-
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
+      <movable day="4" year="2017" name="Pentecost"/>
+      <movable day="9" year="2019" name="Pentecost"/>
+
+      <movable day="5" year="2017" name="Whit Monday"/>
+      <movable day="10" year="2019" name="Whit Monday"/>
+      <movable day="1" year="2020" name="Whit Monday"/>      
+      
+      <movable day="11" year="2017" name="Trinity Sunday"/>
+      <movable day="16" year="2019" name="Trinity Sunday"/>
+      <movable day="7" year="2020" name="Trinity Sunday"/>
+
+      <movable day="11" year="2017" name="Corpus Christi"/>
+      <movable day="16" year="2019" name="Corpus Christi"/>
+      <movable day="7" year="2020" name="Corpus Christi"/>
     </holiday >
+
+    <holiday desc="Jewish" name="jw">
+      <movable day="12" year="2016" name="Shavuot"/>
+      <movable day="9" year="2019" name="Shavuot"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="Global Day of Parents" date="1" />
@@ -196,7 +312,6 @@
   </month>
 
   <!--..........................7................................-->
-
   <month id="7">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
@@ -209,6 +324,12 @@
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="22" year="2018" name="Tisha B'Av"/>
+      <movable day="30" year="2020" name="Tisha B'Av"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Cooperatives" date="4" />
@@ -226,14 +347,20 @@
     <!--.............National..............-->
     <holiday desc="United States" name="us">
       <day name="Women's Equality Day" date="26" />
-      <computational name="Washington's Birthday" dow="0" now="2" />
     </holiday>
-    <holiday desc="Canada" name="ca">
-      <computational name="Civic Holiday" dow="0" now="0" />
-    </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
+      <day name="Assumption of Mary" date="15" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="14" year="2016" name="Tisha B'Av"/>
+      <movable day="1" year="2017" name="Tisha B'Av"/>
+      <movable day="11" year="2019" name="Tisha B'Av"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Sermon on the Dormition of the Most Holy Theotokos" date="15" />
+      <day name="Sermon on the Transfiguration" date="6" />
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of the World's Indigenous Peoples" date="9" />
@@ -249,16 +376,29 @@
   <month id="9">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
-      <computational name="Labor Day" dow="0" now="0" />
+      <computational name="Labor Day" dow="1" now="0" />
       <day name="Patriot Day" date="11" />
       <day name="Constitution/Citizenship Day" date="17" />
     </holiday>
-    <holiday desc="Canada" name="ca">
-      <computational name="Labour Day" dow="0" now="0" />
-    </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="21" year="2017" name="Rosh Hashana"/>
+      <movable day="10" year="2018" name="Rosh Hashana"/>
+      <movable day="30" year="2019" name="Rosh Hashana"/>
+      <movable day="19" year="2020" name="Rosh Hashana"/>
+
+      <movable day="30" year="2017" name="Yom Kippur"/>
+      <movable day="19" year="2018" name="Yom Kippur"/>
+      <movable day="28" year="2020" name="Yom Kippur"/>
+      <movable day="24" year="2018" name="First Day of Sukkot"/>
+      <movable day="30" year="2018" name="Last Day of Sukkot"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Sermon on the Nativity of the Theotokos" date="8" />
+      <day name="The Cross, The Preserver of the Universe" date="14" />
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Charity" date="5" />
@@ -278,17 +418,42 @@
   <month id="10">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
-      <computational name="Columbus Day" dow="0" now="1" />
-      <day name="GeCalendarResourcesManager-American Day" date="6" />
       <day name="Leif Erikson Day" date="9" />
     </holiday>
-    <holiday desc="Canada" name="ca">
-      <computational name="Thanksgiving" dow="0" now="1" />
-    </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
+      <day name="Feast of St Francis of Assisi" date="4" />
       <day name="Halloween" date="31" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="3" year="2016" name="Rosh Hashana"/>
+      <movable day="12" year="2016" name="Yom Kippur"/>
+      <movable day="9" year="2019" name="Yom Kippur"/>
+
+      <movable day="17" year="2016" name="First Day of Sukkot"/>
+      <movable day="5" year="2017" name="First Day of Sukkot"/>
+      <movable day="14" year="2019" name="First Day of Sukkot"/>
+      <movable day="3" year="2020" name="First Day of Sukkot"/>
+
+      <movable day="23" year="2016" name="Last Day of Sukkot"/>
+      <movable day="11" year="2017" name="Last Day of Sukkot"/>
+      <movable day="20" year="2019" name="Last Day of Sukkot"/>
+      <movable day="9" year="2020" name="Last Day of Sukkot"/>
+      
+      <movable day="24" year="2016" name="Shmini Atzeret"/>
+      <movable day="12" year="2017" name="Shmini Atzeret"/>
+      <movable day="1" year="2018" name="Shmini Atzeret"/>
+      <movable day="21" year="2019" name="Shmini Atzeret"/>
+      <movable day="10" year="2020" name="Shmini Atzeret"/>
+
+      <movable day="25" year="2016" name="Simchat Torah"/>
+      <movable day="13" year="2017" name="Simchat Torah"/>
+      <movable day="2" year="2018" name="Simchat Torah"/>
+      <movable day="22" year="2019" name="Simchat Torah"/>
+      <movable day="11" year="2020" name="Simchat Torah"/>
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day of Older Persons" date="1" />
@@ -312,16 +477,24 @@
   <month id="11">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
-      <day name="Veterans Day" date="11" />
-      <computational name="Thanksgiving Day" dow="1" now="6" />
-      <computational name="Black Friday" dow="2" now="6" />      
+      <computational name="Thanksgiving Day" dow="4" now="3" />
+      <day name="Veterans Day" date="11" /> 
     </holiday>
     <holiday desc="Canada" name="ca">
       <day name="Remembrance Day" date="11" />
     </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
+      <day name="All Saints' Day" date="1" />
+      <day name="All Souls' Day" date="2" />
+      <movable day="27" year="2016" name="First Sunday of Advent"/>
+      <movable day="29" year="2020" name="First Sunday of Advent"/>
     </holiday >
+    <holiday desc="Jewish" name="jw">
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Sermon on the Entry of the Mother of God into the Temple" date="21" />
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="International Day to End Impunity for Crimes against Journalists" date="2" />
@@ -344,7 +517,7 @@
   <month id="12">
     <!--.............National..............-->
     <holiday desc="United States" name="us">
-      <day name="Christmas (US)" date="25" />
+      <day name="Christmas Day" date="25" />
       <day name="Pearl Harbor Remembrance Day" date="7" />
       <day name="Kwanzaa" date="26" />
       <day name="New Year's Eve" date="31" />
@@ -355,10 +528,24 @@
     </holiday >
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
+      <movable day="3" year="2017" name="First Sunday of Advent"/>
+      <movable day="2" year="2018" name="First Sunday of Advent"/>
+      <movable day="1" year="2019" name="First Sunday of Advent"/>
       <day name="Immaculate Conception of the Virgin Mary" date="8" />
       <day name="Christmas Eve" date="24" />
-      <day name="Christmas" date="25" />
+      <day name="Christmas Day" date="25" />
     </holiday >
+    <holiday desc="Jewish" name="jw">
+      <movable day="25" year="2016" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="13" year="2017" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="3" year="2018" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="23" year="2019" name="Chanukah/Hanukkah (first day)"/>
+      <movable day="11" year="2020" name="Chanukah/Hanukkah (first day)"/>
+ 
+    </holiday>
+    <holiday desc="Orthodox Church" name="ot">
+      <day name="Discourse On the Nativity of Christ" date="25" />
+    </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
       <day name="World AIDS Day" date="1" />

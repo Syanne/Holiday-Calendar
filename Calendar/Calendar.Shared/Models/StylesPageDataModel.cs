@@ -11,7 +11,6 @@ namespace Calendar
     {
         public string Image { get; set; }
         public string Tag { get; set; }
-        public string Text { get; set; }
     }
 
     /// <summary>
@@ -36,7 +35,6 @@ namespace Calendar
                 _itemSource.Add(new LocalFVItem
                 {
                     Image = String.Format("/SelectTheme/{0}-700.png", holiday.FirstAttribute.Value),
-                    Text = holiday.LastAttribute.Value,
                     Tag = holiday.FirstAttribute.Value
                 });
             }

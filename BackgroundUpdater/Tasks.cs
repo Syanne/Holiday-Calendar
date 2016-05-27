@@ -220,7 +220,7 @@ namespace BackgroundUpdater
                         ? DateTime.Now.Year : (DateTime.Now.Year + 1);
 
                     DateTime date = new DateTime(year, Convert.ToInt32(collection.ElementAt(i).Attribute("month").Value), Convert.ToInt32(collection.ElementAt(i).Attribute("date").Value));
-                    toastTextElements[0].AppendChild(toastXml.CreateTextNode(date.ToString("D")));
+                    toastTextElements[0].AppendChild(toastXml.CreateTextNode(date.ToString("d")));
 
                     toastTextElements[1].AppendChild(toastXml.CreateTextNode(collection.ElementAt(i).Attribute("name").Value));
 
