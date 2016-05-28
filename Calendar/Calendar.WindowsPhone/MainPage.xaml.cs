@@ -328,10 +328,9 @@ namespace Calendar
         {
             try
             {
-
                 SaveHolidayTypes();
             }
-            catch(Exception ex)
+            catch
             {
 
             }

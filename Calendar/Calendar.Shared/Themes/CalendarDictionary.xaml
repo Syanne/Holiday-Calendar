@@ -7,6 +7,7 @@
     <Style x:Key="CommonCalendarItemStyle" TargetType="GridViewItem">
         <Setter Property="FontFamily" Value="Minion Pro"/>
         <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -32,6 +33,7 @@
     <Style x:Name="WeekNameStyle" x:Key="WeekNameStyle" TargetType="GridViewItem" >
         <Setter Property="FontFamily" Value="Minion Pro"/>
         <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
         <Setter Property="Foreground" Value="#FFF0F0F2"/>

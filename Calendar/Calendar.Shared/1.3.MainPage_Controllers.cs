@@ -45,8 +45,6 @@ namespace Calendar
             }
 #endif
         }
-
-
         private void PrepareHolidayPanel()
         {
             Style style = (Style)this.Resources["HolidayFlyoutStyle"]; 
@@ -54,21 +52,34 @@ namespace Calendar
             Brush bg = (SolidColorBrush)Application.Current.Resources["MainColor"];
             var listOfLVI = new List<ListViewItem>();
 
-            //all and personal
-            listOfLVI.Add(new ListViewItem
-            {
-                Tag = "All",
-                Content = CalendarResourcesManager.resource.GetString("AllHol"),
-                Foreground = new SolidColorBrush(Colors.White),
-            });
+            //prepare static holidays, if it's null
+            if (lviAll == null) {
+                //all and personal
+                lviAll = new ListViewItem
+                {
+                    Tag = "All",
+                    Content = CalendarResourcesManager.resource.GetString("AllHol"),
+                    Foreground = new SolidColorBrush(Colors.White),
+                };
 
-            listOfLVI.Add(new ListViewItem
-            {
-                Tag = "Per",
-                Content = CalendarResourcesManager.resource.GetString("MineAsTag"),
-                Foreground = foreg,
-            });
-            
+                lviPers = new ListViewItem
+                {
+                    Tag = "Per",
+                    Content = CalendarResourcesManager.resource.GetString("MineAsTag"),
+                    Foreground = foreg,
+                };
+
+                lviEtc = new ListViewItem
+                {
+                    Content = "...",
+                    Foreground = foreg
+                };
+                lviEtc.Tapped += GridViewItem_Tapped;
+            }
+
+            listOfLVI.Add(lviAll);
+            listOfLVI.Add(lviPers);
+
             var subcollection = calBase.HolidayNameCollection.Where(el => el.IsChecked == true);
 
             for(int i = 0; i < subcollection.Count(); i++)
@@ -89,17 +100,14 @@ namespace Calendar
                 ToolTipService.SetToolTip(listOfLVI[i + 2], tt);
             }
 
-            listOfLVI.Add(new ListViewItem
-            {
-                Content = "...",
-                Foreground = foreg
-            });
+            listOfLVI.Add(lviEtc);
 
             //tapped
             for (int i = 0; i < listOfLVI.Count; i++)
             {
                 listOfLVI[i].Background = bg;
                 listOfLVI[i].Style = style;
+
 #if !WINDOWS_PHONE_APP
                 if(sizeCorrection != null)
                 {
@@ -113,20 +121,18 @@ namespace Calendar
                 listOfLVI[i].FontSize = Window.Current.Bounds.Width / 18;
                 listOfLVI[i].Margin = new Thickness(5, 0, 5, 10);
 #endif
-                if (i == listOfLVI.Count - 1)
-                    listOfLVI.Last().Tapped += GridViewItem_Tapped;
-                else listOfLVI[i].Tapped += holTypes_Tapped;
+                if (i != listOfLVI.Count - 1)
+                    listOfLVI[i].Tapped += holTypes_Tapped;
+               // else listOfLVI[i].FontSize *= 2;
             }
 
             //set source
             HolidayList.ItemsSource = listOfLVI;
             //end select "all"
-            SelectedHolidayType = listOfLVI[0];
+            SelectedHolidayType = lviAll;
             
             UpdateNoteList();
         }
-
-
 #region calendar controllers
 
         /// <summary>
@@ -135,24 +141,24 @@ namespace Calendar
         /// <param name="value">previous (1) or next (-1)</param>
         private void ArrowButtonController(int value)
         {
+            gviPrev = null;
             if (gvDecades.Visibility != Visibility.Visible)
             {
                 int month = calBase.SelectedDate.Month;
                 calBase.Skip(value);
+
                 if (month != calBase.SelectedDate.Month)
                     calBase.ReadHolidayXml();
 
                 FillCalendar();
                 MarkHolidays();
-                gviPrev = calGrid.Items.ElementAt(calBase.Start) as GridViewItem;
 
                 int val = calBase.SelectedDate.Day * (-1) + 1;
                 calBase.SelectedDate = calBase.SelectedDate.AddDays(val);
                 UpdateNoteList();
-                gviPrev.BorderBrush = gviPrev.Foreground;
-
+                
 #if !WINDOWS_PHONE_APP
-                if (SelectedHolidayType!= (HolidayList.Items[0] as ListViewItem) && SelectedHolidayType != (HolidayList.Items[1] as ListViewItem))
+                if (SelectedHolidayType != lviAll && SelectedHolidayType != lviPers)
                 {
                     ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
 
@@ -214,9 +220,9 @@ namespace Calendar
         private void DayController(object sender)
         {
             GridViewItem gvi = sender as GridViewItem;
-            
+
 #if !WINDOWS_PHONE_APP
-            if(gvi != gviPrev)
+            if (gvi != gviPrev)
 #endif
                 if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
                 {
@@ -224,32 +230,29 @@ namespace Calendar
                                                         calBase.SelectedDate.Month,
                                                         Convert.ToInt32(gvi.Content));
 
+                    if (gviPrev == null)
+                        gviPrev = gvi;
+                    else gviPrev.BorderBrush = TransparentBrush;
+
                     //highlight selected day
                     //if - for WP application, do not delete it
-                    if (gvi != gviPrev)
-                    {
-                        UpdateNoteList();
-                        gvi.BorderBrush = gvi.Foreground;
-                        if (gviPrev != null)
-                            gviPrev.BorderBrush = TransparentBrush;
-                        gviPrev = gvi;
-                    }
+                    UpdateNoteList();
+                    gvi.BorderBrush = gvi.Foreground;
+                    gviPrev = gvi;
 
                     noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 }
                 //move to previous or next month?
                 else
                 {
+                    DateTime date;
+                    //prev. monts
                     if (Convert.ToInt32(gvi.Content) > 20)
-                    {
-                        var date = calBase.SelectedDate.AddMonths(-1);
-                        ChangeDate((int)gvi.Content, date.Month, date.Year);
-                    }
-                    else
-                    {
-                        var date = calBase.SelectedDate.AddMonths(1);
-                        ChangeDate((int)gvi.Content, date.Month, date.Year);
-                    }
+                        date = calBase.SelectedDate.AddMonths(-1);
+                    //next month
+                    else date = calBase.SelectedDate.AddMonths(1);
+
+                    ChangeDate((int)gvi.Content, date.Month, date.Year);
                 }
         }
 
@@ -342,27 +345,27 @@ namespace Calendar
                 GridViewItem gvi = calGrid.Items[index] as GridViewItem;
 
                 //if type "All" selected - show whole list of holidays
-                if (SelectedHolidayType == (HolidayList.Items[0] as ListViewItem))
+                if (SelectedHolidayType == lviAll)
                     HolidayTypesController(SelectedHolidayType);
                 else
                 {
                     SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
-                    SelectedHolidayType = (HolidayList.Items[0] as ListViewItem);
+                    SelectedHolidayType = lviAll;
                     SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
                 }
 
-                    if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
-                    {
-                        calBase.SelectedDate = new DateTime(calBase.SelectedDate.Year,
-                                                            calBase.SelectedDate.Month,
-                                                            Convert.ToInt32(gvi.Content));
+                if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
+                {
+                    calBase.SelectedDate = new DateTime(calBase.SelectedDate.Year,
+                                                        calBase.SelectedDate.Month,
+                                                        Convert.ToInt32(gvi.Content));
 
-                            UpdateNoteList();
-                            gvi.BorderBrush = gvi.Foreground;
-                            gviPrev = gvi;
+                    gviPrev = gvi;
+                    UpdateNoteList();
+                    gvi.BorderBrush = gvi.Foreground;
 
-                        noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    }
+                    noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                }
             }
         }
         
@@ -467,7 +470,7 @@ namespace Calendar
             calBase.FillHolidaysList();
 
             SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
-            SelectedHolidayType = (HolidayList.Items[0] as ListViewItem);
+            SelectedHolidayType = lviAll;
             SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
             MarkHolidays();
@@ -485,28 +488,20 @@ namespace Calendar
                 SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
                 SelectedHolidayType = sender;
                 SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
-                
-                //special holidays
-                if (SelectedHolidayType != (HolidayList.Items[0] as ListViewItem) && SelectedHolidayType != (HolidayList.Items[1] as ListViewItem))
-                {
 
-#if WINDOWS_PHONE_APP
-                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM");
-#else
-                    ClickedDayPage.Text = calBase.HolidayNameCollection.
-                                            FirstOrDefault(elem => (string)elem.Tag == (string)sender.Content).
-                                            Content.ToString();
-#endif
+                ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM yyyy");
+
+                //special holidays
+                if (SelectedHolidayType != lviAll && SelectedHolidayType != lviPers)
+                {
                     //notes 
                     buffer = calBase.HolidayItemCollection.
                                            Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower());
                 }
                 else
                 {
-                    ClickedDayPage.Text = sender.Content.ToString();
-
                     //personal holidays
-                    if (SelectedHolidayType != (HolidayList.Items[0] as ListViewItem))
+                    if (SelectedHolidayType != lviAll)
                         buffer = calBase.HolidayItemCollection.
                         Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower() &&
                                     hi.Day != 0);

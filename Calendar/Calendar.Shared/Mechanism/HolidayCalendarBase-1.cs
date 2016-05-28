@@ -116,8 +116,8 @@ namespace Calendar.Mechanism
                     if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                         HolidayItemCollection.Add(new HolidayItem
                         {
-                            Day = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
-                            HolidayName = x.Attributes().ElementAt(0).Value,
+                            Day = Convert.ToInt32(x.Attribute("date").Value),
+                            HolidayName = x.Attribute("name").Value,
                             HolidayTag = pers.LastAttribute.Value,
                             Background = new SolidColorBrush(Colors.Transparent),
                             FontSize = 20, 
@@ -143,14 +143,14 @@ namespace Calendar.Mechanism
                             });
                     }
 
-            if (movable.Count() != 0)
+            if (movable != null)
                 foreach (XElement x in movable)
                 {
                         if (x.Attribute("year").Value == SelectedDate.Year.ToString())
                         {
                             HolidayItemCollection.Add(new HolidayItem
                             {
-                                Day = Convert.ToInt32(x.Attribute("day").Value),
+                                Day = Convert.ToInt32(x.Attribute("date").Value),
                                 HolidayName = x.Attribute("name").Value,
                                 HolidayTag = x.Parent.LastAttribute.Value,
                                 Background = new SolidColorBrush(Colors.Transparent),
@@ -187,7 +187,7 @@ namespace Calendar.Mechanism
         /// computes holidays from tag COMPUTATIONAL
         /// </summary>
         /// <param name="dow">day of week (from 0 to 6)</param>
-        /// <param name="now">number of week (from 0 to 4)</param>
+        /// <param name="now">number of week (from 0 to 4 (or 6 if last week))</param>
         /// <param name="start">start position of this month in calenar (row*10+col)</param>
         /// <returns></returns>
         protected int ComputeHoliday(int dow, int now)
@@ -197,8 +197,12 @@ namespace Calendar.Mechanism
             {
                 int startDay = ((startPosition % 10) == 7) ? 0 : (int)(startPosition % 10);
                 a = (int)(startPosition / 10) * 7 + now * 7 + dow + 1 - startDay;
+                
+                //if week starts from Sun, add 7 days
+                if (firstDay == 0) return a + 7;
                 return a;
             }
+            //last week
             else
             {
                 a = (int)(endPosition / 7) * 7 - startPosition - 6;

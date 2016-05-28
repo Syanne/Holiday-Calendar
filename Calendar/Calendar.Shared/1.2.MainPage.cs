@@ -47,15 +47,16 @@ namespace Calendar
         /// </summary>
         StringBuilder startText { get; set; }
 
-
         /// <summary>
         /// first day of week
         /// </summary>
         int Weekend { get; set; }
 
+        ListViewItem lviAll, lviPers, lviEtc;
+
         void PagePreLoader()
         {
-            SelectedHolidayType = (HolidayList.Items[0] as ListViewItem);
+            SelectedHolidayType = lviAll;
 
             try
             {
@@ -66,11 +67,11 @@ namespace Calendar
             {
                 Weekend = 5;
             }
+
             startText = new StringBuilder(50);
             calBase = new HolidayCalendarBase(Weekend);
-
-
             FillCalendar();
+
             try
             {
                 Windows.ApplicationModel.Store.LicenseInformation license = Windows.ApplicationModel.Store.CurrentApp.LicenseInformation;
@@ -97,23 +98,58 @@ namespace Calendar
 #else
             ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("D");
 #endif
-            
+
             //fill list of holidays
-            if (SelectedHolidayType == (HolidayList.Items[0] as ListViewItem))
-                noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
-                    hi.Day == calBase.SelectedDate.Day || hi.Day == 0).
-                    Distinct(new HolidayNameComparer());
+            if (SelectedHolidayType == lviAll)
+            {
+                //if day selected
+                if (gviPrev != null)
+                    noteList.ItemsSource = calBase.HolidayItemCollection.Where(hi =>
+                        hi.Day == calBase.SelectedDate.Day || hi.Day == 0).
+                        Distinct(new HolidayNameComparer());
+
+                //if lviAll selected by user
+                else
+                {
+                    ClickedDayPage.Text = calBase.SelectedDate.Date.ToString("MMMM yyyy");
+                    IEnumerable<HolidayItem> buffer;
+                    buffer = calBase.HolidayItemCollection.Where(hi => hi.Day != 0);
+
+                    //add dates
+                    buffer = buffer.Select(hi => hi = hi.Copy()).
+                             Select(hi =>
+                             {
+                                 //change name = add date
+                                 hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
+                                     hi.Day, calBase.SelectedDate.Month, hi.HolidayName);
+
+#if !WINDOWS_PHONE_APP
+                                 hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
+#endif
+
+                                 return hi;
+                             }).
+                             OrderBy(hi => hi.Day);
+
+                    noteList.ItemsSource = buffer;
+                    buffer = null;
+
+                    NotesBackground();
+                    MarkHolidays();
+                }
+            }
 
             else noteList.ItemsSource = calBase.HolidayItemCollection.
                                       Where(hi => (hi.Day == calBase.SelectedDate.Day || hi.Day == 0) &&
                                       (hi.HolidayTag == SelectedHolidayType.Content.ToString()));
+            
 
             //background color of every note
             NotesBackground();
         }
 
         /// <summary>
-        /// alternating backgrounds for notes
+        /// alternate backgrounds for notes
         /// </summary>
         private void NotesBackground()
         {
@@ -214,7 +250,7 @@ namespace Calendar
         {
             //collection of HolidayItems
             IEnumerable<HolidayItem> holItemSource;
-            if (SelectedHolidayType == (HolidayList.Items[0] as ListViewItem))
+            if (SelectedHolidayType == lviAll)
                 holItemSource = calBase.HolidayItemCollection;
             else holItemSource = calBase.HolidayItemCollection.Where(
                 h => h.HolidayTag.ToLower() == SelectedHolidayType.Content.ToString().ToLower());

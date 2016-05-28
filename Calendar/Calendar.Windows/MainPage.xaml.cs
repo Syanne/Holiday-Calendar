@@ -219,28 +219,38 @@ namespace Calendar
 
             if (sizeCorrection.Count(Window.Current.Bounds.Height))
             {
-                if (calGrid.Items.Count > 0)
-                    for (int i = 0; i < calGrid.Items.Count; i++)
-                    {
-                        (calGrid.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
-                        (calGrid.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
-                        (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;                        
-                    }
-
-                for (int i = 0; i < weekDayNames.Items.Count; i++)
+                //days
+                for (int i = 0; i < calGrid.Items.Count; i++)
                 {
-                    (weekDayNames.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
-                    (weekDayNames.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
-                    (weekDayNames.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                    (calGrid.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
+                    (calGrid.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
+                    (calGrid.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;
 
+                    //holiday panel's items
                     if (i < HolidayList.Items.Count)
                     {
                         (HolidayList.Items[i] as ListViewItem).Height = sizeCorrection.ItemSizeCorrector;
                         (HolidayList.Items[i] as ListViewItem).Width = sizeCorrection.ItemSizeCorrector;
                         (HolidayList.Items[i] as ListViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 3;
                     }
-                }
 
+                    //weekdays
+                    if (i < weekDayNames.Items.Count)
+                    {
+                        (weekDayNames.Items[i] as GridViewItem).Height = sizeCorrection.ItemSizeCorrector;
+                        (weekDayNames.Items[i] as GridViewItem).Width = sizeCorrection.ItemSizeCorrector;
+                        (weekDayNames.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemSizeCorrector / 3;
+                    }
+
+                    //decade's items
+                    if (gvDecades.Items.Count > 0 && i < 12)
+                    {
+                        (gvDecades.Items[i] as GridViewItem).Height = sizeCorrection.DecadeHeightCorrector;
+                        (gvDecades.Items[i] as GridViewItem).Width = sizeCorrection.DecadeWidthCorrector;
+                        (gvDecades.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;
+                    }
+                }
+                
                 monthTopString.Width = sizeCorrection.MonthTopStringWidth;
                 monthTopString.Height = sizeCorrection.ItemSizeCorrector;
                 monthTopString.Margin = new Thickness(0, sizeCorrection.ItemSizeCorrector/2, 0, 0);
@@ -249,16 +259,8 @@ namespace Calendar
                 calGrid.Width = sizeCorrection.MonthTopStringWidth;
                 calGrid.Height = calGrid.Width;
                 gvDecades.Width = sizeCorrection.MonthTopStringWidth;
-
-                if (gvDecades.Items.Count > 0)
-                    for (int i = 0; i < 12; i++)
-                    {
-                        (gvDecades.Items[i] as GridViewItem).Height = sizeCorrection.DecadeHeightCorrector;
-                        (gvDecades.Items[i] as GridViewItem).Width = sizeCorrection.DecadeWidthCorrector;
-                        (gvDecades.Items[i] as GridViewItem).FontSize = sizeCorrection.ItemFontSizeCorrector;
-                    }
                 
-
+                //NOTES PANEL---------------------------------------------------------
                 HolidayTitle.FontSize = sizeCorrection.ItemSizeCorrector / 3;
                 HolidayList.Height = sizeCorrection.ItemSizeCorrector + 20;
                 scrollHolidays.Width = sizeCorrection.MonthTopStringWidth - sizeCorrection.ItemSizeCorrector;

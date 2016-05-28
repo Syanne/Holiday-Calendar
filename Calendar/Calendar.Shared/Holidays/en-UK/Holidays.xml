@@ -15,8 +15,8 @@
       <day name="Epiphany" date="6" />
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="31" year="2018" name="Tu Bishvat/Tu B'Shevat"/>
-      <movable day="21" year="2019" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable date="31" year="2018" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable date="21" year="2019" name="Tu Bishvat/Tu B'Shevat"/>
     </holiday >
     <holiday desc="Orthodox Church" name="ot">
       <day name="Christmas Day" date="7" />
@@ -83,15 +83,15 @@
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
       <day name="Candlemas Day" date="2" />
-      <movable day="28" year="2017" name="Shrove Tuesday (Pancake Day)"/> 
-      <movable day="13" year="2018" name="Shrove Tuesday (Pancake Day)"/>
-      <movable day="25" year="2020" name="Shrove Tuesday (Pancake Day)"/>
-      <movable day="14" year="2018" name="Ash Wednesday"/>
-      <movable day="26" year="2020" name="Ash Wednesday"/>
+      <movable date="28" year="2017" name="Shrove Tuesday (Pancake Day)"/> 
+      <movable date="13" year="2018" name="Shrove Tuesday (Pancake Day)"/>
+      <movable date="25" year="2020" name="Shrove Tuesday (Pancake Day)"/>
+      <movable date="14" year="2018" name="Ash Wednesday"/>
+      <movable date="26" year="2020" name="Ash Wednesday"/>
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="11" year="2017" name="Tu Bishvat/Tu B'Shevat"/>
-      <movable day="10" year="2020" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable date="11" year="2017" name="Tu Bishvat/Tu B'Shevat"/>
+      <movable date="10" year="2020" name="Tu Bishvat/Tu B'Shevat"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>
@@ -154,12 +154,12 @@
       <day name="St Piran's Day (Cornwall)" date="5" />
       <day name="International Women’s Day" date="8" />
       <day name="St. Patrick's Day" date="17" /> 
-      <movable day="26" year="2017" name="Mothering Sunday"/>
-      <movable day="11" year="2018" name="Mothering Sunday"/>
-      <movable day="27" year="2016" name="Daylight Saving Time"/>
-      <movable day="26" year="2017" name="Daylight Saving Time"/>
-      <movable day="25" year="2018" name="Daylight Saving Time"/>
-      <movable day="31" year="2019" name="Daylight Saving Time"/>
+      <movable date="26" year="2017" name="Mothering Sunday"/>
+      <movable date="11" year="2018" name="Mothering Sunday"/>
+      <movable date="27" year="2016" name="Daylight Saving Time"/>
+      <movable date="26" year="2017" name="Daylight Saving Time"/>
+      <movable date="25" year="2018" name="Daylight Saving Time"/>
+      <movable date="31" year="2019" name="Daylight Saving Time"/>
       <computational name="Commonwealth Day" dow="1" now="1" />
     </holiday>
     <holiday desc="Ireland" name="ie">
@@ -168,16 +168,16 @@
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
-      <movable day="5" year="2019" name="Shrove Tuesday (Pancake Day)"/>
-      <movable day="1" year="2017" name="Ash Wednesday"/>
-      <movable day="6" year="2019" name="Ash Wednesday"/>
+      <movable date="5" year="2019" name="Shrove Tuesday (Pancake Day)"/>
+      <movable date="1" year="2017" name="Ash Wednesday"/>
+      <movable date="6" year="2019" name="Ash Wednesday"/>
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="12" year="2017" name="Purim"/>
-      <movable day="1" year="2018" name="Purim"/>
-      <movable day="21" year="2019" name="Purim"/>
-      <movable day="10" year="2020" name="Purim"/>
-      <movable day="31" year="2018" name="Passover (first day)"/>
+      <movable date="12" year="2017" name="Purim"/>
+      <movable date="1" year="2018" name="Purim"/>
+      <movable date="21" year="2019" name="Purim"/>
+      <movable date="10" year="2020" name="Purim"/>
+      <movable date="31" year="2018" name="Passover (first day)"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>
@@ -247,51 +247,51 @@
     <holiday desc="United Kingdom" name="uk">   
     </holiday>
     <holiday desc="Ireland" name="ie">
-      <movable day="14" year="2017" name="Mothering Sunday"/>
+      <movable date="14" year="2017" name="Mothering Sunday"/>
     </holiday>
     <!--.............Religious.............-->    
     <holiday desc="Christian holidays" name="ch">
-      <movable day="16" year="2017" name="Easter"/>
-      <movable day="17" year="2017" name="Easter Monday"/>
+      <movable date="16" year="2017" name="Easter"/>
+      <movable date="17" year="2017" name="Easter Monday"/>
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="11" year="2017" name="Passover (first day)"/>
-      <movable day="20" year="2019" name="Passover (first day)"/>
-      <movable day="9" year="2020" name="Passover (first day)"/>
+      <movable date="11" year="2017" name="Passover (first day)"/>
+      <movable date="20" year="2019" name="Passover (first day)"/>
+      <movable date="9" year="2020" name="Passover (first day)"/>
 
-      <movable day="18" year="2017" name="Last Day of Passover"/>
-      <movable day="7" year="2018" name="Last Day of Passover"/>
-      <movable day="27" year="2019" name="Last Day of Passover"/>
-      <movable day="16" year="2020" name="Last Day of Passover"/>
+      <movable date="18" year="2017" name="Last Day of Passover"/>
+      <movable date="7" year="2018" name="Last Day of Passover"/>
+      <movable date="27" year="2019" name="Last Day of Passover"/>
+      <movable date="16" year="2020" name="Last Day of Passover"/>
 
-      <movable day="24" year="2017" name="Yom HaShoah"/>
-      <movable day="11" year="2018" name="Yom HaShoah"/>
-      <movable day="21" year="2020" name="Yom HaShoah"/>
+      <movable date="24" year="2017" name="Yom HaShoah"/>
+      <movable date="11" year="2018" name="Yom HaShoah"/>
+      <movable date="21" year="2020" name="Yom HaShoah"/>
 
-      <movable day="19" year="2018" name="Yom Ha'atzmaut"/>
-      <movable day="29" year="2020" name="Yom Ha'atzmaut"/>
+      <movable date="19" year="2018" name="Yom Ha'atzmaut"/>
+      <movable date="29" year="2020" name="Yom Ha'atzmaut"/>
     </holiday>
 
     <holiday desc="Orthodox Church" name="ot">
-      <movable day="14" year="2017" name="Good Friday"/>
-      <movable day="6" year="2018" name="Good Friday"/>
-      <movable day="26" year="2019" name="Good Friday"/>
-      <movable day="17" year="2020" name="Good Friday"/>
+      <movable date="14" year="2017" name="Good Friday"/>
+      <movable date="6" year="2018" name="Good Friday"/>
+      <movable date="26" year="2019" name="Good Friday"/>
+      <movable date="17" year="2020" name="Good Friday"/>
 
-      <movable day="15" year="2017" name="Holy Saturday"/>
-      <movable day="7" year="2018" name="Holy Saturday"/>
-      <movable day="27" year="2019" name="Holy Saturday"/>
-      <movable day="18" year="2020" name="Holy Saturday"/>
+      <movable date="15" year="2017" name="Holy Saturday"/>
+      <movable date="7" year="2018" name="Holy Saturday"/>
+      <movable date="27" year="2019" name="Holy Saturday"/>
+      <movable date="18" year="2020" name="Holy Saturday"/>
 
-      <movable day="16" year="2017" name="Easter"/>
-      <movable day="8" year="2018" name="Easter"/>
-      <movable day="28" year="2019" name="Easter"/>
-      <movable day="19" year="2020" name="Easter"/>
+      <movable date="16" year="2017" name="Easter"/>
+      <movable date="8" year="2018" name="Easter"/>
+      <movable date="28" year="2019" name="Easter"/>
+      <movable date="19" year="2020" name="Easter"/>
 
-      <movable day="17" year="2017" name="Easter Monday"/>
-      <movable day="9" year="2018" name="Easter Monday"/>
-      <movable day="29" year="2019" name="Easter Monday"/>
-      <movable day="20" year="2020" name="Easter Monday"/>
+      <movable date="17" year="2017" name="Easter Monday"/>
+      <movable date="9" year="2018" name="Easter Monday"/>
+      <movable date="29" year="2019" name="Easter Monday"/>
+      <movable date="20" year="2020" name="Easter Monday"/>
     </holiday>
     <!--.............Other.................-->
     <holiday desc="International" name="in">
@@ -357,27 +357,27 @@
       <computational name="Spring Bank Holiday" dow="1" now="6" />
     </holiday>
     <holiday desc="Ireland" name="ie">
-      <movable day="2" year="2016" name="May Day"/>
-      <movable day="1" year="2017" name="May Day"/>
+      <movable date="2" year="2016" name="May Day"/>
+      <movable date="1" year="2017" name="May Day"/>
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
-      <movable day="22" year="2016" name="Trinity Sunday"/>
-      <movable day="31" year="2018" name="Corpus Christi"/>
+      <movable date="22" year="2016" name="Trinity Sunday"/>
+      <movable date="31" year="2018" name="Corpus Christi"/>
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="1" year="2019" name="Yom HaShoah"/>
-      <movable day="2" year="2017" name="Yom Ha'atzmaut"/>
-      <movable day="9" year="2019" name="Yom Ha'atzmaut"/>
+      <movable date="1" year="2019" name="Yom HaShoah"/>
+      <movable date="2" year="2017" name="Yom Ha'atzmaut"/>
+      <movable date="9" year="2019" name="Yom Ha'atzmaut"/>
 
-      <movable day="14" year="2017" name="Lag BaOmer"/>
-      <movable day="3" year="2018" name="Lag BaOmer"/>
-      <movable day="23" year="2019" name="Lag BaOmer"/>
-      <movable day="12" year="2020" name="Lag BaOmer"/>
+      <movable date="14" year="2017" name="Lag BaOmer"/>
+      <movable date="3" year="2018" name="Lag BaOmer"/>
+      <movable date="23" year="2019" name="Lag BaOmer"/>
+      <movable date="12" year="2020" name="Lag BaOmer"/>
 
-      <movable day="31" year="2017" name="Shavuot"/>
-      <movable day="20" year="2018" name="Shavuot"/>
-      <movable day="29" year="2020" name="Shavuot"/>
+      <movable date="31" year="2017" name="Shavuot"/>
+      <movable date="20" year="2018" name="Shavuot"/>
+      <movable date="29" year="2020" name="Shavuot"/>
     </holiday>
 
     <holiday desc="Orthodox Church" name="ot">
@@ -447,17 +447,17 @@
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
       <day name="Nativity of St John the Baptist" date="24" />
-      <movable day="11" year="2017" name="Trinity Sunday"/>
-      <movable day="15" year="2017" name="Corpus Christi"/>
-      <movable day="3" year="2016" name="Sacred Heart"/>
-      <movable day="23" year="2017" name="Sacred Heart"/>
-      <movable day="8" year="2018" name="Sacred Heart"/>
-      <movable day="28" year="2019" name="Sacred Heart"/>
-      <movable day="19" year="2020" name="Sacred Heart"/>
+      <movable date="11" year="2017" name="Trinity Sunday"/>
+      <movable date="15" year="2017" name="Corpus Christi"/>
+      <movable date="3" year="2016" name="Sacred Heart"/>
+      <movable date="23" year="2017" name="Sacred Heart"/>
+      <movable date="8" year="2018" name="Sacred Heart"/>
+      <movable date="28" year="2019" name="Sacred Heart"/>
+      <movable date="19" year="2020" name="Sacred Heart"/>
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="12" year="2016" name="Shavuot"/>
-      <movable day="9" year="2019" name="Shavuot"/>
+      <movable date="12" year="2016" name="Shavuot"/>
+      <movable date="9" year="2019" name="Shavuot"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>
@@ -531,8 +531,8 @@
     <holiday desc="Christian holidays" name="ch">
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="22" year="2018" name="Tisha B'Av"/>
-      <movable day="30" year="2020" name="Tisha B'Av"/>
+      <movable date="22" year="2018" name="Tisha B'Av"/>
+      <movable date="30" year="2020" name="Tisha B'Av"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>
@@ -601,9 +601,9 @@
       <day name="Assumption of Mary" date="15" />
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="14" year="2016" name="Tisha B'Av"/>
-      <movable day="1" year="2017" name="Tisha B'Av"/>
-      <movable day="11" year="2019" name="Tisha B'Av"/>
+      <movable date="14" year="2016" name="Tisha B'Av"/>
+      <movable date="1" year="2017" name="Tisha B'Av"/>
+      <movable date="11" year="2019" name="Tisha B'Av"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>
@@ -661,23 +661,23 @@
       <day name="The Abbots Bromley Horn Dance" date="10" />
     </holiday>
     <holiday desc="Ireland" name="ie">
-      <movable day="22" year="2016" name="Mothering Sunday"/>
+      <movable date="22" year="2016" name="Mothering Sunday"/>
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
       <day name="Nativity of Mary" date="8" />
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="21" year="2017" name="Rosh Hashana"/>
-      <movable day="10" year="2018" name="Rosh Hashana"/>
-      <movable day="30" year="2019" name="Rosh Hashana"/>
-      <movable day="19" year="2020" name="Rosh Hashana"/>
+      <movable date="21" year="2017" name="Rosh Hashana"/>
+      <movable date="10" year="2018" name="Rosh Hashana"/>
+      <movable date="30" year="2019" name="Rosh Hashana"/>
+      <movable date="19" year="2020" name="Rosh Hashana"/>
 
-      <movable day="30" year="2017" name="Yom Kippur"/>
-      <movable day="19" year="2018" name="Yom Kippur"/>
-      <movable day="28" year="2020" name="Yom Kippur"/>
-      <movable day="24" year="2018" name="First Day of Sukkot"/>
-      <movable day="30" year="2018" name="Last Day of Sukkot"/>
+      <movable date="30" year="2017" name="Yom Kippur"/>
+      <movable date="19" year="2018" name="Yom Kippur"/>
+      <movable date="28" year="2020" name="Yom Kippur"/>
+      <movable date="24" year="2018" name="First Day of Sukkot"/>
+      <movable date="30" year="2018" name="Last Day of Sukkot"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>    
@@ -740,10 +740,10 @@
     <!--.............National..............-->
     <holiday desc="United Kingdom" name="uk">
       <day name="Halloween" date="31" />
-      <movable day="30" year="2016" name="Daylight Saving Time"/>
-      <movable day="29" year="2017" name="Daylight Saving Time"/>
-      <movable day="28" year="2018" name="Daylight Saving Time"/>
-      <movable day="27" year="2019" name="Daylight Saving Time"/>
+      <movable date="30" year="2016" name="Daylight Saving Time"/>
+      <movable date="29" year="2017" name="Daylight Saving Time"/>
+      <movable date="28" year="2018" name="Daylight Saving Time"/>
+      <movable date="27" year="2019" name="Daylight Saving Time"/>
     </holiday>
     <holiday desc="Ireland" name="ie">
       <computational name="October Bank Holiday" dow="1" now="6" />
@@ -753,31 +753,31 @@
       <day name="All Souls' Day" date="31" />
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="3" year="2016" name="Rosh Hashana"/>
-      <movable day="12" year="2016" name="Yom Kippur"/>
-      <movable day="9" year="2019" name="Yom Kippur"/>
+      <movable date="3" year="2016" name="Rosh Hashana"/>
+      <movable date="12" year="2016" name="Yom Kippur"/>
+      <movable date="9" year="2019" name="Yom Kippur"/>
 
-      <movable day="17" year="2016" name="First Day of Sukkot"/>
-      <movable day="5" year="2017" name="First Day of Sukkot"/>
-      <movable day="14" year="2019" name="First Day of Sukkot"/>
-      <movable day="3" year="2020" name="First Day of Sukkot"/>
+      <movable date="17" year="2016" name="First Day of Sukkot"/>
+      <movable date="5" year="2017" name="First Day of Sukkot"/>
+      <movable date="14" year="2019" name="First Day of Sukkot"/>
+      <movable date="3" year="2020" name="First Day of Sukkot"/>
 
-      <movable day="23" year="2016" name="Last Day of Sukkot"/>
-      <movable day="11" year="2017" name="Last Day of Sukkot"/>
-      <movable day="20" year="2019" name="Last Day of Sukkot"/>
-      <movable day="9" year="2020" name="Last Day of Sukkot"/>
+      <movable date="23" year="2016" name="Last Day of Sukkot"/>
+      <movable date="11" year="2017" name="Last Day of Sukkot"/>
+      <movable date="20" year="2019" name="Last Day of Sukkot"/>
+      <movable date="9" year="2020" name="Last Day of Sukkot"/>
 
-      <movable day="24" year="2016" name="Shmini Atzeret"/>
-      <movable day="12" year="2017" name="Shmini Atzeret"/>
-      <movable day="1" year="2018" name="Shmini Atzeret"/>
-      <movable day="21" year="2019" name="Shmini Atzeret"/>
-      <movable day="10" year="2020" name="Shmini Atzeret"/>
+      <movable date="24" year="2016" name="Shmini Atzeret"/>
+      <movable date="12" year="2017" name="Shmini Atzeret"/>
+      <movable date="1" year="2018" name="Shmini Atzeret"/>
+      <movable date="21" year="2019" name="Shmini Atzeret"/>
+      <movable date="10" year="2020" name="Shmini Atzeret"/>
 
-      <movable day="25" year="2016" name="Simchat Torah"/>
-      <movable day="13" year="2017" name="Simchat Torah"/>
-      <movable day="2" year="2018" name="Simchat Torah"/>
-      <movable day="22" year="2019" name="Simchat Torah"/>
-      <movable day="11" year="2020" name="Simchat Torah"/>
+      <movable date="25" year="2016" name="Simchat Torah"/>
+      <movable date="13" year="2017" name="Simchat Torah"/>
+      <movable date="2" year="2018" name="Simchat Torah"/>
+      <movable date="22" year="2019" name="Simchat Torah"/>
+      <movable date="11" year="2020" name="Simchat Torah"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>
@@ -849,10 +849,10 @@
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
-      <movable day="20" year="2016" name="Feast of Christ the King"/>
-      <movable day="26" year="2017" name="Feast of Christ the King"/>
-      <movable day="25" year="2018" name="Feast of Christ the King"/>
-      <movable day="27" year="2017" name="Advent Sunday"/>
+      <movable date="20" year="2016" name="Feast of Christ the King"/>
+      <movable date="26" year="2017" name="Feast of Christ the King"/>
+      <movable date="25" year="2018" name="Feast of Christ the King"/>
+      <movable date="27" year="2017" name="Advent Sunday"/>
     </holiday >
     <holiday desc="Jewish" name="jw">
     </holiday>
@@ -923,27 +923,27 @@
       <day name="New Year’s Eve" date="31" />
     </holiday>
     <holiday desc="Ireland" name="ie">
-      <movable day="21" year="2016" name="Shortest Day of the Year"/>   
+      <movable date="21" year="2016" name="Shortest Day of the Year"/>   
       <day name="St. Stephen's Day" date="26" />
     </holiday>
     <!--.............Religious.............-->
     <holiday desc="Christian holidays" name="ch">
-      <movable day="3" year="2017" name="Advent Sunday"/>
-      <movable day="2" year="2018" name="Advent Sunday"/>
-      <movable day="11" year="2016" name="Gaudete Sunday"/>
-      <movable day="17" year="2017" name="Gaudete Sunday"/>
-      <movable day="16" year="2018" name="Gaudete Sunday"/>
-      <movable day="15" year="2019" name="Gaudete Sunday"/>
+      <movable date="3" year="2017" name="Advent Sunday"/>
+      <movable date="2" year="2018" name="Advent Sunday"/>
+      <movable date="11" year="2016" name="Gaudete Sunday"/>
+      <movable date="17" year="2017" name="Gaudete Sunday"/>
+      <movable date="16" year="2018" name="Gaudete Sunday"/>
+      <movable date="15" year="2019" name="Gaudete Sunday"/>
       <day name="Immaculate Conception of the Virgin Mary" date="8" />
       <day name="Christmas Eve" date="24" />
       <day name="Christmas" date="25" />
     </holiday >
     <holiday desc="Jewish" name="jw">
-      <movable day="25" year="2016" name="Chanukah/Hanukkah (first day)"/>
-      <movable day="13" year="2017" name="Chanukah/Hanukkah (first day)"/>
-      <movable day="3" year="2018" name="Chanukah/Hanukkah (first day)"/>
-      <movable day="23" year="2019" name="Chanukah/Hanukkah (first day)"/>
-      <movable day="11" year="2020" name="Chanukah/Hanukkah (first day)"/>
+      <movable date="25" year="2016" name="Chanukah/Hanukkah (first day)"/>
+      <movable date="13" year="2017" name="Chanukah/Hanukkah (first day)"/>
+      <movable date="3" year="2018" name="Chanukah/Hanukkah (first day)"/>
+      <movable date="23" year="2019" name="Chanukah/Hanukkah (first day)"/>
+      <movable date="11" year="2020" name="Chanukah/Hanukkah (first day)"/>
     </holiday>
     <holiday desc="Orthodox Church" name="ot">
     </holiday>

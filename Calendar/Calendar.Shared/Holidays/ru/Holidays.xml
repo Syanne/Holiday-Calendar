@@ -95,12 +95,12 @@
     <!--.............Religious.............-->
     <holiday desc="православные праздники" name="х">
       <day name="Сретение Господне" date="15" />
-      <movable day="20" month="2" year="2017" name="Масленица"/>
-      <movable day="26" month="2" year="2017" name="Прощенное Воскресенье"/>
-      <movable day="12" month="2" year="2018" name="Масленица"/>
-      <movable day="18" month="2" year="2018" name="Прощенное Воскресенье"/>
-      <movable day="19" month="2" year="2018" name="Начало Великого Поста"/>
-      <movable day="24" month="2" year="2020" name="Масленица"/>
+      <movable date="20" month="2" year="2017" name="Масленица"/>
+      <movable date="26" month="2" year="2017" name="Прощенное Воскресенье"/>
+      <movable date="12" month="2" year="2018" name="Масленица"/>
+      <movable date="18" month="2" year="2018" name="Прощенное Воскресенье"/>
+      <movable date="19" month="2" year="2018" name="Начало Великого Поста"/>
+      <movable date="24" month="2" year="2020" name="Масленица"/>
     </holiday >
     <holiday desc="католические праздники" name="к">
       <day name="Сретение Господне" date="2" />
@@ -167,15 +167,15 @@
      </holiday>
     <!--.............Religious.............-->
     <holiday desc="православные праздники" name="х">
-      <movable day="7" month="3" year="2016" name="Масленица"/>
-      <movable day="13" month="3" year="2016" name="Прощенное Воскресенье"/>
-      <movable day="14" month="3" year="2016" name="Начало Великого Поста"/>
-      <movable day="27" month="3" year="2017" name="Начало Великого Поста"/>
-      <movable day="4" month="3" year="2019" name="Масленица"/>
-      <movable day="10" month="3" year="2019" name="Прощенное Воскресенье"/>
-      <movable day="11" month="3" year="2019" name="Начало Великого Поста"/>
-      <movable day="1" month="3" year="2020" name="Прощенное Воскресенье"/>
-      <movable day="2" month="3" year="2020" name="Начало Великого Поста"/>
+      <movable date="7" month="3" year="2016" name="Масленица"/>
+      <movable date="13" month="3" year="2016" name="Прощенное Воскресенье"/>
+      <movable date="14" month="3" year="2016" name="Начало Великого Поста"/>
+      <movable date="27" month="3" year="2017" name="Начало Великого Поста"/>
+      <movable date="4" month="3" year="2019" name="Масленица"/>
+      <movable date="10" month="3" year="2019" name="Прощенное Воскресенье"/>
+      <movable date="11" month="3" year="2019" name="Начало Великого Поста"/>
+      <movable date="1" month="3" year="2020" name="Прощенное Воскресенье"/>
+      <movable date="2" month="3" year="2020" name="Начало Великого Поста"/>
     </holiday >
     <holiday desc="католические праздники" name="к">
       <day name="День святого Иосифа, обручника Девы Марии" date="19" />
@@ -238,66 +238,66 @@
     <!--.............Religious.............-->
     <holiday desc="православные праздники" name="х">
       <day name="Благовещение Пресвятой Богородицы" date="7" />
-      <movable day="24" month="4" year="2016" name="Вербное Воскресенье"/>
-      <movable day="25" month="4" year="2016" name="Страстной понедельник"/>
-      <movable day="26" month="4" year="2016" name="Страстной вторник"/>
-      <movable day="27" month="4" year="2016" name="Страстная среда"/>
-      <movable day="28" month="4" year="2016" name="Чистый четверг"/>
-      <movable day="29" month="4" year="2016" name="Страстная пятница"/>
-      <movable day="30" month="4" year="2016" name="Страстная суббота"/>
+      <movable date="24" month="4" year="2016" name="Вербное Воскресенье"/>
+      <movable date="25" month="4" year="2016" name="Страстной понедельник"/>
+      <movable date="26" month="4" year="2016" name="Страстной вторник"/>
+      <movable date="27" month="4" year="2016" name="Страстная среда"/>
+      <movable date="28" month="4" year="2016" name="Чистый четверг"/>
+      <movable date="29" month="4" year="2016" name="Страстная пятница"/>
+      <movable date="30" month="4" year="2016" name="Страстная суббота"/>
       
-      <movable day="9" month="4" year="2017" name="Вербное Воскресенье"/>
-      <movable day="10" month="4" year="2017" name="Страстной понедельник"/>
-      <movable day="11" month="4" year="2017" name="Страстной вторник"/>
-      <movable day="12" month="4" year="2017" name="Страстная среда"/>
-      <movable day="13" month="4" year="2017" name="Чистый четверг"/>
-      <movable day="14" month="4" year="2017" name="Страстная пятница"/>
-      <movable day="15" month="4" year="2017" name="Страстная суббота"/>
-      <movable day="16" month="4" year="2017" name="Пасха"/>
+      <movable date="9" month="4" year="2017" name="Вербное Воскресенье"/>
+      <movable date="10" month="4" year="2017" name="Страстной понедельник"/>
+      <movable date="11" month="4" year="2017" name="Страстной вторник"/>
+      <movable date="12" month="4" year="2017" name="Страстная среда"/>
+      <movable date="13" month="4" year="2017" name="Чистый четверг"/>
+      <movable date="14" month="4" year="2017" name="Страстная пятница"/>
+      <movable date="15" month="4" year="2017" name="Страстная суббота"/>
+      <movable date="16" month="4" year="2017" name="Пасха"/>
       
-      <movable day="1" month="4" year="2018" name="Вербное Воскресенье"/>
-      <movable day="2" month="4" year="2018" name="Страстной понедельник"/>
-      <movable day="3" month="4" year="2018" name="Страстной вторник"/>
-      <movable day="4" month="4" year="2018" name="Страстная среда"/>
-      <movable day="5" month="4" year="2018" name="Чистый четверг"/>
-      <movable day="6" month="4" year="2018" name="Страстная пятница"/>
-      <movable day="7" month="4" year="2018" name="Страстная суббота"/>
-      <movable day="8" month="4" year="2018" name="Пасха"/>
+      <movable date="1" month="4" year="2018" name="Вербное Воскресенье"/>
+      <movable date="2" month="4" year="2018" name="Страстной понедельник"/>
+      <movable date="3" month="4" year="2018" name="Страстной вторник"/>
+      <movable date="4" month="4" year="2018" name="Страстная среда"/>
+      <movable date="5" month="4" year="2018" name="Чистый четверг"/>
+      <movable date="6" month="4" year="2018" name="Страстная пятница"/>
+      <movable date="7" month="4" year="2018" name="Страстная суббота"/>
+      <movable date="8" month="4" year="2018" name="Пасха"/>
       
-      <movable day="21" month="4" year="2019" name="Вербное Воскресенье"/>
-      <movable day="22" month="4" year="2019" name="Страстной понедельник"/>
-      <movable day="23" month="4" year="2019" name="Страстной вторник"/>
-      <movable day="24" month="4" year="2019" name="Страстная среда"/>
-      <movable day="25" month="4" year="2019" name="Чистый четверг"/>
-      <movable day="26" month="4" year="2019" name="Страстная пятница"/>
-      <movable day="27" month="4" year="2019" name="Страстная суббота"/>
-      <movable day="28" month="4" year="2019" name="Пасха"/>
+      <movable date="21" month="4" year="2019" name="Вербное Воскресенье"/>
+      <movable date="22" month="4" year="2019" name="Страстной понедельник"/>
+      <movable date="23" month="4" year="2019" name="Страстной вторник"/>
+      <movable date="24" month="4" year="2019" name="Страстная среда"/>
+      <movable date="25" month="4" year="2019" name="Чистый четверг"/>
+      <movable date="26" month="4" year="2019" name="Страстная пятница"/>
+      <movable date="27" month="4" year="2019" name="Страстная суббота"/>
+      <movable date="28" month="4" year="2019" name="Пасха"/>
       
-      <movable day="12" month="4" year="2020" name="Вербное Воскресенье"/>
-      <movable day="13" month="4" year="2020" name="Страстной понедельник"/>
-      <movable day="14" month="4" year="2020" name="Страстной вторник"/>
-      <movable day="15" month="4" year="2020" name="Страстная среда"/>
-      <movable day="16" month="4" year="2020" name="Чистый четверг"/>
-      <movable day="17" month="4" year="2020" name="Страстная пятница"/>
-      <movable day="18" month="4" year="2020" name="Страстная суббота"/>
-      <movable day="19" month="4" year="2020" name="Пасха"/>
+      <movable date="12" month="4" year="2020" name="Вербное Воскресенье"/>
+      <movable date="13" month="4" year="2020" name="Страстной понедельник"/>
+      <movable date="14" month="4" year="2020" name="Страстной вторник"/>
+      <movable date="15" month="4" year="2020" name="Страстная среда"/>
+      <movable date="16" month="4" year="2020" name="Чистый четверг"/>
+      <movable date="17" month="4" year="2020" name="Страстная пятница"/>
+      <movable date="18" month="4" year="2020" name="Страстная суббота"/>
+      <movable date="19" month="4" year="2020" name="Пасха"/>
     </holiday >
     <holiday desc="католические праздники" name="к">
       <day name="День святого Исидора" date="4" />
-      <movable day="24" month="4" year="2016" name="Католическая Пасха"/>
-      <movable day="25" month="4" year="2016" name="Пасхальный понедельник"/>
+      <movable date="24" month="4" year="2016" name="Католическая Пасха"/>
+      <movable date="25" month="4" year="2016" name="Пасхальный понедельник"/>
 
-      <movable day="16" month="4" year="2017" name="Католическая Пасха"/>
-      <movable day="17" month="4" year="2017" name="Пасхальный понедельник"/>
+      <movable date="16" month="4" year="2017" name="Католическая Пасха"/>
+      <movable date="17" month="4" year="2017" name="Пасхальный понедельник"/>
 
-      <movable day="1" month="4" year="2018" name="Католическая Пасха"/>
-      <movable day="2" month="4" year="2018" name="Пасхальный понедельник"/>
+      <movable date="1" month="4" year="2018" name="Католическая Пасха"/>
+      <movable date="2" month="4" year="2018" name="Пасхальный понедельник"/>
 
-      <movable day="21" month="4" year="2019" name="Католическая Пасха"/>
-      <movable day="22" month="4" year="2019" name="Пасхальный понедельник"/>
+      <movable date="21" month="4" year="2019" name="Католическая Пасха"/>
+      <movable date="22" month="4" year="2019" name="Пасхальный понедельник"/>
 
-      <movable day="12" month="4" year="2020" name="Католическая Пасха"/>
-      <movable day="13" month="4" year="2020" name="Пасхальный понедельник"/>
+      <movable date="12" month="4" year="2020" name="Католическая Пасха"/>
+      <movable date="13" month="4" year="2020" name="Пасхальный понедельник"/>
     </holiday >
     <!--.............Other.................-->
     <holiday desc="международные праздники" name="м">
@@ -369,10 +369,10 @@
      </holiday>
     <!--.............Religious.............-->
     <holiday desc="православные праздники" name="х">
-      <movable day="1" month="5" year="2016" name="Пасха"/>
-      <movable day="25" month="5" year="2017" name="Вознесение Господне"/>
-      <movable day="17" month="5" year="2018" name="Вознесение Господне"/>
-      <movable day="28" month="5" year="2020" name="Вознесение Господне"/>
+      <movable date="1" month="5" year="2016" name="Пасха"/>
+      <movable date="25" month="5" year="2017" name="Вознесение Господне"/>
+      <movable date="17" month="5" year="2018" name="Вознесение Господне"/>
+      <movable date="28" month="5" year="2020" name="Вознесение Господне"/>
     </holiday >
     <holiday desc="католические праздники" name="к">
       <day name="День святой Жанны д'Арк" date="30" />
@@ -441,13 +441,13 @@
      </holiday>
     <!--.............Religious.............-->
     <holiday desc="православные праздники" name="х">
-      <movable day="9" month="6" year="2016" name="Вознесение Господне"/>
-      <movable day="19" month="6" year="2016" name="Троица"/>
-      <movable day="4" month="6" year="2017" name="Троица"/>
-      <movable day="27" month="6" year="2018" name="Троица"/>
-      <movable day="6" month="6" year="2019" name="Вознесение Господне"/>
-      <movable day="16" month="6" year="2019" name="Троица"/>
-      <movable day="7" month="6" year="2020" name="Троица"/>
+      <movable date="9" month="6" year="2016" name="Вознесение Господне"/>
+      <movable date="19" month="6" year="2016" name="Троица"/>
+      <movable date="4" month="6" year="2017" name="Троица"/>
+      <movable date="27" month="6" year="2018" name="Троица"/>
+      <movable date="6" month="6" year="2019" name="Вознесение Господне"/>
+      <movable date="16" month="6" year="2019" name="Троица"/>
+      <movable date="7" month="6" year="2020" name="Троица"/>
     </holiday >
     <holiday desc="католические праздники" name="к">
       <day name="День Святого Варнавы" date="11" />
@@ -682,18 +682,18 @@
     </holiday >
     <holiday desc="профессиональные праздники" name="про">
       <day name="Международный день солидарности журналистов" date="8" />
-      <movable day="13" month="9" year="2015" name="День программиста"/>
-      <movable day="12" month="9" year="2016" name="День программиста"/>
-      <movable day="13" month="9" year="2017" name="День программиста"/>
-      <movable day="13" month="9" year="2018" name="День программиста"/>
-      <movable day="13" month="9" year="2019" name="День программиста"/>
-      <movable day="12" month="9" year="2020" name="День программиста"/>
-      <movable day="13" month="9" year="2021" name="День программиста"/>
-      <movable day="13" month="9" year="2022" name="День программиста"/>
-      <movable day="13" month="9" year="2023" name="День программиста"/>
-      <movable day="12" month="9" year="2024" name="День программиста"/>
-      <movable day="13" month="9" year="2025" name="День программиста"/>
-      <movable day="13" month="9" year="2026" name="День программиста"/>
+      <movable date="13" month="9" year="2015" name="День программиста"/>
+      <movable date="12" month="9" year="2016" name="День программиста"/>
+      <movable date="13" month="9" year="2017" name="День программиста"/>
+      <movable date="13" month="9" year="2018" name="День программиста"/>
+      <movable date="13" month="9" year="2019" name="День программиста"/>
+      <movable date="12" month="9" year="2020" name="День программиста"/>
+      <movable date="13" month="9" year="2021" name="День программиста"/>
+      <movable date="13" month="9" year="2022" name="День программиста"/>
+      <movable date="13" month="9" year="2023" name="День программиста"/>
+      <movable date="12" month="9" year="2024" name="День программиста"/>
+      <movable date="13" month="9" year="2025" name="День программиста"/>
+      <movable date="13" month="9" year="2026" name="День программиста"/>
       <day name="Международный день переводчика" date="30" />
     </holiday>
   </month>
