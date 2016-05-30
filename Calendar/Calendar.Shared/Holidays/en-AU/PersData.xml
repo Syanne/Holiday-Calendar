@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <PersonalData toast="2">
   <theme>
-    <holiday desc="My" name="M"/>
+    <holiday desc="Australia" name="au"/>
+    <holiday desc="Australian Capital Territory" name="act"/>
     <holiday desc="International" name="in"/>
-    <holiday desc="Canada" name="ca"/>
-    <holiday desc="United Kingdom" name="uk"/>
   </theme>
   <holidays>
     <persDate name="" date="" month="" year=""/>

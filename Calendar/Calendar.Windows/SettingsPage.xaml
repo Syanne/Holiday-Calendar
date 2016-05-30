@@ -9,15 +9,14 @@
     Loaded="Page_Loaded"
     Unloaded="Page_Unloaded">
 
-
     <!-- Этот элемент StackPanel является корневой панелью для вертикальной компоновки разделов содержимого -->
     <Grid VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch"  
                     Background="#FFF6F6F9"
                     RequestedTheme="Light"
                     Margin="0">
+        
         <!-- Кнопка "Назад" и заголовок страницы -->
-
         <Grid Height="100" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>

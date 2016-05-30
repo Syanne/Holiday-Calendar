@@ -9,9 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Loaded="pageRoot_Loaded"
-    NavigationCacheMode="Disabled"
-    >
+    NavigationCacheMode="Disabled" >
     <Grid Background="#ffce3636">
         <Image gif:AnimationBehavior.SourceUri="Assets/301.gif"
                  HorizontalAlignment="Center" VerticalAlignment="Center" 

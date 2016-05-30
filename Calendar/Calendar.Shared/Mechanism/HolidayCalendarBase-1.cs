@@ -12,7 +12,7 @@ using Windows.UI;
 
 namespace Calendar.Mechanism
 {
-    partial class HolidayCalendarBase
+    public partial class HolidayCalendarBase
     {
         public int[] Month { get; private set; }
 
@@ -39,11 +39,11 @@ namespace Calendar.Mechanism
 
         public ObservableCollection<HolidayItem> HolidayItemCollection { get; private set; }
         public ObservableCollection<CheckBox> HolidayNameCollection { get; private set; }
-        private int firstDay;
+        public int Weekend { get; private set; }
 
-        public HolidayCalendarBase(int firstDay)
+        public HolidayCalendarBase(int weekend)
         {
-            this.firstDay = firstDay;
+            this.Weekend = weekend;
 
             HolidayItemCollection = new ObservableCollection<HolidayItem>();
             HolidayNameCollection = new ObservableCollection<CheckBox>();
@@ -54,6 +54,9 @@ namespace Calendar.Mechanism
             endPosition = 0;
 
             FillMonth();
+
+            ReadHolidayXml();
+            FillHolidaysList();
         }
 
         #region Standard holidays
@@ -63,11 +66,11 @@ namespace Calendar.Mechanism
         /// <returns>Collection of holiday's categories</returns>
         public void FillHolidaysList()
         {
-            var persCollection = CalendarResourcesManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
+            var persCollection = DataManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
             
             if (HolidayNameCollection.Count == 0)
             {
-                var collect = CalendarResourcesManager.doc.Root.Descendants("month").ElementAt(0).Descendants("holiday");
+                var collect = DataManager.doc.Root.Descendants("month").ElementAt(0).Descendants("holiday");
                 foreach (XElement x in collect)
                 {
                     HolidayNameCollection.Add(new CheckBox
@@ -100,17 +103,18 @@ namespace Calendar.Mechanism
         public void ReadHolidayXml()
         {
             //collections of holidays
-            var computational = CalendarResourcesManager.doc.Root.Descendants("month").
+            var computational = DataManager.doc.Root.Descendants("month").
                 ElementAt(SelectedDate.Month - 1).Descendants("computational");
-            var persCollection = CalendarResourcesManager.PersonalData.
+            var persCollection = DataManager.PersonalData.
                 Root.Descendants("theme").Descendants("holiday");
-            var movable = CalendarResourcesManager.doc.Root.Descendants("month").
+
+            var movable = DataManager.doc.Root.Descendants("month").
                 ElementAt(SelectedDate.Month - 1).Descendants("movable");
 
             HolidayItemCollection = new ObservableCollection<HolidayItem>();
 
             //looking for holidays from selected categories
-            foreach (XElement x in CalendarResourcesManager.doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants("day"))
+            foreach (XElement x in DataManager.doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants("day"))
             {
                 foreach (XElement pers in persCollection)
                     if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
@@ -125,6 +129,7 @@ namespace Calendar.Mechanism
                         });
             }
 
+            //computationals
             if(computational.Count() != 0)
                 foreach (XElement pers in persCollection)
                     foreach (XElement x in computational)
@@ -143,6 +148,7 @@ namespace Calendar.Mechanism
                             });
                     }
 
+            //movables
             if (movable != null)
                 foreach (XElement x in movable)
                 {
@@ -160,13 +166,26 @@ namespace Calendar.Mechanism
                         }
                 }
 
-            string mine = CalendarResourcesManager.resource.GetString("MineAsTag");
-            foreach (XElement pers in CalendarResourcesManager.PersonalData.Root.Descendants("holidays").Descendants("persDate"))
-                if (pers.Attribute("month").Value == SelectedDate.Month.ToString() && (pers.Attribute("year").Value == SelectedDate.Year.ToString() || pers.Attribute("year").Value == "0"))
+            //personal
+            string mine = DataManager.resource.GetString("MineAsTag");
+            foreach (XElement pers in DataManager.PersonalData.Root.Descendants("holidays").Descendants("persDate"))
+            {
+                //get year
+                int year = -1;
+                if (!int.TryParse(pers.Attribute("year").Value, out year))
+                    year = -1;
+
+                //check month
+                bool isCurrenMonth = (pers.Attribute("month").Value == SelectedDate.Month.ToString() ||
+                                      pers.Attribute("month").Value == "0") ? 
+                                      true: false;
+
+                if (isCurrenMonth && year != -1)
                     HolidayItemCollection.Add(new HolidayItem
                     {
                         Day = Convert.ToInt32(pers.Attribute("date").Value),
-                        Year = Convert.ToInt32(pers.LastAttribute.Value),
+                        Year = year,
+                        Month = Convert.ToInt32(pers.Attribute("month").Value),
                         HolidayName = pers.Attribute("name").Value,
                         HolidayTag = mine,
                         Background = new SolidColorBrush(Colors.Transparent),
@@ -174,9 +193,11 @@ namespace Calendar.Mechanism
                         Height = 50
                     });
 
+            }
+
             HolidayItemCollection.Add(new HolidayItem { Day = 0,
-                                                        HolidayName = CalendarResourcesManager.resource.GetString("PersonalNote"),
-                                                        HolidayTag = CalendarResourcesManager.resource.GetString("MineAsTag"),
+                                                        HolidayName = DataManager.resource.GetString("PersonalNote"),
+                                                        HolidayTag = DataManager.resource.GetString("MineAsTag"),
                                                         Background = new SolidColorBrush(Colors.Transparent),
                                                         FontSize = 20,
                                                         Height = 50
@@ -199,7 +220,7 @@ namespace Calendar.Mechanism
                 a = (int)(startPosition / 10) * 7 + now * 7 + dow + 1 - startDay;
                 
                 //if week starts from Sun, add 7 days
-                if (firstDay == 0) return a + 7;
+                if (Weekend == 0) return a + 7;
                 return a;
             }
             //last week
@@ -224,22 +245,22 @@ namespace Calendar.Mechanism
         public void WriteHolidayXml(List<string> basicHolidays)
         {
             //collect all descendants
-            var collect = CalendarResourcesManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
+            var collect = DataManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
             if (collect == null) throw new Exception();
             int n = collect.Count();
 
             //remove all nodes
-            CalendarResourcesManager.PersonalData.Root.Descendants("theme").Descendants().Remove();
+            DataManager.PersonalData.Root.Descendants("theme").Descendants().Remove();
 
             //add all nodes
             for (int i = 0; i < basicHolidays.Count(); i += 2)
             {
-                using (XmlWriter writer = CalendarResourcesManager.PersonalData.Root.Descendants().ElementAt(0).CreateWriter())
+                using (XmlWriter writer = DataManager.PersonalData.Root.Descendants().ElementAt(0).CreateWriter())
                 {
-                    CalendarResourcesManager.WriteNode(writer, basicHolidays.ElementAt(i), basicHolidays.ElementAt(i + 1));
+                    DataManager.WriteNode(writer, basicHolidays.ElementAt(i), basicHolidays.ElementAt(i + 1));
                 }
             }
-            CalendarResourcesManager.SaveDocumentAsync();
+            DataManager.SaveDocumentAsync();
         }
         #endregion
     }

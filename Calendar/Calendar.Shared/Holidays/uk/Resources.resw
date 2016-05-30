@@ -135,9 +135,6 @@
   <data name="delNote.Content" xml:space="preserve">
     <value>видалити</value>
   </data>
-  <data name="everyYear.Content" xml:space="preserve">
-    <value>кожного року</value>
-  </data>
   <data name="GoToDate.Text" xml:space="preserve">
     <value>перейти до:</value>
   </data>
@@ -381,5 +378,17 @@ Syanne.</value>
   </data>
   <data name="Weekend" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="themePictures" xml:space="preserve">
+    <value>Holidays/uk/themePictures</value>
+  </data>
+  <data name="every.Content" xml:space="preserve">
+    <value>щомісяця</value>
+  </data>
+  <data name="everyWeek.Content" xml:space="preserve">
+    <value>щотижня</value>
+  </data>
+  <data name="everyYear.Content" xml:space="preserve">
+    <value>щороку</value>
   </data>
 </root>

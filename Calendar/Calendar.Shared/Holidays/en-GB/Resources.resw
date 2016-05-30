@@ -135,9 +135,6 @@
   <data name="delNote.Content" xml:space="preserve">
     <value>remove</value>
   </data>
-  <data name="everyYear.Content" xml:space="preserve">
-    <value>every year</value>
-  </data>
   <data name="GoToDate.Text" xml:space="preserve">
     <value>go to</value>
   </data>
@@ -199,7 +196,7 @@
     <value>set the period and amount of days before the notification</value>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Calendar app with large set of holidays </value>
+    <value>Calendar app with large set of holidays</value>
   </data>
   <data name="ApplicationDisplayName" xml:space="preserve">
     <value>Calendar + Holidays</value>
@@ -241,10 +238,10 @@
     <value>Calendar</value>
   </data>
   <data name="LocalHolidaysPath" xml:space="preserve">
-    <value>Holidays/en-UK/Holidays.xml</value>
+    <value>Holidays/en-GB/Holidays.xml</value>
   </data>
   <data name="LocalPresonalData" xml:space="preserve">
-    <value>Holidays/en-UK/PersData.xml</value>
+    <value>Holidays/en-GB/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
     <value>language</value>
@@ -315,7 +312,7 @@
     <value>settings</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
-    <value>Holidays/en-UK/Themes.xml</value>
+    <value>Holidays/en-GB/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- toast notifications;
@@ -353,7 +350,7 @@
     <value>style</value>
   </data>
   <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>Holidays\en-UK\Holidays.xml</value>
+    <value>Holidays\en-GB\Holidays.xml</value>
   </data>
   <data name="msgBody" xml:space="preserve">
     <value>Thank you for installing the application! Your comments and suggestions are very important. You can send them on syanne.red@gmail.com or leave it on the application page.
@@ -374,5 +371,17 @@ Syanne.</value>
   </data>
   <data name="Weekend" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="themePictures" xml:space="preserve">
+    <value>Holidays/en/themes</value>
+  </data>
+  <data name="everyMonth.Content" xml:space="preserve">
+    <value>monthly</value>
+  </data>
+  <data name="everyWeek.Content" xml:space="preserve">
+    <value>weekly</value>
+  </data>
+  <data name="everyYear.Content" xml:space="preserve">
+    <value>yearly</value>
   </data>
 </root>

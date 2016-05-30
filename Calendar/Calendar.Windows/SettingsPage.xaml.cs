@@ -61,7 +61,7 @@ namespace Calendar
                 if (themesFullScreen.Visibility == Visibility.Visible)
                     temp = (myFlip.SelectedItem as LocalFVItem).Tag;
                 else temp = (smallThemesPreview.SelectedItem as LocalFVItem).Tag;
-            
+
                 ApplicationData.Current.LocalSettings.Values["AppTheme"] =
                     String.Format("ms-appx:///themes/{0}.xaml", temp);
                 Application.Current.Resources.Source =
@@ -185,9 +185,9 @@ namespace Calendar
             {
                 if (toastToggle.IsOn)
                 {
-                    CalendarResourcesManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
+                    DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
                     //save changes
-                    CalendarResourcesManager.SaveDocumentAsync();
+                    DataManager.SaveDocumentAsync();
 
                     //set period
                     uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
@@ -250,13 +250,12 @@ namespace Calendar
             }
         }
 
-
         private async void BuyThis()
         {
-            var dial = new MessageDialog(CalendarResourcesManager.resource.GetString("Unlicensed"));
+            var dial = new MessageDialog(DataManager.resource.GetString("Unlicensed"));
 
-            dial.Commands.Add(new UICommand(CalendarResourcesManager.resource.GetString("UnlicensedCancel")));
-            dial.Commands.Add(new UICommand(CalendarResourcesManager.resource.GetString("UnlicensedButton"),
+            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedCancel")));
+            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedButton"),
             new UICommandInvokedHandler((args) =>
             {
                 BuyStuff();

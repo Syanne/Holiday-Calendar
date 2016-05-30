@@ -18,7 +18,7 @@ namespace Calendar
         public StylesPage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
@@ -66,7 +66,7 @@ namespace Calendar
             {
                 CalendarResources.ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");
             }
-        }
+}
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -3,7 +3,7 @@ using Windows.UI.Popups;
 
 namespace Calendar.Mechanism
 {
-    partial class HolidayCalendarBase 
+    public partial class HolidayCalendarBase 
     {
         /// <summary>
         /// Next or previous month
@@ -78,7 +78,7 @@ namespace Calendar.Mechanism
             R = 7000 + (day + y + y / 4 - y / 100 + y / 400 + (31 * m) / 12);
             R %= 7;
 
-            if (firstDay == 0) return R;
+            if (Weekend == 0) return R;
             else return R = (R > 0) ? (R - 1) : 6;
         }
     }

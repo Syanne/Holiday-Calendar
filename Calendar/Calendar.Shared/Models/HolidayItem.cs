@@ -12,6 +12,7 @@ namespace Calendar.Models
     {
         public int Day { get; set; }
         public int? Year { get; set; }
+        public int? Month { get; set; }
         public string HolidayName { get; set; }
         public string HolidayTag { get; set; }
         public Brush Background { get; set; }
@@ -25,6 +26,7 @@ namespace Calendar.Models
             {
                 Day = this.Day,
                 Year = this.Year,
+                Month = this.Month,
                 HolidayName = this.HolidayName,
                 HolidayTag = this.HolidayTag,
                 Background = this.Background,

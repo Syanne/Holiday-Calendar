@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Calendar.Mechanism;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
-using Windows.ApplicationModel;
 using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
 using Windows.Storage;
@@ -11,11 +11,12 @@ using Windows.UI.Popups;
 
 namespace CalendarResources
 {
-    public class CalendarResourcesManager
+    public class DataManager
     {
         public static XDocument PersonalData { get; set; }
         public static XDocument doc { get; set; }
         public static ResourceLoader resource { get; set; }
+        public static HolidayCalendarBase calBase;
 
         /// <summary>
         /// Load Holidays Data (general, then personal)
@@ -174,7 +175,7 @@ namespace CalendarResources
                 PersonalData.Root.Descendants("holidays").Descendants("persDate").
                     Where(p => (p.Attribute("name").Value == oldName)).
                     Where(p => (p.Attribute("date").Value == day)).
-                    Where(p => (p.Attribute("month").Value == month)).FirstOrDefault().
+                    FirstOrDefault().
                     ReplaceAttributes(new XAttribute("name", newName),
                     new XAttribute("date", day),
                     new XAttribute("month", month),

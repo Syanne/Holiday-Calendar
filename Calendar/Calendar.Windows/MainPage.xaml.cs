@@ -19,14 +19,12 @@ namespace Calendar
     {
         public MainPage()
         {
-            //language
-            //if (ApplicationData.Current.LocalSettings.Values.Count == 0)
-            //    ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
-             
+            //// language
+            // if (ApplicationData.Current.LocalSettings.Values.Count == 0)
+            //     ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
+
             this.InitializeComponent();
             PagePreLoader();
-
-
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -51,8 +49,8 @@ namespace Calendar
 
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (DatePickerDp.Date.Month != calBase.SelectedDate.Month ||
-                DatePickerDp.Date.Year != calBase.SelectedDate.Year)
+            if (DatePickerDp.Date.Month != DataManager.calBase.SelectedDate.Month ||
+                DatePickerDp.Date.Year != DataManager.calBase.SelectedDate.Year)
             {
                 ChangeDate(1, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
                 DatePickerDp.Date = DateTimeOffset.Now;
@@ -66,10 +64,10 @@ namespace Calendar
 
         private void Decade_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), calBase.SelectedDate.Year);
+            DataManager.calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), DataManager.calBase.SelectedDate.Year);
 
             //Shows month and year in the top of calGrid
-            monthNameButton.Content = calBase.SelectedDate.ToString("MMMM yyyy");
+            monthNameButton.Content = DataManager.calBase.SelectedDate.ToString("MMMM yyyy");
 
             calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
             weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -104,7 +102,7 @@ namespace Calendar
         {
             FlyoutBase.ShowAttachedFlyout(HolidayList as FrameworkElement);
 
-            listOfHolidays.ItemsSource = calBase.HolidayNameCollection;
+            listOfHolidays.ItemsSource = DataManager.calBase.HolidayNameCollection;
         }
 
 

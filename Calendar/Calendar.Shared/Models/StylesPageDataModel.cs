@@ -26,7 +26,8 @@ namespace Calendar
 
         public SampleDataSource()
         {
-            XDocument doc = XDocument.Load(CalendarResources.CalendarResourcesManager.resource.GetString("LocalThemesPath"));
+            XDocument doc = XDocument.Load(CalendarResources.DataManager.resource.GetString("LocalThemesPath"));
+            string pictureFolder = CalendarResources.DataManager.resource.GetString("themePictures");
 
             var collection = doc.Root.Descendants("theme");
 
@@ -34,10 +35,15 @@ namespace Calendar
             {
                 _itemSource.Add(new LocalFVItem
                 {
-                    Image = String.Format("/SelectTheme/{0}-700.png", holiday.FirstAttribute.Value),
+#if WINDOWS_PHONE_APP
+                    Image = String.Format("{0}/{1}.png", pictureFolder, holiday.FirstAttribute.Value),
+#else
+                    Image = String.Format("{0}/{1}-700.png", pictureFolder, holiday.FirstAttribute.Value),
+#endif
                     Tag = holiday.FirstAttribute.Value
                 });
             }
+
         }
     }
 }

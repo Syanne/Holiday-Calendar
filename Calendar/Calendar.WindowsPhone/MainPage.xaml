@@ -483,8 +483,9 @@
                                         <ItemsWrapGrid Orientation="Horizontal"/>
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
-                                <RadioButton Name="onceCb" x:Uid="once" IsChecked="True" Tag="none" Width="150"/>
-                                <RadioButton Name="everyCb" x:Uid="everyYear" Tag="0" Width="150"/>
+                                <RadioButton Name="onceCb" x:Uid="once" IsChecked="True" Tag="none"/>
+                                <RadioButton Name="everyMonth" x:Uid="everyMonth" Tag="month" Style="{StaticResource ResourceKey=snoozes}"/>
+                                <RadioButton Name="everyYear" x:Uid="everyYear" Tag="year" Style="{StaticResource ResourceKey=snoozes}"/>
                             </ListView>
                             <ListView 
                 			x:Name="delChLists" 

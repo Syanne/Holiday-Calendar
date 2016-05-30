@@ -96,7 +96,7 @@
         <Setter Property="BorderBrush" Value="#ff303030"/>
         <Setter Property="MinWidth" Value="500"/>
         <Setter Property="MinHeight" Value="330"/>
-        <Setter Property="MaxHeight" Value="330"/>
+        <Setter Property="MaxHeight" Value="340"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
     <Style TargetType="FlyoutPresenter" x:Key="WPNoteFlyoutStyle">
@@ -112,9 +112,15 @@
         <Setter Property="Background" Value="#FFF6F6F9"/>
         <Setter Property="BorderThickness" Value="5"/>
         <Setter Property="BorderBrush" Value="#FF303030"/>
-        <Setter Property="MinWidth" Value="600"/>
-        <Setter Property="MinHeight" Value="500"/>
+        <Setter Property="MinWidth" Value="550"/>
+        <Setter Property="Margin" Value="10"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="RadioButton" x:Key="snoozes">
+        <Setter Property="MinWidth" Value="100"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Margin" Value="5, 0"/>
     </Style>
     <!--/ADD-CHANGE-DELETE HOLIDAY-->
     <!--/NOTES-->

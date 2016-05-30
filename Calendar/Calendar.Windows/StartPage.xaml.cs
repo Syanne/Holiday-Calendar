@@ -4,7 +4,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.ApplicationModel.Resources;
 using Windows.Storage;
-using Windows.Globalization;
 
 namespace Calendar
 {
@@ -13,29 +12,34 @@ namespace Calendar
         public StartPage()
         {
             this.InitializeComponent();
-        }
-                
-        private void pageRoot_Loaded(object sender, RoutedEventArgs e)
-        {
             ResourcesLoaderHere();
         }
-
         private async void ResourcesLoaderHere()
         {
-            
             //resources
-            CalendarResourcesManager.resource = ResourceLoader.GetForCurrentView("Resources");
+            DataManager.resource = ResourceLoader.GetForCurrentView("Resources");
             try
             {
-                Application.Current.Resources.Source =
-                    new Uri(ApplicationData.Current.LocalSettings.Values["AppTheme"].ToString());
+                Application.Current.Resources.Source = new Uri(ApplicationData.Current.LocalSettings.Values["AppTheme"].ToString());
             }
             catch
             {
-                Application.Current.Resources.Source =
-                    new Uri("ms-appx:///Themes/Default.xaml");
+                Application.Current.Resources.Source = new Uri("ms-appx:///Themes/Default.xaml");
             }                                  
-            CalendarResourcesManager.PersonalData = await CalendarResourcesManager.LoadPersonalData();
+            DataManager.PersonalData = await DataManager.LoadPersonalData();
+
+            //mechanism
+            int Weekend;
+            try
+            {
+                string theDay = ResourceLoader.GetForCurrentView("Resources").GetString("Weekend");
+                Weekend = Convert.ToInt32(theDay);
+            }
+            catch
+            {
+                Weekend = 5;
+            }
+            DataManager.calBase = new Mechanism.HolidayCalendarBase(Weekend);
 
             this.Frame.Navigate(typeof(MainPage));
         }

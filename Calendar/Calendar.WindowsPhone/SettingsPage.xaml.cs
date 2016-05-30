@@ -63,7 +63,7 @@ namespace Calendar
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            CalendarResourcesManager.SaveDocumentAsync();
+            DataManager.SaveDocumentAsync();
 
             TileToggle("TileBackgroundTask", "BackgroundUpdater.TileBackgroundTask");
         }
@@ -102,9 +102,9 @@ namespace Calendar
             {
                 if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
                 {
-                    CalendarResourcesManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
+                    DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
                     //save changes
-                    CalendarResourcesManager.SaveDocumentAsync();
+                    DataManager.SaveDocumentAsync();
 
                     //set period
                     uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
@@ -143,9 +143,9 @@ namespace Calendar
         {
                 if (toastToggle.IsOn)
                 {
-                    CalendarResourcesManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
+                    DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
                     //save changes
-                    CalendarResourcesManager.SaveDocumentAsync();
+                    DataManager.SaveDocumentAsync();
 
                     //set period
                     uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
@@ -207,10 +207,10 @@ namespace Calendar
 
         private async void BuyThis()
         {
-            var dial = new MessageDialog(CalendarResourcesManager.resource.GetString("Unlicensed"));
+            var dial = new MessageDialog(DataManager.resource.GetString("Unlicensed"));
 
-            dial.Commands.Add(new UICommand(CalendarResourcesManager.resource.GetString("UnlicensedCancel")));
-            dial.Commands.Add(new UICommand(CalendarResourcesManager.resource.GetString("UnlicensedButton"),
+            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedCancel")));
+            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedButton"),
             new UICommandInvokedHandler((args) =>
             {
                 BuyStuff();

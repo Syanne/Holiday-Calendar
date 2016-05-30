@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Calendar</RootNamespace>
     <AssemblyName>Calendar.WindowsPhone</AssemblyName>
-    <DefaultLanguage>ru</DefaultLanguage>
+    <DefaultLanguage>uk</DefaultLanguage>
     <TargetPlatformVersion>8.1</TargetPlatformVersion>
     <MinimumVisualStudioVersion>12</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -126,16 +126,6 @@
     <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
     <None Include="Package.StoreAssociation.xml" />
-    <Content Include="SelectTheme\BloodDrops-700.png" />
-    <Content Include="SelectTheme\Bottle-700.png" />
-    <Content Include="SelectTheme\Cherry-700.png" />
-    <Content Include="SelectTheme\DarkBlue-700.png" />
-    <Content Include="SelectTheme\Default-700.png" />
-    <Content Include="SelectTheme\Fall-700.png" />
-    <Content Include="SelectTheme\Violet-700.png" />
-    <Content Include="SelectTheme\HotPink-700.png" />
-    <Content Include="SelectTheme\MintGreen-700.png" />
-    <Content Include="SelectTheme\Orange-700.png" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml">
