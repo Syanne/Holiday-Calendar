@@ -307,8 +307,8 @@ namespace Calendar
                 {
                     FlyoutBase.ShowAttachedFlyout(noteList as FrameworkElement);
                     addNotetb.Text = "";
-                    delChLists.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                    addRecLists.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    delChLists.Visibility = Visibility.Collapsed;
+                    addRecLists.Visibility = Visibility.Visible;
                     onceCb.IsChecked = true;
                 }
                 //existing
@@ -317,8 +317,8 @@ namespace Calendar
                     FlyoutBase.ShowAttachedFlyout(noteList as FrameworkElement);
                     addNotetb.Text = ((sender as ListViewItem).Content as TextBlock).Text;
                     startText.Clear().Append(addNotetb.Text);
-                    delChLists.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                    addRecLists.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                    delChLists.Visibility = Visibility.Visible;
+                    addRecLists.Visibility = Visibility.Collapsed;
 
                     foreach (var item in noteList.Items)
                     {
@@ -399,7 +399,6 @@ namespace Calendar
         /// <returns>year</returns>
         private void RepeatPeriodChecker(ref int month, ref int year, ref int day)
         {
-            //var collection = radioBtParent.Items.Where(item => item.GetType() == typeof(RadioButton));
             if (everyYear.IsChecked == true)
             {
                 year = 0;
@@ -418,14 +417,6 @@ namespace Calendar
                 month = DataManager.calBase.SelectedDate.Month;
                 day = DataManager.calBase.SelectedDate.Day;
             }
-
-
-            //RadioButton year = radioBtParent.Items.FirstOrDefault(item => 
-            //                    (item as RadioButton).IsChecked == true) as RadioButton;
-
-            //if (year.Tag.ToString() == "0")
-            //    return "0";
-            //else return DataManager.calBase.SelectedDate.Year.ToString();
         }
 
         private void DeleteNoteController()

@@ -44,6 +44,11 @@ namespace Calendar
 
             this.Frame.Navigate(typeof(MainPage));
         }
+
+        private void pageRoot_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     
 }

@@ -17,7 +17,7 @@
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>Calendar.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>E84CF28660159F6965212F8C9A964B734564133E</PackageCertificateThumbprint>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
     <AppxBundle>Always</AppxBundle>
   </PropertyGroup>
@@ -174,11 +174,16 @@
     <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
       <Name>Behaviors SDK %28XAML%29</Name>
     </SDKReference>
-    <SDKReference Include="MSAdvertisingXaml, Version=8.1">
-      <Name>Microsoft Advertising SDK for Windows 8.1 %28Xaml%29</Name>
-    </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="AdDuplex.Universal.Controls.Win.XAML, Version=9.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdDuplexWin81.9.0.0.11\lib\portable-win81+wpa81\AdDuplex.Universal.Controls.Win.XAML.winmd</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AdDuplex.Universal.Win.WinRT, Version=9.0.0.11, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AdDuplexWin81.9.0.0.11\lib\portable-win81+wpa81\AdDuplex.Universal.Win.WinRT.winmd</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="XamlAnimatedGif, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\XamlAnimatedGif.1.0.5\lib\portable-win81+wpa81\XamlAnimatedGif.dll</HintPath>
       <Private>True</Private>

@@ -5,8 +5,8 @@
     xmlns:local="using:Calendar"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:UI="using:Microsoft.Advertising.Mobile.UI"
     NavigationCacheMode="Disabled"
+    xmlns:adduplex="using:AdDuplex.Universal.Controls.WinPhone.XAML"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
 
@@ -471,7 +471,7 @@
                 			BorderThickness="2" 
                 			FontSize="20" MaxLength="60" Margin="10,0" />
                             <ListView x:Name="radioBtParent" 
-                                      Height="50" 
+                                      Height="auto" 
                                       Padding="0" Margin="0" 
                                       HorizontalAlignment="Center" 
                                       SelectionMode="None" 
@@ -483,9 +483,9 @@
                                         <ItemsWrapGrid Orientation="Horizontal"/>
                                     </ItemsPanelTemplate>
                                 </ListView.ItemsPanel>
-                                <RadioButton Name="onceCb" x:Uid="once" IsChecked="True" Tag="none"/>
-                                <RadioButton Name="everyMonth" x:Uid="everyMonth" Tag="month" Style="{StaticResource ResourceKey=snoozes}"/>
-                                <RadioButton Name="everyYear" x:Uid="everyYear" Tag="year" Style="{StaticResource ResourceKey=snoozes}"/>
+                                <RadioButton Name="onceCb" x:Uid="once" IsChecked="True" Tag="none" MinHeight="80" Style="{StaticResource ResourceKey=snoozes}"/>
+                                <RadioButton Name="everyMonth" x:Uid="everyMonth" Tag="month" MinHeight="80" Style="{StaticResource ResourceKey=snoozes}"/>
+                                <RadioButton Name="everyYear" x:Uid="everyYear" Tag="year" MinHeight="80" Style="{StaticResource ResourceKey=snoozes}"/>
                             </ListView>
                             <ListView 
                 			x:Name="delChLists" 
@@ -537,18 +537,11 @@
                     </Flyout>
                 </FlyoutBase.AttachedFlyout>
             </ListView>
-            <StackPanel Height="60" Background="Transparent">
-                <UI:AdControl Name="adControl" 
-                  AutoRefreshIntervalInSeconds="60" 
-                  AdUnitId="11579725" 
-                  ApplicationId="8dfdedd2-be3b-4696-bfd7-5cba10338fba" 
-                  ErrorOccurred="AdControl_ErrorOccurred"
-                  HorizontalAlignment="Center" 
-                  Height="50" 
-                  IsAutoRefreshEnabled="True" 
-                  Margin="0, 5" 
-                  VerticalAlignment="Top" 
-                  Width="480"/>
+            <StackPanel Name="AdStack" Height="60" Background="Transparent">
+                <adduplex:AdControl Name="adControl" 
+                                    AdUnitId="194363" 
+                                    Margin="0, 5" 
+                                    AppKey="4091e1a5-32e6-429b-86db-304d01028203" />
             </StackPanel>
             <ListView x:Name="GoToDate" 
                           VerticalAlignment="Bottom" 

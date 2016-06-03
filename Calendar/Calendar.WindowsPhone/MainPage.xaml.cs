@@ -368,10 +368,10 @@ namespace Calendar
             listOfHolidays.Height = Window.Current.Bounds.Height - 60;
         }
 
-        private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.Mobile.Common.AdErrorEventArgs e)
-        {
-            //System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
-        }
+        //private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.Mobile.Common.AdErrorEventArgs e)
+        //{
+        //    System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
+        //}
 
         private void nextGVI_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {

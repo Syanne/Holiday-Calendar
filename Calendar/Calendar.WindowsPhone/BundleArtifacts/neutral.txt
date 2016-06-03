@@ -1,4 +1,5 @@
-MainPackage=C:\Users\Anna\Documents\Calendar\Calendar\Calendar.WindowsPhone\bin\Release\Calendar.WindowsPhone_1.2.0.73_AnyCPU.appx
-SymbolPackage=C:\Users\Anna\Documents\Calendar\Calendar\Calendar.WindowsPhone\AppPackages\Calendar.WindowsPhone_1.2.0.73_Test\Calendar.WindowsPhone_1.2.0.73_AnyCPU.appxsym
-ResourcePack=C:\Users\Anna\Documents\Calendar\Calendar\Calendar.WindowsPhone\bin\Release\Calendar.WindowsPhone_1.2.0.73_language-uk.appx
-ResourcePack=C:\Users\Anna\Documents\Calendar\Calendar\Calendar.WindowsPhone\bin\Release\Calendar.WindowsPhone_1.2.0.73_scale-100.appx
+MainPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.WindowsPhone\bin\Release\Calendar.WindowsPhone_1.2.0.77_AnyCPU.appx
+SymbolPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.WindowsPhone\AppPackages\Calendar.WindowsPhone_1.2.0.77_Test\Calendar.WindowsPhone_1.2.0.77_AnyCPU.appxsym
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.WindowsPhone\bin\Release\Calendar.WindowsPhone_1.2.0.77_language-en.appx
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.WindowsPhone\bin\Release\Calendar.WindowsPhone_1.2.0.77_language-ru.appx
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.WindowsPhone\bin\Release\Calendar.WindowsPhone_1.2.0.77_scale-100.appx
