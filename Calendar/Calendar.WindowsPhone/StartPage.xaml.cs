@@ -12,6 +12,10 @@ namespace Calendar
         public StartPage()
         {
             this.InitializeComponent();
+        }
+
+        private void pageRoot_Loaded(object sender, RoutedEventArgs e)
+        {
             ResourcesLoaderHere();
         }
 
@@ -33,7 +37,7 @@ namespace Calendar
             int Weekend;
             try
             {
-                string theDay = ResourceLoader.GetForCurrentView("Resources").GetString("Weekend");
+                string theDay = DataManager.resource.GetString("Weekend");
                 Weekend = Convert.ToInt32(theDay);
             }
             catch
@@ -43,11 +47,6 @@ namespace Calendar
             DataManager.calBase = new Mechanism.HolidayCalendarBase(Weekend);
 
             this.Frame.Navigate(typeof(MainPage));
-        }
-
-        private void pageRoot_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
     

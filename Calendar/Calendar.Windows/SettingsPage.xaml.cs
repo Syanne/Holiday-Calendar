@@ -73,7 +73,7 @@ namespace Calendar
             }
             else
             {
-                BuyThis();
+                OfferPurchase();
             }
         }
 
@@ -100,36 +100,10 @@ namespace Calendar
             ToastToggle("ToastBackgroundTask", "BackgroundTasks.ToastBackgroundTask");
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            LicenseInformation license = CurrentApp.LicenseInformation;
-            if (!license.ProductLicenses["allstuff1"].IsActive)
-            {
-                try
-                {
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
-                }
-                catch (Exception ex)
-                {
-                    MyMessage(ex.Message);
-                }
-            }
+            BuyStuff();
         }
-
-        //private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    ApplicationLanguages.PrimaryLanguageOverride = (comboLang.SelectedItem as ComboBoxItem).Content.ToString();
-        //    ApplicationData.Current.RoamingSettings.Values["Language"] = (comboLang.SelectedItem as ComboBoxItem).Content;
-
-        //    MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
-        //}
-
-        //private void comboDOW_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    ApplicationData.Current.RoamingSettings.Values["Weekend"] = (comboDOW.SelectedItem as ComboBoxItem).Tag;
-            
-        //    MyMessage(CalendarResourcesManager.resource.GetString("Restart"));
-        //}
         
         private void buy_Click(object sender, RoutedEventArgs e)
         {
@@ -181,33 +155,37 @@ namespace Calendar
 
         private void ToastToggle(string name, string entryPoint)
         {
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+            try
             {
-                if (toastToggle.IsOn)
+                if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
                 {
-                    DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
-                    //save changes
-                    DataManager.SaveDocumentAsync();
+                    if (toastToggle.IsOn)
+                    {
+                        DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
+                        //save changes
+                        DataManager.SaveDocumentAsync();
 
-                    //set period
-                    uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
-                    BackgroundTaskCreator(name, entryPoint, period * 60);
-
-
+                        //set period
+                        uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
+                        BackgroundTaskCreator(name, entryPoint, period * 60);
+                    }
+                    else
+                    {
+                        foreach (var task in BackgroundTaskRegistration.AllTasks)
+                            if (task.Value.Name == "ToastBackgroundTask")
+                                task.Value.Unregister(true);
+                    }
                 }
                 else
                 {
-                    foreach (var task in BackgroundTaskRegistration.AllTasks)
-                        if (task.Value.Name == "ToastBackgroundTask")
-                            task.Value.Unregister(true);
+                    OfferPurchase();
                 }
             }
-            else
+            catch(Exception ex)
             {
-                BuyThis();
+                MyMessage(ex.Message);
             }
         }
-
 
         public async void BackgroundTaskCreator(string name, string entryPoint, uint time)
         {
@@ -234,23 +212,12 @@ namespace Calendar
 
         #region Purchasing
 
-        private async void BuyButtonController()
+        private void BuyButtonController()
         {
-            LicenseInformation license = CurrentApp.LicenseInformation;
-            if (!license.ProductLicenses["allstuff1"].IsActive)
-            {
-                try
-                {
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
-                }
-                catch (Exception ex)
-                {
-                    MyMessage(ex.Message);
-                }
-            }
+            BuyStuff();
         }
 
-        private async void BuyThis()
+        private async void OfferPurchase()
         {
             var dial = new MessageDialog(DataManager.resource.GetString("Unlicensed"));
 
@@ -265,17 +232,17 @@ namespace Calendar
 
         private async void BuyStuff()
         {
-            LicenseInformation license = CurrentApp.LicenseInformation;
-            if (!license.ProductLicenses["allstuff1"].IsActive)
+            try
             {
-                try
+                LicenseInformation license = CurrentApp.LicenseInformation;
+                if (!license.ProductLicenses["allstuff1"].IsActive)
                 {
                     await CurrentApp.RequestProductPurchaseAsync("allstuff1");
                 }
-                catch (Exception ex)
-                {
-                    MyMessage(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MyMessage(ex.Message);
             }
         }
 

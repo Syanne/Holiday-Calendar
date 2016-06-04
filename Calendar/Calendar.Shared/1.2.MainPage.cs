@@ -53,16 +53,17 @@ namespace Calendar
 
             try
             {
-                Windows.ApplicationModel.Store.LicenseInformation license = Windows.ApplicationModel.Store.CurrentApp.LicenseInformation;
+                var license = Windows.ApplicationModel.Store.CurrentApp.LicenseInformation;
                 if (license.ProductLicenses["allstuff1"].IsActive)
                 {
                     adControl.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 }
             }
-            finally
+            catch
             {
-                gviPrev = calGrid.Items.ElementAt(DataManager.calBase.SelectedDate.Day + DataManager.calBase.Start - 1) as GridViewItem;
+
             }
+            gviPrev = calGrid.Items.ElementAt(DataManager.calBase.SelectedDate.Day + DataManager.calBase.Start - 1) as GridViewItem;            
         }
 
         /// <summary>

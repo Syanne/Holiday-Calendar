@@ -113,8 +113,7 @@ namespace Calendar
                 }
             }
         }
-
-
+        
         private async void MyMessage(string text)
         {
             var dial = new MessageDialog(text);
@@ -141,25 +140,37 @@ namespace Calendar
 
         private void ToastToggle(string name, string entryPoint)
         {
-                if (toastToggle.IsOn)
+            try
+            {
+                var license = CurrentApp.LicenseInformation;
+                if (license.ProductLicenses["allstuff1"].IsActive)
                 {
-                    DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
-                    //save changes
-                    DataManager.SaveDocumentAsync();
+                    if (toastToggle.IsOn)
+                    {
+                        DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
+                        //save changes
+                        DataManager.SaveDocumentAsync();
 
-                    //set period
-                    uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
-                    BackgroundTaskCreator(name, entryPoint, period * 60);
-                }
-                else
-                {
-                    foreach (var task in BackgroundTaskRegistration.AllTasks)
-                        if (task.Value.Name == "ToastBackgroundTask")
-                            task.Value.Unregister(true);
+                        //set period
+                        uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
+                        BackgroundTaskCreator(name, entryPoint, period * 60);
+                    }
+                    else
+                    {
+                        foreach (var task in BackgroundTaskRegistration.AllTasks)
+                            if (task.Value.Name == "ToastBackgroundTask")
+                                task.Value.Unregister(true);
 
-                    toastToggle.IsOn = false;
+                        toastToggle.IsOn = false;
+                    }
                 }
-            
+
+            }
+            catch(Exception ex)
+            {
+                MyMessage(ex.Message);
+                toastToggle.IsOn = false;
+            }                      
         }
 
 
@@ -190,17 +201,17 @@ namespace Calendar
 
         private async void BuyButtonController()
         {
-            LicenseInformation license = CurrentApp.LicenseInformation;
-            if (!license.ProductLicenses["allstuff1"].IsActive)
+            try
             {
-                try
+                LicenseInformation license = CurrentApp.LicenseInformation;
+                if (!license.ProductLicenses["allstuff1"].IsActive)
                 {
                     await CurrentApp.RequestProductPurchaseAsync("allstuff1");
                 }
-                catch (Exception ex)
-                {
-                    MyMessage(ex.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MyMessage(ex.Message);
             }
         }
 

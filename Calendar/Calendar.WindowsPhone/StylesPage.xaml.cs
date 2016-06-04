@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Store;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -51,22 +52,29 @@ namespace Calendar
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+            try
             {
-                string temp = (myFlip.SelectedItem as LocalFVItem).Tag;
+                if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
+                {
+                    string temp = (myFlip.SelectedItem as LocalFVItem).Tag;
 
-                ApplicationData.Current.LocalSettings.Values["AppTheme"] =
-                    String.Format("ms-appx:///themes/{0}.xaml", temp);
-                Application.Current.Resources.Source =
-                   new Uri("ms-appx:///themes/" + temp + ".xaml");
+                    ApplicationData.Current.LocalSettings.Values["AppTheme"] =
+                        String.Format("ms-appx:///themes/{0}.xaml", temp);
+                    Application.Current.Resources.Source =
+                       new Uri("ms-appx:///themes/" + temp + ".xaml");
 
-                this.Frame.Navigate(typeof(MainPage));
+                    this.Frame.Navigate(typeof(MainPage));
+                }
+                else
+                {
+                    CalendarResources.ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                CalendarResources.ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");
+                MyMessage(ex.Message);
             }
-}
+        }
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -83,7 +91,14 @@ namespace Calendar
                 leftImg.Visibility = Visibility.Visible;
             }            
         }
-        
 
+
+        private async void MyMessage(string text)
+        {
+            var dial = new MessageDialog(text);
+
+            dial.Commands.Add(new UICommand("OK"));
+            var command = await dial.ShowAsync();
+        }
     }
 }
