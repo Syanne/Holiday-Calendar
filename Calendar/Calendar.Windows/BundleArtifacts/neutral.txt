@@ -1,4 +1,4 @@
-MainPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.2.0.62_AnyCPU.appx
-SymbolPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.2.0.62_Test\Calendar.Windows_1.2.0.62_AnyCPU.appxsym
-ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.2.0.62_language-en.appx
-ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.2.0.62_language-ru.appx
+MainPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.2.0.63_AnyCPU.appx
+SymbolPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.2.0.63_Test\Calendar.Windows_1.2.0.63_AnyCPU.appxsym
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.2.0.63_language-en.appx
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\Release\Calendar.Windows_1.2.0.63_language-uk.appx

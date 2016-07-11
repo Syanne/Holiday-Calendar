@@ -201,7 +201,12 @@
     <value>вкажіть, за скільки днів до події показувати нагадування, і період повторення протягом дня (у годинах).</value>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Оновлений календар з живою плиткою, великими наборами державних*, міжнародних та релігійних** свят. Цей календар завжди допоможе вам знайти файний привід для святкування!</value>
+    <value>Дана версія додатку знаходиться у стадії доробки. Якщо у Вас виникли проблеми, будь ласка, надішліть їх опис на поштову адресу служби підтримки: syanne.red@gmail.com.
+
+Оновлений календар з живою плиткою, великими наборами державних*, міжнародних та релігійних** свят. Цей календар завжди допоможе вам знайти файний привід для святкування!
+
+* свята для: України, Росії та Польші (в українській версії);
+** основні свята католицького і православного календаря (у тому числі пересувні).</value>
   </data>
   <data name="ApplicationDisplayName" xml:space="preserve">
     <value>Календар + Свята BETA</value>
@@ -243,10 +248,10 @@
     <value>Календар</value>
   </data>
   <data name="LocalHolidaysPath" xml:space="preserve">
-    <value>Holidays/uk-UA/Holidays.xml</value>
+    <value>Strings/uk-UA/Holidays.xml</value>
   </data>
   <data name="LocalPresonalData" xml:space="preserve">
-    <value>Holidays/uk-UA/PersData.xml</value>
+    <value>Strings/uk-UA/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
     <value>мова</value>
@@ -317,7 +322,7 @@
     <value>налаштування</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
-    <value>Holidays/uk-UA/Themes.xml</value>
+    <value>Strings/uk-UA/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- увімкнути повідомлення;
@@ -373,7 +378,7 @@ Syanne.</value>
     <value>підтримка</value>
   </data>
   <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>Holidays\uk-UA\Holidays.xml</value>
+    <value>Strings\uk-UA\Holidays.xml</value>
   </data>
   <data name="Weekend" xml:space="preserve">
     <value>5</value>

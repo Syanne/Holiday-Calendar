@@ -118,270 +118,277 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="addNote.Content" xml:space="preserve">
-    <value>save</value>
+    <value>сохранить</value>
   </data>
   <data name="AllHol" xml:space="preserve">
-    <value>all</value>
+    <value>все</value>
   </data>
   <data name="btnholCancel.Content" xml:space="preserve">
-    <value>cancel</value>
+    <value>отмена</value>
   </data>
   <data name="btnHolidays.Content" xml:space="preserve">
-    <value>save</value>
+    <value>сохранить</value>
   </data>
   <data name="changeNote.Content" xml:space="preserve">
-    <value>edit</value>
+    <value>изменить</value>
   </data>
   <data name="delNote.Content" xml:space="preserve">
-    <value>remove</value>
+    <value>удалить</value>
   </data>
   <data name="GoToDate.Text" xml:space="preserve">
-    <value>go to</value>
+    <value>перейти к:</value>
   </data>
   <data name="once.Content" xml:space="preserve">
-    <value>once</value>
+    <value>один раз</value>
   </data>
   <data name="PersonalNote" xml:space="preserve">
-    <value>add note</value>
+    <value>добавить запись</value>
   </data>
   <data name="reclineButton.Content" xml:space="preserve">
-    <value>cancel</value>
+    <value>отмена</value>
   </data>
   <data name="topString.Text" xml:space="preserve">
-    <value>set text:</value>
+    <value>введите название события:</value>
   </data>
   <data name="typesTopString.Text" xml:space="preserve">
-    <value>types</value>
+    <value>категории:</value>
   </data>
   <data name="Wd1.Content" xml:space="preserve">
-    <value>sun</value>
+    <value>пн</value>
   </data>
   <data name="Wd2.Content" xml:space="preserve">
-    <value>mon</value>
+    <value>вт</value>
   </data>
   <data name="Wd3.Content" xml:space="preserve">
-    <value>tue</value>
+    <value>ср</value>
   </data>
   <data name="Wd4.Content" xml:space="preserve">
-    <value>wed</value>
+    <value>чт</value>
   </data>
   <data name="Wd5.Content" xml:space="preserve">
-    <value>thu</value>
+    <value>пт</value>
   </data>
   <data name="Wd6.Content" xml:space="preserve">
-    <value>fri</value>
+    <value>сб</value>
   </data>
   <data name="Wd7.Content" xml:space="preserve">
-    <value>sat</value>
+    <value>вс</value>
   </data>
   <data name="assesBtn.Label" xml:space="preserve">
-    <value>rate</value>
+    <value>оценить</value>
   </data>
   <data name="daysText.Text" xml:space="preserve">
-    <value>show in</value>
+    <value>показать за</value>
+  </data>
+  <data name="textTile.Text" xml:space="preserve">
+    <value>Удержать в памяти все важные даты почти невозможно. И c этой задачей прекрасно справится живая плитка. Она напомнит и о встрече с другом, и о том, какой сегодня праздник. Теперь вам будет что отметить за чашечкой кофе!</value>
   </data>
   <data name="tileOff.Content" xml:space="preserve">
-    <value>off</value>
+    <value>отключить</value>
   </data>
   <data name="tileOn.Content" xml:space="preserve">
-    <value>on</value>
+    <value>включить</value>
   </data>
   <data name="toastOff.Content" xml:space="preserve">
-    <value>off</value>
+    <value>отключить</value>
   </data>
   <data name="toastOn.Content" xml:space="preserve">
-    <value>on</value>
+    <value>включить</value>
   </data>
   <data name="toastText1.Text" xml:space="preserve">
-    <value>set the period and amount of days before the notification</value>
+    <value>укажите, за сколько дней до события показывать напоминание, и период повторения в течение дня (часы).</value>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Calendar app with large set of holidays</value>
+    <value>Обновленный календарь с живой плиткой, большими наборами государственных*, международных и религиозных** праздников. Этот календарь всегда поможет вам найти повод для праздника! 
+
+*праздники для государств: Украина, Россия, Беларусь, Казахстан, Грузия.
+**основные праздники католического и православного календаря (в том числе передвижные).</value>
   </data>
   <data name="ApplicationDisplayName" xml:space="preserve">
-    <value>Calendar + Holidays</value>
+    <value>Календарь + Праздники</value>
   </data>
   <data name="periodText.Text" xml:space="preserve">
-    <value>period (hours)</value>
+    <value>период (часы)</value>
   </data>
   <data name="c1.Content" xml:space="preserve">
-    <value>1 day</value>
+    <value>1 день</value>
   </data>
   <data name="c2.Content" xml:space="preserve">
-    <value>2 days</value>
+    <value>2 дня</value>
   </data>
   <data name="c3.Content" xml:space="preserve">
-    <value>3 days</value>
+    <value>3 дня</value>
   </data>
   <data name="c4.Content" xml:space="preserve">
-    <value>4 days</value>
+    <value>4 дня</value>
   </data>
   <data name="c5.Content" xml:space="preserve">
-    <value>5 days</value>
+    <value>5 дней</value>
   </data>
   <data name="AddNoteText" xml:space="preserve">
-    <value>add record</value>
+    <value>добавить запись</value>
   </data>
   <data name="chooseBtn.Content" xml:space="preserve">
-    <value>select</value>
+    <value>выбрать</value>
   </data>
   <data name="preview.Text" xml:space="preserve">
-    <value>preview: </value>
+    <value>предварительный просмотр: </value>
   </data>
   <data name="selectThemeTop.Text" xml:space="preserve">
-    <value>color theme:</value>
+    <value>цветовая тема:</value>
   </data>
   <data name="selectThemeBtn.Label" xml:space="preserve">
-    <value>themes</value>
+    <value>оформление</value>
   </data>
   <data name="ApplicationShortName" xml:space="preserve">
-    <value>Calendar</value>
+    <value>Календарь</value>
   </data>
   <data name="LocalHolidaysPath" xml:space="preserve">
-    <value>Holidays/en-US/Holidays.xml</value>
+    <value>Strings/ru-RU/Holidays.xml</value>
   </data>
   <data name="LocalPresonalData" xml:space="preserve">
-    <value>Holidays/en-US/PersData.xml</value>
+    <value>Strings/ru-RU/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
-    <value>language</value>
+    <value>язык</value>
   </data>
   <data name="buy.Content" xml:space="preserve">
-    <value>i want it!</value>
+    <value>получить все!</value>
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
-    <value>- enable toast notifications;
-- color themes;
-- turn off adverts.</value>
+    <value>- включить всплывающие уведомления;
+- изменить цветовое оформление;
+- отключить рекламу.</value>
   </data>
   <data name="shopBtn.Content" xml:space="preserve">
-    <value>buy</value>
+    <value>купить</value>
   </data>
   <data name="language.Text" xml:space="preserve">
-    <value>language</value>
+    <value>язык</value>
   </data>
   <data name="settings.Title" xml:space="preserve">
-    <value>settings</value>
+    <value>настройки</value>
   </data>
   <data name="ThemeBtn.Content" xml:space="preserve">
-    <value>select</value>
+    <value>выбрать</value>
   </data>
   <data name="tileHeader.Text" xml:space="preserve">
-    <value>live tile</value>
+    <value>живая плитка</value>
   </data>
   <data name="toastHeader.Text" xml:space="preserve">
-    <value>toast</value>
+    <value>напоминание</value>
   </data>
   <data name="buyMeTitle.Text" xml:space="preserve">
-    <value>in-app purchase allows you to</value>
+    <value>приобретя это приложение вы сможете:</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
-    <value>sorry, you have to purchase the application</value>
+    <value>к сожалению, вы не можете воспользоваться этой функций. приобретите пакет дополнительных возможностей.</value>
   </data>
   <data name="UnlicensedButton" xml:space="preserve">
-    <value>purchase</value>
+    <value>приобрести</value>
   </data>
   <data name="UnlicensedCancel" xml:space="preserve">
-    <value>next time</value>
+    <value>в следующий раз</value>
   </data>
   <data name="dayOfWeek.Text" xml:space="preserve">
-    <value>the first day of the week</value>
+    <value>первый день недели: </value>
   </data>
   <data name="monday.Content" xml:space="preserve">
-    <value>monday</value>
+    <value>понедельник</value>
   </data>
   <data name="monday.Tag" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="sunday.Content" xml:space="preserve">
-    <value>sunday</value>
+    <value>воскресенье</value>
   </data>
   <data name="sunday.Tag" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="Restart" xml:space="preserve">
-    <value>please, reload the application</value>
+    <value>пожалуйста, перезагрузите приложение</value>
   </data>
   <data name="MineAsTag" xml:space="preserve">
-    <value>my</value>
+    <value>мои</value>
   </data>
   <data name="Done.Content" xml:space="preserve">
-    <value>close</value>
+    <value>закрыть</value>
   </data>
   <data name="SettingsHeader.Text" xml:space="preserve">
-    <value>settings</value>
+    <value>настройки</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
-    <value>Holidays/en-US/Themes.xml</value>
+    <value>Strings/ru-RU/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
-    <value>- toast notifications;
-- color themes;
-- turn off adverts.</value>
+    <value>- включить всплывающие уведомления;
+- изменить цветовое оформление;
+- отключить рекламу.</value>
   </data>
   <data name="BuyMeTitleMP" xml:space="preserve">
-    <value>in-app purchase allows you to</value>
+    <value>приобретя это приложение вы сможете:</value>
   </data>
   <data name="GoToDateBtn.Content" xml:space="preserve">
-    <value>go to</value>
+    <value>перейти</value>
   </data>
   <data name="settingsAppButton.Label" xml:space="preserve">
-    <value>settings</value>
+    <value>настройки</value>
   </data>
   <data name="settingsTop.Text" xml:space="preserve">
-    <value>settings</value>
+    <value>настройки</value>
   </data>
   <data name="clickToPreview.Text" xml:space="preserve">
-    <value>click to enlarge</value>
+    <value>нажмите на изображение, чтобы увеличить</value>
   </data>
   <data name="holidayTag.Label" xml:space="preserve">
-    <value>holidays</value>
+    <value>праздники</value>
   </data>
   <data name="HolidayTitle.Text" xml:space="preserve">
-    <value>your holidays: </value>
+    <value>отображаемые праздники:</value>
   </data>
   <data name="rateBut.Label" xml:space="preserve">
-    <value>rate</value>
+    <value>оценить</value>
   </data>
   <data name="settingsBut.Label" xml:space="preserve">
-    <value>settings</value>
+    <value>настройки</value>
   </data>
   <data name="styleBut.Label" xml:space="preserve">
-    <value>style</value>
+    <value>стиль</value>
   </data>
   <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>Holidays\en-US\Holidays.xml</value>
+    <value>Strings\ru-RU\Holidays.xml</value>
   </data>
   <data name="msgBody" xml:space="preserve">
-    <value>Thank you for installing the application! Your comments and suggestions are very important. You can send them on syanne.red@gmail.com or leave it on the application page.
+    <value>Спасибо что скачали это приложение и помогаете его развивать! Украиноязычная версия временно отсутсвует. Также произошли изменения с живой плиткой и всплывающими напоминаниями, поэтому убедительная просьба: перейдите на страницу настроек, выключите живую плитку и/или напоминание, затем включите. 
+Предложения и сообщения об проблемах присылайте на адрес syanne.red@gmail.com. Так у нас с вами появится обратная связь, и ваше сообщение будет быстрее обработано. Чтобы отправить сообщение, используйте кнопку "поддержка" на нижней панели приложения.
 
-If you want to turn off adverts you can buy the package of services. It also includes color themes and toast notifications.
+Если вам понравилось приложение, не забудьте поставить оценку и оставить свой отзыв в магазине (кнопка "оценить").  Просмотреть это сообщение еще раз вы сможете, нажав на кнопку "о версии" на нижней панели приложения.
 
-Sincerely,
+С уважением,
 Syanne.</value>
   </data>
   <data name="msgTitle" xml:space="preserve">
-    <value>Dear user!</value>
+    <value>Уважаемый пользователь!</value>
   </data>
   <data name="messageBtn.Label" xml:space="preserve">
-    <value>version</value>
+    <value>о версии</value>
   </data>
   <data name="support.Label" xml:space="preserve">
-    <value>support</value>
+    <value>поддержка</value>
   </data>
   <data name="Weekend" xml:space="preserve">
-    <value>0</value>
+    <value>5</value>
   </data>
   <data name="themePictures" xml:space="preserve">
     <value>Themes/ThemePictures</value>
   </data>
   <data name="everyMonth.Content" xml:space="preserve">
-    <value>monthly</value>
+    <value>ежемесячно</value>
   </data>
   <data name="everyWeek.Content" xml:space="preserve">
-    <value>weekly</value>
+    <value>еженедельно</value>
   </data>
   <data name="everyYear.Content" xml:space="preserve">
-    <value>yearly</value>
+    <value>ежегодно</value>
   </data>
 </root>

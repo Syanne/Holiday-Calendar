@@ -196,7 +196,7 @@
     <value>set the period and amount of days before the notification</value>
   </data>
   <data name="ApplicationDescription" xml:space="preserve">
-    <value>Calendar app with large set of holidays</value>
+    <value>A convenient calendar with live tile, toast notifications and a large set of holidays: from international to national and religious.</value>
   </data>
   <data name="ApplicationDisplayName" xml:space="preserve">
     <value>Calendar + Holidays</value>
@@ -238,10 +238,10 @@
     <value>Calendar</value>
   </data>
   <data name="LocalHolidaysPath" xml:space="preserve">
-    <value>Holidays/en-GB/Holidays.xml</value>
+    <value>Strings/en-GB/Holidays.xml</value>
   </data>
   <data name="LocalPresonalData" xml:space="preserve">
-    <value>Holidays/en-GB/PersData.xml</value>
+    <value>Strings/en-GB/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
     <value>language</value>
@@ -312,7 +312,7 @@
     <value>settings</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
-    <value>Holidays/en-GB/Themes.xml</value>
+    <value>Strings/en-GB/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- toast notifications;
@@ -350,7 +350,7 @@
     <value>style</value>
   </data>
   <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>Holidays\en-GB\Holidays.xml</value>
+    <value>Strings\en-GB\Holidays.xml</value>
   </data>
   <data name="msgBody" xml:space="preserve">
     <value>Thank you for installing the application! Your comments and suggestions are very important. You can send them on syanne.red@gmail.com or leave it on the application page.

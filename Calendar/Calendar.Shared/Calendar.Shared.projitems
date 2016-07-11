@@ -62,41 +62,21 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-AU\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-AU\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-AU\Themes.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-GB\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-GB\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-GB\Themes.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-US\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-US\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\en-US\Themes.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\ru-RU\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\ru-RU\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\ru-RU\Themes.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Holidays.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\PersData.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\BloodDrops-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\BloodDrops.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Bottle-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Bottle.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Cherry-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Cherry.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\DarkBlue-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\DarkBlue.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Default-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Default.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Fall-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Fall.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\HotPink-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\HotPink.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\MintGreen-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\MintGreen.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Orange-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Orange.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Violet-700.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\themePictures\Violet.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-AU\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-AU\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-AU\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-GB\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-GB\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-GB\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-US\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-US\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\en-US\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\ru-RU\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\ru-RU\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\ru-RU\Themes.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\uk-UA\Holidays.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\uk-UA\PersData.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Strings\uk-UA\Themes.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Themes\ThemePictures\BloodDrops-700.png" />
     <Content Include="$(MSBuildThisFileDirectory)Themes\ThemePictures\BloodDrops.png" />
     <Content Include="$(MSBuildThisFileDirectory)Themes\ThemePictures\Bottle-700.png" />
@@ -119,10 +99,10 @@
     <Content Include="$(MSBuildThisFileDirectory)Themes\ThemePictures\Violet.png" />
   </ItemGroup>
   <ItemGroup>
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en-AU\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en-GB\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\en-US\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\ru-RU\Resources.resw" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)Holidays\uk-UA\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-AU\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-GB\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\ru-RU\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\uk-UA\Resources.resw" />
   </ItemGroup>
 </Project>
