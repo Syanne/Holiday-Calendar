@@ -1,12 +1,15 @@
-﻿using System;
+﻿using CalendarResources;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.Resources;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,7 +48,7 @@ namespace Calendar
         /// search results, and so forth.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected async override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -88,10 +91,36 @@ namespace Calendar
                 rootFrame.Navigated += this.RootFrame_FirstNavigated;
 #endif
 
+                //resources
+                DataManager.resource = ResourceLoader.GetForCurrentView("Resources");
+                try
+                {
+                    Application.Current.Resources.Source = new Uri(ApplicationData.Current.LocalSettings.Values["AppTheme"].ToString());
+                }
+                catch
+                {
+                    Application.Current.Resources.Source = new Uri("ms-appx:///Themes/Default.xaml");
+                }
+                DataManager.PersonalData = await DataManager.LoadPersonalData();
+
+                //mechanism
+                int Weekend;
+                try
+                {
+                    string theDay = DataManager.resource.GetString("Weekend");
+                    Weekend = Convert.ToInt32(theDay);
+                }
+                catch
+                {
+                    Weekend = 5;
+                }
+                DataManager.calBase = new Mechanism.HolidayCalendarBase(Weekend);
+
+
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(StartPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }

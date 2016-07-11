@@ -373,7 +373,7 @@ Syanne.</value>
     <value>0</value>
   </data>
   <data name="themePictures" xml:space="preserve">
-    <value>Holidays/en/themePictures</value>
+    <value>Themes/ThemePictures</value>
   </data>
   <data name="everyMonth.Content" xml:space="preserve">
     <value>monthly</value>

@@ -23,6 +23,7 @@ namespace Calendar
             // if (ApplicationData.Current.LocalSettings.Values.Count == 0)
             //     ApplicationData.Current.LocalSettings.Values.Add("Language", ApplicationLanguages.PrimaryLanguageOverride);
 
+
             this.InitializeComponent();
             PagePreLoader();
         }
@@ -45,6 +46,13 @@ namespace Calendar
         private void Day_Tapped(object sender, TappedRoutedEventArgs e)
         {
             DayController(sender);
+
+            //var list = new List<ItemBase>();
+            //Calendar.SocialNetworkConnector.GoogleCalendarConnector gcn = new SocialNetworkConnector.GoogleCalendarConnector(ref list);
+            //gcn.SetHolidays();
+
+            //int count = list.Count;
+            //count += 1;
         }
 
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)

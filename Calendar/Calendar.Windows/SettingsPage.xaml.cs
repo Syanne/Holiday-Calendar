@@ -92,12 +92,12 @@ namespace Calendar
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            TileToggle("TileBackgroundTask", "BackgroundTasks.TileBackgroundTask");
+            TileToggle("TileBackgroundTask", "BackgroundUpdater.TileBackgroundTask");
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            ToastToggle("ToastBackgroundTask", "BackgroundTasks.ToastBackgroundTask");
+            ToastToggle("ToastBackgroundTask", "BackgroundUpdater.ToastBackgroundTask");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

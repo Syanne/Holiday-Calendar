@@ -25,11 +25,7 @@ namespace Calendar
     {
         bool prevSender = false;
         public MainPage()
-        {
-            //if (ApplicationData.Current.LocalSettings.Values.Count == 0)
-            //    ApplicationData.Current.LocalSettings.Values.Add("Language", 
-            //        ApplicationLanguages.PrimaryLanguageOverride);
-             
+        {             
             //initialize page
             this.InitializeComponent();
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
@@ -51,31 +47,16 @@ namespace Calendar
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             Frame frame = Window.Current.Content as Frame;
-            if (frame == null)
+            if (frame != null)
             {
-                return;
-            }
+                //close noteList, if it's visible
+                if (noteGridMain.Visibility == Windows.UI.Xaml.Visibility.Visible)
+                {
+                    noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                }
 
-            //close decades, if it's visible
-            if (gvDecades.Visibility == Windows.UI.Xaml.Visibility.Visible)
-            {
-                calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                gvDecades.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                e.Handled = true;
             }
-
-            //close noteList, if it's visible
-            if (noteGridMain.Visibility == Windows.UI.Xaml.Visibility.Visible)
-            {
-                noteGridMain.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            }
-            //else - hide holidayList
-            else if (HolidayList.Visibility == Windows.UI.Xaml.Visibility.Visible)
-            {
-                HolidayTitle.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                HolidayList.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            }
-            e.Handled = true;
         }
 
         #region Calendar controls

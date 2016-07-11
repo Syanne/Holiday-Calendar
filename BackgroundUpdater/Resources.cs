@@ -51,7 +51,7 @@ namespace BackgroundUpdater
             if (PersonalData == null)
             {
                     //load file 
-                    StorageFolder localFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+                    StorageFolder localFolder = ApplicationData.Current.RoamingFolder;
                     StorageFile sampleFile = localFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
                     //read file

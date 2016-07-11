@@ -1,25 +1,29 @@
-﻿using System.Collections.ObjectModel;
-using Windows.UI;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
+﻿using Windows.UI.Xaml.Media;
 
 namespace Calendar.Models
 {
-    /// <summary>
-    /// all chosen holidays (from at least 3 categories of holidays)
-    /// </summary>
-    public class HolidayItem
+    public class ItemBase
     {
         public int Day { get; set; }
         public int? Year { get; set; }
         public int? Month { get; set; }
         public string HolidayName { get; set; }
         public string HolidayTag { get; set; }
+    }
+
+    /// <summary>
+    /// all chosen holidays (from at least 3 categories of holidays)
+    /// </summary>
+    public class HolidayItem: ItemBase
+    {
         public Brush Background { get; set; }
         public double Height { get; set; }
         public double FontSize { get; set; }
 
-
+        /// <summary>
+        /// Clones an object
+        /// </summary>
+        /// <returns>HolidayItem</returns>
         public HolidayItem Copy()
         {
             return new HolidayItem()

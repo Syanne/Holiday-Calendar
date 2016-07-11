@@ -42,6 +42,7 @@ namespace Calendar
             }
 #endif
         }
+
         private void PrepareHolidayPanel()
         {
             Style style = (Style)this.Resources["HolidayFlyoutStyle"]; 

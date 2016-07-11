@@ -112,6 +112,7 @@ namespace Calendar
 
                 }
             }
+            
         }
         
         private async void MyMessage(string text)
@@ -164,6 +165,11 @@ namespace Calendar
                         toastToggle.IsOn = false;
                     }
                 }
+                else
+                {
+                    toastToggle.IsOn = false;
+                    OfferPurchase();
+                }
 
             }
             catch(Exception ex)
@@ -172,8 +178,7 @@ namespace Calendar
                 toastToggle.IsOn = false;
             }                      
         }
-
-
+        
         public async void BackgroundTaskCreator(string name, string entryPoint, uint time)
         {
             //clean
@@ -216,17 +221,21 @@ namespace Calendar
         }
 
 
-        private async void BuyThis()
+        private async void OfferPurchase()
         {
-            var dial = new MessageDialog(DataManager.resource.GetString("Unlicensed"));
-
-            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedCancel")));
-            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedButton"),
-            new UICommandInvokedHandler((args) =>
+            try
             {
-                BuyStuff();
-            })));
-            var command = await dial.ShowAsync();
+                var dial = new MessageDialog(DataManager.resource.GetString("Unlicensed"));
+
+                dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedCancel")));
+                dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedButton"),
+                new UICommandInvokedHandler((args) =>
+                {
+                    BuyStuff();
+                })));
+                var command = await dial.ShowAsync();
+            }
+            catch { }
         }
 
         private async void BuyStuff()
