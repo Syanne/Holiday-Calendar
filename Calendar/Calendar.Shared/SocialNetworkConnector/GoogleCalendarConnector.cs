@@ -11,32 +11,37 @@ using Calendar.Models;
 using Google.Apis.Util.Store;
 using Windows.ApplicationModel;
 using CalendarResources;
+using System.Threading.Tasks;
 
 namespace Calendar.SocialNetworkConnector
 {
-    public class GoogleCalendarConnector : IConnector
+    class GoogleCalendarConnector: BaseConnector
     {
         // If modifying these scopes, delete your previously saved credentials
         // at ~/.credentials/calendar-dotnet-quickstart.json
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
-        List<ItemBase> Items;
+        UserCredential credential;
+        
+        public GoogleCalendarConnector(DateTime dateStart, DateTime dateEnd, ref List<ItemBase> items) : base(dateStart, dateEnd, ref items)
+        { 
+        }     
 
-        public GoogleCalendarConnector(ref List<ItemBase> items)
+        private async void SetCredentials()
         {
-            this.Items = items;       
+            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                       new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
+                       new[] { CalendarService.Scope.CalendarReadonly },
+                       "user",
+                       CancellationToken.None);
         }
 
-        public async void SetHolidays()
+        public async override Task GetHolidayList()
         {
-            //items = new List<ItemBase>();
-            UserCredential credential;
-
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
-                    new[] { CalendarService.Scope.CalendarReadonly },
-                    "user",
-                    CancellationToken.None);
-            
+                       new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
+                       new[] { CalendarService.Scope.CalendarReadonly },
+                       "user",
+                       CancellationToken.None);
 
             // Create Google Calendar API service.
             var service = new CalendarService(new BaseClientService.Initializer()
@@ -47,16 +52,17 @@ namespace Calendar.SocialNetworkConnector
 
             // Define parameters of request.
             EventsResource.ListRequest request = service.Events.List("primary");
-            request.TimeMin = DateTime.Now;
+            //set user max and min dates
+            request.TimeMin = DateStart.Date;
+            request.TimeMax = DateEnd.Date;
+            //set details
             request.ShowDeleted = false;
             request.SingleEvents = true;
-            request.MaxResults = 10;
+            request.MaxResults = 100;
             request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
-
 
             // List events.
             Events events = request.Execute();
-            // Console.WriteLine("Upcoming events:");
             if (events.Items != null && events.Items.Count > 0)
             {
                 foreach (var eventItem in events.Items)
@@ -77,22 +83,11 @@ namespace Calendar.SocialNetworkConnector
                     };
 
                     Items.Add(item);
-
-                    // Console.WriteLine("{0} ({1})", eventItem.Summary, when);
                 }
             }
-            else
-            {
-                // Console.WriteLine("No upcoming events found.");
-            }
-            //  Console.Read();
+            else Items = null;
 
-            //return items;
-        }
-
-        List<ItemBase> IConnector.GetHolidayList()
-        {
-            throw new NotImplementedException();
+            base.Message();          
         }
     }
 }

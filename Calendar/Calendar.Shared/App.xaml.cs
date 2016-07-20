@@ -101,7 +101,8 @@ namespace Calendar
                 {
                     Application.Current.Resources.Source = new Uri("ms-appx:///Themes/Default.xaml");
                 }
-                DataManager.PersonalData = await DataManager.LoadPersonalData();
+
+                await DataManager.LoadPersonalData();
 
                 //mechanism
                 int Weekend;

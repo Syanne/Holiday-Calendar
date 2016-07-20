@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SocialNetworkConnector
 {
-    interface IConnector
+    public interface IConnector
     {
-        List<ItemBase> GetHolidayList();
+        IList<ItemBase> GetHolidayList();
     }
 
-    interface ICalendarConnector
+    public interface ICalendarConnector
     {
         void AddItem(ItemBase item);
-        void AddItemList(List<ItemBase> itemList);
+        void AddItemList(IList<ItemBase> itemList);
     }
 }

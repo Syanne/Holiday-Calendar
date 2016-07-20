@@ -13,15 +13,15 @@ namespace CalendarResources
 {
     public class DataManager
     {
-        public static XDocument PersonalData { get; set; }
-        public static XDocument doc { get; set; }
+        public static XDocument PersonalData { get; private set; }
+        public static XDocument doc { get; private set; }
         public static ResourceLoader resource { get; set; }
         public static HolidayCalendarBase calBase;
 
         /// <summary>
         /// Load Holidays Data (general, then personal)
         /// </summary>
-        public static Task<XDocument> LoadPersonalData()
+        public static Task LoadPersonalData()
         {
             return Task.Run(() =>
             {
@@ -51,15 +51,15 @@ namespace CalendarResources
                         throw new Exception();
                     }
 
-                    return personalDoc;
+                    PersonalData = personalDoc;
                 }
                 //if it's the fist launch - load basic file
                 catch
                 {
                     var persUri = new Uri("ms-appx:///Strings/PersData.xml");
                     var persFile = StorageFile.GetFileFromApplicationUriAsync(persUri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                    var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();                    
-                    return XDocument.Parse(persRead);
+                    var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                    PersonalData = XDocument.Parse(persRead);
                 }
             });
         }

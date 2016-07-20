@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetworkConnector
 {
-    public class ItemBase
+    public sealed class ItemBase
     {
         public int Day { get; set; }
         public int? Year { get; set; }

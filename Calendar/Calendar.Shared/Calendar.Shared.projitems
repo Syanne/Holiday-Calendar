@@ -24,6 +24,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\WindowsStandardClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StandardClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StylesPageDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\BaseConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\GoogleCalendarConnector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\SyncManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UniversalRL.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +65,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\client_secret.json" />
     <Content Include="$(MSBuildThisFileDirectory)Strings\en-AU\Holidays.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Strings\en-AU\PersData.xml" />
     <Content Include="$(MSBuildThisFileDirectory)Strings\en-GB\Holidays.xml" />
