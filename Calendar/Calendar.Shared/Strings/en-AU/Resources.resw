@@ -238,10 +238,10 @@
     <value>Calendar</value>
   </data>
   <data name="LocalHolidaysPath" xml:space="preserve">
-    <value>Strings/en-AU/Holidays.xml</value>
+    <value>Strings/Holidays.xml</value>
   </data>
   <data name="LocalPresonalData" xml:space="preserve">
-    <value>Strings/en-AU/PersData.xml</value>
+    <value>Strings/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
     <value>language</value>
@@ -312,7 +312,7 @@
     <value>settings</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
-    <value>Strings/en-AU/Themes.xml</value>
+    <value>Strings/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- toast notifications;
@@ -350,7 +350,7 @@
     <value>style</value>
   </data>
   <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>Strings\en-AU\Holidays.xml</value>
+    <value>Strings\Holidays.xml</value>
   </data>
   <data name="msgBody" xml:space="preserve">
     <value>Thank you for installing the application! Your comments and suggestions are very important. You can send them on syanne.red@gmail.com or leave it on the application page.

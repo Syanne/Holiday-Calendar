@@ -243,10 +243,10 @@
     <value>Календар</value>
   </data>
   <data name="LocalHolidaysPath" xml:space="preserve">
-    <value>Strings/uk-UA/Holidays.xml</value>
+    <value>Strings/Holidays.xml</value>
   </data>
   <data name="LocalPresonalData" xml:space="preserve">
-    <value>Strings/uk-UA/PersData.xml</value>
+    <value>Strings/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
     <value>мова</value>
@@ -317,7 +317,7 @@
     <value>налаштування</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
-    <value>Strings/uk-UA/Themes.xml</value>
+    <value>Strings/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- увімкнути повідомлення;
@@ -373,7 +373,7 @@ Syanne.</value>
     <value>підтримка</value>
   </data>
   <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>Strings\uk-UA\Holidays.xml</value>
+    <value>Strings\Holidays.xml</value>
   </data>
   <data name="Weekend" xml:space="preserve">
     <value>5</value>

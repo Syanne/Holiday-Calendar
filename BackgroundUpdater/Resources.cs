@@ -17,28 +17,30 @@ namespace BackgroundUpdater
         public static XDocument PersonalData;
         public static XDocument doc;
 
-        public static async void BgTaskHelper()
+        public static void BgTaskHelper()
         {
-            string path = String.Format(@"ms-appx:///Holidays/{0}/Holidays.xml", CultureInfo.CurrentCulture.TwoLetterISOLanguageName);
-            string fileContent;
-            StorageFile f = StorageFile.GetFileFromApplicationUriAsync(new Uri(path)).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-            using (StreamReader sRead = new StreamReader(await f.OpenStreamForReadAsync()))
-                fileContent = await sRead.ReadToEndAsync();
+            Uri uri = new Uri("ms-appx:///Strings/Holidays.xml");
+            // uri = new Uri(holFile.Path.Skip(8).ToString());
+            var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+            var read = FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+            doc = XDocument.Parse(read);
 
-            doc = XDocument.Parse(fileContent);
             try
             {
                 var storageFolder = ApplicationData.Current.RoamingFolder;
                 var file = storageFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                 string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
                 PersonalData = XDocument.Parse(text);
             }
             //if it's the fist launch - load basic file
             catch
             {
-                PersonalData = XDocument.Load(@"Holidays/" + CultureInfo.CurrentUICulture.TwoLetterISOLanguageName + "/PersData.xml");
+                var persUri = new Uri("ms-appx:///Strings/PersData.xml");
+                var persFile = StorageFile.GetFileFromApplicationUriAsync(persUri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                PersonalData = XDocument.Parse(persRead);
             }
+
         }
 
 

@@ -25,53 +25,45 @@ namespace CalendarResources
         {
             return Task.Run(() =>
             {
-                doc = XDocument.Load(resource.GetString("LocalHolidaysPath"));
+                Uri uri = new Uri("ms-appx:///Strings/Holidays.xml");
+#if !WINDOWS_PHONE_APP
+                var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                doc = XDocument.Load(holFile.Path);
+#else
+                // uri = new Uri(holFile.Path.Skip(8).ToString());
+                var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                var holidaysFile = FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
+                doc = XDocument.Parse(holidaysFile);
+#endif
                 try
                 {
                     var storageFolder = ApplicationData.Current.RoamingFolder;
                     var file = storageFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                     string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
-                    return XDocument.Parse(text);
+                    var personalDoc = XDocument.Parse(text);
+
+                    int count = personalDoc.Root.Nodes().Count();
+                    if (count > 2)
+                    {
+                        file.DeleteAsync().AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                        throw new Exception();
+                    }
+
+                    return personalDoc;
                 }
                 //if it's the fist launch - load basic file
                 catch
                 {
-                    return XDocument.Load(resource.GetString("LocalPresonalData"));
+                    var persUri = new Uri("ms-appx:///Strings/PersData.xml");
+                    var persFile = StorageFile.GetFileFromApplicationUriAsync(persUri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                    var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();                    
+                    return XDocument.Parse(persRead);
                 }
             });
         }
-
-        public static void LoadPersonalData(bool one)
-        {
-            doc = XDocument.Load(resource.GetString("LocalHolidaysPath"));
-
-            try
-            {
-                // load file
-
-                StorageFolder localFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
-                StorageFile sampleFile = localFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
-                //read file
-                var randomAccessStream = sampleFile.OpenReadAsync().AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                String timestamp = FileIO.ReadTextAsync(sampleFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
-                if (timestamp == "") throw new Exception();
-
-                PersonalData = XDocument.Parse(timestamp);
-                if (PersonalData == null)
-                    throw new Exception();
-            }
-            //if it's the fist launch - load basic file
-            catch
-            {
-               PersonalData = XDocument.Load(resource.GetString("LocalPresonalData"));
-            }
-        }
-
-
+        
         /// <summary>
         /// Log exceptions
         /// </summary>

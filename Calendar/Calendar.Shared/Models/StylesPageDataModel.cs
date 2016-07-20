@@ -26,7 +26,15 @@ namespace Calendar
 
         public SampleDataSource()
         {
-            XDocument doc = XDocument.Load(CalendarResources.DataManager.resource.GetString("LocalThemesPath"));
+            Uri uri = new Uri("ms-appx:///Themes/Themes.xml");
+#if !WINDOWS_PHONE_APP
+            var holFile = Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+            var doc = XDocument.Load(holFile.Path);
+#else
+            var holFile = Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+            var read = Windows.Storage.FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+            var doc = XDocument.Parse(read);
+        #endif
             string pictureFolder = CalendarResources.DataManager.resource.GetString("themePictures");
 
             var collection = doc.Root.Descendants("theme");

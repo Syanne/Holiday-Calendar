@@ -241,10 +241,10 @@
     <value>Календарь</value>
   </data>
   <data name="LocalHolidaysPath" xml:space="preserve">
-    <value>Strings/ru-RU/Holidays.xml</value>
+    <value>Strings/Holidays.xml</value>
   </data>
   <data name="LocalPresonalData" xml:space="preserve">
-    <value>Strings/ru-RU/PersData.xml</value>
+    <value>Strings/PersData.xml</value>
   </data>
   <data name="ChangeLangAppButt.Label" xml:space="preserve">
     <value>язык</value>
@@ -315,7 +315,7 @@
     <value>настройки</value>
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
-    <value>Strings/ru-RU/Themes.xml</value>
+    <value>Strings/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
     <value>- включить всплывающие уведомления;
@@ -353,10 +353,10 @@
     <value>стиль</value>
   </data>
   <data name="LocalHolidaysPath1" xml:space="preserve">
-    <value>Strings\ru-RU\Holidays.xml</value>
+    <value>Strings\Holidays.xml</value>
   </data>
   <data name="msgBody" xml:space="preserve">
-    <value>Спасибо что скачали это приложение и помогаете его развивать! Украиноязычная версия временно отсутсвует. Также произошли изменения с живой плиткой и всплывающими напоминаниями, поэтому убедительная просьба: перейдите на страницу настроек, выключите живую плитку и/или напоминание, затем включите. 
+    <value>Спасибо что скачали это приложение и помогаете его развивать! Произошли изменения с живой плиткой и всплывающими напоминаниями, поэтому убедительная просьба: перейдите на страницу настроек, выключите живую плитку и/или напоминание, затем включите. 
 Предложения и сообщения об проблемах присылайте на адрес syanne.red@gmail.com. Так у нас с вами появится обратная связь, и ваше сообщение будет быстрее обработано. Чтобы отправить сообщение, используйте кнопку "поддержка" на нижней панели приложения.
 
 Если вам понравилось приложение, не забудьте поставить оценку и оставить свой отзыв в магазине (кнопка "оценить").  Просмотреть это сообщение еще раз вы сможете, нажав на кнопку "о версии" на нижней панели приложения.

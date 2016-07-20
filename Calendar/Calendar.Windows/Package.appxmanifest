@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="36856Syanne.29333A1B8D628" Publisher="CN=5000CAD8-2080-4E79-B7DE-8E8CE6E3F9B3" Version="1.2.0.64" />
+  <Identity Name="36856Syanne.29333A1B8D628" Publisher="CN=5000CAD8-2080-4E79-B7DE-8E8CE6E3F9B3" Version="1.2.0.65" />
   <Properties>
     <DisplayName>ms-resource:ApplicationDisplayName</DisplayName>
     <PublisherDisplayName>Syanne</PublisherDisplayName>
