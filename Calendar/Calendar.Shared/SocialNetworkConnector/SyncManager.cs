@@ -7,14 +7,14 @@ namespace Calendar.SocialNetworkConnector
 {
     public partial class SyncManager
     {
-        List<ItemBase> SyncWith(string serverName, DateTime start, DateTime end)
+        List<ItemBase> SyncWith(string serverName, DateTime start, int period)
         {
             BaseConnector connector = null;
             List<ItemBase> collection = new List<ItemBase>();
 
             switch (serverName)
             {
-                case "google": connector = new GoogleCalendarConnector(start, end, ref collection); break;
+                case "google": connector = new GoogleCalendarConnector(start, period, ref collection); break;
                 case "facebook": break;
                 case "outlook": break;
                 case "vk": break;

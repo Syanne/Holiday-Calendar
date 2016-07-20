@@ -46,14 +46,6 @@ namespace Calendar
         private void Day_Tapped(object sender, TappedRoutedEventArgs e)
         {
             DayController(sender);
-
-            var list = new List<ItemBase>();
-            DateTime endDate = DateTime.Now.AddDays(7);
-            SocialNetworkConnector.GoogleCalendarConnector gcn = new SocialNetworkConnector.GoogleCalendarConnector(DateTime.Now, endDate, ref list);
-            System.Threading.Tasks.Task t = gcn.GetHolidayList();
-
-            int count = list.Count;
-            count += 1;
         }
 
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)

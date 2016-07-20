@@ -27,7 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\BaseConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\GoogleCalendarConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\SyncManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UniversalRL.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)Themes\BloodDrops.xaml">

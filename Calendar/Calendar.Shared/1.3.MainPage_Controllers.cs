@@ -378,7 +378,8 @@ namespace Calendar
                 DataManager.SavePersonal(addNotetb.Text,
                     day.ToString(),
                     month.ToString(),
-                    year.ToString());
+                    year.ToString(),
+                    true);
             }
 
             DataManager.calBase.ReadHolidayXml();

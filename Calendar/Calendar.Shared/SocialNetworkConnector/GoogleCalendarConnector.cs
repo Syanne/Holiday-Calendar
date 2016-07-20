@@ -4,13 +4,8 @@ using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading;
-using Windows.Storage;
 using Calendar.Models;
-using Google.Apis.Util.Store;
-using Windows.ApplicationModel;
-using CalendarResources;
 using System.Threading.Tasks;
 
 namespace Calendar.SocialNetworkConnector
@@ -21,8 +16,13 @@ namespace Calendar.SocialNetworkConnector
         // at ~/.credentials/calendar-dotnet-quickstart.json
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
         UserCredential credential;
-        
-        public GoogleCalendarConnector(DateTime dateStart, DateTime dateEnd, ref List<ItemBase> items) : base(dateStart, dateEnd, ref items)
+
+        protected override string ServiceName
+        {
+            get { return "google"; }      
+        }
+
+        public GoogleCalendarConnector(DateTime dateStart,int period, ref List<ItemBase> items) : base(dateStart, period, ref items)
         { 
         }     
 
@@ -87,7 +87,7 @@ namespace Calendar.SocialNetworkConnector
             }
             else Items = null;
 
-            base.Message();          
+            base.Message(ServiceName, Period);          
         }
     }
 }

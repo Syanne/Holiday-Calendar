@@ -1,4 +1,5 @@
 ﻿using Calendar.Mechanism;
+using Calendar.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,17 +26,19 @@ namespace CalendarResources
         {
             return Task.Run(() =>
             {
+                //basic collection
                 Uri uri = new Uri("ms-appx:///Strings/Holidays.xml");
 #if !WINDOWS_PHONE_APP
                 var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                 doc = XDocument.Load(holFile.Path);
 #else
-                // uri = new Uri(holFile.Path.Skip(8).ToString());
+
                 var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                 var holidaysFile = FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
                 doc = XDocument.Parse(holidaysFile);
 #endif
+                //personal
                 try
                 {
                     var storageFolder = ApplicationData.Current.RoamingFolder;
@@ -43,13 +46,6 @@ namespace CalendarResources
                     string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
                     var personalDoc = XDocument.Parse(text);
-
-                    int count = personalDoc.Root.Nodes().Count();
-                    if (count > 2)
-                    {
-                        file.DeleteAsync().AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                        throw new Exception();
-                    }
 
                     PersonalData = personalDoc;
                 }
@@ -119,7 +115,7 @@ namespace CalendarResources
         /// <param name="day">selected day</param>
         /// <param name="month">selected month</param>
         /// <param name="year">selected year (or 0)</param> 
-        public static void SavePersonal(string name, string day, string month, string year)
+        public static void SavePersonal(string name, string day, string month, string year, bool needSave)
         {
             try
             {
@@ -144,7 +140,7 @@ namespace CalendarResources
                     writer.WriteEndElement();
                 }
                 //save changes
-                SaveDocumentAsync();
+                if(needSave) SaveDocumentAsync();
             }
             catch (Exception e)
             {
@@ -207,6 +203,50 @@ namespace CalendarResources
                 MyMessage(e.Message);
             }
         }
+        /// <summary>
+        /// Save holidays from service 
+        /// </summary>
+        /// <param name="serviceName">service name as parent attribute name</param>
+        /// <param name="period">sync repeat period</param>
+        /// <param name="items">colection of items</param>
+        public static void SetHolidaysFromSocialNetwork(string serviceName, int period, System.Collections.Generic.List<ItemBase> items)
+        {
+            //get parent
+            XElement serviceRoot = null;
+            DateTime nextSyncDate = DateTime.Now.AddDays(period);
+            try
+            {
+                serviceRoot = PersonalData.Root.Element(serviceName);
+                serviceRoot.Attribute("nextSyncDate").Value = nextSyncDate.Date.ToString();
+            }
+            catch
+            {
+                using (XmlWriter writer = PersonalData.Root.CreateWriter())
+                {
+                    writer.WriteStartElement(serviceName);
+
+                    writer.WriteStartAttribute("period");
+                    writer.WriteString(period.ToString());
+                    writer.WriteEndAttribute();
+                    writer.WriteStartAttribute("nextSyncDate");
+                    writer.WriteString(nextSyncDate.Date.ToString());
+                    writer.WriteEndAttribute();
+
+                    writer.WriteString("");
+                    writer.WriteEndElement();
+                }
+            }
+
+            //set holidays
+            if (items != null)
+                foreach (var item in items)
+                {
+                    SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false);
+                }
+
+            SaveDocumentAsync();
+        }
+        
 
         private static async void MyMessage(string text)
         {
