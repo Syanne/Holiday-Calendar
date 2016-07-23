@@ -333,7 +333,7 @@
   <data name="settingsAppButton.Label" xml:space="preserve">
     <value>налаштування</value>
   </data>
-  <data name="settingsTop.Text" xml:space="preserve">
+  <data name="settingsTop.Content" xml:space="preserve">
     <value>налаштування</value>
   </data>
   <data name="clickToPreview.Text" xml:space="preserve">
@@ -389,5 +389,8 @@ Syanne.</value>
   </data>
   <data name="everyYear.Content" xml:space="preserve">
     <value>щороку</value>
+  </data>
+  <data name="styles.Content" xml:space="preserve">
+    <value>стиль</value>
   </data>
 </root>

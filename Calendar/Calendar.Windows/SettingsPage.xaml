@@ -9,13 +9,20 @@
     Loaded="Page_Loaded"
     Unloaded="Page_Unloaded">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="Dark" x:Name="Dark">#303030</SolidColorBrush>
+            <SolidColorBrush x:Key="Light" x:Name="Light">LightGray</SolidColorBrush>
+        </ResourceDictionary>
+    </Page.Resources>
+
     <!-- Этот элемент StackPanel является корневой панелью для вертикальной компоновки разделов содержимого -->
     <Grid VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch"  
                     Background="#FFF6F6F9"
                     RequestedTheme="Light"
                     Margin="0">
-        
+
         <!-- Кнопка "Назад" и заголовок страницы -->
         <Grid Height="100" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -23,25 +30,36 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Margin="39,30,39,0"
-             Click="backButton_Click"
+                    Click="backButton_Click"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
                         AutomationProperties.ItemType="Navigation Button" 
                         RequestedTheme="Light"/>
-            <TextBlock x:Uid="settingsTop" 
+            <GridViewItem x:Uid="settingsTop" 
                        x:Name="pageTitle" 
-                       Style="{StaticResource HeaderTextBlockStyle}" 
                        Grid.Column="1" 
-                       IsHitTestVisible="false" 
-                       TextWrapping="NoWrap" 
-                       VerticalAlignment="Center" 
-                       TextAlignment="Center"
-                       TextLineBounds="TrimToCapHeight"
+                       Width="300"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
                        FontFamily="Minion Pro"
                        FontSize="36" FontWeight="SemiBold"
                        Padding="0,10,0,0"
+                       Margin="20,0,0,0"
+                       Tapped="topString_Tapped"
+                       Foreground="#FF303030"/>
+            <GridViewItem x:Uid="styles" 
+                       x:Name="styleTitle" 
+                       Grid.Column="2" 
+                       Width="300"
+                       VerticalAlignment="Center" 
+                       HorizontalAlignment="Left"
+                       FontFamily="Minion Pro"
+                       FontSize="36" FontWeight="SemiBold"
+                       Padding="0,10,0,0"
+                       Margin="400,0,0,0"
+                       Tapped="topString_Tapped"
                        Foreground="#FF303030"/>
         </Grid>
 
@@ -54,42 +72,6 @@
                       HorizontalAlignment="Left">
 
                 <StackPanel HorizontalAlignment="Left" Margin="5,5,20,5">
-                    <!--<StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
-                        HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Stretch" 
-                        Margin="0,30,0,15"
-                        Orientation="Horizontal">
-                    <TextBlock x:Uid="language" 
-                           Height="auto" Width="350"
-                           Margin="0,0,10,10"
-                           HorizontalAlignment="Left"
-                           Style="{StaticResource TitleTextBlockStyle}" 
-                           FontSize="26" FontFamily="Minion Pro" />
-                    <ComboBox Name="comboLang" 
-                          Width="140" Height="30" 
-                          Margin="10,0,0,10" 
-                          SelectionChanged="ComboBox_SelectionChanged" 
-                          HorizontalAlignment="Left" >
-                        <ComboBoxItem Content="ru" ></ComboBoxItem>
-                        <ComboBoxItem Content="uk" ></ComboBoxItem>
-                    </ComboBox>
-
-                    <TextBlock x:Uid="dayOfWeek" 
-                           Height="40" Width="300"
-                           HorizontalAlignment="Left"
-                           Style="{StaticResource TitleTextBlockStyle}" 
-                           FontSize="26" FontFamily="Minion Pro"
-                           Margin="0, 15" />
-                    <ComboBox Name="comboDOW" 
-                          Width="140" Height="30" 
-                          Margin="400,-65, 20,10" 
-                          SelectionChanged="comboDOW_SelectionChanged" 
-                          HorizontalAlignment="Left" >
-                        <ComboBoxItem x:Uid="monday" IsSelected="True"></ComboBoxItem>
-                        <ComboBoxItem x:Uid="sunday" ></ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>-->
-
                     <StackPanel x:Name="ThemeStack" 
                                 Visibility="Collapsed" 
                                 Orientation="Horizontal">
@@ -100,7 +82,7 @@
                            FontSize="26" FontFamily="Minion Pro"
                            Margin="0, 15" />
                         <Button x:Uid="chooseBtn"
-                            Name="buttonTheme" 
+                            x:Name="buttonTheme" 
                             Click="buttonTheme_Click"
                           Width="140" Height="40" 
                           Margin="25,0,5,0" 
@@ -174,20 +156,32 @@
                            Margin="170,0,0,0"
                            FontFamily="Minion Pro"
                            HorizontalAlignment="Left"/>
-                        <ComboBox x:Name="comboToast" Height="30" Width="150" Margin="0,1,10,5" IsHoldingEnabled="False" ManipulationMode="None" VerticalAlignment="Stretch" HorizontalAlignment="Left">
+                        <ComboBox x:Name="comboToast" 
+                                  Height="30" Width="150" 
+                                  Margin="0,1,10,5" 
+                                  IsHoldingEnabled="False" 
+                                  ManipulationMode="None" 
+                                  VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Left">
                             <ComboBoxItem x:Uid="c1" Width="110" IsSelected="True" />
                             <ComboBoxItem x:Uid="c2" Width="110"/>
                             <ComboBoxItem x:Uid="c3" Width="110"/>
                             <ComboBoxItem x:Uid="c4" Width="110"/>
                             <ComboBoxItem x:Uid="c5" Width="110"/>
                         </ComboBox>
-                        <ComboBox x:Name="comboPeriod" Height="30" Width="150" Margin="170,-35,0,5" IsHoldingEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" ManipulationMode="None">
+                        <ComboBox x:Name="comboPeriod" 
+                                  Height="30" Width="150" 
+                                  Margin="170,-35,0,5" 
+                                  IsHoldingEnabled="False" 
+                                  HorizontalAlignment="Left" 
+                                  VerticalAlignment="Top" 
+                                  ManipulationMode="None">
                             <ComboBoxItem Content="4" Width="110" IsSelected="True" />
                             <ComboBoxItem Content="6" Width="110"/>
                             <ComboBoxItem Content="8" Width="110"/>
                             <ComboBoxItem Content="12" Width="110"/>
                         </ComboBox>
-                        <ToggleSwitch Name="toastToggle"
+                        <ToggleSwitch x:Name="toastToggle"
                           Toggled="toastToggle_Toggled" 
                           HorizontalAlignment="Left" 
                           Margin="360,-50,0,20" 
@@ -198,8 +192,8 @@
                             Margin="0, 20"
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Stretch"
-                            MaxWidth="500"
-                            >
+                            MaxWidth="500" >
+                        <!-- Основная часть раздела 4 -->
                         <!-- Заголовок раздела 4 -->
                         <TextBlock x:Uid="buyMeTitle" 
                                Style="{StaticResource TitleTextBlockStyle}" 
@@ -210,10 +204,9 @@
                                FontSize="22" Margin="2,5,2,10" 
                                LineHeight="26"
                                FontFamily="Minion Pro"/>
-                        <!-- Основная часть раздела 4 -->
                     </StackPanel>
 
-                    <Button x:Uid="shopBtn" Name="buy"  
+                    <Button x:Uid="shopBtn" x:Name="buy"  
                     Click="Button_Click" FontSize="22"
                     BorderThickness="0"
                     Background="#ff303030"
@@ -227,69 +220,17 @@
             </ScrollViewer>
 
             <Grid x:Name="rightSide" >
-                <TextBlock x:Uid="selectThemeTop" 
-                           Margin="10"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource TitleTextBlockStyle}" 
-                           FontSize="30" FontFamily="Minion Pro"  
-                           Height="30" Width="Auto"
-                           VerticalAlignment="Top"
-                           />
-
-                <FlipView Name="smallThemesPreview"
-                      Tapped="smallThemesPreview_Tapped"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Top"
-                      Padding="10, 0, 10, 50"
-                      Margin="0, 50, 50, 10">
-
-                    <FlipView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Tag="{Binding Tag}"                                
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top">
-                                <TextBox x:Uid="clickToPreview"
-                                 Height="40"
-                                 IsReadOnly="True"
-                                 Foreground="#ff303030"
-                                 Background="Transparent"
-                                 BorderThickness="0"
-                                 FontSize="20"
-                                 FontFamily="Minion Pro"
-                                 Margin="0,5"
-                                 TextAlignment="Center"
-                                 HorizontalAlignment="Stretch"
-                                 VerticalAlignment="Top"/>
-                                <Image Source="{Binding Image}"
-                               Stretch="Uniform"
-                               />
-                            </StackPanel>
-                        </DataTemplate>
-                    </FlipView.ItemTemplate>
-                </FlipView>
-
-                <Button Name="doneSmallBtn" x:Uid="ThemeBtn"
-                Click="doneBtn_Click"
-                Height="50" Width="140"
-                Margin="10, 20, 10, 50"
-                FontSize="22"
-                FontFamily="Minion Pro"
-                BorderThickness="0"
-                Background="#ff303030"
-                Foreground="#ffffffff"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Bottom"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                    />
+                
             </Grid>
-
         </StackPanel>
 
-        <Grid Name="themesFullScreen" Background="#FFEFEFF3" Visibility="Collapsed">
+        <Grid Name="themesFullScreen" 
+              Margin="0,100,0,0"
+              Background="#FFEFEFF3" 
+              Visibility="Collapsed">
             <FlipView Name="myFlip"
                   Background="{x:Null}"
-                  Margin="10"
+                  Margin="10,10,10,50"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch">
 
@@ -300,13 +241,11 @@
                                 VerticalAlignment="Center">
                             <Image Source="{Binding Image}"
                                Stretch="Fill"
-                               Margin="20, 0"
-                               />
+                               Margin="20, 0" />
                         </StackPanel>
                     </DataTemplate>
                 </FlipView.ItemTemplate>
             </FlipView>
-
 
             <TextBox Name="SlideNumberTb"
                  Margin="50, 20" Height="50"

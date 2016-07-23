@@ -4,18 +4,10 @@ using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.Resources;
-using System.Xml.Linq;
 using Windows.Storage;
-using Windows.Globalization;
 
 using CalendarResources;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
-using Calendar.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -26,50 +18,43 @@ namespace Calendar
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
-        //private ObservableCollection<LvItem> itemSource;
-
         public SettingsPage()
         {
             this.InitializeComponent();
+            styleTitle.Foreground = Light;
 
-            //enable toggles
+            //enable task toggles
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
                 if (task.Value.Name == "TileBackgroundTask")
                     tileToggle.IsOn = true;
                 if (task.Value.Name == "ToastBackgroundTask")
+                {
                     toastToggle.IsOn = true;
+                    comboPeriod.IsEnabled = false;
+                    comboToast.IsEnabled = false;
+                }
             }            
-
-            //FlipViews (small and full-screen)
-            SampleDataSource sds = new SampleDataSource();
-            myFlip.ItemsSource = sds.Items;
-            smallThemesPreview.ItemsSource = sds.Items;
         }             
           
         #region themes        
         private void cancelBth_Click(object sender, RoutedEventArgs e)
         {
-            themesFullScreen.Visibility = Visibility.Collapsed;
+            HideStylesPanel();
         }
 
         private void doneBtn_Click(object sender, RoutedEventArgs e)
         {
             if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
             {
-                string temp;
-                if (themesFullScreen.Visibility == Visibility.Visible)
-                    temp = (myFlip.SelectedItem as LocalFVItem).Tag;
-                else temp = (smallThemesPreview.SelectedItem as LocalFVItem).Tag;
+                string temp = (myFlip.SelectedItem as LocalFVItem).Tag;
 
                 ApplicationData.Current.LocalSettings.Values["AppTheme"] =
                     String.Format("ms-appx:///themes/{0}.xaml", temp);
                 Application.Current.Resources.Source =
                    new Uri("ms-appx:///themes/" + temp + ".xaml");
 
-                if (themesFullScreen.Visibility == Visibility.Visible)
-                    themesFullScreen.Visibility = Visibility.Collapsed;
-                else this.Frame.Navigate(typeof(MainPage));
+                HideStylesPanel();
             }
             else
             {
@@ -79,7 +64,7 @@ namespace Calendar
 
         private void buttonTheme_Click(object sender, RoutedEventArgs e)
         {
-            themesFullScreen.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            themesFullScreen.Visibility = Visibility.Visible;
         }
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,22 +97,13 @@ namespace Calendar
         
         private void SettingsFlyout_Unloaded(object sender, RoutedEventArgs e)
         {
-            var rootFrame = new Frame();
-            rootFrame.Navigate(typeof(MainPage));
+            this.Frame.Navigate(typeof(MainPage));
         }
         
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
         }        
-
-        private void smallThemesPreview_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-            myFlip.SelectedIndex = smallThemesPreview.SelectedIndex;
-            SlideNumberTb.Text = myFlip.SelectedIndex + 1 + @"/" + myFlip.Items.Count;
-
-            themesFullScreen.Visibility = Visibility.Visible;
-        }
 
         private async void MyMessage(string text)
         {
@@ -168,12 +144,16 @@ namespace Calendar
                         //set period
                         uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
                         BackgroundTaskCreator(name, entryPoint, period * 60);
+                        comboPeriod.IsEnabled = false;
+                        comboToast.IsEnabled = false;
                     }
                     else
                     {
                         foreach (var task in BackgroundTaskRegistration.AllTasks)
                             if (task.Value.Name == "ToastBackgroundTask")
                                 task.Value.Unregister(true);
+                        comboPeriod.IsEnabled = true;
+                        comboToast.IsEnabled = true;
                     }
                 }
                 else
@@ -272,7 +252,6 @@ namespace Calendar
             {
                 rightSide.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 rightSide.Width = Window.Current.Bounds.Width - 600;
-                smallThemesPreview.Width = rightSide.Width - 200;
                 ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             }
             else 
@@ -283,6 +262,36 @@ namespace Calendar
             }
 
             myFlip.Width = Window.Current.Bounds.Width / 1.3;
+        }
+
+        private void topString_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+            if((sender as GridViewItem).Name.CompareTo(pageTitle.Name) == 0)
+            {
+                HideStylesPanel();
+            }
+            else
+            {
+                //load themes and panel
+                if (myFlip.Items.Count == 0)
+                {
+                    //FlipViews (small and full-screen)
+                    SampleDataSource sds = new SampleDataSource();
+                    myFlip.ItemsSource = sds.Items;
+                }
+
+                themesFullScreen.Visibility = Visibility.Visible;
+                pageTitle.Foreground = Light;
+                styleTitle.Foreground = Dark;
+            }
+        }
+
+        private void HideStylesPanel()
+        {
+            themesFullScreen.Visibility = Visibility.Collapsed;
+            pageTitle.Foreground = Dark;
+            styleTitle.Foreground = Light;
         }
     }
 }

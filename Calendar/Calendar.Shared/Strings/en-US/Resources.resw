@@ -328,7 +328,7 @@
   <data name="settingsAppButton.Label" xml:space="preserve">
     <value>settings</value>
   </data>
-  <data name="settingsTop.Text" xml:space="preserve">
+  <data name="settingsTop.Content" xml:space="preserve">
     <value>settings</value>
   </data>
   <data name="clickToPreview.Text" xml:space="preserve">
@@ -383,5 +383,8 @@ Syanne.</value>
   </data>
   <data name="everyYear.Content" xml:space="preserve">
     <value>yearly</value>
+  </data>
+  <data name="styles.Content" xml:space="preserve">
+    <value>style</value>
   </data>
 </root>
