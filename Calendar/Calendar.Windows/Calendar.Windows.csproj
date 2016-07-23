@@ -171,6 +171,10 @@
       <HintPath>..\..\packages\AdDuplexWin81.9.0.0.12\lib\portable-win81+wpa81\AdDuplex.Universal.Win.WinRT.winmd</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Facebook.7.0.6\lib\win8\Facebook.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Google.Apis, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Google.Apis.1.14.0\lib\win81\Google.Apis.dll</HintPath>
       <Private>True</Private>
@@ -183,8 +187,8 @@
       <HintPath>..\..\packages\Google.Apis.Auth.1.14.0\lib\win81\Google.Apis.Auth.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Calendar.v3, Version=1.14.0.544, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Calendar.v3.1.14.0.544\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Calendar.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Calendar.v3, Version=1.14.0.558, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Calendar.v3.1.14.0.558\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Calendar.v3.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Google.Apis.Core, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">

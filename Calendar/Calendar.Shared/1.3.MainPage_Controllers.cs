@@ -379,7 +379,8 @@ namespace Calendar
                     day.ToString(),
                     month.ToString(),
                     year.ToString(),
-                    true);
+                    true,
+                    "holidays");
             }
 
             DataManager.calBase.ReadHolidayXml();

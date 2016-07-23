@@ -3,7 +3,6 @@ using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using Calendar.Models;
 using System.Threading.Tasks;
@@ -22,26 +21,17 @@ namespace Calendar.SocialNetworkConnector
             get { return "google"; }      
         }
 
-        public GoogleCalendarConnector(DateTime dateStart,int period, ref List<ItemBase> items) : base(dateStart, period, ref items)
-        { 
-        }     
-
-        private async void SetCredentials()
-        {
-            credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                       new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
-                       new[] { CalendarService.Scope.CalendarReadonly },
-                       "user",
-                       CancellationToken.None);
-        }
+        public GoogleCalendarConnector(DateTime dateStart, int period) : base(dateStart, period)
+        { }
 
         public async override Task GetHolidayList()
         {
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                       new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
-                       new[] { CalendarService.Scope.CalendarReadonly },
-                       "user",
-                       CancellationToken.None);
+                           new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
+                           new[] { CalendarService.Scope.CalendarReadonly },
+                           "user",
+                           CancellationToken.None);
+
 
             // Create Google Calendar API service.
             var service = new CalendarService(new BaseClientService.Initializer()
@@ -67,10 +57,17 @@ namespace Calendar.SocialNetworkConnector
             {
                 foreach (var eventItem in events.Items)
                 {
-                    string when = eventItem.Start.DateTime.ToString();
-                    if (String.IsNullOrEmpty(when))
+                    string when = null;
+                    try
                     {
-                        when = eventItem.Start.Date;
+                        when = eventItem.Start.DateTime.Value.Date.ToString("yyyy-MM-dd");
+                    }
+                    catch
+                    {
+                        if (String.IsNullOrEmpty(when))
+                        {
+                            when = eventItem.Start.Date;
+                        }
                     }
                     var array = when.Split('-');
                     ItemBase item = new ItemBase
@@ -87,7 +84,7 @@ namespace Calendar.SocialNetworkConnector
             }
             else Items = null;
 
-            base.Message(ServiceName, Period);          
+            base.Message(ServiceName, Period);
         }
     }
 }

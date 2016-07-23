@@ -3,6 +3,7 @@ using CalendarResources;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
@@ -18,19 +19,17 @@ namespace Calendar.SocialNetworkConnector
         protected virtual DateTime DateEnd { get; set; }
         protected abstract string ServiceName { get; }  
 
-
-
         public BaseConnector(List<ItemBase> items, int period)
         {
             Items = items;
         }
 
-        public BaseConnector(DateTime dateStart, int period, ref List<ItemBase> items)
+        public BaseConnector(DateTime dateStart, int period)
         {
             DateStart = dateStart;
             Period = period;
             DateEnd = dateStart.Date.AddDays(period);
-            this.Items = items;
+            this.Items = new List<ItemBase>();
         }
 
         public abstract Task GetHolidayList();
@@ -42,6 +41,7 @@ namespace Calendar.SocialNetworkConnector
             dial.Commands.Add(new UICommand("OK", cmd=> 
             {
                 DataManager.SetHolidaysFromSocialNetwork(serviceName, period, Items);
+                SyncManager.Manager.SetIsAnyOperation(false, this.GetType());
             }));
 
             var command = await dial.ShowAsync();

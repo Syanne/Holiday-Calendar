@@ -17,6 +17,7 @@ namespace CalendarResources
         public static XDocument PersonalData { get; private set; }
         public static XDocument doc { get; private set; }
         public static ResourceLoader resource { get; set; }
+
         public static HolidayCalendarBase calBase;
 
         /// <summary>
@@ -58,17 +59,6 @@ namespace CalendarResources
                     PersonalData = XDocument.Parse(persRead);
                 }
             });
-        }
-        
-        /// <summary>
-        /// Log exceptions
-        /// </summary>
-        /// <param name="e">exception message</param>
-        public static async void Logging(Exception e)
-        {
-            StorageFile sampleFile = await ApplicationData.Current.RoamingFolder.
-                 CreateFileAsync("Log.txt", CreationCollisionOption.OpenIfExists);
-            await FileIO.WriteTextAsync(sampleFile, e.Message);
         }
 
         /// <summary>
@@ -115,12 +105,14 @@ namespace CalendarResources
         /// <param name="day">selected day</param>
         /// <param name="month">selected month</param>
         /// <param name="year">selected year (or 0)</param> 
-        public static void SavePersonal(string name, string day, string month, string year, bool needSave)
+        /// <param name="needSave">do we need to save document now?</param>
+        /// <param name="parentTag">parent tag</param>
+        public static void SavePersonal(string name, string day, string month, string year, bool needSave, string parentTag)
         {
             try
             {
                 //add all nodes
-                using (XmlWriter writer = PersonalData.Root.Element("holidays").CreateWriter())
+                using (XmlWriter writer = PersonalData.Root.Element(parentTag).CreateWriter())
                 {
                     writer.WriteStartElement("persDate");
 
@@ -189,10 +181,10 @@ namespace CalendarResources
                 //try to load PersData.xml            
                 PersonalData.Root.Descendants("holidays").
                     Descendants("persDate").
-                    Where(p => (p.Attribute("name").Value == name)).
-                    Where(p => (p.Attribute("date").Value == day)).
-                    Where(p => (p.Attribute("month").Value == month)).
-                    Where(p => (p.Attribute("year").Value == year)).
+                    Where(p => (p.Attribute("name").Value == name && 
+                    p.Attribute("date").Value == day && 
+                    p.Attribute("month").Value == month && 
+                    p.Attribute("year").Value == year)).
                         Remove();
 
                 //save changes
@@ -203,6 +195,30 @@ namespace CalendarResources
                 MyMessage(e.Message);
             }
         }
+
+        /// <summary>
+        /// Removes records where year and month are less then current
+        /// </summary>
+        /// <returns>asyn operation</returns>
+        private static Task RemoveDeprecated()
+        {
+            return Task.Run(() =>
+            {
+                //get current date and year
+                var month = DateTime.Now.Month;
+                var year = DateTime.Now.Year;
+                foreach (var descendant in PersonalData.Root.Descendants().Skip(1))
+                {
+                    descendant.Descendants().Where(p =>
+                        int.Parse(p.Attribute("month").Value) < month &&
+                        int.Parse(p.Attribute("year").Value) < year &&
+                        int.Parse(p.Attribute("year").Value) != 0).
+                            Remove();
+                }
+            });
+        }
+
+
         /// <summary>
         /// Save holidays from service 
         /// </summary>
@@ -241,7 +257,17 @@ namespace CalendarResources
             if (items != null)
                 foreach (var item in items)
                 {
-                    SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false);
+                    //first - check if there any same record
+                    int count = serviceRoot.Descendants("persDate").
+                        Where(p => (p.Attribute("name").Value == item.HolidayName) &&
+                        p.Attribute("date").Value == item.Day.ToString() &&
+                        p.Attribute("month").Value == item.Month.ToString() && 
+                        p.Attribute("year").Value == item.Year.ToString()).
+                        Count();
+
+                    if (count == 0)
+                        SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false, serviceName);
+
                 }
 
             SaveDocumentAsync();

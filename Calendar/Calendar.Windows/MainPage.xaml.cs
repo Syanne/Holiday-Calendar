@@ -12,6 +12,7 @@ using Windows.ApplicationModel.Store;
 using Windows.Storage;
 using Windows.Globalization;
 using Calendar.Models;
+using Calendar.SocialNetworkConnector;
 
 namespace Calendar
 {
@@ -41,6 +42,8 @@ namespace Calendar
         private void Day_Tapped(object sender, TappedRoutedEventArgs e)
         {
             DayController(sender);
+        
+            SyncManager.Manager.SyncWith("google", DateTime.Now, 7);
         }
 
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
