@@ -1,10 +1,12 @@
-﻿using Google.Apis.Auth.OAuth2;
+﻿using Calendar.Models;
+
+using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
+
 using System;
 using System.Threading;
-using Calendar.Models;
 using System.Threading.Tasks;
 
 namespace Calendar.SocialNetworkConnector
@@ -60,7 +62,7 @@ namespace Calendar.SocialNetworkConnector
                     string when = null;
                     try
                     {
-                        when = eventItem.Start.DateTime.Value.Date.ToString("yyyy-MM-dd");
+                        when = eventItem.Start.DateTime.Value.Date.ToString(DateFormat);
                     }
                     catch
                     {
@@ -83,8 +85,8 @@ namespace Calendar.SocialNetworkConnector
                 }
             }
             else Items = null;
-
-            base.Message(ServiceName, Period);
+            
+            base.Message();
         }
     }
 }

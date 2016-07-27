@@ -44,11 +44,28 @@ namespace Calendar
             DayController(sender);
 
             //test
-            int period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
-            var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split('-');
-            DateTime date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-            if(date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
-                SyncManager.Manager.AddService("google", DateTime.Now, period);
+            int period = 0;
+            DateTime date = DateTime.Now;
+            try
+            {
+                period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
+                var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(BaseConnector.DateSeparator);
+                date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+            }
+            catch
+            {
+                period = 7;
+                date = DateTime.Now;
+
+            }
+            finally
+            {
+                if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
+                {
+                    SyncManager.Manager.AddService("google", DateTime.Now, period);
+                }
+            }
+            
         }
 
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)

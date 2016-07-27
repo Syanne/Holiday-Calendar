@@ -233,7 +233,7 @@ namespace CalendarResources
             try
             {
                 serviceRoot = PersonalData.Root.Element(serviceName);
-                serviceRoot.Attribute("nextSyncDate").Value = nextSyncDate.Date.ToString();
+                serviceRoot.Attribute("nextSyncDate").Value = nextSyncDate.Date.ToString(Calendar.SocialNetworkConnector.BaseConnector.DateFormat);
             }
             catch
             {
@@ -245,7 +245,7 @@ namespace CalendarResources
                     writer.WriteString(period.ToString());
                     writer.WriteEndAttribute();
                     writer.WriteStartAttribute("nextSyncDate");
-                    writer.WriteString(nextSyncDate.Date.ToString());
+                    writer.WriteString(nextSyncDate.Date.ToString(Calendar.SocialNetworkConnector.BaseConnector.DateFormat));
                     writer.WriteEndAttribute();
                     writer.WriteStartAttribute("isActive");
                     writer.WriteString("true");
@@ -256,24 +256,33 @@ namespace CalendarResources
                 }
             }
 
-            //set holidays
             if (items != null)
-                foreach (var item in items)
+                try
                 {
-                    //first - check if there any same record
-                    int count = serviceRoot.Descendants("persDate").
-                        Where(p => (p.Attribute("name").Value == item.HolidayName) &&
-                        p.Attribute("date").Value == item.Day.ToString() &&
-                        p.Attribute("month").Value == item.Month.ToString() && 
-                        p.Attribute("year").Value == item.Year.ToString()).
-                        Count();
+                    //set holidays
+                    foreach (var item in items)
+                    {
+                        //first - check if there any same record
+                        int count = serviceRoot.Descendants("persDate").
+                            Where(p => (p.Attribute("name").Value == item.HolidayName) &&
+                            p.Attribute("date").Value == item.Day.ToString() &&
+                            p.Attribute("month").Value == item.Month.ToString() &&
+                            p.Attribute("year").Value == item.Year.ToString()).
+                            Count();
 
-                    if (count == 0)
+                        if (count == 0)
+                            SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false, serviceName);
+
+                    }
+                }
+                catch
+                {
+                    foreach (var item in items)
                         SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false, serviceName);
-
                 }
 
             SaveDocumentAsync();
+            
         }
 
         /// <summary>
