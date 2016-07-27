@@ -151,10 +151,6 @@
       <HintPath>..\..\packages\AdDuplexWinPhone81.9.0.0.12\lib\portable-win81+wpa81\AdDuplex.Universal.WinPhone.WinRT.winmd</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Facebook, Version=6.0.10.0, Culture=neutral, PublicKeyToken=58cb4f2111d1e6de, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Facebook.7.0.6\lib\portable-win81+wpa81\Facebook.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Google.Apis, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Google.Apis.1.14.0\lib\wpa81\Google.Apis.dll</HintPath>
       <Private>True</Private>

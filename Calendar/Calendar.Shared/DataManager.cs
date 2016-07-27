@@ -224,7 +224,7 @@ namespace CalendarResources
         /// </summary>
         /// <param name="serviceName">service name as parent attribute name</param>
         /// <param name="period">sync repeat period</param>
-        /// <param name="items">colection of items</param>
+        /// <param name="items">colection of records</param>
         public static void SetHolidaysFromSocialNetwork(string serviceName, int period, System.Collections.Generic.List<ItemBase> items)
         {
             //get parent
@@ -246,6 +246,9 @@ namespace CalendarResources
                     writer.WriteEndAttribute();
                     writer.WriteStartAttribute("nextSyncDate");
                     writer.WriteString(nextSyncDate.Date.ToString());
+                    writer.WriteEndAttribute();
+                    writer.WriteStartAttribute("isActive");
+                    writer.WriteString("true");
                     writer.WriteEndAttribute();
 
                     writer.WriteString("");
@@ -270,6 +273,16 @@ namespace CalendarResources
 
                 }
 
+            SaveDocumentAsync();
+        }
+
+        /// <summary>
+        /// Disable service sync
+        /// </summary>
+        /// <param name="serviceName">service name</param>
+        public static void DisableService(string serviceName)
+        {
+            PersonalData.Root.Element(serviceName).Attribute("isActive").Value = "false";
             SaveDocumentAsync();
         }
         

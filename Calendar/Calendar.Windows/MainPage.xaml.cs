@@ -42,8 +42,13 @@ namespace Calendar
         private void Day_Tapped(object sender, TappedRoutedEventArgs e)
         {
             DayController(sender);
-        
-            SyncManager.Manager.SyncWith("google", DateTime.Now, 7);
+
+            //test
+            int period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
+            var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split('-');
+            DateTime date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+            if(date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
+                SyncManager.Manager.AddService("google", DateTime.Now, period);
         }
 
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)

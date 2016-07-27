@@ -8,9 +8,10 @@ using System.Threading;
 
 namespace Calendar.SocialNetworkConnector
 {
-    public partial class SyncManager
+    public class SyncManager
     {
-        public bool IsAnyOperation { get; private set; }
+        public int OnSyncServiceNumber { get; private set; }
+        private List<Service> Services { get; set; }
         private static SyncManager _manager;
         public static SyncManager Manager
         {
@@ -25,13 +26,28 @@ namespace Calendar.SocialNetworkConnector
 
         private SyncManager()
         {
-            IsAnyOperation = false;
+            OnSyncServiceNumber = -1;
         }
 
-        public void SetIsAnyOperation(bool value, Type typename)
+        public void SetIsAnyOperation(int value, Type typename)
         {
             if (typename == typeof(BaseConnector))
-                IsAnyOperation = value;
+                OnSyncServiceNumber = value;
+        }
+
+        public void AddService(string serverName, DateTime start, int period)
+        {
+            Services.Add(new Service
+            {
+                ServerName = serverName,
+                DateStart = start,
+                Period = period
+            });
+        }
+
+        public int GetServicesCount()
+        {
+            return Services.Count;
         }
 
         /// <summary>
@@ -39,29 +55,38 @@ namespace Calendar.SocialNetworkConnector
         /// Sync can be started, if there is no other operations 
         /// (property IsAnyOperation == false)
         /// </summary>
-        /// <param name="serverName">name of service</param>
-        /// <param name="start">start date</param>
-        /// <param name="period">repeat period</param>
-        public async void SyncWith(string serverName, DateTime start, int period)
+        public async void StartSync()
         {
-            if (!IsAnyOperation)
+            int start = 0;
+            while (start < Services.Count)
             {
-                //set connector
-                BaseConnector connector = null;
-
-                switch (serverName)
+                if (OnSyncServiceNumber == -1)
                 {
-                    case "google": connector = new GoogleCalendarConnector(start, period); break;
-                    case "facebook": break;
-                    case "outlook": break;
-                    case "vk": break;
-                    default: break;
-                }
+                    OnSyncServiceNumber = start;
+                    //set connector
+                    BaseConnector connector = null;
+                    switch (Services[OnSyncServiceNumber].ServerName)
+                    {
+                        case "google": connector = new GoogleCalendarConnector(Services[OnSyncServiceNumber].DateStart,
+                                                                               Services[OnSyncServiceNumber].Period);
+                                        break;
+                        case "facebook": connector = new FacebookConnector(Services[OnSyncServiceNumber].Period); break;
+                        case "outlook": break;
+                        case "vk": break;
+                        default: break;
+                    }
 
-                //do operation with sync
-                IsAnyOperation = true;
-                await connector.GetHolidayList();
+                    //do operation with sync
+                    await connector.GetHolidayList();
+                }
+                
             }
+        }
+        class Service
+        {
+            public string ServerName;
+            public int Period;
+            public DateTime DateStart;
         }
     }
 }

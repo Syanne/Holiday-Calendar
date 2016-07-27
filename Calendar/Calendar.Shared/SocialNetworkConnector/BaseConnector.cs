@@ -19,9 +19,9 @@ namespace Calendar.SocialNetworkConnector
         protected virtual DateTime DateEnd { get; set; }
         protected abstract string ServiceName { get; }  
 
-        public BaseConnector(List<ItemBase> items, int period)
+        public BaseConnector(int period)
         {
-            Items = items;
+            this.Items = new List<ItemBase>();
         }
 
         public BaseConnector(DateTime dateStart, int period)
@@ -41,7 +41,7 @@ namespace Calendar.SocialNetworkConnector
             dial.Commands.Add(new UICommand("OK", cmd=> 
             {
                 DataManager.SetHolidaysFromSocialNetwork(serviceName, period, Items);
-                SyncManager.Manager.SetIsAnyOperation(false, this.GetType());
+                SyncManager.Manager.SetIsAnyOperation(-1, this.GetType());
             }));
 
             var command = await dial.ShowAsync();
