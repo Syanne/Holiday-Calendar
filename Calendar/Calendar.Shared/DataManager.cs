@@ -1,5 +1,6 @@
 ﻿using Calendar.Mechanism;
 using Calendar.Models;
+using Calendar.SocialNetworkConnector;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,8 +18,8 @@ namespace CalendarResources
         public static XDocument PersonalData { get; private set; }
         public static XDocument doc { get; private set; }
         public static ResourceLoader resource { get; set; }
-
-        public static HolidayCalendarBase calBase;
+        public static HolidayCalendarBase calBase { get; set; }
+        public static System.Collections.Generic.List<string> Services { get; private set; }
 
         /// <summary>
         /// Load Holidays Data (general, then personal)
@@ -57,6 +58,19 @@ namespace CalendarResources
                     var persFile = StorageFile.GetFileFromApplicationUriAsync(persUri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                     var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                     PersonalData = XDocument.Parse(persRead);
+                }
+                var subcollection = PersonalData.Root.Descendants().Where(x => x.Name.LocalName != "holiday" && 
+                                                                               x.Name.LocalName != "holidays" &&
+                                                                               x.Name.LocalName != "theme" && 
+                                                                               x.Name.LocalName != "persDate");
+                if (subcollection.Count() > 0)
+                {
+                    Services = new System.Collections.Generic.List<string>();
+                    foreach(var item in subcollection)
+                    {
+                        if (item.Attribute("isActive").Value == "true")
+                            Services.Add(item.Name.LocalName);
+                    }
                 }
             });
         }
@@ -227,6 +241,11 @@ namespace CalendarResources
         /// <param name="items">colection of records</param>
         public static void SetHolidaysFromSocialNetwork(string serviceName, int period, System.Collections.Generic.List<ItemBase> items)
         {
+            //set service
+            if (Services == null)
+                Services = new System.Collections.Generic.List<string>();
+            Services.Add(serviceName);
+
             //get parent
             XElement serviceRoot = null;
             DateTime nextSyncDate = DateTime.Now.AddDays(period);
@@ -234,6 +253,7 @@ namespace CalendarResources
             {
                 serviceRoot = PersonalData.Root.Element(serviceName);
                 serviceRoot.Attribute("nextSyncDate").Value = nextSyncDate.Date.ToString(Calendar.SocialNetworkConnector.BaseConnector.DateFormat);
+                serviceRoot.Attribute("period").Value = period.ToString();
             }
             catch
             {
@@ -289,12 +309,17 @@ namespace CalendarResources
         /// Disable service sync
         /// </summary>
         /// <param name="serviceName">service name</param>
-        public static void DisableService(string serviceName)
+        /// <param name="value">true or false</param>
+        public static void ChangeServiceState(string serviceName, bool value)
         {
-            PersonalData.Root.Element(serviceName).Attribute("isActive").Value = "false";
+            PersonalData.Root.Element(serviceName).Attribute("isActive").Value = value.ToString().ToLower();
+            if (!value)
+            {
+                Services.Remove(serviceName);
+                PersonalData.Root.Element("google").Attribute("nextSyncDate").Value = DateTime.Now.Date.ToString(BaseConnector.DateFormat);
+            }
             SaveDocumentAsync();
         }
-        
 
         private static async void MyMessage(string text)
         {
@@ -303,6 +328,23 @@ namespace CalendarResources
             dial.Commands.Add(new UICommand("OK"));
             var command = await dial.ShowAsync();
         }
+
+        public static void EnableService()
+        {
+            if (Services != null)
+                if (Services.Contains("google"))
+                {
+                    var period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
+                    var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(Calendar.SocialNetworkConnector.BaseConnector.DateSeparator);
+                    var date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+
+                    if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
+                    {
+                        SyncManager.Manager.AddService("google", DateTime.Now, period);
+                    }
+                }
+        }
+
     }
     
 

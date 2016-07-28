@@ -4,6 +4,7 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
+using Google.Apis.Util.Store;
 
 using System;
 using System.Threading;
@@ -14,9 +15,11 @@ namespace Calendar.SocialNetworkConnector
     class GoogleCalendarConnector: BaseConnector
     {
         // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/calendar-dotnet-quickstart.json
+        // at ~/.credentials/calendar-dotnet-quickstart.
+        
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
         UserCredential credential;
+        //string ClientID = "732191470818-arie07vs6qvjknjtafjjkk5666gemihe.apps.googleusercontent.com";
 
         protected override string ServiceName
         {
@@ -30,8 +33,8 @@ namespace Calendar.SocialNetworkConnector
         {
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                            new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
-                           new[] { CalendarService.Scope.CalendarReadonly },
-                           "user",
+                           Scopes,
+                           "user",                           
                            CancellationToken.None);
 
 

@@ -91,7 +91,7 @@ namespace Calendar.Mechanism
                         HolidayNameCollection[i].IsChecked = true; break;
                     }
                     else HolidayNameCollection[i].IsChecked = false;
-                }
+                }           
         }
                 
         /// <summary>
@@ -192,8 +192,32 @@ namespace Calendar.Mechanism
                         FontSize = 20,
                         Height = 50
                     });
-
             }
+
+            //services
+            if (DataManager.Services != null)
+                foreach (var service in DataManager.Services)
+                {
+                    var collection = DataManager.PersonalData.Root.Element(service).Descendants();
+                    foreach(var holiday in collection)
+                    {
+                        int year = int.Parse(holiday.Attribute("year").Value);
+                        int month = int.Parse(holiday.Attribute("month").Value);
+
+                        if (year == SelectedDate.Year && month == SelectedDate.Month)
+                            HolidayItemCollection.Add(new HolidayItem
+                            {
+                                Day = int.Parse(holiday.Attribute("date").Value),
+                                Year = year,
+                                Month = month,
+                                HolidayName = holiday.Attribute("name").Value,
+                                HolidayTag = mine,
+                                Background = new SolidColorBrush(Colors.Transparent),
+                                FontSize = 20,
+                                Height = 50
+                            });
+                    }
+                }
 
             HolidayItemCollection.Add(new HolidayItem { Day = 0,
                                                         HolidayName = DataManager.resource.GetString("PersonalNote"),

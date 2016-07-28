@@ -70,7 +70,7 @@ namespace Calendar.SocialNetworkConnector
                         connector = new GoogleCalendarConnector(Services[OnSyncServiceNumber].DateStart,
                                                                 Services[OnSyncServiceNumber].Period);
                         break;
-                    case "facebook": connector = new FacebookConnector(Services[OnSyncServiceNumber].Period); break;
+                    case "facebook": /*connector = new FacebookConnector(Services[OnSyncServiceNumber].Period);*/ break;
                     case "outlook": break;
                     case "vk": break;
                     default: break;

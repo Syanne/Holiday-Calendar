@@ -391,4 +391,13 @@ Syanne.</value>
   <data name="styles.Content" xml:space="preserve">
     <value>стиль</value>
   </data>
+  <data name="googlePeriod.Text" xml:space="preserve">
+    <value>период (дни)</value>
+  </data>
+  <data name="googleText.Text" xml:space="preserve">
+    <value>загрузка событий из вашего google calendar происходит только после открытия приложения. календарь напомнит, когда его нужно открыть, с помощью живой плитки.</value>
+  </data>
+  <data name="ServiceMessage" xml:space="preserve">
+    <value>данные загружены, обновите календарь (кнопка на  всплывающей панели) или перезагрузите приложение</value>
+  </data>
 </root>

@@ -1,28 +1,21 @@
-﻿using System;
+﻿using Calendar.SocialNetworkConnector;
+using CalendarResources;
+using System;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.Storage;
 
-using CalendarResources;
-using Windows.UI.Xaml.Input;
-
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+// The Settings Flyout item template is documented at http://go.microsoft.com/fwlink/?LinkId=273769
 
 namespace Calendar
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
-    public sealed partial class SettingsPage : Page
+    public sealed partial class BaseSettingsFlyout : SettingsFlyout
     {
-        public SettingsPage()
+        public BaseSettingsFlyout()
         {
             this.InitializeComponent();
-            styleTitle.Foreground = Light;
-
             //enable task toggles
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
@@ -34,46 +27,17 @@ namespace Calendar
                     comboPeriod.IsEnabled = false;
                     comboToast.IsEnabled = false;
                 }
-            }            
-        }             
-          
-        #region themes        
-        private void cancelBth_Click(object sender, RoutedEventArgs e)
-        {
-            HideStylesPanel();
-        }
-
-        private void doneBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (CurrentApp.LicenseInformation.ProductLicenses["allstuff1"].IsActive)
-            {
-                string temp = (myFlip.SelectedItem as LocalFVItem).Tag;
-
-                ApplicationData.Current.LocalSettings.Values["AppTheme"] =
-                    String.Format("ms-appx:///themes/{0}.xaml", temp);
-                Application.Current.Resources.Source =
-                   new Uri("ms-appx:///themes/" + temp + ".xaml");
-
-                HideStylesPanel();
             }
-            else
-            {
-                OfferPurchase();
-            }
-        }
 
-        private void buttonTheme_Click(object sender, RoutedEventArgs e)
-        {
-            themesFullScreen.Visibility = Visibility.Visible;
+            //services
+            if (DataManager.Services != null)
+                if (DataManager.Services.Contains("google"))
+                {
+                    googleToggle.IsOn = true;
+                    googleToggle.IsEnabled = true;
+                    comboGooglePeriod.IsEnabled = false;
+                }
         }
-
-        private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (myFlip.Items != null)
-                SlideNumberTb.Text = String.Format("{0}/{1}", myFlip.SelectedIndex + 1, myFlip.Items.Count);
-        }
-        
-        #endregion
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
@@ -89,28 +53,10 @@ namespace Calendar
         {
             BuyStuff();
         }
-        
+
         private void buy_Click(object sender, RoutedEventArgs e)
         {
             BuyButtonController();
-        }
-        
-        private void SettingsFlyout_Unloaded(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }
-        
-        private void backButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(MainPage));
-        }        
-
-        private async void MyMessage(string text)
-        {
-            var dial = new MessageDialog(text);
-
-            dial.Commands.Add(new UICommand("OK"));
-            var command = await dial.ShowAsync();
         }
 
         #region BgTasks
@@ -161,7 +107,7 @@ namespace Calendar
                     OfferPurchase();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MyMessage(ex.Message);
             }
@@ -225,73 +171,63 @@ namespace Calendar
                 MyMessage(ex.Message);
             }
         }
+        
+        private async void MyMessage(string text)
+        {
+            var dial = new MessageDialog(text);
+
+            dial.Commands.Add(new UICommand("OK"));
+            var command = await dial.ShowAsync();
+        }
 
         #endregion
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        //private void buttonTheme_Click(object sender, RoutedEventArgs e)
+        //{
+        //
+        //}
+
+        private void SettingsFlyout_Loaded(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged += Current_SizeChanged;
-            ShowHide();
+            this.Width = 600;
         }
 
-        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        private void googleToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            Window.Current.SizeChanged -= Current_SizeChanged;
-        }
-        void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
-        {
-            ShowHide();
-        }
-
-         /// <summary>
-        /// Changing property Height for gvMain and choosing, what to show -list or grid
-        /// </summary>
-        private void ShowHide()
-        {
-            if (Window.Current.Bounds.Width > 1200)
+            if (googleToggle.IsOn)
             {
-                rightSide.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                rightSide.Width = Window.Current.Bounds.Width - 600;
-                ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            }
-            else 
-            {
-                rightSide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-                leftSide.Width = 600;
-                ThemeStack.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            }
+                //set period
+                int period = Convert.ToInt32((comboGooglePeriod.SelectedItem as ComboBoxItem).Content);
 
-            myFlip.Width = Window.Current.Bounds.Width / 1.3;
-        }
-
-        private void topString_Tapped(object sender, TappedRoutedEventArgs e)
-        {
-
-            if((sender as GridViewItem).Name.CompareTo(pageTitle.Name) == 0)
-            {
-                HideStylesPanel();
+                DateTime date = DateTime.Now;
+                try
+                {
+                    //period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
+                    var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(BaseConnector.DateSeparator);
+                    date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+                    
+                    if(DataManager.PersonalData.Root.Element("google").Attribute("isActive").Value == "false")
+                        DataManager.ChangeServiceState("google", true);
+                }
+                catch
+                {
+                    date = DateTime.Now;
+                }
+                finally
+                {
+                    if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
+                    {
+                        SyncManager.Manager.AddService("google", DateTime.Now, period);
+                    }
+                }
+                comboGooglePeriod.IsEnabled = false;
             }
             else
             {
-                //load themes and panel
-                if (myFlip.Items.Count == 0)
-                {
-                    //FlipViews (small and full-screen)
-                    SampleDataSource sds = new SampleDataSource();
-                    myFlip.ItemsSource = sds.Items;
-                }
-
-                themesFullScreen.Visibility = Visibility.Visible;
-                pageTitle.Foreground = Light;
-                styleTitle.Foreground = Dark;
+                DataManager.ChangeServiceState("google", false);
+                googleToggle.IsOn = false;
+                comboGooglePeriod.IsEnabled = true;
             }
-        }
-
-        private void HideStylesPanel()
-        {
-            themesFullScreen.Visibility = Visibility.Collapsed;
-            pageTitle.Foreground = Dark;
-            styleTitle.Foreground = Light;
         }
     }
 }

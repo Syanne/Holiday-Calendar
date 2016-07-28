@@ -25,7 +25,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\StandardClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StylesPageDataModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\BaseConnector.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\FacebookConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\GoogleCalendarConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\SyncManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataManager.cs" />

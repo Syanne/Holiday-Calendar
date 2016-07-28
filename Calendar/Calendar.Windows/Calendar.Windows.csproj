@@ -117,8 +117,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsPage.xaml.cs">
-      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    <Compile Include="BaseSettingsFlyout.xaml.cs">
+      <DependentUpon>BaseSettingsFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StylesPage.xaml.cs">
+      <DependentUpon>StylesPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -152,7 +155,11 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
     </Page>
-    <Page Include="SettingsPage.xaml">
+    <Page Include="BaseSettingsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StylesPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

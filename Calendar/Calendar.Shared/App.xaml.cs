@@ -159,5 +159,27 @@ namespace Calendar
             // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+#if !WINDOWS_PHONE_APP
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            Windows.UI.ApplicationSettings.SettingsPane.GetForCurrentView().CommandsRequested += OnCommandsRequested;
+        }
+
+        private void OnCommandsRequested(Windows.UI.ApplicationSettings.SettingsPane sender, Windows.UI.ApplicationSettings.SettingsPaneCommandsRequestedEventArgs args)
+        {
+
+            args.Request.ApplicationCommands.Add(new Windows.UI.ApplicationSettings.SettingsCommand(
+                "Custom Setting", "Custom Setting", (handler) => ShowCustomSettingFlyout()));
+        }
+
+        public void ShowCustomSettingFlyout()
+        {
+            BaseSettingsFlyout CustomSettingFlyout = new BaseSettingsFlyout();
+            CustomSettingFlyout.Show();
+        }
+
+#endif
+
     }
 }

@@ -62,7 +62,7 @@ namespace Calendar.SocialNetworkConnector
         /// </summary>
         protected async void Message()
         {
-            var dial = new MessageDialog(Items.Count.ToString(),"OK");
+            var dial = new MessageDialog(Windows.ApplicationModel.Resources.ResourceLoader.GetForCurrentView("Resources").GetString("ServiceMessage"));
 
             dial.Commands.Add(new UICommand("OK", cmd=> 
             {

@@ -331,9 +331,6 @@
   <data name="settingsTop.Content" xml:space="preserve">
     <value>settings</value>
   </data>
-  <data name="clickToPreview.Text" xml:space="preserve">
-    <value>click to enlarge</value>
-  </data>
   <data name="holidayTag.Label" xml:space="preserve">
     <value>holidays</value>
   </data>
@@ -386,5 +383,14 @@ Syanne.</value>
   </data>
   <data name="styles.Content" xml:space="preserve">
     <value>style</value>
+  </data>
+  <data name="googlePeriod.Text" xml:space="preserve">
+    <value>period (days)</value>
+  </data>
+  <data name="googleText.Text" xml:space="preserve">
+    <value>events from your google calendar would be loaded only when you open the application. calendar will remind you when it should be opened with the help of the live tile.</value>
+  </data>
+  <data name="ServiceMessage" xml:space="preserve">
+    <value>data is loaded, refresh the calendar (button on the bottom appbar) or restart the application</value>
   </data>
 </root>
