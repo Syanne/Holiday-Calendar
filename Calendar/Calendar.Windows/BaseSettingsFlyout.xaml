@@ -12,6 +12,34 @@
     
     <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
+                            Margin="0, 20"
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch" >
+            <!-- Основная часть раздела 4 -->
+            <!-- Заголовок раздела 4 -->
+            <TextBlock x:Uid="buyMeTitle" 
+                               FontSize="26" Margin="0, 0, 0, 5" 
+                               FontFamily="Minion Pro"/>
+            <TextBlock x:Uid="buyMeText" 
+                               FontSize="22" Margin="2,5,2,10" 
+                               LineHeight="26"
+                               FontFamily="Minion Pro"/>
+            <Button x:Uid="shopBtn" x:Name="buy"  
+                    Click="Button_Click" FontSize="22"
+                    BorderThickness="0"
+                    Background="#ff303030"
+                    Foreground="#ffffffff"
+                    HorizontalAlignment="Center"
+                    Margin="5,10" 
+                    Height="50" Width="140"
+                    HorizontalContentAlignment="Center"
+                    VerticalAlignment="Bottom"/>
+        </StackPanel>
+
+        
+        
+        
         <!--<StackPanel x:Name="ThemeStack" 
                                 Orientation="Horizontal">
             <TextBlock x:Uid="selectThemeTop" 
@@ -95,9 +123,10 @@
                            Margin="170,0,0,0"
                            FontFamily="Minion Pro"
                            HorizontalAlignment="Left"/>
+            <Grid>
             <ComboBox x:Name="comboToast" 
                                   Height="30" Width="150" 
-                                  Margin="0,1,10,5" 
+                                  Margin="10,0" 
                                   IsHoldingEnabled="False" 
                                   ManipulationMode="None" 
                                   VerticalAlignment="Stretch" 
@@ -110,10 +139,10 @@
             </ComboBox>
             <ComboBox x:Name="comboPeriod" 
                                   Height="30" Width="150" 
-                                  Margin="170,-35,0,5" 
+                                  Margin="170,0,10,0" 
                                   IsHoldingEnabled="False" 
-                                  HorizontalAlignment="Left" 
-                                  VerticalAlignment="Top" 
+                                  VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Left"
                                   ManipulationMode="None">
                 <ComboBoxItem Content="4" Width="110" IsSelected="True" />
                 <ComboBoxItem Content="6" Width="110"/>
@@ -123,32 +152,31 @@
             <ToggleSwitch x:Name="toastToggle"
                           Toggled="toastToggle_Toggled" 
                           HorizontalAlignment="Left" 
-                          Margin="360,-50,0,20" 
+                          Margin="360,0,10,0" 
                           FontFamily="Minion Pro" FontSize="16"/>
+            </Grid>
         </StackPanel>
 
-        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
+        <StackPanel 
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                         Margin="0,20"
                         Orientation="Vertical">
             <!-- Заголовок раздела 3 -->
-            <TextBlock Text="Google Calendar"
-                           Style="{StaticResource TitleTextBlockStyle}" 
+            <TextBlock Text="google calendar"
                            FontSize="26" 
                            FontFamily="Minion Pro" 
-                           Margin="0, 0, 0, 10" 
-                           Height="auto" Width="300"
+                           Height="30" Width="350"
                            HorizontalAlignment="Left"
+                           Style="{StaticResource TitleTextBlockStyle}" 
+                           Margin="0, 0, 0, 10" 
                            />
             <!-- Основная часть раздела 3 -->
             <TextBlock x:Uid="googleText" 
-                           Margin="0,10,0,30" 
-                           TextWrapping="Wrap" 
-                           LineHeight="25"
-                           FontSize="22" 
-                           HorizontalAlignment="Left"
-                           MaxWidth="500"
-                           FontFamily="Minion Pro"/>
+                               Style="{StaticResource BodyTextBlockStyle}" 
+                               FontSize="22" Margin="2,5,2,10" 
+                               FontFamily="Minion Pro"
+                               TextWrapping="Wrap" 
+                               HorizontalAlignment="Left" />
             <!--toggle-->
             <TextBlock x:Uid="googlePeriod" 
                            TextWrapping="Wrap" 
@@ -158,50 +186,24 @@
                            Margin="0,0,0,0"
                            FontFamily="Minion Pro"
                            HorizontalAlignment="Left"/>
-            <ComboBox x:Name="comboGooglePeriod" 
+            <Grid>
+                <ComboBox x:Name="comboGooglePeriod" 
                                   Height="30" Width="150" 
-                                  Margin="0,1,10,5" 
+                                  Margin="10,0" 
                                   IsHoldingEnabled="False" 
-                                  HorizontalAlignment="Left" 
-                                  VerticalAlignment="Top" 
-                                  ManipulationMode="None">
+                                  ManipulationMode="None" 
+                                  VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Left">
                 <ComboBoxItem Content="7" Width="110" IsSelected="True" />
                 <ComboBoxItem Content="30" Width="110"/>
             </ComboBox>
             <ToggleSwitch x:Name="googleToggle"
                           Toggled="googleToggle_Toggled" 
-                          HorizontalAlignment="Left" 
-                          Margin="360,-50,0,20" 
+                          HorizontalAlignment="Right" 
                           FontFamily="Minion Pro" FontSize="16"/>
+            </Grid>
         </StackPanel>
         
-        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
-                            Margin="0, 20"
-                            HorizontalAlignment="Left" 
-                            VerticalAlignment="Stretch"
-                            MaxWidth="500" >
-            <!-- Основная часть раздела 4 -->
-            <!-- Заголовок раздела 4 -->
-            <TextBlock x:Uid="buyMeTitle" 
-                               Style="{StaticResource TitleTextBlockStyle}" 
-                               FontSize="26" Margin="0, 0, 0, 5" 
-                               FontFamily="Minion Pro"/>
-            <TextBlock x:Uid="buyMeText" 
-                               Style="{StaticResource BodyTextBlockStyle}" 
-                               FontSize="22" Margin="2,5,2,10" 
-                               LineHeight="26"
-                               FontFamily="Minion Pro"/>
-        </StackPanel>
-
-        <Button x:Uid="shopBtn" x:Name="buy"  
-                    Click="Button_Click" FontSize="22"
-                    BorderThickness="0"
-                    Background="#ff303030"
-                    Foreground="#ffffffff"
-                    HorizontalAlignment="Center"
-                    Margin="5,10" 
-                    Height="50" Width="140"
-                    HorizontalContentAlignment="Center"
-                    VerticalAlignment="Bottom"/>
+        
     </StackPanel>
 </SettingsFlyout>

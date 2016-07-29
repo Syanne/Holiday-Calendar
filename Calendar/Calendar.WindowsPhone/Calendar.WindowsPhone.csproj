@@ -143,41 +143,39 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AdDuplex.Universal.Controls.WinPhone.XAML, Version=9.0.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdDuplexWinPhone81.9.0.0.12\lib\portable-win81+wpa81\AdDuplex.Universal.Controls.WinPhone.XAML.winmd</HintPath>
+    <Reference Include="Google.Apis, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.1.14.1\lib\wpa81\Google.Apis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AdDuplex.Universal.WinPhone.WinRT, Version=9.0.0.12, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AdDuplexWinPhone81.9.0.0.12\lib\portable-win81+wpa81\AdDuplex.Universal.WinPhone.WinRT.winmd</HintPath>
+    <Reference Include="Google.Apis.Auth, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Auth.1.14.1\lib\wpa81\Google.Apis.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.1.14.0\lib\wpa81\Google.Apis.dll</HintPath>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Auth.1.14.1\lib\wpa81\Google.Apis.Auth.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Auth.1.14.0\lib\wpa81\Google.Apis.Auth.dll</HintPath>
+    <Reference Include="Google.Apis.Calendar.v3, Version=1.14.1.563, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Calendar.v3.1.14.1.563\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Calendar.v3.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Auth.1.14.0\lib\wpa81\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.Core, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Core.1.14.1\lib\portable-net45+sl50+netcore45+wpa81+wp8\Google.Apis.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Calendar.v3, Version=1.14.0.558, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Calendar.v3.1.14.0.558\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Calendar.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Oauth2.v2, Version=1.14.1.540, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Oauth2.v2.1.14.1.540\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Oauth2.v2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Core.1.14.0\lib\portable-net45+sl50+netcore45+wpa81+wp8\Google.Apis.Core.dll</HintPath>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.1.14.1\lib\wpa81\Google.Apis.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Oauth2.v2, Version=1.14.0.540, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Oauth2.v2.1.14.0.540\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Oauth2.v2.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AdMediator.Core">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.AdMediator81\1.0\References\CommonConfiguration\Neutral\Microsoft.AdMediator.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.14.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.1.14.0\lib\wpa81\Google.Apis.PlatformServices.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.AdMediator.WindowsPhone81">
+      <HintPath>C:\Program Files (x86)\Microsoft SDKs\WindowsPhoneApp\v8.1\ExtensionSDKs\Microsoft.AdMediator81\1.0\References\CommonConfiguration\Neutral\Microsoft.AdMediator.WindowsPhone81.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Bcl.Async.1.0.168\lib\wpa81\Microsoft.Threading.Tasks.dll</HintPath>
@@ -209,6 +207,14 @@
       <Project>{08c6fc7c-e9d8-4a9f-9671-a569073a1c4e}</Project>
       <Name>BackgroundUpdater</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.AdMediator81, Version=1.0">
+      <Name>Ad Mediator SDK for Windows Phone 8.1 XAML</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs, Version=12.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Phone</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

@@ -300,5 +300,9 @@ namespace Calendar
             noteGridMain.Height = Window.Current.Bounds.Height;      
         }
 
+        private void refreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshPage();
+        }
     }
 }

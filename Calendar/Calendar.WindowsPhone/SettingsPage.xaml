@@ -330,13 +330,32 @@
         VerticalScrollMode="Enabled">
         <StackPanel RequestedTheme="Light" 
                     Margin="5,10,5,0">
-            <TextBlock x:Uid="settingsTop"
-                       Height="50" Width="auto"
-                       HorizontalAlignment="Stretch"
-                       TextAlignment="Center"
-                       FontSize="22"
-                       Margin="5"
-                       />
+            <StackPanel Margin="5"
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch">
+                <!-- Заголовок раздела 4 -->
+                <TextBlock x:Uid="buyMeTitle" 
+                           FontSize="22"
+                           TextWrapping="Wrap"
+                           Height="auto"
+                           HorizontalAlignment="Stretch"
+                           />
+                <TextBlock x:Uid="buyMeText" 
+                           FontSize="20"
+                           Margin="2,10" />
+                <!-- Основная часть раздела 4 -->
+
+                <Button x:Uid="shopBtn" x:Name="buy" 
+                    Margin="5,10" 
+                    FontSize="18"
+                    Width="100" Height="40" 
+                    HorizontalAlignment="Center" 
+                    HorizontalContentAlignment="Center"
+                    RequestedTheme="Light"
+                    BorderBrush="#ff303030"
+                    Background="Transparent" 
+                    Click="Button_Click"/>
+            </StackPanel>
             <StackPanel VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch">
                 <Grid HorizontalAlignment="Stretch" 
@@ -447,34 +466,59 @@
                           Width="190" Margin="15,5"
                           HorizontalAlignment="Center"/>
 
-                <StackPanel Margin="20,20,20,0"
-                            HorizontalAlignment="Stretch" 
-                            VerticalAlignment="Stretch">
-                    <!-- Заголовок раздела 4 -->
-                    <TextBlock x:Uid="buyMeTitle" 
-                           Style="{StaticResource TitleTextBlockStyle}" 
-                           FontSize="20"
+                <StackPanel  HorizontalAlignment="Stretch" 
+                             VerticalAlignment="Stretch"
+                             Margin="5, 10, 5, 0"
+                             Orientation="Vertical">
+                    <!-- Заголовок раздела 3 -->
+                    <TextBlock Text="google calendar"
+                           FontSize="22"
                            TextWrapping="Wrap"
                            Height="auto"
                            HorizontalAlignment="Stretch"
+                           FontFamily="Minion Pro" 
+                           Margin="0, 0, 0, 10" 
                            />
-                    <TextBlock x:Uid="buyMeText" 
-                           Style="{StaticResource BodyTextBlockStyle}" 
-                           FontSize="16"
+                    <!-- Основная часть раздела 3 -->
+                    <TextBlock x:Uid="googleText" 
+                           FontSize="20"
                            Margin="2,10" />
-                    <!-- Основная часть раздела 4 -->
-
-                    <Button x:Uid="shopBtn" x:Name="buy" 
-                    Margin="5,10" 
-                    FontSize="18"
-                    Width="100" Height="40" 
-                    HorizontalAlignment="Center" 
-                    HorizontalContentAlignment="Center"
-                    RequestedTheme="Light"
-                    BorderBrush="#ff303030"
-                    Background="Transparent" 
-                    Click="Button_Click"/>
+                    <!--toggle-->
+                    <TextBlock x:Uid="googlePeriod" 
+                           TextWrapping="Wrap" 
+                           FontSize="22" 
+                           VerticalAlignment="Top" 
+                           Height="30" Width="150" 
+                           Margin="0,0,0,0"
+                           FontFamily="Minion Pro"
+                           HorizontalAlignment="Left"/>
+                    <Grid>
+                        <ComboBox x:Name="comboGooglePeriod" Height="auto" Width="150"
+                          Margin="5, 0"                          
+                          IsHoldingEnabled="False" 
+                          ManipulationMode="None" 
+                          VerticalAlignment="Stretch" 
+                          HorizontalAlignment="Left" 
+                          BorderBrush="#ff303030"
+                          Background="Transparent" FontSize="18">
+                            <ComboBoxItem Content="7" Width="110" IsSelected="True" />
+                            <ComboBoxItem Content="30" Width="110"/>
+                        </ComboBox>
+                        <ToggleSwitch x:Name="googleToggle"
+                                  Style="{StaticResource SettingsToggle}" 
+                                  FontSize="12" 
+                              Height="auto"
+                              MinWidth="180"
+                              Margin="5,0,5,5"
+                              BorderBrush="#ff303030"
+                              Background="Transparent" 
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Right"
+                          Toggled="googleToggle_Toggled"/>
+                    </Grid>
                 </StackPanel>
+
+                
             </StackPanel>
         </StackPanel>
     </ScrollViewer>

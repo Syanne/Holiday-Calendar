@@ -144,12 +144,15 @@ namespace Calendar
             {
                 int month = DataManager.calBase.SelectedDate.Month;
                 DataManager.calBase.Skip(value);
+                DataManager.calBase.ReadHolidayXml();
 
-                if (month != DataManager.calBase.SelectedDate.Month)
-                    DataManager.calBase.ReadHolidayXml();
+                SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
+                SelectedHolidayType = lviAll;
+                SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
                 FillCalendar();
                 MarkHolidays();
+
 
                 int val = DataManager.calBase.SelectedDate.Day * (-1) + 1;
                 DataManager.calBase.SelectedDate = DataManager.calBase.SelectedDate.AddDays(val);
@@ -578,8 +581,17 @@ namespace Calendar
 
         private async void support_Click(object sender, RoutedEventArgs e)
         {
-            var mailto = new Uri("mailto:?to=syanne.red@gmail.com&amp;subject=Holiday Calendar&amp;body=Hello, Syanne!");
+            var mailto = new Uri("mailto:?to=syanne.red@gmail.com&amp;subject=Calendar+Holidays&amp;body=Hello,&nbsp;Syanne!");
             await Windows.System.Launcher.LaunchUriAsync(mailto);
+        }
+
+        private void RefreshPage()
+        {
+            DataManager.calBase.ReadHolidayXml();
+            DataManager.calBase.FillHolidaysList();
+
+            MarkHolidays();
+            UpdateNoteList();
         }
     }
 }

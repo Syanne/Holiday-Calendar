@@ -5,7 +5,7 @@
     xmlns:local="using:Calendar"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:adduplex="using:AdDuplex.Universal.Controls.Win.XAML"
+   xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     mc:Ignorable="d" 
     MinWidth="1000"
     Loaded="Page_Loaded"    
@@ -56,13 +56,22 @@
                               Margin="360,0,10,0" 
                               HorizontalAlignment="Left"
                               Icon="Mail"/>
-                <AppBarButton x:Name="settingAppButton" x:Uid="settingsAppButton"
+                <AppBarButton Name="StyleAppButton" 
+                              x:Uid="styleBut"
                               Click="settingAppButton_Click"
+                              Foreground="White"
                               Width="100" 
                               Margin="0,0,10,0" 
                               VerticalAlignment="Stretch" 
                               HorizontalAlignment="Right" 
-                              Icon="Setting"/>
+                              Icon="Edit"/>
+                <AppBarButton x:Name="refreshButton" x:Uid="refresh"
+                              Click="refreshButton_Click"
+                              Width="100" 
+                              Margin="0,0,120,0" 
+                              VerticalAlignment="Stretch" 
+                              HorizontalAlignment="Right" 
+                              Icon="Refresh"/>
             </Grid>
         </AppBar>
     </Page.BottomAppBar>
@@ -456,9 +465,13 @@
                     </FlyoutBase.AttachedFlyout>
                 </ListView>
                 <StackPanel Name="AdStack" HorizontalAlignment="Center" Width="730" Height="90">
-                    <adduplex:AdControl Name="adControl" AdUnitId="194375" 
-                                        AppKey="30ca9619-1a41-46af-9be2-11a829398fad" 
-                                        Size="728x90"/>
+                    <UI:AdControl ApplicationId="0252394b-e6cb-45f0-8b40-7382fe45973c"
+                      AdUnitId="11579726"
+                                   Name="adControl"
+                      HorizontalAlignment="Left"
+                      Height="90"
+                      VerticalAlignment="Top"
+                      Width="728"/>
                 </StackPanel>
                 <StackPanel Name="GoToDate" 
                           VerticalAlignment="Bottom" 

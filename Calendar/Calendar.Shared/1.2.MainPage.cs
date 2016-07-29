@@ -64,6 +64,7 @@ namespace Calendar
 
             }
             gviPrev = calGrid.Items.ElementAt(DataManager.calBase.SelectedDate.Day + DataManager.calBase.Start - 1) as GridViewItem;
+
             DataManager.EnableService();            
         }
 

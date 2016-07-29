@@ -366,6 +366,10 @@ namespace Calendar
             prevSender = true;
         }
 
+        private void refreshButton_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshPage();
+        }
     }
 
 }

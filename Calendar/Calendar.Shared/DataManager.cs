@@ -59,14 +59,14 @@ namespace CalendarResources
                     var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                     PersonalData = XDocument.Parse(persRead);
                 }
-                var subcollection = PersonalData.Root.Descendants().Where(x => x.Name.LocalName != "holiday" && 
+                var subcollection = PersonalData.Root.Descendants().Where(x => x.Name.LocalName != "holiday" &&
                                                                                x.Name.LocalName != "holidays" &&
-                                                                               x.Name.LocalName != "theme" && 
+                                                                               x.Name.LocalName != "theme" &&
                                                                                x.Name.LocalName != "persDate");
                 if (subcollection.Count() > 0)
                 {
                     Services = new System.Collections.Generic.List<string>();
-                    foreach(var item in subcollection)
+                    foreach (var item in subcollection)
                     {
                         if (item.Attribute("isActive").Value == "true")
                             Services.Add(item.Name.LocalName);
@@ -91,7 +91,7 @@ namespace CalendarResources
                 MyMessage(e.Message);
             }
         }
-        
+
         /// <summary>
         /// change the list of holidays
         /// </summary>
@@ -146,7 +146,7 @@ namespace CalendarResources
                     writer.WriteEndElement();
                 }
                 //save changes
-                if(needSave) SaveDocumentAsync();
+                if (needSave) SaveDocumentAsync();
             }
             catch (Exception e)
             {
@@ -195,9 +195,9 @@ namespace CalendarResources
                 //try to load PersData.xml            
                 PersonalData.Root.Descendants("holidays").
                     Descendants("persDate").
-                    Where(p => (p.Attribute("name").Value == name && 
-                    p.Attribute("date").Value == day && 
-                    p.Attribute("month").Value == month && 
+                    Where(p => (p.Attribute("name").Value == name &&
+                    p.Attribute("date").Value == day &&
+                    p.Attribute("month").Value == month &&
                     p.Attribute("year").Value == year)).
                         Remove();
 
@@ -302,7 +302,7 @@ namespace CalendarResources
                 }
 
             SaveDocumentAsync();
-            
+
         }
 
         /// <summary>
@@ -338,13 +338,12 @@ namespace CalendarResources
                     var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(Calendar.SocialNetworkConnector.BaseConnector.DateSeparator);
                     var date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
-                    if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
+                    if (date.Day <= DateTime.Now.Day && date.Month <= DateTime.Now.Month && date.Year <= DateTime.Now.Year)
                     {
                         SyncManager.Manager.AddService("google", DateTime.Now, period);
                     }
                 }
         }
-
     }
     
 

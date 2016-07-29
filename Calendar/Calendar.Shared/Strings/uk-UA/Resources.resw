@@ -335,6 +335,9 @@
   </data>
   <data name="settingsTop.Content" xml:space="preserve">
     <value>налаштування</value>
+    </data>
+  <data name="settingsTopWP.Text" xml:space="preserve">
+    <value>налаштування</value>
   </data>
   <data name="clickToPreview.Text" xml:space="preserve">
     <value>натисніть на зображення, щоб збільшити</value>
@@ -401,5 +404,8 @@ Syanne.</value>
   </data>
   <data name="ServiceMessage" xml:space="preserve">
     <value>дані завантажено, обновіть календар (кнопка на спливаючій панелі) або перезавантажте додаток</value>
+  </data>
+  <data name="refresh.Label" xml:space="preserve">
+    <value>поновити</value>
   </data>
 </root>

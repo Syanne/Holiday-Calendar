@@ -331,6 +331,9 @@
   <data name="settingsTop.Content" xml:space="preserve">
     <value>settings</value>
   </data>
+  <data name="settingsTopWP.Text" xml:space="preserve">
+    <value>settings</value>
+  </data>
   <data name="holidayTag.Label" xml:space="preserve">
     <value>holidays</value>
   </data>
@@ -392,5 +395,8 @@ Syanne.</value>
   </data>
   <data name="ServiceMessage" xml:space="preserve">
     <value>data is loaded, refresh the calendar (button on the bottom appbar) or restart the application</value>
+  </data>
+  <data name="refresh.Label" xml:space="preserve">
+    <value>refresh</value>
   </data>
 </root>

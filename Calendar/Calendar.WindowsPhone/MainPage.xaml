@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page xmlns:my="using:Microsoft.AdMediator.WindowsPhone81" 
     x:Class="Calendar.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     NavigationCacheMode="Disabled"
-    xmlns:adduplex="using:AdDuplex.Universal.Controls.WinPhone.XAML"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
     Loaded="Page_Loaded"
     mc:Ignorable="d">
 
@@ -70,12 +70,7 @@
                               x:Uid="styleBut"
                               Click="StyleAppButton_Click"
                               Foreground="White"
-                              Icon="Edit">
-                </AppBarButton>
-                <AppBarButton Name="ShopAppButton" 
-                              Click="ShopAppButton_Click"
-                              Foreground="White" Icon="Shop"/>
-
+                              Icon="Edit"/> 
             </CommandBar.PrimaryCommands>
             
             <CommandBar.SecondaryCommands>
@@ -87,6 +82,8 @@
                               Click="support_Click"
                               HorizontalAlignment="Left"
                               Icon="Mail"/>
+                <AppBarButton x:Name="refreshButton" x:Uid="refresh"
+                              Click="refreshButton_Click"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -538,10 +535,13 @@
                 </FlyoutBase.AttachedFlyout>
             </ListView>
             <StackPanel Name="AdStack" Height="60" Background="Transparent">
-                <adduplex:AdControl Name="adControl" 
-                                    AdUnitId="194363" 
-                                    Margin="0, 5" 
-                                    AppKey="4091e1a5-32e6-429b-86db-304d01028203" />
+                <UI:AdControl ApplicationId="8dfdedd2-be3b-4696-bfd7-5cba10338fba"
+                              Name="adControl"
+                      AdUnitId="11579725"
+                      HorizontalAlignment="Left"
+                      Height="50"
+                      VerticalAlignment="Top"
+                      Width="300"/>
             </StackPanel>
             <ListView x:Name="GoToDate" 
                           VerticalAlignment="Bottom" 

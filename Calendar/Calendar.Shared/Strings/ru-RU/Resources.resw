@@ -334,6 +334,9 @@
   <data name="settingsTop.Content" xml:space="preserve">
     <value>настройки</value>
   </data>
+  <data name="settingsTopWP.Text" xml:space="preserve">
+    <value>настройки</value>
+  </data>
   <data name="clickToPreview.Text" xml:space="preserve">
     <value>нажмите на изображение, чтобы увеличить</value>
   </data>
@@ -399,5 +402,8 @@ Syanne.</value>
   </data>
   <data name="ServiceMessage" xml:space="preserve">
     <value>данные загружены, обновите календарь (кнопка на  всплывающей панели) или перезагрузите приложение</value>
+  </data>
+  <data name="refresh.Label" xml:space="preserve">
+    <value>обновить</value>
   </data>
 </root>

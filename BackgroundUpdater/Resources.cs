@@ -1,30 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using Windows.ApplicationModel;
-using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 
 namespace BackgroundUpdater
 {
-     class ResourceManager
+    class DataManager
     {
-        public static XDocument PersonalData;
-        public static XDocument doc;
+        public static XDocument PersonalData { get; set; }
+        public static XDocument doc { get; set; }
+        public static List<string> Services { get; set; }
+        /// <summary>
+        /// unified separator for date split
+        /// </summary>
+        public const char DateSeparator = '-';
+
 
         public static void BgTaskHelper()
         {
             Uri uri = new Uri("ms-appx:///Strings/Holidays.xml");
-            // uri = new Uri(holFile.Path.Skip(8).ToString());
             var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
             var read = FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
             doc = XDocument.Parse(read);
 
+            LoadPersonalData();
+        }
+
+
+        /// <summary>
+        /// Load Personal Data
+        /// </summary>
+        public static void LoadPersonalData()
+        {
             try
             {
                 var storageFolder = ApplicationData.Current.RoamingFolder;
@@ -41,31 +49,105 @@ namespace BackgroundUpdater
                 PersonalData = XDocument.Parse(persRead);
             }
 
+            //services
+            SetServices();
         }
-
 
         /// <summary>
-        /// Load Personal Data
+        /// Find enabled services
         /// </summary>
-        public static void LoadPersonalData()
+        private static void SetServices()
         {
-            
-            if (PersonalData == null)
+            var subcollection = PersonalData.Root.Descendants().Where(x => x.Name.LocalName != "holiday" &&
+                                                                               x.Name.LocalName != "holidays" &&
+                                                                               x.Name.LocalName != "theme" &&
+                                                                               x.Name.LocalName != "persDate");
+            if (subcollection.Count() > 0)
             {
-                    //load file 
-                    StorageFolder localFolder = ApplicationData.Current.RoamingFolder;
-                    StorageFile sampleFile = localFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
-                    //read file
-                    var randomAccessStream = sampleFile.OpenReadAsync().AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                    String timestamp = FileIO.ReadTextAsync(sampleFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-
-                    if (timestamp == "") throw new Exception();
-
-                    PersonalData = XDocument.Parse(timestamp);
-                    if (PersonalData == null) throw new Exception();
-                
+                Services = new List<string>();
+                foreach (var item in subcollection)
+                {
+                    if (item.Attribute("isActive").Value == "true")
+                        Services.Add(item.Name.LocalName);
+                }
             }
         }
+
+        /// <summary>
+        /// Get collecton of personal events and services
+        /// </summary>
+        /// <param name="m">month</param>
+        /// <param name="y">year</param>
+        /// <returns>collection of events</returns>
+        public static List<Event> PersonalAndServices(int m, int y)
+        {
+            var collection = new List<Event>();
+            try
+            {
+                //personal
+                var persDates = PersonalData.Root.Descendants("holidays").Descendants("persDate").ToList();
+
+                if(persDates.Count > 1)
+                foreach (XElement pers in persDates)
+                    if (pers.Attribute("month").Value == m.ToString() && (pers.Attribute("year").Value == y.ToString() || pers.Attribute("year").Value == "0"))
+                        collection.Add(new Event
+                        {
+                            Day = Convert.ToInt32(pers.Attribute("date").Value),
+                            Name = pers.Attribute("name").Value,
+                            Month = m
+                        });
+
+                //services
+                if (Services != null)
+                {
+                    //check sync date
+                    if (Services != null)
+                        if (Services.Contains("google"))
+                        {
+                            var period = int.Parse(PersonalData.Root.Element("google").Attribute("period").Value);
+                            var array = PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(DateSeparator);
+                            var date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+
+                            if (date.Day <= DateTime.Now.Day && date.Month <= DateTime.Now.Month && date.Year <= DateTime.Now.Year)
+                                collection.Add(new Event
+                                {
+                                    Day = DateTime.Now.Day,
+                                    Month = DateTime.Now.Month,
+                                    Name = "google calendar",
+                                });
+                        }
+                    foreach (var service in DataManager.Services)
+                    {
+                        var servCollection = DataManager.PersonalData.Root.Element(service).Descendants();
+                        foreach (var holiday in servCollection)
+                        {
+                            int year = int.Parse(holiday.Attribute("year").Value);
+                            int month = int.Parse(holiday.Attribute("month").Value);
+                            int day = int.Parse(holiday.Attribute("date").Value);
+
+                            if (year == y && month == m)
+                                collection.Add(new Event
+                                {
+                                    Day = day,
+                                    Month = month,
+                                    Name = holiday.Attribute("name").Value,
+                                });
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+            return collection;
+        }
+    }
+
+    struct Event
+    {
+        public string Name;
+        public int Day;
+        public int Month;
     }
 }
