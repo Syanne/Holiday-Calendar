@@ -3,9 +3,7 @@ using CalendarResources;
 using System;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Store;
-using Windows.Globalization;
 using Windows.Phone.UI.Input;
-using Windows.Storage;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -23,7 +21,7 @@ namespace Calendar
         public SettingsPage()
         {
             this.InitializeComponent();
-            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Disabled;
+            this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
 
@@ -35,6 +33,15 @@ namespace Calendar
                 if (task.Value.Name == "ToastBackgroundTask")
                     toastToggle.IsOn = true;
             }
+
+            //services
+            //if (DataManager.Services != null)
+            //    if (DataManager.Services.Contains("google"))
+            //    {
+            //        googleToggle.IsOn = true;
+            //        googleToggle.IsEnabled = true;
+            //        comboGooglePeriod.IsEnabled = false;
+            //    }
         }
 
         void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -258,42 +265,42 @@ namespace Calendar
 
         #endregion
 
-        private void googleToggle_Toggled(object sender, RoutedEventArgs e)
-        {
-            if (googleToggle.IsOn)
-            {
-                //set period
-                int period = Convert.ToInt32((comboGooglePeriod.SelectedItem as ComboBoxItem).Content);
+        //private void googleToggle_Toggled(object sender, RoutedEventArgs e)
+        //{
+        //    if (googleToggle.IsOn)
+        //    {
+        //        //set period
+        //        int period = Convert.ToInt32((comboGooglePeriod.SelectedItem as ComboBoxItem).Content);
 
-                DateTime date = DateTime.Now;
-                try
-                {
-                    //period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
-                    var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(BaseConnector.DateSeparator);
-                    date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+        //        DateTime date = DateTime.Now;
+        //        try
+        //        {
+        //            //period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
+        //            var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(BaseConnector.DateSeparator);
+        //            date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
-                    if (DataManager.PersonalData.Root.Element("google").Attribute("isActive").Value == "false")
-                        DataManager.ChangeServiceState("google", true);
-                }
-                catch
-                {
-                    date = DateTime.Now;
-                }
-                finally
-                {
-                    if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
-                    {
-                        SyncManager.Manager.AddService("google", DateTime.Now, period);
-                    }
-                }
-                comboGooglePeriod.IsEnabled = false;
-            }
-            else
-            {
-                DataManager.ChangeServiceState("google", false);
-                googleToggle.IsOn = false;
-                comboGooglePeriod.IsEnabled = true;
-            }
-        }
+        //            if (DataManager.PersonalData.Root.Element("google").Attribute("isActive").Value == "false")
+        //                DataManager.ChangeServiceState("google", true);
+        //        }
+        //        catch
+        //        {
+        //            date = DateTime.Now;
+        //        }
+        //        finally
+        //        {
+        //            if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
+        //            {
+        //                SyncManager.Manager.AddService("google", DateTime.Now, period);
+        //            }
+        //        }
+        //        comboGooglePeriod.IsEnabled = false;
+        //    }
+        //    else
+        //    {
+        //        DataManager.ChangeServiceState("google", false);
+        //        googleToggle.IsOn = false;
+        //        comboGooglePeriod.IsEnabled = true;
+        //    }
+        //}
     }
 }

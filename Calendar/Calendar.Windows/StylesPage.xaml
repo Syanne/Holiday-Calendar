@@ -9,13 +9,6 @@
     Loaded="Page_Loaded"
     Unloaded="Page_Unloaded">
 
-    <Page.Resources>
-        <ResourceDictionary>
-            <SolidColorBrush x:Key="Dark" x:Name="Dark">#303030</SolidColorBrush>
-            <SolidColorBrush x:Key="Light" x:Name="Light">LightGray</SolidColorBrush>
-        </ResourceDictionary>
-    </Page.Resources>
-
     <!-- Этот элемент StackPanel является корневой панелью для вертикальной компоновки разделов содержимого -->
     <Grid VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch"  

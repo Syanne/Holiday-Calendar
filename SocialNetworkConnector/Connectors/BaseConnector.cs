@@ -1,11 +1,10 @@
-﻿using Calendar.Models;
-using CalendarResources;
+﻿using SocialNetworkConnector;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 
-namespace Calendar.SocialNetworkConnector
+namespace SocialNetworkConnector.Connectors
 {
     public abstract class BaseConnector
     {
@@ -77,7 +76,7 @@ namespace Calendar.SocialNetworkConnector
         /// </summary>
         protected void FinalizeSync()
         {
-            DataManager.SetHolidaysFromSocialNetwork(ServiceName, Period, Items);
+            //DataManager.SetHolidaysFromSocialNetwork(ServiceName, Period, Items);
             SyncManager.Manager.SetIsAnyOperation(-1);
         }
     }

@@ -199,7 +199,7 @@
     <value>Calendar app with large set of holidays</value>
   </data>
   <data name="ApplicationDisplayName" xml:space="preserve">
-    <value>Calendar + Holidays</value>
+    <value>Calendar and Holidays</value>
   </data>
   <data name="periodText.Text" xml:space="preserve">
     <value>period (hours)</value>
@@ -356,7 +356,8 @@
     <value>Holidays\en-CA\Holidays.xml</value>
   </data>
   <data name="msgBody" xml:space="preserve">
-    <value>Thank you for installing the application! Your comments and suggestions are very important. You can send them on syanne.red@gmail.com or leave it on the application page.
+    <value>If you use the desktop version you can try a new function – interaction with Google Calendar. The service is under development; please send your comments and suggestions in this regard to the customer support service. Also for the desktop version has been revised settings page: to change the app’s appearance press button “style” on the BottomAppBar. Other settings are located on the standard settings panel, which you can call in the same way as in standard applications.
+Thank you for installing the application! Your comments and suggestions are very important. You can send them on syanne.red@gmail.com or leave it on the application page.
 
 If you want to turn off adverts you can buy the package of services. It also includes color themes and toast notifications.
 

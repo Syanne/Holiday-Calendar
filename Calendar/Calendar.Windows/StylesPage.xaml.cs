@@ -21,7 +21,6 @@ namespace Calendar
         public StylesPage()
         {
             this.InitializeComponent();
-            styleTitle.Foreground = Light;
 
             //FlipViews (small and full-screen)
             SampleDataSource sds = new SampleDataSource();

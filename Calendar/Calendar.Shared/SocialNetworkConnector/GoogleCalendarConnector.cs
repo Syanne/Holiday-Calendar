@@ -32,17 +32,17 @@ namespace Calendar.SocialNetworkConnector
         public async override Task GetHolidayList()
         {
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
-                           new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
-                           Scopes,
-                           "user",                           
-                           CancellationToken.None);
+                       new Uri("ms-appx:///SocialNetworkConnector/client_secret.json"),
+                       Scopes,
+                       "user",
+                       CancellationToken.None);
 
 
             // Create Google Calendar API service.
             var service = new CalendarService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "My Project",
+                ApplicationName = "Calendar and Holidays",
             });
 
             // Define parameters of request.

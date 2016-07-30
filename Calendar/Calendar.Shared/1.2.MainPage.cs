@@ -65,7 +65,9 @@ namespace Calendar
             }
             gviPrev = calGrid.Items.ElementAt(DataManager.calBase.SelectedDate.Day + DataManager.calBase.Start - 1) as GridViewItem;
 
+#if !WINDOWS_PHONE_APP
             DataManager.EnableService();            
+#endif
         }
 
         /// <summary>
@@ -142,13 +144,13 @@ namespace Calendar
                 if (i % 2 == 0)
                     (noteList.Items[i] as HolidayItem).Background = DarkNoteBackground;
                 else (noteList.Items[i] as HolidayItem).Background = TransparentBrush;
-            #if !WINDOWS_PHONE_APP
+#if !WINDOWS_PHONE_APP
                 (noteList.Items[i] as HolidayItem).FontSize = fSize;
-            #endif
+#endif
             }
         }
         
-        #region Fill calendar
+#region Fill calendar
 
         /// <summary>
         /// Fill calendar (days only)
@@ -188,16 +190,16 @@ namespace Calendar
                     Content = DataManager.calBase.Month[i],
 
                     //sizing
-                #if WINDOWS_PHONE_APP
+#if WINDOWS_PHONE_APP
                     Height = standard.ItemSizeCorrector,
                     Width = standard.ItemSizeCorrector,
                     FontSize = standard.ItemFontSizeCorrector
-                #else
+#else
                     Height = sizeCorrection.ItemSizeCorrector,
                     Width = sizeCorrection.ItemSizeCorrector,
                     FontSize = sizeCorrection.ItemFontSizeCorrector,
                     Padding = new Thickness(0, sizeCorrection.ItemSizeCorrector / 5, 0, sizeCorrection.ItemSizeCorrector / 5)
-                #endif
+#endif
                 };
 
 #if WINDOWS_PHONE_APP
