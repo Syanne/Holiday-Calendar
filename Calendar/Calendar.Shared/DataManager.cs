@@ -59,19 +59,11 @@ namespace CalendarResources
                     var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                     PersonalData = XDocument.Parse(persRead);
                 }
-                var subcollection = PersonalData.Root.Descendants().Where(x => x.Name.LocalName != "holiday" &&
-                                                                               x.Name.LocalName != "holidays" &&
-                                                                               x.Name.LocalName != "theme" &&
-                                                                               x.Name.LocalName != "persDate");
-                if (subcollection.Count() > 0)
-                {
-                    Services = new System.Collections.Generic.List<string>();
-                    foreach (var item in subcollection)
-                    {
-                        if (item.Attribute("isActive").Value == "true")
-                            Services.Add(item.Name.LocalName);
-                    }
-                }
+
+            #if !WINOWS_PHONE_APP
+                EnableService();
+            #endif
+
             });
         }
 
@@ -302,7 +294,6 @@ namespace CalendarResources
                 }
 
             SaveDocumentAsync();
-
         }
 
         /// <summary>
@@ -329,8 +320,27 @@ namespace CalendarResources
             var command = await dial.ShowAsync();
         }
 
-        public static void EnableService()
+        /// <summary>
+        /// Find all active services and enable it
+        /// </summary>
+        private static void EnableService()
         {
+            //find services
+            var subcollection = PersonalData.Root.Descendants().Where(x => x.Name.LocalName != "holiday" &&
+                                                                               x.Name.LocalName != "holidays" &&
+                                                                               x.Name.LocalName != "theme" &&
+                                                                               x.Name.LocalName != "persDate");
+            if (subcollection.Count() > 0)
+            {
+                Services = new System.Collections.Generic.List<string>();
+                foreach (var item in subcollection)
+                {
+                    if (item.Attribute("isActive").Value == "true")
+                        Services.Add(item.Name.LocalName);
+                }
+            }
+            
+            //enable active
             if (Services != null)
                 if (Services.Contains("google"))
                 {

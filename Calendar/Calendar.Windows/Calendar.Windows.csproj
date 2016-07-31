@@ -18,7 +18,7 @@
     <PackageCertificateKeyFile>Calendar.Windows_StoreKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateThumbprint>E84CF28660159F6965212F8C9A964B734564133E</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
-    <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86|arm</AppxBundlePlatforms>
     <AppxBundle>Auto</AppxBundle>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>

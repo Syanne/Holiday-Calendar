@@ -36,13 +36,22 @@ namespace Calendar.SocialNetworkConnector
         /// <summary>
         /// name of a service to connect
         /// </summary>
-        protected abstract string ServiceName { get; }  
+        protected abstract string ServiceName { get; }
 
+        /// <summary>
+        /// Creates a new object of BaseConnector 
+        /// </summary>
+        /// <param name="period">snooze time</param>
         public BaseConnector(int period)
         {
             this.Items = new List<ItemBase>();
         }
 
+        /// <summary>  
+        /// Creates a new object of BaseConnector 
+        /// </summary>
+        /// <param name="dateStart">sync start date</param>
+        /// <param name="period">snooze time</param>
         public BaseConnector(DateTime dateStart, int period)
         {
             DateStart = dateStart;

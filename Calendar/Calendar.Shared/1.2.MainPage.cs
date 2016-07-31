@@ -51,23 +51,17 @@ namespace Calendar
             startText = new StringBuilder(50);
             FillCalendar();
 
+            //check advertisement
             try
             {
                 var license = Windows.ApplicationModel.Store.CurrentApp.LicenseInformation;
                 if (license.ProductLicenses["allstuff1"].IsActive)
-                {
                     adControl.Visibility = Visibility.Collapsed;
-                }
             }
             catch
-            {
+            {   }
 
-            }
             gviPrev = calGrid.Items.ElementAt(DataManager.calBase.SelectedDate.Day + DataManager.calBase.Start - 1) as GridViewItem;
-
-#if !WINDOWS_PHONE_APP
-            DataManager.EnableService();            
-#endif
         }
 
         /// <summary>
@@ -109,7 +103,6 @@ namespace Calendar
 #if !WINDOWS_PHONE_APP
                                  hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
 #endif
-
                                  return hi;
                              }).
                              OrderBy(hi => hi.Day);
@@ -124,8 +117,7 @@ namespace Calendar
 
             else noteList.ItemsSource = DataManager.calBase.HolidayItemCollection.
                                       Where(hi => (hi.Day == DataManager.calBase.SelectedDate.Day || hi.Day == 0) &&
-                                      (hi.HolidayTag == SelectedHolidayType.Content.ToString()));
-            
+                                      (hi.HolidayTag == SelectedHolidayType.Content.ToString()));            
 
             //background color of every note
             NotesBackground();
@@ -144,14 +136,14 @@ namespace Calendar
                 if (i % 2 == 0)
                     (noteList.Items[i] as HolidayItem).Background = DarkNoteBackground;
                 else (noteList.Items[i] as HolidayItem).Background = TransparentBrush;
-#if !WINDOWS_PHONE_APP
+           
+            #if !WINDOWS_PHONE_APP
                 (noteList.Items[i] as HolidayItem).FontSize = fSize;
-#endif
+            #endif
             }
         }
         
 #region Fill calendar
-
         /// <summary>
         /// Fill calendar (days only)
         /// </summary>

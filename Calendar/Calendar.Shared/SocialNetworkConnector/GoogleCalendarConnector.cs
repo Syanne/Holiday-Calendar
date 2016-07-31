@@ -1,11 +1,8 @@
 ﻿using Calendar.Models;
-
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
-using Google.Apis.Util.Store;
-
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,22 +10,30 @@ using System.Threading.Tasks;
 namespace Calendar.SocialNetworkConnector
 {
     class GoogleCalendarConnector: BaseConnector
-    {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/calendar-dotnet-quickstart.
-        
+    {        
         static string[] Scopes = { CalendarService.Scope.CalendarReadonly };
         UserCredential credential;
-        //string ClientID = "732191470818-arie07vs6qvjknjtafjjkk5666gemihe.apps.googleusercontent.com";
 
+        /// <summary>
+        /// name of a service to connect
+        /// </summary>
         protected override string ServiceName
         {
             get { return "google"; }      
         }
 
+        /// <summary>  
+        /// Creates a new object of BaseConnector 
+        /// </summary>
+        /// <param name="dateStart">sync start date</param>
+        /// <param name="period">snooze time</param>
         public GoogleCalendarConnector(DateTime dateStart, int period) : base(dateStart, period)
         { }
 
+        /// <summary>
+        /// Gets records from service
+        /// </summary>
+        /// <returns>requires async/await</returns>
         public async override Task GetHolidayList()
         {
             credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
@@ -70,11 +75,10 @@ namespace Calendar.SocialNetworkConnector
                     catch
                     {
                         if (String.IsNullOrEmpty(when))
-                        {
-                            when = eventItem.Start.Date;
-                        }
+                            when = eventItem.Start.Date;                        
                     }
-                    var array = when.Split('-');
+
+                    var array = when.Split(DateSeparator);
                     ItemBase item = new ItemBase
                     {
                         HolidayName = eventItem.Summary,
@@ -87,9 +91,8 @@ namespace Calendar.SocialNetworkConnector
                     Items.Add(item);
                 }
             }
-            else Items = null;
-            
-            base.Message();
+            else Items = null;            
+            Message();
         }
     }
 }

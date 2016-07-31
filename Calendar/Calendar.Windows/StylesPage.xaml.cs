@@ -1,13 +1,10 @@
 ﻿using System;
-using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Storage;
-
 using CalendarResources;
-using Windows.UI.Xaml.Input;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -39,10 +36,7 @@ namespace Calendar
                 Application.Current.Resources.Source =
                    new Uri("ms-appx:///themes/" + temp + ".xaml");
             }
-            else
-            {
-                OfferPurchase();
-            }
+            else OfferPurchase();            
         }
         
         private async void OfferPurchase()
@@ -64,9 +58,7 @@ namespace Calendar
             {
                 LicenseInformation license = CurrentApp.LicenseInformation;
                 if (!license.ProductLicenses["allstuff1"].IsActive)
-                {
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
-                }
+                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");                
             }
             catch (Exception ex)
             {
@@ -77,11 +69,9 @@ namespace Calendar
         private async void MyMessage(string text)
         {
             var dial = new MessageDialog(text);
-
             dial.Commands.Add(new UICommand("OK"));
             var command = await dial.ShowAsync();
-        }
-        
+        }        
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -89,8 +79,7 @@ namespace Calendar
                 SlideNumberTb.Text = String.Format("{0}/{1}", myFlip.SelectedIndex + 1, myFlip.Items.Count);
         }
         
-        #endregion
-        
+        #endregion        
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Window.Current.SizeChanged += Current_SizeChanged;
@@ -101,6 +90,7 @@ namespace Calendar
         {
             Window.Current.SizeChanged -= Current_SizeChanged;
         }
+
         void Current_SizeChanged(object sender, Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
             ShowHide();
@@ -115,6 +105,7 @@ namespace Calendar
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
         /// <summary>
         /// Changing property Height for gvMain and choosing, what to show -list or grid
         /// </summary>
