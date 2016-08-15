@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
-using CalendarResources;
+using Calendar.Services;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Popups;

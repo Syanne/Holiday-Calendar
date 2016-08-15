@@ -11,7 +11,7 @@ using Windows.ApplicationModel.Store;
 using Windows.Storage;
 using Windows.UI.Popups;
 
-namespace CalendarResources
+namespace Calendar.Services
 {
     public class DataManager
     {
@@ -303,13 +303,22 @@ namespace CalendarResources
         /// <param name="value">true or false</param>
         public static void ChangeServiceState(string serviceName, bool value)
         {
-            PersonalData.Root.Element(serviceName).Attribute("isActive").Value = value.ToString().ToLower();
-            if (!value)
+            try
             {
-                Services.Remove(serviceName);
-                PersonalData.Root.Element("google").Attribute("nextSyncDate").Value = DateTime.Now.Date.ToString(BaseConnector.DateFormat);
+                PersonalData.Root.Element(serviceName).Attribute("isActive").Value = value.ToString().ToLower();
+                if (!value)
+                {
+                    Services.Remove(serviceName);
+                    PersonalData.Root.Element("google").Attribute("nextSyncDate").Value = DateTime.Now.Date.ToString(BaseConnector.DateFormat);
+                }
+                SaveDocumentAsync();
             }
-            SaveDocumentAsync();
+            catch
+            {
+                SyncManager.Service serv = SyncManager.Manager.GetServiceByName(serviceName);
+                if (serv != null)
+                    SetHolidaysFromSocialNetwork(serviceName, serv.Period, null);
+            }
         }
 
         private static async void MyMessage(string text)
@@ -353,51 +362,6 @@ namespace CalendarResources
                         SyncManager.Manager.AddService("google", DateTime.Now, period);
                     }
                 }
-        }
-    }
-    
-
-    /// <summary>
-    /// Buy this application, please!
-    /// </summary>
-    public class ShoppingManager
-    {
-        public static async void BuyThis(string content, string title, string packageName)
-        {            
-            var dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString(content),
-                ResourceLoader.GetForCurrentView("Resources").GetString(title));
-
-            dial.Commands.Add(new UICommand(ResourceLoader.GetForCurrentView("Resources").GetString("UnlicensedCancel")));
-            dial.Commands.Add(new UICommand(ResourceLoader.GetForCurrentView("Resources").GetString("UnlicensedButton"),
-            new UICommandInvokedHandler((args) =>
-            {
-                CalendarResources.ShoppingManager.BuyStuff(packageName);
-            })));
-            var command = await dial.ShowAsync();
-        }
-
-        public static async void BuyStuff(string packageName)
-        {
-            LicenseInformation license = CurrentApp.LicenseInformation;
-            if (!license.ProductLicenses[packageName].IsActive)
-            {
-                try
-                {
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
-                }
-                catch (Exception ex)
-                {
-                    MyMessage(ex.Message);
-                }
-            }
-        }
-
-        private static async void MyMessage(string text)
-        {
-            var dial = new MessageDialog(text);
-
-            dial.Commands.Add(new UICommand("OK"));
-            var command = await dial.ShowAsync();
         }
     }
 }

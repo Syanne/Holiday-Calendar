@@ -67,7 +67,8 @@ namespace Calendar
                 }
                 else
                 {
-                    CalendarResources.ShoppingManager.BuyThis("Unlicensed", "UnlicensedTitle", "allstuff1");
+                    Services.ExtraServices es = new Services.ExtraServices();
+                    es.OfferPurchase("Unlicensed", "UnlicensedTitle", "allstuff1");
                 }
             }
             catch (Exception ex)

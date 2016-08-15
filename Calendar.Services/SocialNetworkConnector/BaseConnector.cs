@@ -1,11 +1,9 @@
-﻿using Calendar.Models;
-using Calendar.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
 
-namespace Calendar.SocialNetworkConnector
+namespace Calendar.Services
 {
     public abstract class BaseConnector
     {

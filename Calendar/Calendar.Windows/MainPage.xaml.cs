@@ -1,4 +1,4 @@
-﻿using CalendarResources;
+﻿using Calendar.Services;
 using System;
 using System.Linq;
 using Windows.UI.Xaml.Controls;

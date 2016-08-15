@@ -1,5 +1,4 @@
-﻿using Calendar.Models;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
@@ -7,7 +6,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Calendar.SocialNetworkConnector
+namespace Calendar.Services
 {
     class GoogleCalendarConnector: BaseConnector
     {        

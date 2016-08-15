@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
 using System.Linq;
+using System.Threading;
 
-namespace Calendar.SocialNetworkConnector
+namespace Calendar.Services
 {
     public class SyncManager
     {
@@ -48,18 +51,6 @@ namespace Calendar.SocialNetworkConnector
         }
 
         /// <summary>
-        /// returns found service or null
-        /// </summary>
-        /// <param name="serviceName">services' name</param>
-        /// <returns>service</returns>
-        public Service GetServiceByName(string serviceName)
-        {
-            if (Services.Any(service => service.ServerName == serviceName))
-                return Services.Single(service => service.ServerName == serviceName);
-            else return null;
-        }
-
-        /// <summary>
         /// Sync with services.
         /// Sync can be started, if there is no other operations 
         /// (property IsAnyOperation == false)
@@ -88,8 +79,7 @@ namespace Calendar.SocialNetworkConnector
                 await connector.GetHolidayList();
             }
         }
-
-        public class Service
+        class Service
         {
             public string ServerName;
             public int Period;

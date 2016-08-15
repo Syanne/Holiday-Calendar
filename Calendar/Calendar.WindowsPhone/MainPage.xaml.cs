@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using CalendarResources;
-using Windows.ApplicationModel.Resources;
+using Calendar.Services;
 using Windows.ApplicationModel.Store;
 using Windows.Phone.UI.Input;
-using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.Storage;
-using Windows.Globalization;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -288,7 +282,8 @@ namespace Calendar
 
         private void ShopAppButton_Click(object sender, RoutedEventArgs e)
         {
-            ShoppingManager.BuyThis("BuyMeTextMP", "BuyMeTitleMP", "allstuff1");
+            ExtraServices es = new ExtraServices();
+            es.OfferPurchase("BuyMeTextMP", "BuyMeTitleMP", "allstuff1");
         }
         #endregion
 
