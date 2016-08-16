@@ -15,11 +15,12 @@ namespace Calendar
     /// </summary>
     public sealed partial class StylesPage : Page
     {
+        ExtraServices eServices;
         public StylesPage()
         {
             this.InitializeComponent();
 
-            //FlipViews (small and full-screen)
+            eServices = new ExtraServices();
             SampleDataSource sds = new SampleDataSource();
             myFlip.ItemsSource = sds.Items;
         }             
@@ -36,42 +37,8 @@ namespace Calendar
                 Application.Current.Resources.Source =
                    new Uri("ms-appx:///themes/" + temp + ".xaml");
             }
-            else OfferPurchase();            
+            else eServices.OfferPurchase("Unlicensed", null);     
         }
-        
-        private async void OfferPurchase()
-        {
-            var dial = new MessageDialog(DataManager.resource.GetString("Unlicensed"));
-
-            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedCancel")));
-            dial.Commands.Add(new UICommand(DataManager.resource.GetString("UnlicensedButton"),
-            new UICommandInvokedHandler((args) =>
-            {
-                BuyStuff();
-            })));
-            var command = await dial.ShowAsync();
-        }
-
-        private async void BuyStuff()
-        {
-            try
-            {
-                LicenseInformation license = CurrentApp.LicenseInformation;
-                if (!license.ProductLicenses["allstuff1"].IsActive)
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");                
-            }
-            catch (Exception ex)
-            {
-                MyMessage(ex.Message);
-            }
-        }
-
-        private async void MyMessage(string text)
-        {
-            var dial = new MessageDialog(text);
-            dial.Commands.Add(new UICommand("OK"));
-            var command = await dial.ShowAsync();
-        }        
 
         private void myFlip_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

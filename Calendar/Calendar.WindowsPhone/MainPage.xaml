@@ -504,10 +504,8 @@
                 				Margin="10,0,0,0" Click="changeNote_Click" 
                 				VerticalAlignment="Bottom" 
                 				HorizontalAlignment="Right" 
-                				Style="{StaticResource ExtendMainButton}" />
-
-
-                            </ListView>
+                				Style="{StaticResource ExtendMainButton}" />                            </ListView>
+                            
                             <ListView HorizontalAlignment="Center" 
                 			Width="auto" 
                 			x:Name="addRecLists" 
@@ -528,7 +526,6 @@
                 				VerticalAlignment="Bottom" 
                 				HorizontalAlignment="Center" 
                 				Style="{StaticResource ExtendMainButton}" Margin="10,0,0,0"/>
-
                             </ListView>
                         </StackPanel>
                     </Flyout>

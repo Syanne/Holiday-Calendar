@@ -1,4 +1,5 @@
 ﻿using System;
+using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
 using Windows.Phone.UI.Input;
 using Windows.Storage;
@@ -16,12 +17,14 @@ namespace Calendar
     /// </summary>
     public sealed partial class StylesPage : Page
     {
+        Services.ExtraServices eServices;
         public StylesPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            eServices = new Services.ExtraServices();
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -68,12 +71,13 @@ namespace Calendar
                 else
                 {
                     Services.ExtraServices es = new Services.ExtraServices();
-                    es.OfferPurchase("Unlicensed", "UnlicensedTitle", "allstuff1");
+                    eServices.OfferPurchase("Unlicensed", "UnlicensedTitle");
+                    Frame.Navigate(typeof(SettingsPage));
                 }
             }
             catch (Exception ex)
             {
-                MyMessage(ex.Message);
+                eServices.MyMessage(ex.Message);
             }
         }
 
@@ -91,15 +95,6 @@ namespace Calendar
                 rightImg.Visibility = Visibility.Visible;
                 leftImg.Visibility = Visibility.Visible;
             }            
-        }
-
-
-        private async void MyMessage(string text)
-        {
-            var dial = new MessageDialog(text);
-
-            dial.Commands.Add(new UICommand("OK"));
-            var command = await dial.ShowAsync();
         }
     }
 }

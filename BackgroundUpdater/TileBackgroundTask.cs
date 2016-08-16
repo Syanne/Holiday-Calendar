@@ -97,7 +97,7 @@ namespace BackgroundUpdater
                         if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                             collection.Add(new Event
                             {
-                                Day = ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
+                                Day = ComputeHoliday(Convert.ToInt32(x.Attribute("date").Value),
                                                     Convert.ToInt32(x.Attributes().ElementAt(2).Value), GetStart()),
                                 Name = x.Attributes().ElementAt(0).Value,
                                 Month = m
@@ -111,7 +111,7 @@ namespace BackgroundUpdater
                     if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
                         collection.Add(new Event
                         {
-                            Day = Convert.ToInt32(x.Attributes().ElementAt(1).Value),
+                            Day = Convert.ToInt32(x.Attribute("date").Value),
                             Name = x.Attributes().ElementAt(0).Value,
                             Month = m
                         });
@@ -125,7 +125,7 @@ namespace BackgroundUpdater
                         {
                             collection.Add(new Event
                             {
-                                Day = Convert.ToInt32(x.Attribute("day").Value),
+                                Day = Convert.ToInt32(x.Attribute("date").Value),
                                 Name = x.Attribute("name").Value,
                                 Month = m
                             });

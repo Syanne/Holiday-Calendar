@@ -1,2 +1,2 @@
-MainPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\x86\Release\Calendar.Windows_1.2.0.66_x86.appx
-SymbolPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.2.0.66_Test\Calendar.Windows_1.2.0.66_x86.appxsym
+MainPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\x86\Release\Calendar.Windows_1.2.0.67_x86.appx
+SymbolPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.2.0.67_Test\Calendar.Windows_1.2.0.67_x86.appxsym

@@ -6,6 +6,7 @@ using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.ApplicationModel.Resources;
 
 // The Settings Flyout item template is documented at http://go.microsoft.com/fwlink/?LinkId=273769
 
@@ -67,6 +68,7 @@ namespace Calendar
                             task.Value.Unregister(true);
                 }
             }
+            isTileSet = false;
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
@@ -106,13 +108,15 @@ namespace Calendar
                     else
                     {
                         toastToggle.IsOn = false;
-                        eService.OfferPurchase("Unlicensed", "", licenseName);
+                        eService.OfferPurchase("Unlicensed", null);
                     }
                 }
                 catch (Exception ex)
                 {
                     eService.MyMessage(ex.Message);
                 }
+
+                isToastSet = false;
             }
         }
 
@@ -172,6 +176,9 @@ namespace Calendar
                     googleToggle.IsOn = false;
                     comboGooglePeriod.IsEnabled = true;
                 }
+
+            isGoogleService = false;
         }
+        
     }
 }

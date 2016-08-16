@@ -1,6 +1,7 @@
 ﻿using Calendar.Services;
 using System;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
 using Windows.Phone.UI.Input;
 using Windows.UI.Popups;
@@ -17,7 +18,7 @@ namespace Calendar
     {
         private bool isTileSet = false;
         private bool isToastSet = false;
-        private bool isGoogleService = false;
+        //private bool isGoogleService = false;
         private ExtraServices eService;
 
         public SettingsPage()
@@ -72,62 +73,75 @@ namespace Calendar
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            string name = "TileBackgroundTask";
-            string entryPoint = "BackgroundUpdater.TileBackgroundTask";
-
-            if (tileToggle.IsOn)
-                eService.BackgroundTaskCreator(name, entryPoint, 15);
-            else
+            if (!isTileSet)
             {
-                foreach (var task in BackgroundTaskRegistration.AllTasks)
-                    if (task.Value.Name == "TileBackgroundTask")
-                        task.Value.Unregister(true);
+                string name = "TileBackgroundTask";
+                string entryPoint = "BackgroundUpdater.TileBackgroundTask";
+
+                if (tileToggle.IsOn)
+                    eService.BackgroundTaskCreator(name, entryPoint, 15);
+                else
+                {
+                    foreach (var task in BackgroundTaskRegistration.AllTasks)
+                        if (task.Value.Name == "TileBackgroundTask")
+                            task.Value.Unregister(true);
+                }
             }
+            isTileSet = false;
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            string name = "ToastBackgroundTask";
-            string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
-            string licenseName = "allstuff1";
-
-            try
+            //if toast set - do not unset it until a user call this method
+            if (!isToastSet)
             {
-                var license = CurrentApp.LicenseInformation;
-                if (license.ProductLicenses[licenseName].IsActive)
-                {
-                    if (toastToggle.IsOn)
-                    {
-                        //save changes
-                        DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
-                        DataManager.SaveDocumentAsync();
+                string name = "ToastBackgroundTask";
+                string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
+                string licenseName = "allstuff1";
 
-                        //set period
-                        uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
-                        eService.BackgroundTaskCreator(name, entryPoint, period * 60);
+                try
+                {
+                    //set/unset if purchased
+                    var license = CurrentApp.LicenseInformation;
+                    if (license.ProductLicenses[licenseName].IsActive)
+                    {
+                        //if enabled
+                        if (toastToggle.IsOn)
+                        {
+                            //save changes
+                            DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
+                            DataManager.SaveDocumentAsync();
+
+                            //set period and create a task
+                            uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
+                            eService.BackgroundTaskCreator(name, entryPoint, period * 60);
+                        }
+                        else
+                        {
+                            foreach (var task in BackgroundTaskRegistration.AllTasks)
+                                if (task.Value.Name == name)
+                                    task.Value.Unregister(true);
+
+                            toastToggle.IsOn = false;
+                        }
                     }
+                    //elseway - unset
                     else
                     {
-                        foreach (var task in BackgroundTaskRegistration.AllTasks)
-                            if (task.Value.Name == name)
-                                task.Value.Unregister(true);
-
+                        isToastSet = true;
                         toastToggle.IsOn = false;
+                        eService.OfferPurchase("Unlicensed", null);
                     }
+
                 }
-                else
+                catch (Exception ex)
                 {
+                    isToastSet = true;
                     toastToggle.IsOn = false;
-                    eService.OfferPurchase("Unlicensed", "", licenseName);
+                    eService.MyMessage(ex.Message);
                 }
-
             }
-            catch (Exception ex)
-            {
-                eService.MyMessage(ex.Message);
-                toastToggle.IsOn = false;
-            }
-
+            isToastSet = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -156,5 +170,25 @@ namespace Calendar
                 eService.MyMessage(ex.Message);
             }
         }
+
+        #region purchase
+
+        private async void BuyStuff(string packageName)
+        {
+            LicenseInformation license = CurrentApp.LicenseInformation;
+            if (!license.ProductLicenses[packageName].IsActive)
+            {
+                try
+                {
+                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
+                }
+                catch (Exception ex)
+                {
+                    eService.MyMessage(ex.Message);
+                }
+            }
+        }
+       
+        #endregion
     }
 }

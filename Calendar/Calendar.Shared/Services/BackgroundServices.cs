@@ -32,18 +32,22 @@ namespace Calendar.Services
             BackgroundTaskRegistration tTask = builder.Register();
         }
 
-
-        public async void OfferPurchase(string content, string title, string packageName)
+        #region purchase
+        /// <summary>
+        /// Offer user to purchase the app
+        /// </summary>
+        /// <param name="content">content key in resources file</param>
+        /// <param name="title">title key in resources file or null</param>
+        public async void OfferPurchase(string content, string title)
         {
-            var dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString(content),
-                ResourceLoader.GetForCurrentView("Resources").GetString(title));
+            MessageDialog dial;
+            if (title != null)
+                dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString(content),
+                    ResourceLoader.GetForCurrentView("Resources").GetString(title));
+            else dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString(content));
 
-            dial.Commands.Add(new UICommand(ResourceLoader.GetForCurrentView("Resources").GetString("UnlicensedCancel")));
-            dial.Commands.Add(new UICommand(ResourceLoader.GetForCurrentView("Resources").GetString("UnlicensedButton"),
-            new UICommandInvokedHandler((args) =>
-            {
-                BuyStuff(packageName);
-            })));
+
+            dial.Commands.Add(new UICommand("OK"));            
             var command = await dial.ShowAsync();
         }
 
@@ -70,5 +74,8 @@ namespace Calendar.Services
             dial.Commands.Add(new UICommand("OK"));
             var command = await dial.ShowAsync();
         }
+
+        #endregion
+
     }
 }

@@ -19,7 +19,7 @@ namespace Calendar
     {
         bool prevSender = false;
         public MainPage()
-        {             
+        {
             //initialize page
             this.InitializeComponent();
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
@@ -159,9 +159,9 @@ namespace Calendar
                 Select(hi => hi = hi.Copy()).
                 Select(hi =>
                 {
-                        //change name = add date
-                        hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
-                        hi.Day, DataManager.calBase.SelectedDate.Month, hi.HolidayName);
+                    //change name = add date
+                    hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
+                    hi.Day, DataManager.calBase.SelectedDate.Month, hi.HolidayName);
                     return hi;
                 });
 
@@ -279,12 +279,6 @@ namespace Calendar
         {
             this.Frame.Navigate(typeof(StylesPage));
         }
-
-        private void ShopAppButton_Click(object sender, RoutedEventArgs e)
-        {
-            ExtraServices es = new ExtraServices();
-            es.OfferPurchase("BuyMeTextMP", "BuyMeTitleMP", "allstuff1");
-        }
         #endregion
 
         #region Kind of Holiday menu & flyout
@@ -344,11 +338,6 @@ namespace Calendar
             listOfHolidays.Height = Window.Current.Bounds.Height - 60;
         }
 
-        //private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.Mobile.Common.AdErrorEventArgs e)
-        //{
-        //    System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
-        //}
-
         private void nextGVI_PointerWheelChanged(object sender, PointerRoutedEventArgs e)
         {
             ArrowButtonController(1);
@@ -366,5 +355,4 @@ namespace Calendar
             RefreshPage();
         }
     }
-
 }
