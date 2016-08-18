@@ -15,12 +15,12 @@ namespace Calendar
     /// </summary>
     public sealed partial class StylesPage : Page
     {
-        ExtraServices eServices;
+        PurchasingService eServices;
         public StylesPage()
         {
             this.InitializeComponent();
 
-            eServices = new ExtraServices();
+            eServices = new PurchasingService();
             SampleDataSource sds = new SampleDataSource();
             myFlip.ItemsSource = sds.Items;
         }             

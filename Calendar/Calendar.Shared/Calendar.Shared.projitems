@@ -24,8 +24,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\WindowsStandardClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StandardClass.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\StylesPageDataModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Services\BackgroundServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\PurchasingService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\DataManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\SharedSettingsServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\BaseConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\GoogleCalendarConnector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SocialNetworkConnector\SyncManager.cs" />
@@ -140,6 +141,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Themes\Themes.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\BufferResources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-AU\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-GB\Resources.resw" />
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />

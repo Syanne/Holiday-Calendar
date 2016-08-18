@@ -1,10 +1,8 @@
 ﻿using Calendar.Services;
 using System;
 using Windows.ApplicationModel.Background;
-using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
 using Windows.Phone.UI.Input;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -16,31 +14,29 @@ namespace Calendar
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
-        private bool isTileSet = false;
-        private bool isToastSet = false;
-        //private bool isGoogleService = false;
-        private ExtraServices eService;
+        SharedSettingsServices ssServices;
+        PurchasingService pService;
 
         public SettingsPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
-
-            eService = new ExtraServices();
-
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+
+            ssServices = new SharedSettingsServices();
+            pService = new PurchasingService();
 
             //enable toggles
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
                 if (task.Value.Name == "TileBackgroundTask")
                 {
-                    isTileSet = true;
+                    ssServices.IsTileSet = true;
                     tileToggle.IsOn = true;
                 }
                 if (task.Value.Name == "ToastBackgroundTask")
                 {
-                    isToastSet = true;
+                    ssServices.IsToastSet = true;
                     toastToggle.IsOn = true;
                 }
             }
@@ -73,37 +69,25 @@ namespace Calendar
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            if (!isTileSet)
-            {
-                string name = "TileBackgroundTask";
-                string entryPoint = "BackgroundUpdater.TileBackgroundTask";
+            string name = "TileBackgroundTask";
+            string entryPoint = "BackgroundUpdater.TileBackgroundTask";
 
-                if (tileToggle.IsOn)
-                    eService.BackgroundTaskCreator(name, entryPoint, 15);
-                else
-                {
-                    foreach (var task in BackgroundTaskRegistration.AllTasks)
-                        if (task.Value.Name == "TileBackgroundTask")
-                            task.Value.Unregister(true);
-                }
-            }
-            isTileSet = false;
+            ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet);
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
         {
             //if toast set - do not unset it until a user call this method
-            if (!isToastSet)
+            if (!ssServices.IsToastSet)
             {
                 string name = "ToastBackgroundTask";
                 string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
-                string licenseName = "allstuff1";
 
                 try
                 {
                     //set/unset if purchased
                     var license = CurrentApp.LicenseInformation;
-                    if (license.ProductLicenses[licenseName].IsActive)
+                    if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
                     {
                         //if enabled
                         if (toastToggle.IsOn)
@@ -114,7 +98,9 @@ namespace Calendar
 
                             //set period and create a task
                             uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
-                            eService.BackgroundTaskCreator(name, entryPoint, period * 60);
+                            ssServices.BackgroundTaskCreator(name, entryPoint, period * 60);
+                            comboPeriod.IsEnabled = false;
+                            comboToast.IsEnabled = false;
                         }
                         else
                         {
@@ -122,26 +108,18 @@ namespace Calendar
                                 if (task.Value.Name == name)
                                     task.Value.Unregister(true);
 
-                            toastToggle.IsOn = false;
                         }
                     }
                     //elseway - unset
-                    else
-                    {
-                        isToastSet = true;
-                        toastToggle.IsOn = false;
-                        eService.OfferPurchase("Unlicensed", null);
-                    }
-
+                    else pService.OfferPurchase("Unlicensed", null);   
                 }
                 catch (Exception ex)
                 {
-                    isToastSet = true;
-                    toastToggle.IsOn = false;
-                    eService.MyMessage(ex.Message);
+                    pService.MyMessage(ex.Message);
                 }
             }
-            isToastSet = false;
+
+            ssServices.IsToastSet = false;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -160,14 +138,14 @@ namespace Calendar
             try
             {
                 LicenseInformation license = CurrentApp.LicenseInformation;
-                if (!license.ProductLicenses["allstuff1"].IsActive)
+                if (!license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
                 {
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
+                    await CurrentApp.RequestProductPurchaseAsync(PurchasingService.ALL_STUFF);
                 }
             }
             catch (Exception ex)
             {
-                eService.MyMessage(ex.Message);
+                pService.MyMessage(ex.Message);
             }
         }
 
@@ -180,15 +158,21 @@ namespace Calendar
             {
                 try
                 {
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
+                    await CurrentApp.RequestProductPurchaseAsync(PurchasingService.ALL_STUFF);
                 }
                 catch (Exception ex)
                 {
-                    eService.MyMessage(ex.Message);
+                    pService.MyMessage(ex.Message);
                 }
             }
         }
-       
+
         #endregion
+
+        private void smartTileToggle_Toggled(object sender, RoutedEventArgs e)
+        {
+            ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
+            
+        }
     }
 }

@@ -9,16 +9,18 @@ namespace BackgroundUpdater
 {
     public sealed class ToastBackgroundTask : IBackgroundTask
     {
+        static DataBakgroundManager _manager;
         static DateTime SelectedDate { get; set; }
         public void Run(IBackgroundTaskInstance taskInstance)
         {
             // Get a deferral, to prevent the task from closing prematurely 
             // while asynchronous code is still running.
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
-            DataManager.LoadPersonalData();
+            _manager = new DataBakgroundManager();
+            _manager.LoadPersonalData();
 
             //get date
-            int day = Convert.ToInt32(DataManager.PersonalData.Root.Attribute("toast").Value);
+            int day = _manager.GetToastSnooze();
             SelectedDate = DateTime.Now.Date.AddDays(day);
 
             //start updating
@@ -34,7 +36,10 @@ namespace BackgroundUpdater
 
         private static void SendToast()
         {
-            List<Event> collection = LoadXml();
+            //prepare collection
+            List<Event> collection =  _manager.PersonalAndServices(SelectedDate.Month, SelectedDate.Year);
+            collection = collection.Where(p => p.Day == SelectedDate.Day || p.Value == "google calendar").ToList();
+
             if (collection.Count > 0)
             {
                 foreach (var item in collection)
@@ -51,7 +56,7 @@ namespace BackgroundUpdater
                     // Set the text on the toast. 
                     // The first line of text in the ToastText02 template is treated as header text, and will be bold.
                     toastTextElements[0].AppendChild(toastXml.CreateTextNode(SelectedDate.ToString("d")));
-                    toastTextElements[1].AppendChild(toastXml.CreateTextNode(item.Name));
+                    toastTextElements[1].AppendChild(toastXml.CreateTextNode(item.Value));
 
                     // Set the duration on the toast
                     IXmlNode toastNode = toastXml.SelectSingleNode("/toast");
@@ -63,16 +68,5 @@ namespace BackgroundUpdater
                 }
             }
         }
-
-        private static List<Event> LoadXml()
-        {
-            //prepare collection
-            List<Event> personal = DataManager.PersonalAndServices(SelectedDate.Month, SelectedDate.Year);
-
-            //return only for needed date
-            personal = personal.Where(p => p.Day == SelectedDate.Day || p.Name == "google calendar").ToList();
-            return personal;
-        }
-
     }
 }

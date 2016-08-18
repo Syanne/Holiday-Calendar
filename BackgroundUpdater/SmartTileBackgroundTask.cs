@@ -7,7 +7,7 @@ using Windows.UI.Notifications;
 
 namespace BackgroundUpdater
 {
-    public sealed class TileBackgroundTask : IBackgroundTask
+    class SmartTileBackgroundTask : IBackgroundTask
     {
         static DataBakgroundManager _manager;
         public void Run(IBackgroundTaskInstance taskInstance)
@@ -38,19 +38,7 @@ namespace BackgroundUpdater
             updateManager.EnableNotificationQueue(true);
 
             //prepare collection
-            List<Event> eventCollection = _manager.LoadXml(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-            eventCollection.AddRange(_manager.PersonalAndServices(DateTime.Now.Month, DateTime.Now.Year));
-
-            if (eventCollection.Count < 5)
-            {
-                DateTime dt = DateTime.Now.AddMonths(1);
-                List<Event> s = _manager.LoadXml(dt.Year, dt.Month, 1);
-                eventCollection.AddRange(s);
-                eventCollection.AddRange(_manager.PersonalAndServices(dt.Month, dt.Year));
-            }
-
-            //finalize collection
-            eventCollection = (eventCollection.Count <= 5) ? eventCollection : eventCollection.Take(5).ToList();
+            List<Event> eventCollection = _manager.LoadSmartTileFile();            
             
             if (eventCollection.Count > 0)
                 foreach (var currEvent in eventCollection)
@@ -67,3 +55,4 @@ namespace BackgroundUpdater
         }
     }
 }
+

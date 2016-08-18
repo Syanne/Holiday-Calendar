@@ -408,4 +408,13 @@ Syanne.</value>
   <data name="refresh.Label" xml:space="preserve">
     <value>поновити</value>
   </data>
+  <data name="daysAmountText.Text" xml:space="preserve">
+    <value>дні</value>
+  </data>
+  <data name="smartTileHeaderText.Text" xml:space="preserve">
+    <value>Розумна плитка</value>
+  </data>
+  <data name="smartTileText.Text" xml:space="preserve">
+    <value>Розумна плитка показуює більше свят, ніж звичайна, на вказану кількість днів. </value>
+  </data>
 </root>

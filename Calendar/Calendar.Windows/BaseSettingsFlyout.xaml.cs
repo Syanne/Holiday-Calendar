@@ -3,37 +3,34 @@ using Calendar.Services;
 using System;
 using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Store;
-using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.ApplicationModel.Resources;
-
-// The Settings Flyout item template is documented at http://go.microsoft.com/fwlink/?LinkId=273769
 
 namespace Calendar
 {
     public sealed partial class BaseSettingsFlyout : SettingsFlyout
     {
-        private bool isTileSet = false;
-        private bool isToastSet = false;
-        private bool isGoogleService = false;
-        private ExtraServices eService;
+        SharedSettingsServices ssServices;
+        PurchasingService pService;
 
         public BaseSettingsFlyout()
         {
             this.InitializeComponent();
-            eService = new ExtraServices();
+
+            ssServices = new SharedSettingsServices();
+            pService = new PurchasingService();
+
             //enable task toggles
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
                 if (task.Value.Name == "TileBackgroundTask")
                 {
-                    isTileSet = true;
+                    ssServices.IsTileSet = true;
                     tileToggle.IsOn = true;
                 }
                 if (task.Value.Name == "ToastBackgroundTask")
                 {
-                    isToastSet = true;
+                    ssServices.IsToastSet = true;
                     toastToggle.IsOn = true;
                     comboPeriod.IsEnabled = false;
                     comboToast.IsEnabled = false;
@@ -41,47 +38,33 @@ namespace Calendar
             }
 
             //services
-            if (DataManager.Services != null)
-                if (DataManager.Services.Contains("google"))
-                {
-                    isGoogleService = true;
-                    googleToggle.IsOn = true;
-                    googleToggle.IsEnabled = true;
-                    comboGooglePeriod.IsEnabled = false;
-                }
+            if (DataManager.Services != null && DataManager.Services.Contains("google"))
+            {
+                ssServices.IsGoogleService = true;
+                googleToggle.IsOn = true;
+                googleToggle.IsEnabled = true;
+                comboGooglePeriod.IsEnabled = false;
+            }
         }
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            if (!isTileSet)
-            {
-                string name = "TileBackgroundTask";
-                string entryPoint = "BackgroundUpdater.TileBackgroundTask";
+            string name = "TileBackgroundTask";
+            string entryPoint = "BackgroundUpdater.TileBackgroundTask";
 
-                if (tileToggle.IsOn)
-                    eService.BackgroundTaskCreator(name, entryPoint, 15);
-                
-                else
-                {
-                    foreach (var task in BackgroundTaskRegistration.AllTasks)
-                        if (task.Value.Name == "TileBackgroundTask")
-                            task.Value.Unregister(true);
-                }
-            }
-            isTileSet = false;
+            ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet);
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            if (!isToastSet)
+            if (!ssServices.IsToastSet)
             {
                 string name = "ToastBackgroundTask";
                 string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
-                string licenseName = "allstuff1";
 
                 try
                 {
-                    if (CurrentApp.LicenseInformation.ProductLicenses[licenseName].IsActive)
+                    if (!CurrentApp.LicenseInformation.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
                     {
                         if (toastToggle.IsOn)
                         {
@@ -91,7 +74,7 @@ namespace Calendar
 
                             //set period
                             uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
-                            eService.BackgroundTaskCreator(name, entryPoint, period * 60);
+                            ssServices.BackgroundTaskCreator(name, entryPoint, period * 60);
                             comboPeriod.IsEnabled = false;
                             comboToast.IsEnabled = false;
                         }
@@ -107,22 +90,21 @@ namespace Calendar
                     }
                     else
                     {
-                        toastToggle.IsOn = false;
-                        eService.OfferPurchase("Unlicensed", null);
+                        pService.OfferPurchase("Unlicensed", null);
                     }
                 }
                 catch (Exception ex)
                 {
-                    eService.MyMessage(ex.Message);
+                    pService.MyMessage(ex.Message);
                 }
 
-                isToastSet = false;
+                ssServices.IsToastSet = false;
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            eService.BuyStuff("allstuff1");
+            pService.BuyStuff(PurchasingService.ALL_STUFF);
         }
 
         private void buy_Click(object sender, RoutedEventArgs e)
@@ -132,7 +114,7 @@ namespace Calendar
         
         private void BuyButtonController()
         {
-            eService.BuyStuff("allstuff1");
+            pService.BuyStuff(PurchasingService.ALL_STUFF);
         }
       
         private void SettingsFlyout_Loaded(object sender, RoutedEventArgs e)
@@ -142,7 +124,7 @@ namespace Calendar
 
         private void googleToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            if (!isGoogleService)
+            if (!ssServices.IsGoogleService)
                 if (googleToggle.IsOn)
                 {
                     //set period
@@ -165,9 +147,9 @@ namespace Calendar
                     finally
                     {
                         if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
-                            SyncManager.Manager.AddService("google", DateTime.Now, period);
-                        
+                            SyncManager.Manager.AddService("google", DateTime.Now, period);                        
                     }
+
                     comboGooglePeriod.IsEnabled = false;
                 }
                 else
@@ -177,8 +159,12 @@ namespace Calendar
                     comboGooglePeriod.IsEnabled = true;
                 }
 
-            isGoogleService = false;
+            ssServices.IsGoogleService = false;
         }
-        
+
+        private void smartTileToggle_Toggled(object sender, RoutedEventArgs e)
+        {
+            ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
+        }
     }
 }

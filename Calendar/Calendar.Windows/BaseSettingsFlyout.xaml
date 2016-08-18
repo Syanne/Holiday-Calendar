@@ -37,27 +37,6 @@
                     VerticalAlignment="Bottom"/>
         </StackPanel>
 
-        
-        
-        
-        <!--<StackPanel x:Name="ThemeStack" 
-                                Orientation="Horizontal">
-            <TextBlock x:Uid="selectThemeTop" 
-                           Height="40" Width="350"
-                           HorizontalAlignment="Left"
-                           Style="{StaticResource TitleTextBlockStyle}" 
-                           FontSize="26" FontFamily="Minion Pro"
-                           Margin="0, 15" />
-            <Button x:Uid="chooseBtn"
-                            x:Name="buttonTheme" 
-                            Click="buttonTheme_Click"
-                          Width="140" Height="40" 
-                          Margin="25,0,5,0" 
-                          HorizontalAlignment="Left"
-                          Background="#FF454545"
-                          Foreground="#FFF6F6F9"/>
-        </StackPanel>-->
-
         <!-- Раздел содержимого 2-->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
                         Margin="0, 20"
@@ -157,10 +136,63 @@
             </Grid>
         </StackPanel>
 
-        <StackPanel 
-                        HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                        Margin="0,20"
-                        Orientation="Vertical">
+        <StackPanel Name="smartTileStack"
+                    Style="{StaticResource SettingsFlyoutSectionStyle}" 
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    Margin="0,20"
+                    Orientation="Vertical">
+            <!-- Заголовок раздела 3 -->
+            <TextBlock x:Uid="smartTileHeaderText" 
+                           Style="{StaticResource TitleTextBlockStyle}" 
+                           FontSize="26" 
+                           FontFamily="Minion Pro" 
+                           Margin="0, 0, 0, 10" 
+                           Height="auto" Width="300"
+                           HorizontalAlignment="Left"
+                           />
+            <!-- Основная часть раздела 3 -->
+            <TextBlock x:Uid="smartTileText" 
+                           Margin="0,10,0,30" 
+                           TextWrapping="Wrap" 
+                           LineHeight="25"
+                           FontSize="22" 
+                           HorizontalAlignment="Left"
+                           MaxWidth="500"
+                           FontFamily="Minion Pro"/>
+            <!--toggle-->
+            <TextBlock x:Uid="daysAmountText" 
+                           TextWrapping="Wrap" 
+                           FontSize="22" 
+                           VerticalAlignment="Top" 
+                           Height="30" Width="150" 
+                           Margin="170,0,0,0"
+                           FontFamily="Minion Pro"
+                           HorizontalAlignment="Left"/>
+            <Grid>
+                <ComboBox x:Name="comboAmount" 
+                                  Height="30" Width="150" 
+                                  Margin="10,0" 
+                                  IsHoldingEnabled="False" 
+                                  ManipulationMode="None" 
+                                  VerticalAlignment="Stretch" 
+                                  HorizontalAlignment="Left">
+                    <ComboBoxItem Content="2" Width="110" IsSelected="True" />
+                    <ComboBoxItem Content="3" Width="110"/>
+                    <ComboBoxItem Content="4" Width="110"/>
+                    <ComboBoxItem Content="5" Width="110"/>
+                </ComboBox>
+                <ToggleSwitch x:Name="smartTileToggle"
+                          Toggled="smartTileToggle_Toggled" 
+                          HorizontalAlignment="Left" 
+                          Margin="360,0,10,0" 
+                          FontFamily="Minion Pro" FontSize="16"/>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch"
+                    Margin="0,20"
+                    Orientation="Vertical">
             <!-- Заголовок раздела 3 -->
             <TextBlock Text="google calendar"
                            FontSize="26" 

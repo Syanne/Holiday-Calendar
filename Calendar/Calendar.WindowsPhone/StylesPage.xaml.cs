@@ -17,14 +17,14 @@ namespace Calendar
     /// </summary>
     public sealed partial class StylesPage : Page
     {
-        Services.ExtraServices eServices;
+        Services.PurchasingService eServices;
         public StylesPage()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = NavigationCacheMode.Disabled;
 
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-            eServices = new Services.ExtraServices();
+            eServices = new Services.PurchasingService();
         }
 
         private void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
@@ -70,7 +70,7 @@ namespace Calendar
                 }
                 else
                 {
-                    Services.ExtraServices es = new Services.ExtraServices();
+                    Services.PurchasingService es = new Services.PurchasingService();
                     eServices.OfferPurchase("Unlicensed", "UnlicensedTitle");
                     Frame.Navigate(typeof(SettingsPage));
                 }

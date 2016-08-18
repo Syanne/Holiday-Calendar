@@ -40,6 +40,11 @@
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
+        <Extension Category="windows.backgroundTasks" EntryPoint="BackgroundUpdater.SmartTileBackgroundTask">
+          <BackgroundTasks>
+            <Task Type="timer" />
+          </BackgroundTasks>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>

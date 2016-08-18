@@ -406,4 +406,13 @@ Syanne.</value>
   <data name="refresh.Label" xml:space="preserve">
     <value>обновить</value>
   </data>
+  <data name="daysAmountText.Text" xml:space="preserve">
+    <value>дни</value>
+  </data>
+  <data name="smartTileHeaderText.Text" xml:space="preserve">
+    <value>умная плитка</value>
+  </data>
+  <data name="smartTileText.Text" xml:space="preserve">
+    <value>улучшенная живая плитка обновляется чаще, и показывает все праздники на указанное количество дней.</value>
+  </data>
 </root>

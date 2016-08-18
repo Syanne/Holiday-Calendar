@@ -403,4 +403,13 @@ Syanne.</value>
   <data name="refresh.Label" xml:space="preserve">
     <value>refresh</value>
   </data>
+  <data name="daysAmountText.Text" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="smartTileHeaderText.Text" xml:space="preserve">
+    <value>smart tile</value>
+  </data>
+  <data name="smartTileText.Text" xml:space="preserve">
+    <value>smart tile shows more events in set amount of days</value>
+  </data>
 </root>

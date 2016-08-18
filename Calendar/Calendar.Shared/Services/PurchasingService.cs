@@ -2,37 +2,29 @@
 using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
-using Windows.ApplicationModel.Background;
 
 namespace Calendar.Services
 {
     /// <summary>
-    /// includes Background and Shopping services
+    /// Purchasing services and data
     /// </summary>
-    public partial class ExtraServices
+    public partial class PurchasingService
     {
-        public async void BackgroundTaskCreator(string name, string entryPoint, uint time)
-        {
-            //clean
-            foreach (var task in BackgroundTaskRegistration.AllTasks)
-                if (task.Value.Name == name)
-                    task.Value.Unregister(true);
+        /// <summary>
+        /// includes all services
+        /// </summary>
+        public const string ALL_STUFF = "allstuff1";
 
-            //register
-            var timerTrigger = new TimeTrigger(time, false);
-            await BackgroundExecutionManager.RequestAccessAsync();
+        /// <summary>
+        /// smartTile and toast
+        /// </summary>
+        public const string BACKGROUND_SERVICES = "bgservices";
+                
+        /// <summary>
+        /// social network services
+        /// </summary>
+        public const string SOCIAL_NETWORK = "socialnetworkplus";
 
-            var builder = new BackgroundTaskBuilder();
-
-            builder.Name = name;
-            builder.TaskEntryPoint = entryPoint;
-            builder.SetTrigger(timerTrigger);
-            builder.AddCondition(new SystemCondition(SystemConditionType.UserPresent));
-
-            BackgroundTaskRegistration tTask = builder.Register();
-        }
-
-        #region purchase
         /// <summary>
         /// Offer user to purchase the app
         /// </summary>
@@ -45,7 +37,6 @@ namespace Calendar.Services
                 dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString(content),
                     ResourceLoader.GetForCurrentView("Resources").GetString(title));
             else dial = new MessageDialog(ResourceLoader.GetForCurrentView("Resources").GetString(content));
-
 
             dial.Commands.Add(new UICommand("OK"));            
             var command = await dial.ShowAsync();
@@ -73,9 +64,6 @@ namespace Calendar.Services
 
             dial.Commands.Add(new UICommand("OK"));
             var command = await dial.ShowAsync();
-        }
-
-        #endregion
-
+        }  
     }
 }

@@ -34,7 +34,6 @@ namespace Calendar.Services
                 var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                 doc = XDocument.Load(holFile.Path);
 #else
-
                 var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                 var holidaysFile = FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
 
@@ -60,9 +59,9 @@ namespace Calendar.Services
                     PersonalData = XDocument.Parse(persRead);
                 }
 
-            #if !WINOWS_PHONE_APP
+#if !WINOWS_PHONE_APP
                 EnableService();
-            #endif
+#endif
 
             });
         }
@@ -82,6 +81,17 @@ namespace Calendar.Services
             {
                 MyMessage(e.Message);
             }
+        }
+
+        private static async void SaveSmartTileFile(XDocument document)
+        {
+            try
+            {
+                StorageFile sampleFile = await ApplicationData.Current.LocalFolder.
+                     CreateFileAsync("SmartTileFile.xml", CreationCollisionOption.OpenIfExists);
+                await FileIO.WriteTextAsync(sampleFile, document.ToString());
+            }
+            catch { }
         }
 
         /// <summary>
@@ -329,6 +339,8 @@ namespace Calendar.Services
             var command = await dial.ShowAsync();
         }
 
+        #region Social network services
+
         /// <summary>
         /// Find all active services and enable it
         /// </summary>
@@ -348,7 +360,7 @@ namespace Calendar.Services
                         Services.Add(item.Name.LocalName);
                 }
             }
-            
+
             //enable active
             if (Services != null)
                 if (Services.Contains("google"))
@@ -362,6 +374,62 @@ namespace Calendar.Services
                         SyncManager.Manager.AddService("google", DateTime.Now, period);
                     }
                 }
+        }
+
+        #endregion
+
+        public static bool SmartTileFile(string snooze)
+        {
+            XDocument SmartTileFie = new XDocument();
+
+            //try load
+            try
+            {
+                var storageFolder = ApplicationData.Current.LocalFolder;
+                var file = storageFolder.GetFileAsync("SmartTileFile.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                SmartTileFie = XDocument.Parse(text);
+
+                SmartTileFie.Root.Attribute("refreshmentDate").SetValue(DateTime.Now.Date.AddDays(-1).ToString(BaseConnector.DateFormat));
+
+                //save changes
+                SaveDocumentAsync();
+
+                return true;
+            }
+            //elseway - try create
+            catch
+            {
+                try
+                {
+                    //create file
+                    SmartTileFie = new XDocument();
+                    SmartTileFie = new XDocument(new XElement("root", SmartTileFie.Root));
+
+                    using (XmlWriter writer = SmartTileFie.Root.CreateWriter())
+                    {
+                        writer.WriteStartAttribute("firstElement");
+                        writer.WriteString("0");
+                        writer.WriteEndAttribute();
+                        writer.WriteStartAttribute("refreshmentDate");
+                        writer.WriteString(DateTime.Now.Date.AddDays(-1).ToString(BaseConnector.DateFormat));
+                        writer.WriteEndAttribute();
+                        writer.WriteStartAttribute("daysAmount");
+                        writer.WriteString(snooze);
+                        writer.WriteEndAttribute();
+                    }
+
+                    //save changes
+                    SaveSmartTileFile(SmartTileFie);
+
+                    return true;
+                }
+                catch
+                {
+                    SmartTileFie = null;
+                    return false;
+                }
+            }
         }
     }
 }

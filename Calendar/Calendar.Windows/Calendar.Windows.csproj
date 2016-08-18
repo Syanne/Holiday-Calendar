@@ -180,32 +180,32 @@
       <HintPath>..\..\packages\Facebook.7.0.6\lib\win8\Facebook.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.1.14.1\lib\win81\Google.Apis.dll</HintPath>
+    <Reference Include="Google.Apis, Version=1.15.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.1.15.0\lib\win81\Google.Apis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Auth, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Auth.1.14.1\lib\win81\Google.Apis.Auth.dll</HintPath>
+    <Reference Include="Google.Apis.Auth, Version=1.15.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Auth.1.15.0\lib\win81\Google.Apis.Auth.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Auth.1.14.1\lib\win81\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.15.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Auth.1.15.0\lib\win81\Google.Apis.Auth.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Calendar.v3, Version=1.14.1.563, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Calendar.v3.1.14.1.563\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Calendar.v3.dll</HintPath>
+    <Reference Include="Google.Apis.Calendar.v3, Version=1.15.0.592, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Calendar.v3.1.15.0.592\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Calendar.v3.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Core, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Core.1.14.1\lib\portable-net45+sl50+netcore45+wpa81+wp8\Google.Apis.Core.dll</HintPath>
+    <Reference Include="Google.Apis.Core, Version=1.15.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Core.1.15.0\lib\portable-net45+sl50+netcore45+wpa81+wp8\Google.Apis.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.Oauth2.v2, Version=1.14.1.540, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.Oauth2.v2.1.14.1.540\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Oauth2.v2.dll</HintPath>
+    <Reference Include="Google.Apis.Oauth2.v2, Version=1.15.0.581, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.Oauth2.v2.1.15.0.581\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Oauth2.v2.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Google.Apis.PlatformServices, Version=1.14.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Apis.1.14.1\lib\win81\Google.Apis.PlatformServices.dll</HintPath>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.15.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Apis.1.15.0\lib\win81\Google.Apis.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
