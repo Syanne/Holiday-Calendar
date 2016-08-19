@@ -25,6 +25,14 @@ namespace Calendar.Services
         /// </summary>
         public const string SOCIAL_NETWORK = "socialnetworkplus";
 
+        public LicenseInformation License { get; private set; }
+
+
+        public PurchasingService()
+        {
+            License = CurrentApp.LicenseInformation;
+        }
+
         /// <summary>
         /// Offer user to purchase the app
         /// </summary>
@@ -49,7 +57,7 @@ namespace Calendar.Services
             {
                 try
                 {
-                    await CurrentApp.RequestProductPurchaseAsync("allstuff1");
+                    await CurrentApp.RequestProductPurchaseAsync(packageName);
                 }
                 catch (Exception ex)
                 {

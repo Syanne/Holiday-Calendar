@@ -25,6 +25,10 @@
                     <SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="White" />
                     <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush" Color="Transparent" />
                     <SolidColorBrush x:Key="ButtonPressedForegroundThemeBrush" Color="Transparent" />
+
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainBackgroundThemeBrush" Color="LightGray" />
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainPointerOverBackgroundThemeBrush" Color="DarkGray" />
+                    <SolidColorBrush x:Key="ToggleSwitchCurtainPressedBackgroundThemeBrush" Color="#303030" />
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>

@@ -247,12 +247,7 @@
     <value>language</value>
   </data>
   <data name="buy.Content" xml:space="preserve">
-    <value>i want it!</value>
-  </data>
-  <data name="buyMeText.Text" xml:space="preserve">
-    <value>- enable toast notifications;
-- color themes;
-- turn off adverts.</value>
+    <value>purchase</value>
   </data>
   <data name="shopBtn.Content" xml:space="preserve">
     <value>buy</value>
@@ -271,9 +266,6 @@
   </data>
   <data name="toastHeader.Text" xml:space="preserve">
     <value>toast</value>
-  </data>
-  <data name="buyMeTitle.Text" xml:space="preserve">
-    <value>in-app purchase allows you to</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
     <value>sorry, you have to purchase the application</value>
@@ -313,14 +305,6 @@
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
     <value>Strings/Themes.xml</value>
-  </data>
-  <data name="BuyMeTextMP" xml:space="preserve">
-    <value>- toast notifications;
-- color themes;
-- turn off adverts.</value>
-  </data>
-  <data name="BuyMeTitleMP" xml:space="preserve">
-    <value>in-app purchase allows you to</value>
   </data>
   <data name="GoToDateBtn.Content" xml:space="preserve">
     <value>go to</value>
@@ -411,5 +395,31 @@ Syanne.</value>
   </data>
   <data name="smartTileText.Text" xml:space="preserve">
     <value>smart tile shows more events in set amount of days</value>
+  </data>
+  <data name="buyBgTitle.Text" xml:space="preserve">
+    <value>notifications</value>
+  </data>
+  <data name="buyMeText.Text" xml:space="preserve">
+    <value>for $2 you will receive:
+- 10 color themes;
+- no ads;
+- all services from package "notifications"</value>
+  </data>
+  <data name="BuyMeTextMP" xml:space="preserve">
+    <value>for $2 you will receive:
+- 10 color themes;
+- no ads;
+- all services from package "notifications"</value>
+  </data>
+  <data name="buyMeTitle.Text" xml:space="preserve">
+    <value>full package</value>
+  </data>
+  <data name="BuyMeTitleMP" xml:space="preserve">
+    <value>full package</value>
+  </data>
+  <data name="buyBgText.Text" xml:space="preserve">
+    <value>this package, which will cost you just $1, includes:
+- toast notifications
+- SmartTile</value>
   </data>
 </root>

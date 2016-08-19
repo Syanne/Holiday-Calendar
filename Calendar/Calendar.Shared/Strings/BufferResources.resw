@@ -117,13 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="daysAmountText.Text" xml:space="preserve">
-    <value>days</value>
+  <data name="buyBgText" xml:space="preserve">
+    <value>This package, which will cost you just $1, includes:
+- Toast Notifications
+- SmartTile</value>
   </data>
-  <data name="smartTileHeaderText.Text" xml:space="preserve">
-    <value>smart tile</value>
+  <data name="buyBgTitle.Text" xml:space="preserve">
+    <value> package "notifications"</value>
   </data>
-  <data name="smartTileText.Text" xml:space="preserve">
-    <value>smart tile shows more events in set amount of days</value>
+  <data name="buyMeText.Text" xml:space="preserve">
+    <value>for $2 you will receive:
+- 10 color themes;
+- no ads;
+- all services from package "notifications"</value>
+  </data>
+  <data name="BuyMeTextMP" xml:space="preserve">
+    <value>for $2 you will receive:
+- 10 color themes;
+- no ads;
+- all services from package "notifications"</value>
+  </data>
+  <data name="buyMeTitle.Text" xml:space="preserve">
+    <value> package "all services"</value>
+  </data>
+  <data name="BuyMeTitleMP" xml:space="preserve">
+    <value>package "all services"</value>
   </data>
 </root>

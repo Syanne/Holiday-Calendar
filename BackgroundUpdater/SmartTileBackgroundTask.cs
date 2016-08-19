@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Windows.ApplicationModel.Background;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
 namespace BackgroundUpdater
 {
-    class SmartTileBackgroundTask : IBackgroundTask
+    public sealed class SmartTileBackgroundTask : IBackgroundTask
     {
         static DataBakgroundManager _manager;
         public void Run(IBackgroundTaskInstance taskInstance)

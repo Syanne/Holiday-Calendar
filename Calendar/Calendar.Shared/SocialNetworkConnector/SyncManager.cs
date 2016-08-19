@@ -66,26 +66,33 @@ namespace Calendar.SocialNetworkConnector
         /// </summary>
         public async void StartSync(int start)
         {
-            if (OnSyncServiceNumber == -1)
+            try
             {
-                OnSyncServiceNumber = start;
-
-                //set connector
-                BaseConnector connector = null;
-                switch (Services[OnSyncServiceNumber].ServerName)
+                if (OnSyncServiceNumber == -1)
                 {
-                    case "google":
-                        connector = new GoogleCalendarConnector(Services[OnSyncServiceNumber].DateStart,
-                                                                Services[OnSyncServiceNumber].Period);
-                        break;
-                    case "facebook": /*connector = new FacebookConnector(Services[OnSyncServiceNumber].Period);*/ break;
-                    case "outlook": break;
-                    case "vk": break;
-                    default: break;
-                }
+                    OnSyncServiceNumber = start;
 
-                //do sync
-                await connector.GetHolidayList();
+                    //set connector
+                    BaseConnector connector = null;
+                    switch (Services[OnSyncServiceNumber].ServerName)
+                    {
+                        case "google":
+                            connector = new GoogleCalendarConnector(Services[OnSyncServiceNumber].DateStart,
+                                                                    Services[OnSyncServiceNumber].Period);
+                            break;
+                        case "facebook": /*connector = new FacebookConnector(Services[OnSyncServiceNumber].Period);*/ break;
+                        case "outlook": break;
+                        case "vk": break;
+                        default: break;
+                    }
+
+                    //do sync
+                    await connector.GetHolidayList();
+                }
+            }
+            catch 
+            {
+
             }
         }
 

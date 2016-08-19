@@ -252,11 +252,6 @@
   <data name="buy.Content" xml:space="preserve">
     <value>получить все!</value>
   </data>
-  <data name="buyMeText.Text" xml:space="preserve">
-    <value>- включить всплывающие уведомления;
-- изменить цветовое оформление;
-- отключить рекламу.</value>
-  </data>
   <data name="shopBtn.Content" xml:space="preserve">
     <value>купить</value>
   </data>
@@ -274,9 +269,6 @@
   </data>
   <data name="toastHeader.Text" xml:space="preserve">
     <value>напоминание</value>
-  </data>
-  <data name="buyMeTitle.Text" xml:space="preserve">
-    <value>приобретя это приложение вы сможете:</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
     <value>к сожалению, вы не можете воспользоваться этой функций. приобретите пакет дополнительных возможностей.</value>
@@ -316,14 +308,6 @@
   </data>
   <data name="LocalThemesPath" xml:space="preserve">
     <value>Strings/Themes.xml</value>
-  </data>
-  <data name="BuyMeTextMP" xml:space="preserve">
-    <value>- включить всплывающие уведомления;
-- изменить цветовое оформление;
-- отключить рекламу.</value>
-  </data>
-  <data name="BuyMeTitleMP" xml:space="preserve">
-    <value>приобретя это приложение вы сможете:</value>
   </data>
   <data name="GoToDateBtn.Content" xml:space="preserve">
     <value>перейти</value>
@@ -414,5 +398,34 @@ Syanne.</value>
   </data>
   <data name="smartTileText.Text" xml:space="preserve">
     <value>улучшенная живая плитка обновляется чаще, и показывает все праздники на указанное количество дней.</value>
+  </data>
+  <data name="buyBgText.Text" xml:space="preserve">
+    <value>этот пакет обойдется вам всего в $1, и в него входят:
+- служба напоминаний
+- умная плитка</value>
+  </data>
+  <data name="buyBgTitle.Text" xml:space="preserve">
+    <value>пакет "уведомления"</value>
+  </data>
+  <data name="buyMeText.Text" xml:space="preserve">
+    <value>этот пакет за $2 предоставляет:
+- 10 вариантов оформления календаря;
+- свободу от рекламы;
+- все услуги пакета "уведомления"</value>
+  </data>
+  <data name="BuyMeTextMP" xml:space="preserve">
+    <value>этот пакет за $2 предоставляет:
+- 10 вариантов оформления календаря;
+- свободу от рекламы;
+- все услуги пакета "уведомления"</value>
+  </data>
+  <data name="buyMeTitle.Text" xml:space="preserve">
+    <value>пакет "все услуги"</value>
+  </data>
+  <data name="BuyMeTitleMP" xml:space="preserve">
+    <value>пакет "все услуги"</value>
+  </data>
+  <data name="settingsPanelTitle.Title" xml:space="preserve">
+    <value>настройки</value>
   </data>
 </root>

@@ -82,18 +82,7 @@ namespace Calendar.Services
                 MyMessage(e.Message);
             }
         }
-
-        private static async void SaveSmartTileFile(XDocument document)
-        {
-            try
-            {
-                StorageFile sampleFile = await ApplicationData.Current.LocalFolder.
-                     CreateFileAsync("SmartTileFile.xml", CreationCollisionOption.OpenIfExists);
-                await FileIO.WriteTextAsync(sampleFile, document.ToString());
-            }
-            catch { }
-        }
-
+        
         /// <summary>
         /// change the list of holidays
         /// </summary>
@@ -234,7 +223,7 @@ namespace Calendar.Services
             });
         }
 
-
+        #region Social network services
         /// <summary>
         /// Save holidays from service 
         /// </summary>
@@ -338,9 +327,7 @@ namespace Calendar.Services
             dial.Commands.Add(new UICommand("OK"));
             var command = await dial.ShowAsync();
         }
-
-        #region Social network services
-
+        
         /// <summary>
         /// Find all active services and enable it
         /// </summary>
@@ -378,6 +365,7 @@ namespace Calendar.Services
 
         #endregion
 
+        #region SmartTile
         public static bool SmartTileFile(string snooze)
         {
             XDocument SmartTileFie = new XDocument();
@@ -391,9 +379,11 @@ namespace Calendar.Services
                 SmartTileFie = XDocument.Parse(text);
 
                 SmartTileFie.Root.Attribute("refreshmentDate").SetValue(DateTime.Now.Date.AddDays(-1).ToString(BaseConnector.DateFormat));
+                SmartTileFie.Root.Attribute("daysAmount").SetValue(snooze);
 
                 //save changes
-                SaveDocumentAsync();
+                //save changes
+                SaveSmartTileFile(SmartTileFie);
 
                 return true;
             }
@@ -405,6 +395,7 @@ namespace Calendar.Services
                     //create file
                     SmartTileFie = new XDocument();
                     SmartTileFie = new XDocument(new XElement("root", SmartTileFie.Root));
+                    SmartTileFie.Root.Value = "";
 
                     using (XmlWriter writer = SmartTileFie.Root.CreateWriter())
                     {
@@ -431,5 +422,18 @@ namespace Calendar.Services
                 }
             }
         }
+        
+        private static async void SaveSmartTileFile(XDocument document)
+        {
+            if(document != null)
+            try
+            {
+                StorageFile sampleFile = await ApplicationData.Current.LocalFolder.
+                     CreateFileAsync("SmartTileFile.xml", CreationCollisionOption.OpenIfExists);
+                await FileIO.WriteTextAsync(sampleFile, document.ToString());
+            }
+            catch { }
+        }
+        #endregion
     }
 }

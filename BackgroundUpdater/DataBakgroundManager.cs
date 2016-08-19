@@ -54,48 +54,55 @@ namespace BackgroundUpdater
             var array = SmartTileFile.Root.Attribute("refreshmentDate").Value.Split(DateSeparator);
             refreshmentDate = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
             daysAmount = int.Parse(SmartTileFile.Root.Attribute("daysAmount").Value);
-            
+
+            bool toLoad = (refreshmentDate.Day == DateTime.Now.Day && refreshmentDate.Month == DateTime.Now.Month && refreshmentDate.Year == DateTime.Now.Year) 
+                            ? false : true;
+
             //-------------------------
             //set collection, if it isn't in file
-            if(refreshmentDate.CompareTo(DateTime.Now) != 0)
+            if (toLoad)
             {
                 //set variables
                 refreshmentDate = DateTime.Now;
                 endDate = refreshmentDate.AddDays(daysAmount);
                 firstElement = 0;
 
-                SmartTileFile.Root.RemoveAll();
-
-                //take all events in range
-                for(int i = 0; i < daysAmount; i++)
-                {
-                    var currentDate = refreshmentDate.AddDays(i);
-                    var list = this.LoadXml(currentDate.Year, currentDate.Month, currentDate.Day);
-                    events.AddRange(list);
-                }
-
+                SmartTileFile.Root.Descendants().Remove();
+                
                 //take personal
                 var persList = this.PersonalAndServices(refreshmentDate.Month, refreshmentDate.Year);
+                var resList = this.LoadXml(refreshmentDate.Year, refreshmentDate.Month, refreshmentDate.Day);
+
 
                 if (endDate.Month == refreshmentDate.Month)
+                {
                     persList = persList.Where(x => x.Day >= refreshmentDate.Day && x.Day < endDate.Day).ToList();
+                    resList = resList.Where(x => x.Day >= refreshmentDate.Day && x.Day < endDate.Day).ToList();
+                }
                 else
                 {
                     //from first month
                     persList = persList.Where(x => x.Day >= refreshmentDate.Day).ToList();
 
                     //from second month
-                    var nextList = this.PersonalAndServices(endDate.Month, endDate.Year);
-                    persList.AddRange(nextList.Where(x => x.Day < endDate.Day).ToList());
+                    var temp = this.PersonalAndServices(endDate.Month, endDate.Year);
+                    persList.AddRange(temp.Where(x => x.Day < endDate.Day).ToList());
+                    
+                    //take all events in range
+                    temp = this.LoadXml(refreshmentDate.Year, refreshmentDate.Month, 1);
+                    resList.AddRange(temp.Where(x => x.Day < endDate.Day));
                 }
 
-                //Sort
-                this.SortCollection(ref events);
+                events.AddRange(persList);
+                events.AddRange(resList);
 
-                //complite file
-                using (XmlWriter writer = SmartTileFile.Root.CreateWriter())
+                //Sort
+                events = events.OrderBy(x => x.Year).OrderBy(x => x.Month).OrderBy(x => x.Day).ToList();
+
+                foreach (var ev in events)
                 {
-                    foreach (var ev in events)
+                    //complite file
+                    using (XmlWriter writer = SmartTileFile.Root.CreateWriter())
                     {
                         writer.WriteStartElement("event");
 
@@ -110,6 +117,7 @@ namespace BackgroundUpdater
                         writer.WriteEndAttribute();
                         writer.WriteStartAttribute("year");
                         writer.WriteString(ev.Year.ToString());
+
                         writer.WriteEndAttribute();
                     }
                 }
@@ -140,7 +148,7 @@ namespace BackgroundUpdater
             lastElement = firstElement + 4;
 
 
-            if(events.Count > 5 && lastElement >= events.Count)
+            if (events.Count > 5 && lastElement >= events.Count)
             {
                 int difference = lastElement - firstElement;
                 int toSkip = firstElement - difference;
@@ -150,12 +158,13 @@ namespace BackgroundUpdater
 
                 firstElement = difference;
             }
-            else if(lastElement <= events.Count)
+            else if (lastElement < events.Count)
             {
                 events = events.Skip(firstElement).Take(5).ToList();
 
                 firstElement = lastElement;
             }
+            else firstElement = 0;
 
 
             //set attributes
@@ -352,22 +361,21 @@ namespace BackgroundUpdater
                 if (Services != null)
                 {
                     //check sync date
-                    if (Services != null)
-                        if (Services.Contains("google"))
-                        {
-                            var period = int.Parse(PersonalData.Root.Element("google").Attribute("period").Value);
-                            var array = PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(DateSeparator);
-                            var date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+                    if (Services.Contains("google"))
+                    {
+                        var period = int.Parse(PersonalData.Root.Element("google").Attribute("period").Value);
+                        var array = PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(DateSeparator);
+                        var date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
-                            if (date.Day <= DateTime.Now.Day && date.Month <= DateTime.Now.Month && date.Year <= DateTime.Now.Year)
-                                collection.Add(new Event
-                                {
-                                    Day = DateTime.Now.Day,
-                                    Month = DateTime.Now.Month,
-                                    Value = "google calendar",
-                                    Year = _year
-                                });
-                        }
+                        if (date.Day <= DateTime.Now.Day && date.Month <= DateTime.Now.Month && date.Year <= DateTime.Now.Year)
+                            collection.Add(new Event
+                            {
+                                Day = DateTime.Now.Day,
+                                Month = DateTime.Now.Month,
+                                Value = "google calendar",
+                                Year = _year
+                            });
+                    }
                     foreach (var service in Services)
                     {
                         var servCollection = PersonalData.Root.Element(service).Descendants();
@@ -400,11 +408,6 @@ namespace BackgroundUpdater
         public int GetToastSnooze()
         {
             return Convert.ToInt32(PersonalData.Root.Attribute("toast").Value);
-        }
-
-        public void SortCollection(ref List<Event> collection)
-        {
-
         }
     }
 

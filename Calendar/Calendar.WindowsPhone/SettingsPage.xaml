@@ -6,17 +6,18 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    Background="White"
     Foreground="#FF303030"
-    FontFamily="Minion Pro"  
-    >
+    FontFamily="Minion Pro">
 
     <Page.Resources>
-        <!-- Default style for Windows.UI.Xaml.Controls.ToggleSwitch -->
-        <Style TargetType="ToggleSwitch" x:Key="SettingsToggle">
+        <Style TargetType="ToggleSwitch">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="RequestedTheme" Value="Light"/>
             <Setter Property="Foreground" Value="{ThemeResource ToggleSwitchForegroundThemeBrush}" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
             <Setter Property="FontWeight" Value="SemiBold" />
             <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />
@@ -25,8 +26,8 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleSwitch">
                         <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}">
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal" />
@@ -322,199 +323,142 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style TargetType="TextBlock" x:Key="HeaderTextBlockStyleWP">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="TextWrapping" Value="WrapWholeWords"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="0, 15, 0, 0"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="DescriptionTextBlockStyleWP">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextWrapping" Value="WrapWholeWords"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="Height" Value="auto"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="Grid" x:Key="GridItemPanelStyle">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0, 5, 0, 0"/>
+        </Style>
+        <Style TargetType="StackPanel" x:Key="StackItemPanelStyle">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="Margin" Value="0, 5, 0, 0"/>
+            <Setter Property="Orientation" Value="Vertical"/>
+        </Style>
+        <Style TargetType="Border">
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FFF3F3F3"/>
+        </Style>
     </Page.Resources>
 
-    <ScrollViewer 
-        Background="#FFF3F3F3"
-        ScrollViewer.VerticalScrollBarVisibility="Visible" 
-        VerticalScrollMode="Enabled">
-        <StackPanel VerticalAlignment="Stretch"
-                    Margin="0, 10"
-                HorizontalAlignment="Stretch">
+    <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible" 
+                  VerticalScrollMode="Enabled"
+                  Margin="10, 0, 0, 0">
+        <StackPanel VerticalAlignment="Stretch" Style="{StaticResource StackItemPanelStyle}">
             <TextBlock x:Uid="settingsTopWP"
                        Width="auto"
+                       FontWeight="SemiBold"
                        HorizontalAlignment="Center"
                        TextAlignment="Center"
                        FontSize="26"
-                       Margin="10"
-                       />
-            <StackPanel RequestedTheme="Light" 
-                    Margin="5,10,5,0">
-                
-                <StackPanel Margin="5"
-                            HorizontalAlignment="Stretch" 
-                            VerticalAlignment="Stretch">
-                    <!-- Заголовок раздела 4 -->
-                    <TextBlock x:Uid="buyMeTitle" 
-                           FontSize="22"
-                           TextWrapping="Wrap"
-                           Height="auto"
-                           HorizontalAlignment="Stretch"
-                           />
-                    <TextBlock x:Uid="buyMeText" 
-                           FontSize="20"
-                           Margin="2,10" />
-                    <!-- Основная часть раздела 4 -->
+                       Margin="5"/>
 
-                    <Button x:Uid="shopBtn" x:Name="buy" 
-                    Margin="5,10" 
-                    FontSize="18"
-                    Width="100" Height="40" 
-                    HorizontalAlignment="Center" 
-                    HorizontalContentAlignment="Center"
-                    RequestedTheme="Light"
-                    BorderBrush="#ff303030"
-                    Background="Transparent" 
-                    Click="Button_Click"/>
-                </StackPanel>
-
-                <Grid Name="TileGrid"
-                        HorizontalAlignment="Stretch" 
-                        VerticalAlignment="Stretch"
-                        Margin="0, 5">
-
-                    <!-- Заголовок раздела 2 -->
-                    <TextBox x:Uid="tileHeader" 
-                           Background="Transparent"
-                           BorderThickness="0"
-                           Height="auto" MinWidth="150"
-                           TextAlignment="Left"
-                           FontSize="22"
-                           Margin="5"
-                           IsReadOnly="True"
-                           ManipulationMode="None"
-                           SelectionHighlightColor="#FF828282"                          
-                           HorizontalAlignment="Stretch" 
-                           HorizontalContentAlignment="Stretch" 
-                           VerticalAlignment="Center" />
-
-                    <!--toggle-->
-                    <ToggleSwitch x:Name="tileToggle" 
-            	            Style="{StaticResource SettingsToggle}" 
-                              Toggled="tileToggle_Toggled" 
-                              FontSize="12" 
-                              Height="auto"
-                              MinWidth="180"
-                              Margin="5,0,5,5"
-                              BorderBrush="#ff303030"
-                              Background="Transparent" 
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Right"/>
-
+            <!--.................................-->
+            <!--............all stuff............-->
+            <!--.................................-->
+            <StackPanel Name="allStuffStack" Style="{StaticResource StackItemPanelStyle}">
+                <Grid Style="{StaticResource GridItemPanelStyle}">
+                    <TextBlock x:Uid="buyMeTitle" Style="{StaticResource HeaderTextBlockStyleWP}" />
+                    <ToggleSwitch x:Name="allBuy" Toggled="allBuy_Toggled" />
                 </Grid>
-                
-                <StackPanel Name="smartTileStack"
-                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                    Margin="0,20"
-                    Orientation="Vertical">
-                    <!-- Заголовок раздела 3 -->
-                    <TextBlock x:Uid="smartTileHeaderText" 
-                           Style="{StaticResource TitleTextBlockStyle}" 
-                           FontSize="26" 
-                           FontFamily="Minion Pro" 
-                           Margin="0, 0, 0, 10" 
-                           Height="auto" Width="300"
-                           HorizontalAlignment="Left"
-                           />
-                    <!-- Основная часть раздела 3 -->
-                    <TextBlock x:Uid="smartTileText" 
-                           Margin="0,10,0,30" 
-                           TextWrapping="Wrap" 
-                           LineHeight="25"
-                           FontSize="22" 
-                           HorizontalAlignment="Left"
-                           MaxWidth="500"
-                           FontFamily="Minion Pro"/>
-                    <!--toggle-->
-                    <TextBlock x:Uid="daysAmountText" 
-                           TextWrapping="Wrap" 
-                           FontSize="22" 
-                           VerticalAlignment="Top" 
-                           Height="30" Width="150" 
-                           Margin="10,0"
-                           FontFamily="Minion Pro"
-                           HorizontalAlignment="Left"/>
-                    <Grid>
-                        <ComboBox x:Name="comboAmount" 
-                                  Height="30" Width="150" 
-                                  Margin="10,0" 
-                                  IsHoldingEnabled="False" 
-                                  ManipulationMode="None" 
-                                  VerticalAlignment="Stretch" 
-                                  HorizontalAlignment="Left">
-                            <ComboBoxItem Content="2" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
-                            <ComboBoxItem Content="3" Width="auto" HorizontalAlignment="Stretch"/>
-                            <ComboBoxItem Content="4" Width="auto" HorizontalAlignment="Stretch"/>
-                            <ComboBoxItem Content="5" Width="auto" HorizontalAlignment="Stretch"/>
-                        </ComboBox>
-                        <ToggleSwitch x:Name="smartTileToggle"
-                          Style="{StaticResource SettingsToggle}" 
-                              FontSize="12" 
-                              Height="auto"
-                              MinWidth="180"
-                              Margin="5,0"
-                              BorderBrush="#ff303030"
-                              Background="Transparent" 
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Right"
-                          Toggled="smartTileToggle_Toggled" 
-                          RequestedTheme="Light"/>
-                    </Grid>
-                </StackPanel>
-                
-                <Grid Name="ToastGrid"
-                          Margin="0,10">
-                        <TextBox x:Uid="toastHeader" 
-                        Background="Transparent"
-                        Foreground="#ff303030"
-                         TextAlignment="Left"
-                         FontSize="22" Margin="5,10,5,0"
-                         BorderThickness="0"
-                         IsReadOnly="True" />
+                <TextBlock x:Uid="buyMeText" Style="{StaticResource DescriptionTextBlockStyleWP}"/>
+            </StackPanel>
 
-                        <ToggleSwitch x:Name="toastToggle"
-            	Style="{StaticResource SettingsToggle}" 
-                              FontSize="12" 
-                              Height="auto"
-                              MinWidth="180"
-                              Margin="5,0"
-                              BorderBrush="#ff303030"
-                              Background="Transparent" 
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Right"
-                          Toggled="toastToggle_Toggled" 
-                          RequestedTheme="Light"/>
-                    </Grid>
-                <Grid Margin="5, 0, 5, 10" Name="ToastCombosGrid">
-                    <ComboBox x:Name="comboToast" 
-                          Height="auto" Width="150"
-                          Margin="5, 0"                          
-                          IsHoldingEnabled="False" 
-                          ManipulationMode="None" 
-                          VerticalAlignment="Stretch" 
-                          HorizontalAlignment="Left" 
-                          BorderBrush="#ff303030"
-                          Background="Transparent" FontSize="18">
+            <!--.................................-->
+            <!--............bg tasks.............-->
+            <!--.................................-->
+            <StackPanel Style="{StaticResource StackItemPanelStyle}">
+                <Grid Style="{StaticResource GridItemPanelStyle}">
+                    <TextBlock x:Uid="buyBgTitle" Style="{StaticResource HeaderTextBlockStyleWP}" />
+                    <ToggleSwitch x:Name="bgBuy" Toggled="bgBuy_Toggled" />
+                </Grid>
+                <TextBlock x:Uid="buyBgText" Style="{StaticResource DescriptionTextBlockStyleWP}"/>
+            </StackPanel>
 
-                        <ComboBox.Header>
-                            <TextBlock x:Uid="daysText" 
-                           TextWrapping="Wrap" 
-                           FontSize="20" 
-                           Foreground="#ff303030"
-                           VerticalAlignment="Bottom"
-                           Height="40" MinWidth="120" 
-                           Margin="2, 0" Padding="0" 
-                           HorizontalAlignment="Left"/>
-                        </ComboBox.Header>
+            <Grid Name="TileGrid" Style="{StaticResource GridItemPanelStyle}">
+                <TextBlock x:Uid="tileHeader" Style="{StaticResource HeaderTextBlockStyleWP}" />
+                <ToggleSwitch x:Name="tileToggle" Toggled="tileToggle_Toggled" />
+            </Grid>
 
-                        <ComboBoxItem x:Uid="c1" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
-                        <ComboBoxItem x:Uid="c2" Width="auto" HorizontalAlignment="Stretch"/>
-                        <ComboBoxItem x:Uid="c3" Width="auto" HorizontalAlignment="Stretch"/>
-                        <ComboBoxItem x:Uid="c4" Width="auto" HorizontalAlignment="Stretch"/>
-                        <ComboBoxItem x:Uid="c5" Width="auto" HorizontalAlignment="Stretch"/>
+            <StackPanel Name="smartTileStack" Style="{StaticResource StackItemPanelStyle}">
+                <TextBlock x:Uid="smartTileHeaderText" Style="{StaticResource HeaderTextBlockStyleWP}" />
+                <TextBlock x:Uid="smartTileText" Style="{StaticResource DescriptionTextBlockStyleWP}"/>
+                <!--toggle-->
+                <TextBlock x:Uid="daysAmountText" 
+                               Style="{StaticResource DescriptionTextBlockStyleWP}"
+                               VerticalAlignment="Top" 
+                               Height="30" Width="150" 
+                               Margin="10,0"
+                               HorizontalAlignment="Left"/>
+                <Grid>
+                    <ComboBox x:Name="comboAmount" 
+                                MinHeight="30" Width="150" 
+                                Margin="10,5" 
+                                RequestedTheme="Light"
+                                IsHoldingEnabled="False" 
+                                ManipulationMode="None" 
+                                VerticalAlignment="Stretch" 
+                                HorizontalAlignment="Left">
+                        <ComboBoxItem Content="2" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
+                        <ComboBoxItem Content="3" Width="auto" HorizontalAlignment="Stretch"/>
+                        <ComboBoxItem Content="4" Width="auto" HorizontalAlignment="Stretch"/>
+                        <ComboBoxItem Content="5" Width="auto" HorizontalAlignment="Stretch"/>
                     </ComboBox>
-                    <ComboBox x:Name="comboPeriod" 
-                          Height="auto" Width="150" 
+                    <ToggleSwitch x:Name="smartTileToggle"
+                                      Toggled="smartTileToggle_Toggled"/>
+                </Grid>
+            </StackPanel>
+
+            <Grid Name="ToastGrid" Style="{StaticResource GridItemPanelStyle}">
+                <TextBlock x:Uid="toastHeader" Style="{StaticResource HeaderTextBlockStyleWP}" />
+                <ToggleSwitch x:Name="toastToggle" Toggled="toastToggle_Toggled" />
+            </Grid>
+            <Grid Style="{StaticResource GridItemPanelStyle}">
+                <ComboBox x:Name="comboToast" 
+                              Height="auto" Width="150"
+                              Margin="5, 0"
+                              RequestedTheme="Light"                         
+                              IsHoldingEnabled="False" 
+                              ManipulationMode="None" 
+                              VerticalAlignment="Stretch" 
+                              HorizontalAlignment="Left" 
+                              BorderBrush="#ff303030"
+                              Background="Transparent" FontSize="18">
+
+                    <ComboBox.Header>
+                        <TextBlock x:Uid="daysText" 
+                                   TextWrapping="Wrap" 
+                                   FontSize="20" 
+                                   Foreground="#ff303030"
+                                   VerticalAlignment="Bottom"
+                                   Height="40" MinWidth="120" 
+                                   Margin="2, 0" Padding="0" 
+                                   HorizontalAlignment="Left"/>
+                    </ComboBox.Header>
+
+                    <ComboBoxItem x:Uid="c1" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
+                    <ComboBoxItem x:Uid="c2" Width="auto" HorizontalAlignment="Stretch"/>
+                    <ComboBoxItem x:Uid="c3" Width="auto" HorizontalAlignment="Stretch"/>
+                    <ComboBoxItem x:Uid="c4" Width="auto" HorizontalAlignment="Stretch"/>
+                    <ComboBoxItem x:Uid="c5" Width="auto" HorizontalAlignment="Stretch"/>
+                </ComboBox>
+                <ComboBox x:Name="comboPeriod" 
+                          RequestedTheme="Light"
+                          Height="auto" Width="150"
                           FontSize="20"
                           Margin="5, 0"
                           IsHoldingEnabled="False" 
@@ -523,30 +467,30 @@
                           ManipulationMode="None"
                           BorderBrush="#ff303030"
                           Background="Transparent">
-
-                        <ComboBox.Header>
-                            <TextBlock x:Uid="periodText" 
-                           TextWrapping="Wrap" 
-                           FontSize="20" 
-                           Foreground="#ff303030"
-                           VerticalAlignment="Bottom"                           
-                           Height="40" MinWidth="120" 
-                           Margin="0" Padding="0" 
-                           HorizontalAlignment="Left"/>
-                        </ComboBox.Header>
-
-                        <ComboBoxItem Content="4" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
-                        <ComboBoxItem Content="6" Width="auto" HorizontalAlignment="Stretch"/>
-                        <ComboBoxItem Content="8" Width="auto" HorizontalAlignment="Stretch"/>
-                        <ComboBoxItem Content="12" Width="auto" HorizontalAlignment="Stretch"/>
-                    </ComboBox>
-                </Grid>
-                <!--<StackPanel  Name="GoogleStackPanel"
+                    <ComboBox.Header>
+                        <TextBlock x:Uid="periodText" 
+                                   TextWrapping="Wrap" 
+                                   FontSize="20" 
+                                   Foreground="#ff303030"
+                                   VerticalAlignment="Bottom"                           
+                                   Height="40" MinWidth="120" 
+                                   Margin="0" Padding="0" 
+                                   HorizontalAlignment="Left"/>
+                    </ComboBox.Header>
+                    <ComboBoxItem Content="4" Width="auto" HorizontalAlignment="Stretch" IsSelected="True" />
+                    <ComboBoxItem Content="6" Width="auto" HorizontalAlignment="Stretch"/>
+                    <ComboBoxItem Content="8" Width="auto" HorizontalAlignment="Stretch"/>
+                    <ComboBoxItem Content="12" Width="auto" HorizontalAlignment="Stretch"/>
+                </ComboBox>
+            </Grid>
+            <!--<StackPanel  Name="GoogleStackPanel"
                              HorizontalAlignment="Stretch" 
                              VerticalAlignment="Stretch"
                              Margin="5, 10, 5, 0"
                              Orientation="Vertical">
-                    --><!-- Заголовок раздела 3 --><!--
+                    -->
+            <!-- Заголовок раздела 3 -->
+            <!--
                     <TextBlock Text="google calendar"
                            FontSize="22"
                            TextWrapping="Wrap"
@@ -555,13 +499,17 @@
                            FontFamily="Minion Pro" 
                            Margin="0, 0, 0, 10" 
                            />
-                    --><!-- Основная часть раздела 3 --><!--
+                    -->
+            <!-- Основная часть раздела 3 -->
+            <!--
                     <TextBlock x:Uid="googleText" 
                                
                            TextWrapping="WrapWholeWords" 
                            FontSize="20"
                            Margin="2,10" />
-                    --><!--toggle--><!--
+                    -->
+            <!--toggle-->
+            <!--
                     <Grid>
                         <ComboBox x:Name="comboGooglePeriod" Height="auto" Width="150"
                           Margin="5, 0"                          
@@ -598,9 +546,6 @@
                           Toggled="googleToggle_Toggled"/>
                     </Grid>
                 </StackPanel>-->
-
-                
-            </StackPanel>
         </StackPanel>
     </ScrollViewer>
 </Page>

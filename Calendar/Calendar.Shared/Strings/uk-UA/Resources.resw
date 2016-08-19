@@ -255,9 +255,10 @@
     <value>отримати усе!</value>
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
-    <value>- увімкнути повідомлення;
-- змінити оформлення календаря;
-- прибрати рекламні банери.</value>
+    <value>пакет, що коштує тільки $2, надає:
+- 10 варіантів оформлення календаря;
+- свободу від реклами;
+- послуги пакету "нагадування"</value>
   </data>
   <data name="shopBtn.Content" xml:space="preserve">
     <value>придбати</value>
@@ -278,7 +279,7 @@
     <value>нагадування</value>
   </data>
   <data name="buyMeTitle.Text" xml:space="preserve">
-    <value>придбавши цей додаток ви зможете:</value>
+    <value>пакет "усі послуги"</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
     <value>Нажаль, Ви не можете скористуватися цією опцією. Будь ласка, придбайте пакет додаткових можливостей</value>
@@ -320,12 +321,13 @@
     <value>Strings/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
-    <value>- увімкнути повідомлення;
-- змінити оформлення календаря;
-- прибрати рекламні банери.</value>
+    <value>пакет, що коштує тільки $2, надає:
+- 10 варіантів оформлення календаря;
+- свободу від реклами;
+- послуги пакету "нагадування"</value>
   </data>
   <data name="BuyMeTitleMP" xml:space="preserve">
-    <value>придбавши цей додаток ви зможете:</value>
+    <value>пакет "усі послуги"</value>
   </data>
   <data name="GoToDateBtn.Content" xml:space="preserve">
     <value>перейти</value>
@@ -416,5 +418,13 @@ Syanne.</value>
   </data>
   <data name="smartTileText.Text" xml:space="preserve">
     <value>Розумна плитка показуює більше свят, ніж звичайна, на вказану кількість днів. </value>
+  </data>
+  <data name="buyBgText.Text" xml:space="preserve">
+    <value>цей пакет коштуватиме вам всього $1, до нього входять:
+- служба нагадувань
+- "розумна" жива плитка</value>
+  </data>
+  <data name="buyBgTitle.Text" xml:space="preserve">
+    <value>пакет "нагадування"</value>
   </data>
 </root>

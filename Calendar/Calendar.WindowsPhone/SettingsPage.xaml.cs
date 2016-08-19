@@ -25,7 +25,7 @@ namespace Calendar
 
             ssServices = new SharedSettingsServices();
             pService = new PurchasingService();
-
+            
             //enable toggles
             foreach (var task in BackgroundTaskRegistration.AllTasks)
             {
@@ -39,6 +39,25 @@ namespace Calendar
                     ssServices.IsToastSet = true;
                     toastToggle.IsOn = true;
                 }
+                if (task.Value.Name == "SmartTileBackgroundTask")
+                {
+                    ssServices.IsSmartTileSet = true;
+                    smartTileToggle.IsOn = true;
+                    comboAmount.IsEnabled = false;
+                }
+            }
+
+            //shopping toggles
+            if (pService.License.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
+            {
+                allBuy.IsOn = true;
+                allBuy.IsEnabled = false;
+                bgBuy.IsEnabled = false;
+            }
+            else if (pService.License.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
+            {
+                bgBuy.IsOn = true;
+                bgBuy.IsEnabled = false;
             }
         }
 
@@ -69,10 +88,11 @@ namespace Calendar
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
+            smartTileToggle.IsOn = false;
             string name = "TileBackgroundTask";
             string entryPoint = "BackgroundUpdater.TileBackgroundTask";
 
-            ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet);
+            ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet, 15);
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
@@ -86,8 +106,9 @@ namespace Calendar
                 try
                 {
                     //set/unset if purchased
-                    var license = CurrentApp.LicenseInformation;
-                    if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
+                    LicenseInformation license = CurrentApp.LicenseInformation;
+                    if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
+                        license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
                     {
                         //if enabled
                         if (toastToggle.IsOn)
@@ -122,57 +143,49 @@ namespace Calendar
             ssServices.IsToastSet = false;
         }
 
+        #region purchase
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            BuyButtonController();
-        }
-        
-        private void buy_Click(object sender, RoutedEventArgs e)
-        {
-            BuyButtonController();
-        }
-        
-        
-        private async void BuyButtonController()
-        {
-            try
-            {
-                LicenseInformation license = CurrentApp.LicenseInformation;
-                if (!license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
-                {
-                    await CurrentApp.RequestProductPurchaseAsync(PurchasingService.ALL_STUFF);
-                }
-            }
-            catch (Exception ex)
-            {
-                pService.MyMessage(ex.Message);
-            }
+            pService.BuyStuff(PurchasingService.ALL_STUFF);
         }
 
-        #region purchase
-
-        private async void BuyStuff(string packageName)
+        private void buyBg_Click(object sender, RoutedEventArgs e)
         {
-            LicenseInformation license = CurrentApp.LicenseInformation;
-            if (!license.ProductLicenses[packageName].IsActive)
-            {
-                try
-                {
-                    await CurrentApp.RequestProductPurchaseAsync(PurchasingService.ALL_STUFF);
-                }
-                catch (Exception ex)
-                {
-                    pService.MyMessage(ex.Message);
-                }
-            }
+            pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
         }
 
         #endregion
 
         private void smartTileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
-            
+            LicenseInformation license = CurrentApp.LicenseInformation;
+            if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
+                license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
+            {
+                if (!tileToggle.IsOn)
+                {
+                    ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
+
+                    if (smartTileToggle.IsOn)
+                        comboAmount.IsEnabled = false;
+                    else comboAmount.IsEnabled = true;
+                }
+                else smartTileToggle.IsOn = false;
+            }
+            else
+            {
+                smartTileToggle.IsOn = false;
+            }
+        }
+
+        private void allBuy_Toggled(object sender, RoutedEventArgs e)
+        {
+            pService.BuyStuff(PurchasingService.ALL_STUFF);
+        }
+
+        private void bgBuy_Toggled(object sender, RoutedEventArgs e)
+        {
+            pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
         }
     }
 }

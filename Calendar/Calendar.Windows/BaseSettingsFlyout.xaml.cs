@@ -35,7 +35,27 @@ namespace Calendar
                     comboPeriod.IsEnabled = false;
                     comboToast.IsEnabled = false;
                 }
+                if (task.Value.Name == "SmartTileBackgroundTask")
+                {
+                    ssServices.IsSmartTileSet = true;
+                    smartTileToggle.IsOn = true;
+                    comboAmount.IsEnabled = false;
+                }
             }
+
+            //shopping toggles
+            if (pService.License.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
+            {
+                allBuy.IsOn = true;
+                allBuy.IsEnabled = false;
+                bgBuy.IsEnabled = false;
+            }
+            else if (pService.License.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
+            {
+                bgBuy.IsOn = true;
+                bgBuy.IsEnabled = false;
+            }
+
 
             //services
             if (DataManager.Services != null && DataManager.Services.Contains("google"))
@@ -49,10 +69,14 @@ namespace Calendar
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            string name = "TileBackgroundTask";
-            string entryPoint = "BackgroundUpdater.TileBackgroundTask";
+            if (!smartTileToggle.IsOn)
+            {
+                string name = "TileBackgroundTask";
+                string entryPoint = "BackgroundUpdater.TileBackgroundTask";
 
-            ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet);
+                ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet, 15);
+            }
+            else tileToggle.IsOn = false;
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
@@ -64,7 +88,9 @@ namespace Calendar
 
                 try
                 {
-                    if (!CurrentApp.LicenseInformation.ProductLicenses[PurchasingService.ALL_STUFF].IsActive)
+                    LicenseInformation license = CurrentApp.LicenseInformation;
+                    if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
+                        license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
                     {
                         if (toastToggle.IsOn)
                         {
@@ -101,25 +127,10 @@ namespace Calendar
                 ssServices.IsToastSet = false;
             }
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            pService.BuyStuff(PurchasingService.ALL_STUFF);
-        }
-
-        private void buy_Click(object sender, RoutedEventArgs e)
-        {
-            BuyButtonController();
-        }
-        
-        private void BuyButtonController()
-        {
-            pService.BuyStuff(PurchasingService.ALL_STUFF);
-        }
       
         private void SettingsFlyout_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Width = 600;
+            this.Width = 700;
         }
 
         private void googleToggle_Toggled(object sender, RoutedEventArgs e)
@@ -164,7 +175,34 @@ namespace Calendar
 
         private void smartTileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
+            LicenseInformation license = CurrentApp.LicenseInformation;
+            if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
+                license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
+            {
+                if (!tileToggle.IsOn)
+                {
+                    ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
+
+                    if (smartTileToggle.IsOn)
+                        comboAmount.IsEnabled = false;
+                    else comboAmount.IsEnabled = true;
+                }
+                else smartTileToggle.IsOn = false;
+            }
+            else
+            {
+                smartTileToggle.IsOn = false;
+            }
+        }
+        
+        private void allBuy_Toggled(object sender, RoutedEventArgs e)
+        {
+            pService.BuyStuff(PurchasingService.ALL_STUFF);
+        }
+
+        private void bgBuy_Toggled(object sender, RoutedEventArgs e)
+        {
+            pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
         }
     }
 }

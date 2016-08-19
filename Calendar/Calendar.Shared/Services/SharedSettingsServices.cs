@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.Store;
 
 namespace Calendar.Services
 {
@@ -38,15 +39,15 @@ namespace Calendar.Services
             string entryPoint = "BackgroundUpdater.SmartTileBackgroundTask";
 
             DataManager.SmartTileFile(daysAverage);
-            TileEnableController(name, entryPoint, needEnableService, ref IsSmartTileSet);
+            TileEnableController(name, entryPoint, needEnableService, ref IsSmartTileSet, 30);
         }
 
-        public void TileEnableController(string name, string entryPoint, bool needEnableService, ref bool tileIdentifer)
+        public void TileEnableController(string name, string entryPoint, bool needEnableService, ref bool tileIdentifer, uint refreshTime)
         {
             if (!tileIdentifer)
             {
                 if (needEnableService)
-                    BackgroundTaskCreator(name, entryPoint, 15);
+                    BackgroundTaskCreator(name, entryPoint, refreshTime);
                 else
                 {
                     foreach (var task in BackgroundTaskRegistration.AllTasks)
