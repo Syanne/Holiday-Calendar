@@ -422,4 +422,7 @@ Syanne.</value>
 - toast notifications
 - SmartTile</value>
   </data>
+  <data name="settingsPagePurchaseMessage.Text" xml:space="preserve">
+    <value>sorry, you have to purchase the application</value>
+  </data>
 </root>

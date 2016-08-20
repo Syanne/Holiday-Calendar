@@ -422,4 +422,7 @@ Syanne.</value>
   <data name="BuyMeTitleMP" xml:space="preserve">
     <value>full package</value>
   </data>
+  <data name="settingsPagePurchaseMessage.Text" xml:space="preserve">
+    <value>sorry, you have to purchase the application</value>
+  </data>
 </root>

@@ -27,7 +27,9 @@
     </SettingsFlyout.Resources>
     
     <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
-    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+    <StackPanel Name="baseStackPanel" 
+                VerticalAlignment="Stretch" 
+                HorizontalAlignment="Stretch" >
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" 
                             Margin="0, 20"
                             HorizontalAlignment="Stretch" 
@@ -37,7 +39,7 @@
                 <TextBlock x:Uid="buyMeTitle" 
                                FontSize="26" Margin="0" 
                                FontFamily="Minion Pro"/>
-                <ToggleSwitch x:Name="allBuy" 
+                <ToggleSwitch Name="allBuy" 
                               Toggled="allBuy_Toggled"  />
             </Grid>
             <TextBlock x:Uid="buyMeText" 
@@ -53,7 +55,7 @@
                 <TextBlock x:Uid="buyBgTitle" 
                                FontSize="26" Margin="0" 
                                FontFamily="Minion Pro"/>
-                <ToggleSwitch x:Name="bgBuy" 
+                <ToggleSwitch Name="bgBuy" 
                               Toggled="bgBuy_Toggled" />                
             </Grid>
             
@@ -243,6 +245,24 @@
                           Toggled="googleToggle_Toggled" />
             </Grid>
         </StackPanel>
-        
+
+        <FlyoutBase.AttachedFlyout>
+            <Flyout Placement="Right">
+                <Flyout.FlyoutPresenterStyle>
+                    <Style TargetType="FlyoutPresenter">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="Height" Value="auto"/>
+                        <Setter Property="Width" Value="400"/>
+                    </Style>
+                </Flyout.FlyoutPresenterStyle>
+                <TextBlock x:Uid="settingsPagePurchaseMessage"
+                         Height="auto" Width="400"
+                         TextWrapping="WrapWholeWords"
+                         Foreground="#FFb82a31"
+                         IsTapEnabled="False"
+                         FontSize="24"
+                         FontWeight="SemiBold"/>
+            </Flyout>
+        </FlyoutBase.AttachedFlyout>
     </StackPanel>
 </SettingsFlyout>

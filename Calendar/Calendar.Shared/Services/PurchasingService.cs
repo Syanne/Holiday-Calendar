@@ -2,6 +2,7 @@
 using Windows.ApplicationModel.Resources;
 using Windows.ApplicationModel.Store;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 
 namespace Calendar.Services
 {
@@ -25,12 +26,15 @@ namespace Calendar.Services
         /// </summary>
         public const string SOCIAL_NETWORK = "socialnetworkplus";
 
+        public bool? toggle;
+
         public LicenseInformation License { get; private set; }
 
 
         public PurchasingService()
         {
             License = CurrentApp.LicenseInformation;
+            toggle = null;
         }
 
         /// <summary>
@@ -52,18 +56,23 @@ namespace Calendar.Services
 
         public async void BuyStuff(string packageName)
         {
+            toggle = false;
             LicenseInformation license = CurrentApp.LicenseInformation;
             if (!license.ProductLicenses[packageName].IsActive)
             {
                 try
                 {
                     await CurrentApp.RequestProductPurchaseAsync(packageName);
+                    toggle = true;
                 }
                 catch (Exception ex)
                 {
+                    toggle = false;
                     MyMessage(ex.Message);
                 }
+
             }
+            else toggle = true;
         }
 
         public async void MyMessage(string text)

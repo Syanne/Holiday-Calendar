@@ -5,6 +5,7 @@ using Windows.ApplicationModel.Background;
 using Windows.ApplicationModel.Store;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 
 namespace Calendar
 {
@@ -81,7 +82,7 @@ namespace Calendar
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            if (!ssServices.IsToastSet)
+            if (!ssServices.IsToastSet && toastToggle.IsOn)
             {
                 string name = "ToastBackgroundTask";
                 string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
@@ -109,14 +110,19 @@ namespace Calendar
                             foreach (var task in BackgroundTaskRegistration.AllTasks)
                                 if (task.Value.Name == name)
                                     task.Value.Unregister(true);
-
+                            
                             comboPeriod.IsEnabled = true;
                             comboToast.IsEnabled = true;
                         }
                     }
                     else
                     {
-                        pService.OfferPurchase("Unlicensed", null);
+                        //pService.OfferPurchase("Unlicensed", null);
+                        FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
+
+                        toastToggle.IsOn = false;
+                        comboPeriod.IsEnabled = true;
+                        comboToast.IsEnabled = true;
                     }
                 }
                 catch (Exception ex)
@@ -175,34 +181,47 @@ namespace Calendar
 
         private void smartTileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            LicenseInformation license = CurrentApp.LicenseInformation;
-            if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
-                license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
+            try
             {
-                if (!tileToggle.IsOn)
+                LicenseInformation license = CurrentApp.LicenseInformation;
+                if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
+                    license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
                 {
-                    ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
+                    if (!tileToggle.IsOn)
+                    {
+                        ssServices.SmartTileController(smartTileToggle.IsOn, (comboAmount.SelectedItem as ComboBoxItem).Content.ToString());
 
-                    if (smartTileToggle.IsOn)
-                        comboAmount.IsEnabled = false;
-                    else comboAmount.IsEnabled = true;
+                        if (smartTileToggle.IsOn)
+                            comboAmount.IsEnabled = false;
+                        else comboAmount.IsEnabled = true;
+                    }
+                    else smartTileToggle.IsOn = false;
                 }
-                else smartTileToggle.IsOn = false;
+                else
+                {
+                    FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
+                    smartTileToggle.IsOn = false;
+                }
             }
-            else
-            {
-                smartTileToggle.IsOn = false;
-            }
+            catch { }
         }
         
+        #region purchase
         private void allBuy_Toggled(object sender, RoutedEventArgs e)
         {
-            pService.BuyStuff(PurchasingService.ALL_STUFF);
+            if (allBuy.IsOn)
+                pService.BuyStuff(PurchasingService.ALL_STUFF);
+            if (pService.toggle != true)
+                allBuy.IsOn = false;
         }
 
         private void bgBuy_Toggled(object sender, RoutedEventArgs e)
         {
-            pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
+            if (bgBuy.IsOn)
+                pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
+            if (pService.toggle != true)
+                bgBuy.IsOn = false;
         }
+        #endregion
     }
 }

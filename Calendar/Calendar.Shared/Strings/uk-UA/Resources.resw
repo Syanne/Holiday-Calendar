@@ -427,4 +427,7 @@ Syanne.</value>
   <data name="buyBgTitle.Text" xml:space="preserve">
     <value>пакет "нагадування"</value>
   </data>
+  <data name="settingsPagePurchaseMessage.Text" xml:space="preserve">
+    <value>Нажаль, Ви не можете скористуватися цією опцією. Будь ласка, придбайте пакет додаткових можливостей</value>
+  </data>
 </root>

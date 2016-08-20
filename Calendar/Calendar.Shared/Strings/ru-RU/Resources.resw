@@ -271,7 +271,7 @@
     <value>напоминание</value>
   </data>
   <data name="Unlicensed" xml:space="preserve">
-    <value>к сожалению, вы не можете воспользоваться этой функций. приобретите пакет дополнительных возможностей.</value>
+    <value>к сожалению, вы не можете воспользоваться этой функцией. приобретите пакет дополнительных возможностей.</value>
   </data>
   <data name="UnlicensedButton" xml:space="preserve">
     <value>приобрести</value>
@@ -427,5 +427,8 @@ Syanne.</value>
   </data>
   <data name="settingsPanelTitle.Title" xml:space="preserve">
     <value>настройки</value>
+  </data>
+  <data name="settingsPagePurchaseMessage.Text" xml:space="preserve">
+    <value>к сожалению, вы не можете воспользоваться этой функцией. приобретите пакет дополнительных возможностей.</value>
   </data>
 </root>

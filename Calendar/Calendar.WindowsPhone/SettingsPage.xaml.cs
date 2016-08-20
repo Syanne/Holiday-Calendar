@@ -38,6 +38,8 @@ namespace Calendar
                 {
                     ssServices.IsToastSet = true;
                     toastToggle.IsOn = true;
+                    comboPeriod.IsEnabled = false;
+                    comboToast.IsEnabled = false;
                 }
                 if (task.Value.Name == "SmartTileBackgroundTask")
                 {
@@ -88,17 +90,20 @@ namespace Calendar
 
         private void tileToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            smartTileToggle.IsOn = false;
-            string name = "TileBackgroundTask";
-            string entryPoint = "BackgroundUpdater.TileBackgroundTask";
+            if (!smartTileToggle.IsOn)
+            {
+                string name = "TileBackgroundTask";
+                string entryPoint = "BackgroundUpdater.TileBackgroundTask";
 
-            ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet, 15);
+                ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet, 15);
+            }
+            else tileToggle.IsOn = false;
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
         {
             //if toast set - do not unset it until a user call this method
-            if (!ssServices.IsToastSet)
+            if (!ssServices.IsToastSet && toastToggle.IsOn)
             {
                 string name = "ToastBackgroundTask";
                 string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
@@ -129,10 +134,20 @@ namespace Calendar
                                 if (task.Value.Name == name)
                                     task.Value.Unregister(true);
 
+                            toastToggle.IsOn = false;
+                            comboPeriod.IsEnabled = true;
+                            comboToast.IsEnabled = true;
                         }
                     }
                     //elseway - unset
-                    else pService.OfferPurchase("Unlicensed", null);   
+                    else
+                    {
+                        pService.OfferPurchase("Unlicensed", null);
+
+                        toastToggle.IsOn = false;
+                        comboPeriod.IsEnabled = true;
+                        comboToast.IsEnabled = true;
+                    } 
                 }
                 catch (Exception ex)
                 {
@@ -142,19 +157,6 @@ namespace Calendar
 
             ssServices.IsToastSet = false;
         }
-
-        #region purchase
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            pService.BuyStuff(PurchasingService.ALL_STUFF);
-        }
-
-        private void buyBg_Click(object sender, RoutedEventArgs e)
-        {
-            pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
-        }
-
-        #endregion
 
         private void smartTileToggle_Toggled(object sender, RoutedEventArgs e)
         {
@@ -174,18 +176,27 @@ namespace Calendar
             }
             else
             {
+                pService.OfferPurchase("Unlicensed", null);
                 smartTileToggle.IsOn = false;
             }
         }
 
+        #region purchase
         private void allBuy_Toggled(object sender, RoutedEventArgs e)
         {
-            pService.BuyStuff(PurchasingService.ALL_STUFF);
+            if (allBuy.IsOn)
+                pService.BuyStuff(PurchasingService.ALL_STUFF);
+            if (pService.toggle != true)
+                allBuy.IsOn = false;
         }
 
         private void bgBuy_Toggled(object sender, RoutedEventArgs e)
         {
-            pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
+            if (bgBuy.IsOn)
+                pService.BuyStuff(PurchasingService.BACKGROUND_SERVICES);
+            if (pService.toggle != true)
+                bgBuy.IsOn = false;
         }
+        #endregion
     }
 }
