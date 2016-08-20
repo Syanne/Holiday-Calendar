@@ -370,7 +370,9 @@
     <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Visible" 
                   VerticalScrollMode="Enabled"
                   Margin="10, 0, 0, 0">
-        <StackPanel VerticalAlignment="Stretch" Style="{StaticResource StackItemPanelStyle}">
+        <StackPanel Name="baseStackPanel" 
+                    VerticalAlignment="Stretch" 
+                    Style="{StaticResource StackItemPanelStyle}">
             <TextBlock x:Uid="settingsTopWP"
                        Width="auto"
                        FontWeight="SemiBold"
@@ -488,7 +490,26 @@
                     </Grid>
                 </StackPanel>
             </Border>
-   
+
+            <FlyoutBase.AttachedFlyout>
+                <Flyout Placement="Bottom">
+                    <Flyout.FlyoutPresenterStyle>
+                        <Style TargetType="FlyoutPresenter">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="Height" Value="auto"/>
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                        </Style>
+                    </Flyout.FlyoutPresenterStyle>
+                    <TextBlock x:Uid="settingsPagePurchaseMessage"
+                               Height="auto" 
+                               HorizontalAlignment="Stretch"
+                               TextWrapping="WrapWholeWords"
+                               Foreground="#FFb82a31"
+                               IsTapEnabled="False"
+                               FontSize="24"
+                               FontWeight="SemiBold"/>
+                </Flyout>
+            </FlyoutBase.AttachedFlyout>
         </StackPanel>
     </ScrollViewer>
 </Page>

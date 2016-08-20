@@ -5,6 +5,7 @@ using Windows.ApplicationModel.Store;
 using Windows.Phone.UI.Input;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
 
 namespace Calendar
@@ -142,11 +143,10 @@ namespace Calendar
                     //elseway - unset
                     else
                     {
-                        pService.OfferPurchase("Unlicensed", null);
-
                         toastToggle.IsOn = false;
                         comboPeriod.IsEnabled = true;
                         comboToast.IsEnabled = true;
+                        FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
                     } 
                 }
                 catch (Exception ex)
@@ -176,8 +176,8 @@ namespace Calendar
             }
             else
             {
-                pService.OfferPurchase("Unlicensed", null);
                 smartTileToggle.IsOn = false;
+                FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
             }
         }
 

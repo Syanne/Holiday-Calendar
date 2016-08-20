@@ -26,7 +26,6 @@
         </ResourceDictionary>
     </SettingsFlyout.Resources>
     
-    <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel Name="baseStackPanel" 
                 VerticalAlignment="Stretch" 
                 HorizontalAlignment="Stretch" >
