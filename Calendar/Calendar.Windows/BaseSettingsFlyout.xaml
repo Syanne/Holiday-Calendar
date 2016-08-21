@@ -254,13 +254,13 @@
                         <Setter Property="Width" Value="400"/>
                     </Style>
                 </Flyout.FlyoutPresenterStyle>
-                <TextBlock x:Uid="settingsPagePurchaseMessage"
-                         Height="auto" Width="400"
-                         TextWrapping="WrapWholeWords"
-                         Foreground="#FFb82a31"
-                         IsTapEnabled="False"
-                         FontSize="24"
-                         FontWeight="SemiBold"/>
+                <TextBlock Name="flyoutText" 
+                           Height="auto" Width="400"
+                           TextWrapping="WrapWholeWords"
+                           Foreground="#FFb82a31"
+                           IsTapEnabled="False"
+                           FontSize="24"
+                           FontWeight="SemiBold"/>
             </Flyout>
         </FlyoutBase.AttachedFlyout>
     </StackPanel>

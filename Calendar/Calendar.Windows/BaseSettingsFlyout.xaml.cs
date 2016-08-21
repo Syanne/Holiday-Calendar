@@ -6,6 +6,7 @@ using Windows.ApplicationModel.Store;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.ApplicationModel.Resources;
 
 namespace Calendar
 {
@@ -31,7 +32,6 @@ namespace Calendar
                 }
                 if (task.Value.Name == "ToastBackgroundTask")
                 {
-                    ssServices.IsToastSet = true;
                     toastToggle.IsOn = true;
                     comboPeriod.IsEnabled = false;
                     comboToast.IsEnabled = false;
@@ -57,7 +57,6 @@ namespace Calendar
                 bgBuy.IsEnabled = false;
             }
 
-
             //services
             if (DataManager.Services != null && DataManager.Services.Contains("google"))
             {
@@ -77,61 +76,61 @@ namespace Calendar
 
                 ssServices.TileEnableController(name, entryPoint, tileToggle.IsOn, ref ssServices.IsTileSet, 15);
             }
-            else tileToggle.IsOn = false;
+            else
+            {
+                tileToggle.IsOn = false;
+                flyoutText.Text = ResourceLoader.GetForCurrentView("Resources").GetString("disableSmartTile");
+                FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
+            }
         }
 
         private void toastToggle_Toggled(object sender, RoutedEventArgs e)
         {
-            if (!ssServices.IsToastSet && toastToggle.IsOn)
+            string name = "ToastBackgroundTask";
+            string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
+
+            try
             {
-                string name = "ToastBackgroundTask";
-                string entryPoint = "BackgroundUpdater.ToastBackgroundTask";
-
-                try
+                LicenseInformation license = CurrentApp.LicenseInformation;
+                if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
+                    license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
                 {
-                    LicenseInformation license = CurrentApp.LicenseInformation;
-                    if (license.ProductLicenses[PurchasingService.ALL_STUFF].IsActive ||
-                        license.ProductLicenses[PurchasingService.BACKGROUND_SERVICES].IsActive)
+                    if (toastToggle.IsOn)
                     {
-                        if (toastToggle.IsOn)
-                        {
-                            DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
-                            //save changes
-                            DataManager.SaveDocumentAsync();
+                        DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
+                        //save changes
+                        DataManager.SaveDocumentAsync();
 
-                            //set period
-                            uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
-                            ssServices.BackgroundTaskCreator(name, entryPoint, period * 60);
-                            comboPeriod.IsEnabled = false;
-                            comboToast.IsEnabled = false;
-                        }
-                        else
-                        {
-                            foreach (var task in BackgroundTaskRegistration.AllTasks)
-                                if (task.Value.Name == name)
-                                    task.Value.Unregister(true);
-                            
-                            comboPeriod.IsEnabled = true;
-                            comboToast.IsEnabled = true;
-                        }
+                        //set period
+                        uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
+                        ssServices.BackgroundTaskCreator(name, entryPoint, period * 60);
+                        comboPeriod.IsEnabled = false;
+                        comboToast.IsEnabled = false;
                     }
                     else
                     {
-                        //pService.OfferPurchase("Unlicensed", null);
-                        FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
+                        foreach (var task in BackgroundTaskRegistration.AllTasks)
+                            if (task.Value.Name == name)
+                                task.Value.Unregister(true);
 
                         toastToggle.IsOn = false;
                         comboPeriod.IsEnabled = true;
                         comboToast.IsEnabled = true;
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    pService.MyMessage(ex.Message);
-                }
+                    //pService.OfferPurchase("Unlicensed", null);
+                    flyoutText.Text = ResourceLoader.GetForCurrentView("Resources").GetString("Unlicensed");
+                    FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
 
-                ssServices.IsToastSet = false;
+                    toastToggle.IsOn = false;
+                    comboPeriod.IsEnabled = true;
+                    comboToast.IsEnabled = true;
+                }
             }
+            catch { }
+
         }
       
         private void SettingsFlyout_Loaded(object sender, RoutedEventArgs e)
@@ -195,12 +194,18 @@ namespace Calendar
                             comboAmount.IsEnabled = false;
                         else comboAmount.IsEnabled = true;
                     }
-                    else smartTileToggle.IsOn = false;
+                    else
+                    {
+                        smartTileToggle.IsOn = false;
+                        flyoutText.Text = ResourceLoader.GetForCurrentView("Resources").GetString("disableTile");
+                        FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
+                    }
                 }
                 else
                 {
-                    FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
                     smartTileToggle.IsOn = false;
+                    flyoutText.Text = ResourceLoader.GetForCurrentView("Resources").GetString("Unlicensed");
+                    FlyoutBase.ShowAttachedFlyout(baseStackPanel as FrameworkElement);
                 }
             }
             catch { }

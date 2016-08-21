@@ -1,2 +1,5 @@
-MainPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\ARM\Release\Calendar.Windows_1.2.0.68_ARM.appx
-SymbolPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.2.0.68_Test\Calendar.Windows_1.2.0.68_ARM.appxsym
+MainPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\ARM\Release\Calendar.Windows_1.2.0.69_ARM.appx
+SymbolPackage=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\AppPackages\Calendar.Windows_1.2.0.69_Test\Calendar.Windows_1.2.0.69_ARM.appxsym
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\ARM\Release\Calendar.Windows_1.2.0.69_language-en.appx
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\ARM\Release\Calendar.Windows_1.2.0.69_language-ru.appx
+ResourcePack=E:\OneDrive\Programming\Personal\C#\Calendar\Calendar\Calendar.Windows\bin\ARM\Release\Calendar.Windows_1.2.0.69_language-uk.appx

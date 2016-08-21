@@ -255,7 +255,7 @@
     <value>отримати усе!</value>
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
-    <value>пакет, що коштує тільки $2, надає:
+    <value>пакет, що коштує тільки $1.49, надає:
 - 10 варіантів оформлення календаря;
 - свободу від реклами;
 - послуги пакету "нагадування"</value>
@@ -321,7 +321,7 @@
     <value>Strings/Themes.xml</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
-    <value>пакет, що коштує тільки $2, надає:
+    <value>пакет, що коштує тільки $1.49, надає:
 - 10 варіантів оформлення календаря;
 - свободу від реклами;
 - послуги пакету "нагадування"</value>
@@ -429,5 +429,11 @@ Syanne.</value>
   </data>
   <data name="settingsPagePurchaseMessage.Text" xml:space="preserve">
     <value>Нажаль, Ви не можете скористуватися цією опцією. Будь ласка, придбайте пакет додаткових можливостей</value>
+  </data>
+  <data name="disableSmartTile" xml:space="preserve">
+    <value>будь ласка, вимкніть "розумну" плитку, щоб увімкнути цю</value>
+  </data>
+  <data name="disableTile" xml:space="preserve">
+    <value>будь ласка, вимкніть живу плитку, щоб увімкнути цю</value>
   </data>
 </root>

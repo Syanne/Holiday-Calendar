@@ -7,7 +7,6 @@ namespace Calendar.Services
     public partial class SharedSettingsServices
     {
         public bool IsTileSet = false;
-        public bool IsToastSet = false;
         public bool IsGoogleService = false;
         public bool IsSmartTileSet = false;
         

@@ -500,7 +500,7 @@
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
                         </Style>
                     </Flyout.FlyoutPresenterStyle>
-                    <TextBlock x:Uid="settingsPagePurchaseMessage"
+                    <TextBlock Name="flyoutText" 
                                Height="auto" 
                                HorizontalAlignment="Stretch"
                                TextWrapping="WrapWholeWords"

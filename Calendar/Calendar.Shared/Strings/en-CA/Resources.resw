@@ -400,13 +400,13 @@ Syanne.</value>
     <value>notifications</value>
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
-    <value>for $2 you will receive:
+    <value>for $1.49 you will receive:
 - 10 color themes;
 - no ads;
 - all services from package "notifications"</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
-    <value>for $2 you will receive:
+    <value>for $1.49 you will receive:
 - 10 color themes;
 - no ads;
 - all services from package "notifications"</value>
@@ -424,5 +424,11 @@ Syanne.</value>
   </data>
   <data name="settingsPagePurchaseMessage.Text" xml:space="preserve">
     <value>sorry, you have to purchase the application</value>
+  </data>
+  <data name="disableSmartTile" xml:space="preserve">
+    <value>please disable smart tile to enable this one</value>
+  </data>
+  <data name="disableTile" xml:space="preserve">
+    <value>please disable live tile to enable this one</value>
   </data>
 </root>

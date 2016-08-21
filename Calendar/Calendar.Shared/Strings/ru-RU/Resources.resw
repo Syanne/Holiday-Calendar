@@ -408,13 +408,13 @@ Syanne.</value>
     <value>пакет "уведомления"</value>
   </data>
   <data name="buyMeText.Text" xml:space="preserve">
-    <value>этот пакет за $2 предоставляет:
+    <value>этот пакет за $1.49 предоставляет:
 - 10 вариантов оформления календаря;
 - свободу от рекламы;
 - все услуги пакета "уведомления"</value>
   </data>
   <data name="BuyMeTextMP" xml:space="preserve">
-    <value>этот пакет за $2 предоставляет:
+    <value>этот пакет за $1.49 предоставляет:
 - 10 вариантов оформления календаря;
 - свободу от рекламы;
 - все услуги пакета "уведомления"</value>
@@ -430,5 +430,11 @@ Syanne.</value>
   </data>
   <data name="settingsPagePurchaseMessage.Text" xml:space="preserve">
     <value>к сожалению, вы не можете воспользоваться этой функцией. приобретите пакет дополнительных возможностей.</value>
+  </data>
+  <data name="disableSmartTile" xml:space="preserve">
+    <value>пожалуйста, отключите "умную" плитку, чтобы включить эту</value>
+  </data>
+  <data name="disableTile" xml:space="preserve">
+    <value>пожалуйста, отключите живую плитку, чтобы включить эту</value>
   </data>
 </root>
