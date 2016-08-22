@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using Windows.ApplicationModel.Resources;
-using Windows.ApplicationModel.Store;
 using Windows.Storage;
 using Windows.UI.Popups;
 
@@ -29,41 +28,60 @@ namespace Calendar.Services
             return Task.Run(() =>
             {
                 //basic collection
-                Uri uri = new Uri("ms-appx:///Strings/Holidays.xml");
-#if !WINDOWS_PHONE_APP
-                var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                doc = XDocument.Load(holFile.Path);
-#else
-                var holFile = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                var holidaysFile = FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                doc = LoadFile("ms-appx:///Strings/Holidays.xml", null);
 
-                doc = XDocument.Parse(holidaysFile);
-#endif
                 //personal
                 try
                 {
                     var storageFolder = ApplicationData.Current.RoamingFolder;
-                    var file = storageFolder.GetFileAsync("PersData.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                    string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                    PersonalData = LoadFile("PersData.xml", storageFolder);
 
-                    var personalDoc = XDocument.Parse(text);
-
-                    PersonalData = personalDoc;
+                    if (PersonalData == null)
+                        throw new Exception();
                 }
                 //if it's the fist launch - load basic file
                 catch
                 {
-                    var persUri = new Uri("ms-appx:///Strings/PersData.xml");
-                    var persFile = StorageFile.GetFileFromApplicationUriAsync(persUri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                    var persRead = FileIO.ReadTextAsync(persFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                    PersonalData = XDocument.Parse(persRead);
+                    PersonalData = LoadFile("ms-appx:///Strings/PersData.xml", null);
                 }
 
 #if !WINOWS_PHONE_APP
                 EnableService();
 #endif
-
             });
+        }
+
+        /// <summary>
+        /// Loads file from path
+        /// </summary>
+        /// <param name="filepath">path to a file</param>
+        /// <param name="folder">folder or null (to load from application folder)</param>
+        /// <returns></returns>
+        private static XDocument LoadFile(string filepath, StorageFolder folder)
+        {
+            try
+            {
+                StorageFile file;
+
+                //load file
+                if (folder == null)
+                {
+                    var uri = new Uri(filepath);
+                    file = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                }
+                else
+                {
+                    file = folder.GetFileAsync(filepath).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                }
+
+                //parse and return
+                var result = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                return XDocument.Parse(result);
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
