@@ -1,4 +1,5 @@
-﻿using Calendar.Models;
+﻿using Calendar.Data.Models;
+using Calendar.Services;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
@@ -77,7 +78,7 @@ namespace Calendar.SocialNetworkConnector
                     string when = null;
                     try
                     {
-                        when = eventItem.Start.DateTime.Value.Date.ToString(DateFormat);
+                        when = eventItem.Start.DateTime.Value.Date.ToString(LocalDataManager.DateFormat);
                     }
                     catch
                     {
@@ -85,7 +86,7 @@ namespace Calendar.SocialNetworkConnector
                             when = eventItem.Start.Date;                        
                     }
 
-                    var array = when.Split(DateSeparator);
+                    var array = when.Split(LocalDataManager.DateSeparator);
                     ItemBase item = new ItemBase
                     {
                         HolidayName = eventItem.Summary,

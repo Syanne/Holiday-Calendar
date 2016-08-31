@@ -58,7 +58,7 @@ namespace Calendar
             }
 
             //services
-            if (DataManager.Services != null && DataManager.Services.Contains("google"))
+            if (LocalDataManager.Services != null && LocalDataManager.Services.Contains("google"))
             {
                 ssServices.IsGoogleService = true;
                 googleToggle.IsOn = true;
@@ -97,9 +97,7 @@ namespace Calendar
                 {
                     if (toastToggle.IsOn)
                     {
-                        DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
-                        //save changes
-                        DataManager.SaveDocumentAsync();
+                        LocalDataManager.SetToastSnoozeValue((comboToast.SelectedIndex + 1).ToString());
 
                         //set period
                         uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
@@ -145,32 +143,13 @@ namespace Calendar
                 {
                     //set period
                     int period = Convert.ToInt32((comboGooglePeriod.SelectedItem as ComboBoxItem).Content);
-                    DateTime date = DateTime.Now;
-
-                    try
-                    {
-                        //period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
-                        var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(BaseConnector.DateSeparator);
-                        date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-
-                        if (DataManager.PersonalData.Root.Element("google").Attribute("isActive").Value == "false")
-                            DataManager.ChangeServiceState("google", true);
-                    }
-                    catch
-                    {
-                        date = DateTime.Now;
-                    }
-                    finally
-                    {
-                        if (date.Day >= DateTime.Now.Day && date.Month >= DateTime.Now.Month && date.Year >= DateTime.Now.Year)
-                            SyncManager.Manager.AddService("google", DateTime.Now, period);                        
-                    }
+                    LocalDataManager.SetService("google", period);
 
                     comboGooglePeriod.IsEnabled = false;
                 }
                 else
                 {
-                    DataManager.ChangeServiceState("google", false);
+                    LocalDataManager.ChangeServiceState("google", false);
                     googleToggle.IsOn = false;
                     comboGooglePeriod.IsEnabled = true;
                 }

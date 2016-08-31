@@ -95,10 +95,10 @@ namespace Calendar
 
         private void Decade_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            DataManager.calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), DataManager.calBase.SelectedDate.Year);
+            LocalDataManager.calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), LocalDataManager.calBase.SelectedDate.Year);
 
             //Shows month and year in the top of calGrid
-            monthNameButton.Content = DataManager.calBase.SelectedDate.ToString("MMMM yyyy");
+            monthNameButton.Content = LocalDataManager.calBase.SelectedDate.ToString("MMMM yyyy");
 
             calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
             weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -131,17 +131,17 @@ namespace Calendar
 
         private void NoteGridArrowsController(int value)
         {
-            if (ClickedDayPage.Text != DataManager.calBase.SelectedDate.Date.ToString("MMMM"))
+            if (ClickedDayPage.Text != LocalDataManager.calBase.SelectedDate.Date.ToString("MMMM"))
             {
-                int month = DataManager.calBase.SelectedDate.Month;
-                DataManager.calBase.SelectedDate = DataManager.calBase.SelectedDate.AddDays(value);
-                if (month != DataManager.calBase.SelectedDate.Month)
+                int month = LocalDataManager.calBase.SelectedDate.Month;
+                LocalDataManager.calBase.SelectedDate = LocalDataManager.calBase.SelectedDate.AddDays(value);
+                if (month != LocalDataManager.calBase.SelectedDate.Month)
                 {
-                    DataManager.calBase.ReadHolidayXml();
+                    LocalDataManager.calBase.ReadHolidayXml();
 
                     FillCalendar();
                     MarkHolidays();
-                    gviPrev = calGrid.Items.ElementAt(DataManager.calBase.Start + DataManager.calBase.SelectedDate.Day - 1) as GridViewItem;
+                    gviPrev = calGrid.Items.ElementAt(LocalDataManager.calBase.Start + LocalDataManager.calBase.SelectedDate.Day - 1) as GridViewItem;
 
                     gviPrev.BorderBrush = gviPrev.Foreground;
                 }
@@ -152,16 +152,16 @@ namespace Calendar
             {
                 ArrowButtonController(value);
 
-                ClickedDayPage.Text = DataManager.calBase.SelectedDate.Date.ToString("MMMM");
+                ClickedDayPage.Text = LocalDataManager.calBase.SelectedDate.Date.ToString("MMMM");
 
-                noteList.ItemsSource = DataManager.calBase.HolidayItemCollection.
+                noteList.ItemsSource = LocalDataManager.calBase.HolidayItemCollection.
                 Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower() && hi.Day != 0).
                 Select(hi => hi = hi.Copy()).
                 Select(hi =>
                 {
                     //change name = add date
                     hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
-                    hi.Day, DataManager.calBase.SelectedDate.Month, hi.HolidayName);
+                    hi.Day, LocalDataManager.calBase.SelectedDate.Month, hi.HolidayName);
                     return hi;
                 });
 
@@ -172,18 +172,18 @@ namespace Calendar
 
         private void Done_Click(object sender, RoutedEventArgs e)
         {
-            DataManager.calBase.Skip(DatePickerDp.Date.Day, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
+            LocalDataManager.calBase.Skip(DatePickerDp.Date.Day, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
 
             //Shows month and year in the top of calGrid\
-            if (DatePickerDp.Date.Month != DataManager.calBase.SelectedDate.Date.Month &&
-                DatePickerDp.Date.Year != DataManager.calBase.SelectedDate.Date.Year)
+            if (DatePickerDp.Date.Month != LocalDataManager.calBase.SelectedDate.Date.Month &&
+                DatePickerDp.Date.Year != LocalDataManager.calBase.SelectedDate.Date.Year)
             {
                 FillCalendar();
                 MarkHolidays();
             }
             UpdateNoteList();
 
-            GridViewItem gvi = calGrid.Items.ElementAt(DatePickerDp.Date.Day + DataManager.calBase.Start - 1) as GridViewItem;
+            GridViewItem gvi = calGrid.Items.ElementAt(DatePickerDp.Date.Day + LocalDataManager.calBase.Start - 1) as GridViewItem;
             //highlight selected day 
             if (gviPrev != gvi)
             {
@@ -315,7 +315,7 @@ namespace Calendar
         {
             FlyoutBase.ShowAttachedFlyout(HolidayList as FrameworkElement);
 
-            listOfHolidays.ItemsSource = DataManager.calBase.HolidayNameCollection;
+            listOfHolidays.ItemsSource = LocalDataManager.calBase.HolidayNameCollection;
             foreach (CheckBox ic in listOfHolidays.Items.Where(i => i is CheckBox))
             {
                 ic.Style = (Style)this.Resources["CbHolidayStyleWP"];

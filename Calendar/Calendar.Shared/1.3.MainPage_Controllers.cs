@@ -6,10 +6,11 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
-using Calendar.Models;
 using System.Collections.Generic;
 using Windows.Storage;
 using System.Collections.ObjectModel;
+using Calendar.Data.Services;
+using Calendar.Data.Models;
 
 namespace Calendar
 {
@@ -55,14 +56,14 @@ namespace Calendar
                 lviAll = new ListViewItem
                 {
                     Tag = "All",
-                    Content = DataManager.resource.GetString("AllHol"),
+                    Content = DataManager.Resource.GetString("AllHol"),
                     Foreground = new SolidColorBrush(Colors.White),
                 };
 
                 lviPers = new ListViewItem
                 {
                     Tag = "Per",
-                    Content = DataManager.resource.GetString("MineAsTag"),
+                    Content = DataManager.Resource.GetString("MineAsTag"),
                     Foreground = foreg,
                 };
 
@@ -77,7 +78,7 @@ namespace Calendar
             listOfLVI.Add(lviAll);
             listOfLVI.Add(lviPers);
 
-            var subcollection = DataManager.calBase.HolidayNameCollection.Where(el => el.IsChecked == true);
+            var subcollection = LocalDataManager.calBase.HolidayNameCollection.Where(el => el.IsChecked == true);
 
             for(int i = 0; i < subcollection.Count(); i++)
             {
@@ -141,9 +142,9 @@ namespace Calendar
             gviPrev = null;
             if (gvDecades.Visibility != Visibility.Visible)
             {
-                int month = DataManager.calBase.SelectedDate.Month;
-                DataManager.calBase.Skip(value);
-                DataManager.calBase.ReadHolidayXml();
+                int month = LocalDataManager.calBase.SelectedDate.Month;
+                LocalDataManager.calBase.Skip(value);
+                LocalDataManager.calBase.ReadHolidayXml();
 
                 SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
                 SelectedHolidayType = lviAll;
@@ -153,23 +154,23 @@ namespace Calendar
                 MarkHolidays();
 
 
-                int val = DataManager.calBase.SelectedDate.Day * (-1) + 1;
-                DataManager.calBase.SelectedDate = DataManager.calBase.SelectedDate.AddDays(val);
+                int val = LocalDataManager.calBase.SelectedDate.Day * (-1) + 1;
+                LocalDataManager.calBase.SelectedDate = LocalDataManager.calBase.SelectedDate.AddDays(val);
                 UpdateNoteList();
                 
 #if !WINDOWS_PHONE_APP
                 if (SelectedHolidayType != lviAll && SelectedHolidayType != lviPers)
                 {
-                    ClickedDayPage.Text = DataManager.calBase.SelectedDate.Date.ToString("MMMM");
+                    ClickedDayPage.Text = LocalDataManager.calBase.SelectedDate.Date.ToString("MMMM");
 
-                    noteList.ItemsSource = DataManager.calBase.HolidayItemCollection.
+                    noteList.ItemsSource = LocalDataManager.calBase.HolidayItemCollection.
                     Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower()).
                     Select(hi => hi = hi.Copy()).
                     Select(hi =>
                     {
                         //change name = add date
                         hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
-                            hi.Day, DataManager.calBase.SelectedDate.Month, hi.HolidayName);
+                            hi.Day, LocalDataManager.calBase.SelectedDate.Month, hi.HolidayName);
                         hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
                         return hi;
                     });
@@ -191,7 +192,7 @@ namespace Calendar
         {
             if (gvDecades.Visibility == Windows.UI.Xaml.Visibility.Collapsed)
             {
-                monthNameButton.Content = DataManager.calBase.SelectedDate.Year;
+                monthNameButton.Content = LocalDataManager.calBase.SelectedDate.Year;
 
                 if (gvDecades.Items.Count == 0)
                     InitializeDecades();
@@ -205,7 +206,7 @@ namespace Calendar
             }
             else
             {
-                monthNameButton.Content = DataManager.calBase.SelectedDate.ToString("MMMM yyyy");  
+                monthNameButton.Content = LocalDataManager.calBase.SelectedDate.ToString("MMMM yyyy");  
                 calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
 
@@ -226,8 +227,8 @@ namespace Calendar
 #endif
                 if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
                 {
-                    DataManager.calBase.SelectedDate = new DateTime(DataManager.calBase.SelectedDate.Year,
-                                                        DataManager.calBase.SelectedDate.Month,
+                    LocalDataManager.calBase.SelectedDate = new DateTime(LocalDataManager.calBase.SelectedDate.Year,
+                                                        LocalDataManager.calBase.SelectedDate.Month,
                                                         Convert.ToInt32(gvi.Content));
 
                     if (gviPrev == null)
@@ -248,9 +249,9 @@ namespace Calendar
                     DateTime date;
                     //prev. monts
                     if (Convert.ToInt32(gvi.Content) > 20)
-                        date = DataManager.calBase.SelectedDate.AddMonths(-1);
+                        date = LocalDataManager.calBase.SelectedDate.AddMonths(-1);
                     //next month
-                    else date = DataManager.calBase.SelectedDate.AddMonths(1);
+                    else date = LocalDataManager.calBase.SelectedDate.AddMonths(1);
 
                     ChangeDate((int)gvi.Content, date.Month, date.Year);
                 }
@@ -258,14 +259,14 @@ namespace Calendar
 
         private void ChangeDate(int gotoDay, int gotoMonth, int gotoYear)
         {
-            int month = DataManager.calBase.SelectedDate.Month;
-            DataManager.calBase.Skip(gotoDay, gotoMonth, gotoYear);
-            if (month != DataManager.calBase.SelectedDate.Month)
-                DataManager.calBase.ReadHolidayXml();
+            int month = LocalDataManager.calBase.SelectedDate.Month;
+            LocalDataManager.calBase.Skip(gotoDay, gotoMonth, gotoYear);
+            if (month != LocalDataManager.calBase.SelectedDate.Month)
+                LocalDataManager.calBase.ReadHolidayXml();
 
             //Shows month and year in the top of calGrid\
             FillCalendar();
-            gviPrev = calGrid.Items.ElementAt(DataManager.calBase.Start + gotoDay - 1) as GridViewItem;
+            gviPrev = calGrid.Items.ElementAt(LocalDataManager.calBase.Start + gotoDay - 1) as GridViewItem;
             MarkHolidays();
             UpdateNoteList();
             gviPrev.BorderBrush = gviPrev.Foreground;
@@ -276,12 +277,12 @@ namespace Calendar
             int year = Convert.ToInt32(monthNameButton.Content);
             int month = Convert.ToInt32((sender as GridViewItem).Tag);
 
-            if (month != DataManager.calBase.SelectedDate.Month || year != DataManager.calBase.SelectedDate.Year)
+            if (month != LocalDataManager.calBase.SelectedDate.Month || year != LocalDataManager.calBase.SelectedDate.Year)
             {
                 ChangeDate(1, month, year);
 
                 //Shows month and year in the top of calGrid
-                monthNameButton.Content = DataManager.calBase.SelectedDate.ToString("MMMM yyyy");
+                monthNameButton.Content = LocalDataManager.calBase.SelectedDate.ToString("MMMM yyyy");
 
                 calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -306,7 +307,7 @@ namespace Calendar
             {
                 //new note
                 if (((sender as ListViewItem).Content as TextBlock).Text ==
-                                        DataManager.resource.GetString("PersonalNote"))
+                                        DataManager.Resource.GetString("PersonalNote"))
                 {
                     FlyoutBase.ShowAttachedFlyout(noteList as FrameworkElement);
                     addNotetb.Text = "";
@@ -315,7 +316,7 @@ namespace Calendar
                     onceCb.IsChecked = true;
                 }
                 //existing
-                else if ((sender as ListViewItem).Tag.ToString() == DataManager.resource.GetString("MineAsTag"))
+                else if ((sender as ListViewItem).Tag.ToString() == DataManager.Resource.GetString("MineAsTag"))
                 {
                     FlyoutBase.ShowAttachedFlyout(noteList as FrameworkElement);
                     addNotetb.Text = ((sender as ListViewItem).Content as TextBlock).Text;
@@ -343,7 +344,7 @@ namespace Calendar
             else
             {
                 //change selected day
-                int index = DataManager.calBase.Start + (int)((sender as ListViewItem).Content as TextBlock).Tag - 1;
+                int index = LocalDataManager.calBase.Start + (int)((sender as ListViewItem).Content as TextBlock).Tag - 1;
                 GridViewItem gvi = calGrid.Items[index] as GridViewItem;
 
                 //if type "All" selected - show whole list of holidays
@@ -358,8 +359,8 @@ namespace Calendar
 
                 if (gvi.Style != (Style)this.Resources["AdjMonthStyle"])
                 {
-                    DataManager.calBase.SelectedDate = new DateTime(DataManager.calBase.SelectedDate.Year,
-                                                        DataManager.calBase.SelectedDate.Month,
+                    LocalDataManager.calBase.SelectedDate = new DateTime(LocalDataManager.calBase.SelectedDate.Year,
+                                                        LocalDataManager.calBase.SelectedDate.Month,
                                                         Convert.ToInt32(gvi.Content));
 
                     gviPrev = gvi;
@@ -385,7 +386,7 @@ namespace Calendar
                     "holidays");
             }
 
-            DataManager.calBase.ReadHolidayXml();
+            LocalDataManager.calBase.ReadHolidayXml();
 
             UpdateNoteList();
 
@@ -407,20 +408,20 @@ namespace Calendar
             if (everyYear.IsChecked == true)
             {
                 year = 0;
-                month = DataManager.calBase.SelectedDate.Month;
-                day = DataManager.calBase.SelectedDate.Day;
+                month = LocalDataManager.calBase.SelectedDate.Month;
+                day = LocalDataManager.calBase.SelectedDate.Day;
             }
             else if (everyMonth.IsChecked == true)
             {
                 year = 0;
                 month = 0;
-                day = DataManager.calBase.SelectedDate.Day;
+                day = LocalDataManager.calBase.SelectedDate.Day;
             }
             else
             {
-                year = DataManager.calBase.SelectedDate.Year;
-                month = DataManager.calBase.SelectedDate.Month;
-                day = DataManager.calBase.SelectedDate.Day;
+                year = LocalDataManager.calBase.SelectedDate.Year;
+                month = LocalDataManager.calBase.SelectedDate.Month;
+                day = LocalDataManager.calBase.SelectedDate.Day;
             }
         }
 
@@ -436,7 +437,7 @@ namespace Calendar
                     year.ToString());
             }
 
-            DataManager.calBase.ReadHolidayXml();
+            LocalDataManager.calBase.ReadHolidayXml();
 
             if (gviPrev != null)
                 UpdateNoteList();
@@ -466,7 +467,7 @@ namespace Calendar
                         year.ToString());
                 }
 
-                DataManager.calBase.ReadHolidayXml();
+                LocalDataManager.calBase.ReadHolidayXml();
 
                 UpdateNoteList();
             }
@@ -491,12 +492,12 @@ namespace Calendar
                 }
             }
 
-            DataManager.calBase.WriteHolidayXml(ls);
+            LocalDataManager.WriteHolidayXml(ls);
 
             PrepareHolidayPanel();
 
-            DataManager.calBase.ReadHolidayXml();
-            DataManager.calBase.FillHolidaysList();
+            LocalDataManager.calBase.ReadHolidayXml();
+            LocalDataManager.calBase.FillHolidaysList();
 
             SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
             SelectedHolidayType = lviAll;
@@ -518,25 +519,25 @@ namespace Calendar
                 SelectedHolidayType = sender;
                 SelectedHolidayType.Foreground = new SolidColorBrush(Colors.White);
 
-                ClickedDayPage.Text = DataManager.calBase.SelectedDate.Date.ToString("MMMM yyyy");
+                ClickedDayPage.Text = LocalDataManager.calBase.SelectedDate.Date.ToString("MMMM yyyy");
 
                 //special holidays
                 if (SelectedHolidayType != lviAll && SelectedHolidayType != lviPers)
                 {
                     //notes 
-                    buffer = DataManager.calBase.HolidayItemCollection.
+                    buffer = LocalDataManager.calBase.HolidayItemCollection.
                                            Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower());
                 }
                 else
                 {
                     //personal holidays
                     if (SelectedHolidayType != lviAll)
-                        buffer = DataManager.calBase.HolidayItemCollection.
+                        buffer = LocalDataManager.calBase.HolidayItemCollection.
                         Where(hi => hi.HolidayTag == SelectedHolidayType.Content.ToString().ToLower() &&
                                     hi.Day != 0);
 
                     //all holidays
-                    else buffer = DataManager.calBase.HolidayItemCollection.Where(hi => hi.Day != 0);
+                    else buffer = LocalDataManager.calBase.HolidayItemCollection.Where(hi => hi.Day != 0);
                 }
 
                 //add dates
@@ -545,7 +546,7 @@ namespace Calendar
                          {
                             //change name = add date
                             hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
-                                hi.Day, DataManager.calBase.SelectedDate.Month, hi.HolidayName);
+                                hi.Day, LocalDataManager.calBase.SelectedDate.Month, hi.HolidayName);
 
 #if !WINDOWS_PHONE_APP
                             hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
@@ -586,8 +587,8 @@ namespace Calendar
 
         private void RefreshPage()
         {
-            DataManager.calBase.ReadHolidayXml();
-            DataManager.calBase.FillHolidaysList();
+            LocalDataManager.calBase.ReadHolidayXml();
+            LocalDataManager.calBase.FillHolidaysList();
 
             MarkHolidays();
             UpdateNoteList();

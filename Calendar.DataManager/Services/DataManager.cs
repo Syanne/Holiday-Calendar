@@ -1,7 +1,6 @@
-﻿using Calendar.Mechanism;
-using Calendar.Models;
-using Calendar.SocialNetworkConnector;
+﻿using Calendar.Data.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
@@ -10,45 +9,77 @@ using Windows.ApplicationModel.Resources;
 using Windows.Storage;
 using Windows.UI.Popups;
 
-namespace Calendar.Services
+namespace Calendar.Data.Services
 {
-    public class DataManager
+    public partial class DataManager
     {
-        public static XDocument PersonalData { get; private set; }
-        public static XDocument doc { get; private set; }
-        public static ResourceLoader resource { get; set; }
-        public static HolidayCalendarBase calBase { get; set; }
-        public static System.Collections.Generic.List<string> Services { get; private set; }
+        /// <summary>
+        /// unified date format for all descentants
+        /// </summary>
+        public const string DateFormat = "yyyy-MM-dd";
+
+        /// <summary>
+        /// unified separator for date split
+        /// </summary>
+        public const char DateSeparator = '-';
+
+        protected static XDocument PersonalData { get; private set; }
+        protected static XDocument doc { get; private set; }
+        public static ResourceLoader Resource { get; set; }
+
+        public static Dictionary<string, string> SelectedCategories { get; private set; }
 
         /// <summary>
         /// Load Holidays Data (general, then personal)
         /// </summary>
-        public static Task LoadPersonalData()
+        protected static void LoadPersonalData()
         {
-            return Task.Run(() =>
+            //basic collection
+            doc = LoadFile("ms-appx:///Strings/Holidays.xml", null);
+
+            //personal
+            try
             {
-                //basic collection
-                doc = LoadFile("ms-appx:///Strings/Holidays.xml", null);
+                var storageFolder = ApplicationData.Current.RoamingFolder;
+                PersonalData = LoadFile("PersData.xml", storageFolder);
 
-                //personal
-                try
-                {
-                    var storageFolder = ApplicationData.Current.RoamingFolder;
-                    PersonalData = LoadFile("PersData.xml", storageFolder);
+                if (PersonalData == null)
+                    throw new Exception();
+            }
+            //if it's the fist launch - load basic file
+            catch
+            {
+                PersonalData = LoadFile("ms-appx:///Strings/PersData.xml", null);
+            }
 
-                    if (PersonalData == null)
-                        throw new Exception();
-                }
-                //if it's the fist launch - load basic file
-                catch
-                {
-                    PersonalData = LoadFile("ms-appx:///Strings/PersData.xml", null);
-                }
+            SetSelectedCategoriesList();
+        }
 
-#if !WINOWS_PHONE_APP
-                EnableService();
-#endif
-            });
+        protected static void SetSelectedCategoriesList()
+        {
+            SelectedCategories = new Dictionary<string, string>();
+
+            //get themes (categories)
+            var collection = GetCollectionFromSourceFile("theme");
+            var keys = collection.Select(x => x.Attribute("name").Value).ToList();
+            var values = collection.Select(x => x.Attribute("desc").Value).ToList();
+
+            //set dictionary
+            for (int i = 0; i < keys.Count; i++)
+                SelectedCategories.Add(keys[i], values[i]);
+        }
+
+        public static void SetToastSnoozeValue(string value)
+        {
+            PersonalData.Root.Attribute("toast").Value = value; 
+            
+            //save changes
+            SaveDocumentAsync();
+        }
+
+        public static string GetToastSnoozeValue()
+        {
+            return PersonalData.Root.Attribute("toast").Value;
         }
 
         /// <summary>
@@ -240,104 +271,7 @@ namespace Calendar.Services
                 }
             });
         }
-
-        #region Social network services
-        /// <summary>
-        /// Save holidays from service 
-        /// </summary>
-        /// <param name="serviceName">service name as parent attribute name</param>
-        /// <param name="period">sync repeat period</param>
-        /// <param name="items">colection of records</param>
-        public static void SetHolidaysFromSocialNetwork(string serviceName, int period, System.Collections.Generic.List<ItemBase> items)
-        {
-            //set service
-            if (Services == null)
-                Services = new System.Collections.Generic.List<string>();
-            Services.Add(serviceName);
-
-            //get parent
-            XElement serviceRoot = null;
-            DateTime nextSyncDate = DateTime.Now.AddDays(period);
-            try
-            {
-                serviceRoot = PersonalData.Root.Element(serviceName);
-                serviceRoot.Attribute("nextSyncDate").Value = nextSyncDate.Date.ToString(Calendar.SocialNetworkConnector.BaseConnector.DateFormat);
-                serviceRoot.Attribute("period").Value = period.ToString();
-            }
-            catch
-            {
-                using (XmlWriter writer = PersonalData.Root.CreateWriter())
-                {
-                    writer.WriteStartElement(serviceName);
-
-                    writer.WriteStartAttribute("period");
-                    writer.WriteString(period.ToString());
-                    writer.WriteEndAttribute();
-                    writer.WriteStartAttribute("nextSyncDate");
-                    writer.WriteString(nextSyncDate.Date.ToString(Calendar.SocialNetworkConnector.BaseConnector.DateFormat));
-                    writer.WriteEndAttribute();
-                    writer.WriteStartAttribute("isActive");
-                    writer.WriteString("true");
-                    writer.WriteEndAttribute();
-
-                    writer.WriteString("");
-                    writer.WriteEndElement();
-                }
-            }
-
-            if (items != null)
-                try
-                {
-                    //set holidays
-                    foreach (var item in items)
-                    {
-                        //first - check if there any same record
-                        int count = serviceRoot.Descendants("persDate").
-                            Where(p => (p.Attribute("name").Value == item.HolidayName) &&
-                            p.Attribute("date").Value == item.Day.ToString() &&
-                            p.Attribute("month").Value == item.Month.ToString() &&
-                            p.Attribute("year").Value == item.Year.ToString()).
-                            Count();
-
-                        if (count == 0)
-                            SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false, serviceName);
-
-                    }
-                }
-                catch
-                {
-                    foreach (var item in items)
-                        SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false, serviceName);
-                }
-
-            SaveDocumentAsync();
-        }
-
-        /// <summary>
-        /// Disable service sync
-        /// </summary>
-        /// <param name="serviceName">service name</param>
-        /// <param name="value">true or false</param>
-        public static void ChangeServiceState(string serviceName, bool value)
-        {
-            try
-            {
-                PersonalData.Root.Element(serviceName).Attribute("isActive").Value = value.ToString().ToLower();
-                if (!value)
-                {
-                    Services.Remove(serviceName);
-                    PersonalData.Root.Element("google").Attribute("nextSyncDate").Value = DateTime.Now.Date.ToString(BaseConnector.DateFormat);
-                }
-                SaveDocumentAsync();
-            }
-            catch
-            {
-                SyncManager.Service serv = SyncManager.Manager.GetServiceByName(serviceName);
-                if (serv != null)
-                    SetHolidaysFromSocialNetwork(serviceName, serv.Period, null);
-            }
-        }
-
+        
         private static async void MyMessage(string text)
         {
             var dial = new MessageDialog(text);
@@ -345,43 +279,6 @@ namespace Calendar.Services
             dial.Commands.Add(new UICommand("OK"));
             var command = await dial.ShowAsync();
         }
-        
-        /// <summary>
-        /// Find all active services and enable it
-        /// </summary>
-        private static void EnableService()
-        {
-            //find services
-            var subcollection = PersonalData.Root.Descendants().Where(x => x.Name.LocalName != "holiday" &&
-                                                                               x.Name.LocalName != "holidays" &&
-                                                                               x.Name.LocalName != "theme" &&
-                                                                               x.Name.LocalName != "persDate");
-            if (subcollection.Count() > 0)
-            {
-                Services = new System.Collections.Generic.List<string>();
-                foreach (var item in subcollection)
-                {
-                    if (item.Attribute("isActive").Value == "true")
-                        Services.Add(item.Name.LocalName);
-                }
-            }
-
-            //enable active
-            if (Services != null)
-                if (Services.Contains("google"))
-                {
-                    var period = int.Parse(DataManager.PersonalData.Root.Element("google").Attribute("period").Value);
-                    var array = DataManager.PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(Calendar.SocialNetworkConnector.BaseConnector.DateSeparator);
-                    var date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-
-                    if (date.Day <= DateTime.Now.Day && date.Month <= DateTime.Now.Month && date.Year <= DateTime.Now.Year)
-                    {
-                        SyncManager.Manager.AddService("google", DateTime.Now, period);
-                    }
-                }
-        }
-
-        #endregion
 
         #region SmartTile
         public static bool SmartTileFile(string snooze)
@@ -396,7 +293,7 @@ namespace Calendar.Services
                 string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
                 SmartTileFie = XDocument.Parse(text);
 
-                SmartTileFie.Root.Attribute("refreshmentDate").SetValue(DateTime.Now.Date.AddDays(-1).ToString(BaseConnector.DateFormat));
+                SmartTileFie.Root.Attribute("refreshmentDate").SetValue(DateTime.Now.Date.AddDays(-1).ToString(DateFormat));
                 SmartTileFie.Root.Attribute("daysAmount").SetValue(snooze);
 
                 //save changes
@@ -421,7 +318,7 @@ namespace Calendar.Services
                         writer.WriteString("0");
                         writer.WriteEndAttribute();
                         writer.WriteStartAttribute("refreshmentDate");
-                        writer.WriteString(DateTime.Now.Date.AddDays(-1).ToString(BaseConnector.DateFormat));
+                        writer.WriteString(DateTime.Now.Date.AddDays(-1).ToString(DataManager.DateFormat));
                         writer.WriteEndAttribute();
                         writer.WriteStartAttribute("daysAmount");
                         writer.WriteString(snooze);
@@ -453,5 +350,43 @@ namespace Calendar.Services
             catch { }
         }
         #endregion
+
+
+        public static List<DocElement> GetCollectionFromSourceFile(DateTime SelectedDate, string collectionType)
+        {
+            var holidayCollection = new List<DocElement>();
+
+            foreach (var element in doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants(collectionType))
+            {
+                //category
+                string theme = element.Parent.Attribute("name").Value;
+                bool value = (SelectedCategories.Keys.Count(val => val == theme) == 1) ? true : false;
+
+                if (element.FirstAttribute.Value != "" && value == true)
+                    holidayCollection.Add(new DocElement
+                    {
+                        Key = theme,
+                        Value = element
+                    });
+            }
+            
+            return holidayCollection;
+        }
+
+        public static List<XElement> GetCollectionFromSourceFile(string collectionType)
+        {
+            List<XElement> holidayCollection = new List<XElement>();
+
+            if (collectionType == "categories")
+                holidayCollection = doc.Root.Descendants("month").ElementAt(0).Descendants("holiday").ToList();
+            else if (collectionType == "theme")
+                holidayCollection = PersonalData.Root.Descendants("theme").Descendants("holiday").ToList();
+            else if (collectionType == "persDate")
+                DataManager.PersonalData.Root.Descendants("holidays").Descendants("persDate");
+            else holidayCollection = PersonalData.Root.Element(collectionType).Descendants().ToList();
+
+            return holidayCollection;
+        }
+
     }
 }

@@ -122,8 +122,7 @@ namespace Calendar
                     if (toastToggle.IsOn)
                     {
                         //save changes
-                        DataManager.PersonalData.Root.Attribute("toast").Value = (comboToast.SelectedIndex + 1).ToString();
-                        DataManager.SaveDocumentAsync();
+                        LocalDataManager.SetToastSnoozeValue((comboToast.SelectedIndex + 1).ToString());
 
                         //set period and create a task
                         uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);

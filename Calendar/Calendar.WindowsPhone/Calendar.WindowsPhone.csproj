@@ -201,6 +201,10 @@
       <Project>{08c6fc7c-e9d8-4a9f-9671-a569073a1c4e}</Project>
       <Name>BackgroundUpdater</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Calendar.DataManager\Calendar.Data.csproj">
+      <Project>{db61b4a0-af2b-428f-bf99-76b1787c4316}</Project>
+      <Name>Calendar.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.AdMediator81, Version=1.0">

@@ -1,5 +1,4 @@
 ﻿using Calendar.Mechanism;
-using Calendar.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +13,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.ApplicationModel.Resources;
+using Calendar.Data.Models;
 
 namespace Calendar
 {
@@ -61,7 +61,7 @@ namespace Calendar
             catch
             {   }
 
-            gviPrev = calGrid.Items.ElementAt(DataManager.calBase.SelectedDate.Day + DataManager.calBase.Start - 1) as GridViewItem;
+            gviPrev = calGrid.Items.ElementAt(LocalDataManager.calBase.SelectedDate.Day + LocalDataManager.calBase.Start - 1) as GridViewItem;
         }
 
         /// <summary>
@@ -71,9 +71,9 @@ namespace Calendar
         private void UpdateNoteList()
         {
 #if WINDOWS_PHONE_APP
-            ClickedDayPage.Text = DataManager.calBase.SelectedDate.Date.ToString("d").ToLower();
+            ClickedDayPage.Text = LocalDataManager.calBase.SelectedDate.Date.ToString("d").ToLower();
 #else
-            ClickedDayPage.Text = DataManager.calBase.SelectedDate.Date.ToString("D");
+            ClickedDayPage.Text = LocalDataManager.calBase.SelectedDate.Date.ToString("D");
 #endif
 
             //fill list of holidays
@@ -81,16 +81,16 @@ namespace Calendar
             {
                 //if day selected
                 if (gviPrev != null)
-                    noteList.ItemsSource = DataManager.calBase.HolidayItemCollection.Where(hi =>
-                        hi.Day == DataManager.calBase.SelectedDate.Day || hi.Day == 0).
+                    noteList.ItemsSource = LocalDataManager.calBase.HolidayItemCollection.Where(hi =>
+                        hi.Day == LocalDataManager.calBase.SelectedDate.Day || hi.Day == 0).
                         Distinct(new HolidayNameComparer());
 
                 //if lviAll selected by user
                 else
                 {
-                    ClickedDayPage.Text = DataManager.calBase.SelectedDate.Date.ToString("MMMM yyyy");
+                    ClickedDayPage.Text = LocalDataManager.calBase.SelectedDate.Date.ToString("MMMM yyyy");
                     IEnumerable<HolidayItem> buffer;
-                    buffer = DataManager.calBase.HolidayItemCollection.Where(hi => hi.Day != 0);
+                    buffer = LocalDataManager.calBase.HolidayItemCollection.Where(hi => hi.Day != 0);
 
                     //add dates
                     buffer = buffer.Select(hi => hi = hi.Copy()).
@@ -98,7 +98,7 @@ namespace Calendar
                              {
                                  //change name = add date
                                  hi.HolidayName = String.Format("{0:00}.{1:00}. {2}",
-                                     hi.Day, DataManager.calBase.SelectedDate.Month, hi.HolidayName);
+                                     hi.Day, LocalDataManager.calBase.SelectedDate.Month, hi.HolidayName);
 
 #if !WINDOWS_PHONE_APP
                                  hi.FontSize = sizeCorrection.NoteFontSizeCorrector;
@@ -115,8 +115,8 @@ namespace Calendar
                 }
             }
 
-            else noteList.ItemsSource = DataManager.calBase.HolidayItemCollection.
-                                      Where(hi => (hi.Day == DataManager.calBase.SelectedDate.Day || hi.Day == 0) &&
+            else noteList.ItemsSource = LocalDataManager.calBase.HolidayItemCollection.
+                                      Where(hi => (hi.Day == LocalDataManager.calBase.SelectedDate.Day || hi.Day == 0) &&
                                       (hi.HolidayTag == SelectedHolidayType.Content.ToString()));            
 
             //background color of every note
@@ -160,10 +160,10 @@ namespace Calendar
                 flag = sizeCorrection.Count(Window.Current.Bounds.Height);
             }
 #endif
-            monthNameButton.Content = DataManager.calBase.SelectedDate.Date.ToString("MMMM yyyy").ToLower();
+            monthNameButton.Content = LocalDataManager.calBase.SelectedDate.Date.ToString("MMMM yyyy").ToLower();
 
             //from first to last day in a month
-            int jj = (DataManager.calBase.Start == 7) ? DataManager.calBase.Start : 0;
+            int jj = (LocalDataManager.calBase.Start == 7) ? LocalDataManager.calBase.Start : 0;
 
             //styles and brushes for day-items
             Style adjStyle = (Style)this.Resources["AdjMonthStyle"];
@@ -179,7 +179,7 @@ namespace Calendar
                 //a day
                 gvItem = new GridViewItem()
                 {
-                    Content = DataManager.calBase.Month[i],
+                    Content = LocalDataManager.calBase.Month[i],
 
                     //sizing
 #if WINDOWS_PHONE_APP
@@ -200,7 +200,7 @@ namespace Calendar
                 gvItem.Tapped += Day_Tapped;
 #endif
                 //adjMonths
-                if (i < DataManager.calBase.Start || i >= DataManager.calBase.End)
+                if (i < LocalDataManager.calBase.Start || i >= LocalDataManager.calBase.End)
                     gvItem.Style = adjStyle;
                 else
                 {
@@ -226,15 +226,15 @@ namespace Calendar
             //collection of HolidayItems
             IEnumerable<HolidayItem> holItemSource;
             if (SelectedHolidayType == lviAll)
-                holItemSource = DataManager.calBase.HolidayItemCollection;
-            else holItemSource = DataManager.calBase.HolidayItemCollection.Where(
+                holItemSource = LocalDataManager.calBase.HolidayItemCollection;
+            else holItemSource = LocalDataManager.calBase.HolidayItemCollection.Where(
                 h => h.HolidayTag.ToLower() == SelectedHolidayType.Content.ToString().ToLower());
 
             SolidColorBrush standard = new SolidColorBrush(Colors.White);
             SolidColorBrush hol = (SolidColorBrush)Application.Current.Resources["AdditionalColor"];
                 
             //holidays
-            for (int i = DataManager.calBase.Start; i < DataManager.calBase.End; i++)
+            for (int i = LocalDataManager.calBase.Start; i < LocalDataManager.calBase.End; i++)
             {
                 int current = Convert.ToInt32((calGrid.Items[i] as GridViewItem).Content);
                
@@ -244,9 +244,9 @@ namespace Calendar
             }
 
             //today
-            if (DataManager.calBase.SelectedDate.Month == DateTime.Now.Month && DataManager.calBase.SelectedDate.Year == DateTime.Now.Year)
+            if (LocalDataManager.calBase.SelectedDate.Month == DateTime.Now.Month && LocalDataManager.calBase.SelectedDate.Year == DateTime.Now.Year)
             {
-                int x = DataManager.calBase.Start - 1 + DateTime.Now.Day;
+                int x = LocalDataManager.calBase.Start - 1 + DateTime.Now.Day;
                 (calGrid.Items[x] as GridViewItem).Style = (Style)this.Resources["TodayStyle"];
 
                 if(gviPrev != null)

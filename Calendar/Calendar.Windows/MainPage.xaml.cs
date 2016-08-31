@@ -11,7 +11,6 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.ApplicationModel.Store;
 using Windows.Storage;
 using Windows.Globalization;
-using Calendar.Models;
 using Calendar.SocialNetworkConnector;
 
 namespace Calendar
@@ -46,8 +45,8 @@ namespace Calendar
 
         private void GoToDateBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (DatePickerDp.Date.Month != DataManager.calBase.SelectedDate.Month ||
-                DatePickerDp.Date.Year != DataManager.calBase.SelectedDate.Year)
+            if (DatePickerDp.Date.Month != LocalDataManager.calBase.SelectedDate.Month ||
+                DatePickerDp.Date.Year != LocalDataManager.calBase.SelectedDate.Year)
             {
                 ChangeDate(1, DatePickerDp.Date.Month, DatePickerDp.Date.Year);
                 DatePickerDp.Date = DateTimeOffset.Now;
@@ -61,10 +60,10 @@ namespace Calendar
 
         private void Decade_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
-            DataManager.calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), DataManager.calBase.SelectedDate.Year);
+            LocalDataManager.calBase.Skip(1, Convert.ToInt32((sender as GridViewItem).Tag), LocalDataManager.calBase.SelectedDate.Year);
 
             //Shows month and year in the top of calGrid
-            monthNameButton.Content = DataManager.calBase.SelectedDate.ToString("MMMM yyyy");
+            monthNameButton.Content = LocalDataManager.calBase.SelectedDate.ToString("MMMM yyyy");
 
             calGrid.Visibility = Windows.UI.Xaml.Visibility.Visible;
             weekDayNames.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -99,7 +98,7 @@ namespace Calendar
         {
             FlyoutBase.ShowAttachedFlyout(HolidayList as FrameworkElement);
 
-            listOfHolidays.ItemsSource = DataManager.calBase.HolidayNameCollection;
+            listOfHolidays.ItemsSource = LocalDataManager.calBase.HolidayNameCollection;
         }
 
 

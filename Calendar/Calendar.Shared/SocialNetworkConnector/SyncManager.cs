@@ -1,4 +1,5 @@
 ﻿using System;
+using Calendar.Data.Models;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -90,17 +91,7 @@ namespace Calendar.SocialNetworkConnector
                     await connector.GetHolidayList();
                 }
             }
-            catch 
-            {
-
-            }
-        }
-
-        public class Service
-        {
-            public string ServerName;
-            public int Period;
-            public DateTime DateStart;
+            catch { }
         }
     }
 }

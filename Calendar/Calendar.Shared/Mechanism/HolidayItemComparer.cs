@@ -1,4 +1,4 @@
-﻿using Calendar.Models;
+﻿using Calendar.Data.Models;
 using System.Collections.Generic;
 
 namespace Calendar.Mechanism

@@ -1,4 +1,4 @@
-﻿using Calendar.Models;
+﻿using Calendar.Data.Models;
 using Calendar.Services;
 using System;
 using System.Collections.Generic;
@@ -9,14 +9,6 @@ namespace Calendar.SocialNetworkConnector
 {
     public abstract class BaseConnector
     {
-        /// <summary>
-        /// unified date format for all descentants
-        /// </summary>
-        public const string DateFormat = "yyyy-MM-dd";
-        /// <summary>
-        /// unified separator for date split
-        /// </summary>
-        public const char DateSeparator = '-';
         /// <summary>
         /// Records in calendar
         /// </summary>
@@ -86,7 +78,7 @@ namespace Calendar.SocialNetworkConnector
         /// </summary>
         protected void FinalizeSync()
         {
-            DataManager.SetHolidaysFromSocialNetwork(ServiceName, Period, Items);
+            LocalDataManager.SetHolidaysFromSocialNetwork(ServiceName, Period, Items);
             SyncManager.Manager.SetIsAnyOperation(-1);
         }
     }

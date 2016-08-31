@@ -48,7 +48,7 @@ namespace Calendar
         /// search results, and so forth.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected async override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -92,30 +92,30 @@ namespace Calendar
 #endif
 
                 //resources
-                DataManager.resource = ResourceLoader.GetForCurrentView("Resources");
+                LocalDataManager.Resource = ResourceLoader.GetForCurrentView("Resources");
                 try
                 {
-                    Application.Current.Resources.Source = new Uri(ApplicationData.Current.LocalSettings.Values["AppTheme"].ToString());
+                    Current.Resources.Source = new Uri(ApplicationData.Current.LocalSettings.Values["AppTheme"].ToString());
                 }
                 catch
                 {
-                    Application.Current.Resources.Source = new Uri("ms-appx:///Themes/Default.xaml");
+                    Current.Resources.Source = new Uri("ms-appx:///Themes/Default.xaml");
                 }
 
-                await DataManager.LoadPersonalData();
+                LocalDataManager.StartLoad();
 
                 //mechanism
                 int Weekend;
                 try
                 {
-                    string theDay = DataManager.resource.GetString("Weekend");
+                    string theDay = LocalDataManager.Resource.GetString("Weekend");
                     Weekend = Convert.ToInt32(theDay);
                 }
                 catch
                 {
                     Weekend = 5;
                 }
-                DataManager.calBase = new Mechanism.HolidayCalendarBase(Weekend);
+                LocalDataManager.calBase = new Mechanism.HolidayCalendarBase(Weekend);
 
 
                 // When the navigation stack isn't restored navigate to the first page,

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using Windows.Storage;
+using Calendar.Data.Services;
 
 namespace BackgroundUpdater
 {
@@ -25,16 +26,7 @@ namespace BackgroundUpdater
         private XDocument PersonalData { get; set; }
         private XDocument doc { get; set; }
         public List<string> Services { get; private set; }
-
-        /// <summary>
-        /// unified date format for all descentants
-        /// </summary>
-        public const string DateFormat = "yyyy-MM-dd";
-        /// <summary>
-        /// unified separator for date split
-        /// </summary>
-        public const char DateSeparator = '-';
-
+        
         public List<Event> LoadSmartTileFile()
         {
             DateTime refreshmentDate, endDate;
@@ -49,7 +41,7 @@ namespace BackgroundUpdater
 
             //--------------
             //set variables
-            var array = SmartTileFile.Root.Attribute("refreshmentDate").Value.Split(DateSeparator);
+            var array = SmartTileFile.Root.Attribute("refreshmentDate").Value.Split(DataManager.DateSeparator);
             refreshmentDate = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
             daysAmount = int.Parse(SmartTileFile.Root.Attribute("daysAmount").Value);
 
@@ -167,7 +159,7 @@ namespace BackgroundUpdater
 
             //set attributes
             SmartTileFile.Root.Attribute("firstElement").SetValue(firstElement.ToString());
-            SmartTileFile.Root.Attribute("refreshmentDate").SetValue(refreshmentDate.Date.ToString(DateFormat));
+            SmartTileFile.Root.Attribute("refreshmentDate").SetValue(refreshmentDate.Date.ToString(DataManager.DateFormat));
             SaveSmartTileFile(SmartTileFile);
 
             return events;
@@ -391,7 +383,7 @@ namespace BackgroundUpdater
                     if (Services.Contains("google"))
                     {
                         var period = int.Parse(PersonalData.Root.Element("google").Attribute("period").Value);
-                        var array = PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(DateSeparator);
+                        var array = PersonalData.Root.Element("google").Attribute("nextSyncDate").Value.Split(DataManager.DateSeparator);
                         var date = new DateTime(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
                         if (date.Day <= DateTime.Now.Day && date.Month <= DateTime.Now.Month && date.Year <= DateTime.Now.Year)

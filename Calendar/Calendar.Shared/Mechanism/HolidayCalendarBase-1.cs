@@ -1,14 +1,12 @@
-﻿using Calendar.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 using Calendar.Services;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI;
+using Calendar.Data.Models;
 
 namespace Calendar.Mechanism
 {
@@ -37,16 +35,16 @@ namespace Calendar.Mechanism
             private set { endPosition = value; }
         }
 
-        public ObservableCollection<HolidayItem> HolidayItemCollection { get; private set; }
-        public ObservableCollection<CheckBox> HolidayNameCollection { get; private set; }
+        public List<HolidayItem> HolidayItemCollection { get; private set; }
+        public List<CheckBox> HolidayNameCollection { get; private set; }
         public int Weekend { get; private set; }
 
         public HolidayCalendarBase(int weekend)
         {
             this.Weekend = weekend;
 
-            HolidayItemCollection = new ObservableCollection<HolidayItem>();
-            HolidayNameCollection = new ObservableCollection<CheckBox>();
+            HolidayItemCollection = new List<HolidayItem>();
+            HolidayNameCollection = new List<CheckBox>();
 
             SelectedDate = DateTime.Now;
 
@@ -59,18 +57,17 @@ namespace Calendar.Mechanism
             FillHolidaysList();
         }
 
+
         #region Standard holidays
         /// <summary>
         /// Source for ListView in Flyout
         /// </summary>
         /// <returns>Collection of holiday's categories</returns>
         public void FillHolidaysList()
-        {
-            var persCollection = DataManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
-            
+        {            
             if (HolidayNameCollection.Count == 0)
             {
-                var collect = DataManager.doc.Root.Descendants("month").ElementAt(0).Descendants("holiday");
+                var collect = LocalDataManager.GetCollectionFromSourceFile("categories");
                 foreach (XElement x in collect)
                 {
                     HolidayNameCollection.Add(new CheckBox
@@ -84,16 +81,16 @@ namespace Calendar.Mechanism
             }
 
             for (int i = 0; i < HolidayNameCollection.Count; i++)
-                foreach (XElement p in persCollection)
+                foreach (var p in LocalDataManager.SelectedCategories)
                 {
-                    if (p.LastAttribute.Value.ToLower() == HolidayNameCollection[i].Tag.ToString().ToLower())
+                    if (p.Key.ToLower() == HolidayNameCollection[i].Tag.ToString().ToLower())
                     {
                         HolidayNameCollection[i].IsChecked = true; break;
                     }
                     else HolidayNameCollection[i].IsChecked = false;
                 }           
         }
-                
+
         /// <summary>
         /// get all holidays (personal and selected types)
         /// </summary>
@@ -102,73 +99,60 @@ namespace Calendar.Mechanism
         /// <param name="year">shown year</param>
         public void ReadHolidayXml()
         {
-            //collections of holidays
-            var computational = DataManager.doc.Root.Descendants("month").
-                ElementAt(SelectedDate.Month - 1).Descendants("computational");
-            var persCollection = DataManager.PersonalData.
-                Root.Descendants("theme").Descendants("holiday");
-
-            var movable = DataManager.doc.Root.Descendants("month").
-                ElementAt(SelectedDate.Month - 1).Descendants("movable");
-
-            HolidayItemCollection = new ObservableCollection<HolidayItem>();
+            //collections of holidays   
+            HolidayItemCollection = new List<HolidayItem>();
+            List<DocElement> tempCollection = new List<DocElement>();
 
             //looking for holidays from selected categories
-            foreach (XElement x in DataManager.doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants("day"))
+            tempCollection = LocalDataManager.GetCollectionFromSourceFile(SelectedDate, "day");
+            foreach (var x in tempCollection)
             {
-                foreach (XElement pers in persCollection)
-                    if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
-                        HolidayItemCollection.Add(new HolidayItem
-                        {
-                            Day = Convert.ToInt32(x.Attribute("date").Value),
-                            HolidayName = x.Attribute("name").Value,
-                            HolidayTag = pers.LastAttribute.Value,
-                            Background = new SolidColorBrush(Colors.Transparent),
-                            FontSize = 20, 
-                            Height = 50
-                        });
+                HolidayItemCollection.Add(new HolidayItem
+                {
+                    Day = Convert.ToInt32(x.Value.Attribute("date").Value),
+                    HolidayName = x.Value.Attribute("name").Value,
+                    HolidayTag = x.Key,
+                    Background = new SolidColorBrush(Colors.Transparent),
+                    FontSize = 20,
+                    Height = 50
+                });
             }
 
             //computationals
-            if(computational.Count() != 0)
-                foreach (XElement pers in persCollection)
-                    foreach (XElement x in computational)
-                    {
-                        if (x.FirstAttribute.Value != "" && x.Parent.Attribute("name").Value == pers.Attribute("name").Value.ToLower())
-                            HolidayItemCollection.Add(new HolidayItem
-                            {
-                                Day =
-                                    ComputeHoliday(Convert.ToInt32(x.Attributes().ElementAt(1).Value),
-                                    Convert.ToInt32(x.Attributes().ElementAt(2).Value)),
-                                HolidayName = x.Attributes().ElementAt(0).Value,
-                                HolidayTag = pers.LastAttribute.Value,
-                                Background = new SolidColorBrush(Colors.Transparent),
-                                FontSize = 20,
-                                Height = 50
-                            });
-                    }
+            tempCollection = LocalDataManager.GetCollectionFromSourceFile(SelectedDate, "computational");
+            foreach (var x in tempCollection)
+            {
+                HolidayItemCollection.Add(new HolidayItem
+                {
+                    Day = ComputeHoliday(Convert.ToInt32(x.Value.Attributes().ElementAt(1).Value), Convert.ToInt32(x.Value.Attributes().ElementAt(2).Value)),
+                    HolidayName = x.Value.Attributes().ElementAt(0).Value,
+                    HolidayTag = x.Key,
+                    Background = new SolidColorBrush(Colors.Transparent),
+                    FontSize = 20,
+                    Height = 50
+                });
+            }
 
             //movables
-            if (movable != null)
-                foreach (XElement x in movable)
+            tempCollection = LocalDataManager.GetCollectionFromSourceFile(SelectedDate, "movable");
+            if (tempCollection != null)
+                foreach (var x in tempCollection)
                 {
-                        if (x.Attribute("year").Value == SelectedDate.Year.ToString())
-                        {
-                            HolidayItemCollection.Add(new HolidayItem
-                            {
-                                Day = Convert.ToInt32(x.Attribute("date").Value),
-                                HolidayName = x.Attribute("name").Value,
-                                HolidayTag = x.Parent.LastAttribute.Value,
-                                Background = new SolidColorBrush(Colors.Transparent),
-                                FontSize = 20,
-                                Height = 50
-                            });
-                        }
+                    HolidayItemCollection.Add(new HolidayItem
+                    {
+                        Day = Convert.ToInt32(x.Value.Attribute("date").Value),
+                        HolidayName = x.Value.Attribute("name").Value,
+                        HolidayTag = x.Key,
+                        Background = new SolidColorBrush(Colors.Transparent),
+                        FontSize = 20,
+                        Height = 50
+                    });
                 }
 
             //personal
-            string mine = DataManager.resource.GetString("MineAsTag");
-            foreach (XElement pers in DataManager.PersonalData.Root.Descendants("holidays").Descendants("persDate"))
+            string mine = LocalDataManager.Resource.GetString("MineAsTag");
+            var list = LocalDataManager.GetCollectionFromSourceFile("persDate");
+            foreach (var pers in list)
             {
                 //get year
                 int year = -1;
@@ -177,8 +161,8 @@ namespace Calendar.Mechanism
 
                 //check month
                 bool isCurrenMonth = (pers.Attribute("month").Value == SelectedDate.Month.ToString() ||
-                                      pers.Attribute("month").Value == "0") ? 
-                                      true: false;
+                                      pers.Attribute("month").Value == "0") ?
+                                      true : false;
 
                 if (isCurrenMonth && year != -1)
                     HolidayItemCollection.Add(new HolidayItem
@@ -195,11 +179,11 @@ namespace Calendar.Mechanism
             }
 
             //services
-            if (DataManager.Services != null)
-                foreach (var service in DataManager.Services)
+            if (LocalDataManager.Services != null)
+                foreach (var service in LocalDataManager.Services)
                 {
-                    var collection = DataManager.PersonalData.Root.Element(service).Descendants();
-                    foreach(var holiday in collection)
+                    var collection = LocalDataManager.GetCollectionFromSourceFile(service);
+                    foreach (var holiday in collection)
                     {
                         int year = int.Parse(holiday.Attribute("year").Value);
                         int month = int.Parse(holiday.Attribute("month").Value);
@@ -219,12 +203,14 @@ namespace Calendar.Mechanism
                     }
                 }
 
-            HolidayItemCollection.Add(new HolidayItem { Day = 0,
-                                                        HolidayName = DataManager.resource.GetString("PersonalNote"),
-                                                        HolidayTag = DataManager.resource.GetString("MineAsTag"),
-                                                        Background = new SolidColorBrush(Colors.Transparent),
-                                                        FontSize = 20,
-                                                        Height = 50
+            HolidayItemCollection.Add(new HolidayItem
+            {
+                Day = 0,
+                HolidayName = LocalDataManager.Resource.GetString("PersonalNote"),
+                HolidayTag = LocalDataManager.Resource.GetString("MineAsTag"),
+                Background = new SolidColorBrush(Colors.Transparent),
+                FontSize = 20,
+                Height = 50
             });
         }
 
@@ -259,33 +245,6 @@ namespace Calendar.Mechanism
             }
         }
         #endregion
-
-        #region Personal holidays
-
-        /// <summary>
-        /// Save changes in file with personal data
-        /// </summary>
-        /// <param name="basicHolidays">selected kinds of holidays</param>
-        public void WriteHolidayXml(List<string> basicHolidays)
-        {
-            //collect all descendants
-            var collect = DataManager.PersonalData.Root.Descendants("theme").Descendants("holiday");
-            if (collect == null) throw new Exception();
-            int n = collect.Count();
-
-            //remove all nodes
-            DataManager.PersonalData.Root.Descendants("theme").Descendants().Remove();
-
-            //add all nodes
-            for (int i = 0; i < basicHolidays.Count(); i += 2)
-            {
-                using (XmlWriter writer = DataManager.PersonalData.Root.Descendants().ElementAt(0).CreateWriter())
-                {
-                    DataManager.WriteNode(writer, basicHolidays.ElementAt(i), basicHolidays.ElementAt(i + 1));
-                }
-            }
-            DataManager.SaveDocumentAsync();
-        }
-        #endregion
+        
     }
 }
