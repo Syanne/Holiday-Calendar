@@ -32,10 +32,10 @@ namespace Calendar
             {
                 string temp = (myFlip.SelectedItem as LocalFVItem).Tag;
 
-                ApplicationData.Current.LocalSettings.Values["AppTheme"] =
-                    String.Format("ms-appx:///themes/{0}.xaml", temp);
-                Application.Current.Resources.Source =
-                   new Uri("ms-appx:///themes/" + temp + ".xaml");
+                ApplicationData.Current.LocalSettings.Values["AppTheme"] = String.Format("ms-appx:///themes/{0}.xaml", temp);
+                Application.Current.Resources.Source = new Uri("ms-appx:///themes/" + temp + ".xaml");
+
+                GoBack();
             }
             else eServices.OfferPurchase("Unlicensed", null);     
         }
@@ -65,12 +65,12 @@ namespace Calendar
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            GoBack();
         }
 
         private void SettingsFlyout_Unloaded(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            GoBack();
         }
 
         /// <summary>
@@ -82,6 +82,11 @@ namespace Calendar
         }
 
         private void cancelBth_Click(object sender, RoutedEventArgs e)
+        {
+            GoBack();
+        }
+
+        private void GoBack()
         {
             this.Frame.Navigate(typeof(MainPage));
         }

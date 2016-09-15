@@ -17,7 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Mechanism\HolidayCalendarBase-1.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mechanism\HolidayCalendarBase-2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Mechanism\HolidayItemComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\WindowsStandardClass.cs" />

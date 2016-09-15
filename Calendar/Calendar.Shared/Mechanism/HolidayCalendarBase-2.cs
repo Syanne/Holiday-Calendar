@@ -1,10 +1,77 @@
-﻿using System;
-using Windows.UI.Popups;
+﻿using Calendar.Data.Models;
+using Calendar.Services;
+using System;
+using System.Collections.Generic;
+using System.Xml.Linq;
+using Windows.UI.Xaml.Controls;
 
 namespace Calendar.Mechanism
 {
-    public partial class HolidayCalendarBase 
+    public partial class HolidayCalendarBase
     {
+        public int[] Month { get; private set; }
+
+        public DateTime SelectedDate { get; set; }
+
+        public List<HolidayItem> HolidayItemCollection { get; private set; }
+        public List<CheckBox> HolidayNameCollection { get; private set; }
+
+        public HolidayCalendarBase()
+        {
+            HolidayItemCollection = new List<HolidayItem>();
+            HolidayNameCollection = new List<CheckBox>();
+
+            SelectedDate = DateTime.Now;
+            
+            FillMonth();
+
+            ReadHolidayXml();
+            FillHolidaysList();
+        }
+
+        /// <summary>
+        /// Source for ListView in Flyout
+        /// </summary>
+        /// <returns>Collection of holiday's categories</returns>
+        public void FillHolidaysList()
+        {
+            if (HolidayNameCollection.Count == 0)
+            {
+                var collect = LocalDataManager.GetCollectionFromSourceFile("categories");
+                foreach (XElement x in collect)
+                {
+                    HolidayNameCollection.Add(new CheckBox
+                    {
+                        Content = x.FirstAttribute.Value.ToLower(),
+                        Tag = x.LastAttribute.Value,
+                        FontSize = 18,
+                        Padding = new Windows.UI.Xaml.Thickness(10, 0, 10, 10)
+                    });
+                }
+            }
+
+            for (int i = 0; i < HolidayNameCollection.Count; i++)
+                foreach (var p in LocalDataManager.GetSelectedCategoriesList())
+                {
+                    if (p.Key.ToLower() == HolidayNameCollection[i].Tag.ToString().ToLower())
+                    {
+                        HolidayNameCollection[i].IsChecked = true; break;
+                    }
+                    else HolidayNameCollection[i].IsChecked = false;
+                }
+        }
+
+        /// <summary>
+        /// get all holidays (personal and selected types)
+        /// </summary>
+        /// <param name="month">shown month</param>
+        /// <param name="start">first day of month </param>
+        /// <param name="year">shown year</param>
+        public void ReadHolidayXml()
+        {
+            HolidayItemCollection = LocalDataManager.GetComposedData(SelectedDate, 0);
+        }
+
         /// <summary>
         /// Next or previous month
         /// </summary>
@@ -14,7 +81,7 @@ namespace Calendar.Mechanism
             SelectedDate = SelectedDate.AddMonths(value);
             FillMonth();
         }
-        
+
         /// <summary>
         /// Go to selected M and Y
         /// </summary>
@@ -34,21 +101,16 @@ namespace Calendar.Mechanism
         public void FillMonth()
         {
             Month = new int[42];
-
-            int weekDay = FirstDay();
+            
             int days = DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month);
             //previous
             int prevMonth = DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.AddMonths(-1).Month);
-
-            //start position for this month
-            int ii = (weekDay == 0) ? 1 : 0;
-            startPosition = (ii * 7) + weekDay;
-            endPosition = days + startPosition;
+            LocalDataManager.ResetMonth(SelectedDate, 0);
 
             for (int i = 41; i >= 0; i--)
             {
-                if (i >= endPosition) Month[i] = i - endPosition + 1; //next month
-                else if (i < endPosition && i >= startPosition) //current
+                if (i >= LocalDataManager.End) Month[i] = i - LocalDataManager.End + 1; //next month
+                else if (i < LocalDataManager.End && i >= LocalDataManager.Start) //current
                 {
                     Month[i] = days;
                     days--;
@@ -59,27 +121,6 @@ namespace Calendar.Mechanism
                     prevMonth--;
                 }
             }
-        }
-
-        /// <summary>
-        /// Find a day, that starts selected month
-        /// </summary>
-        /// <param name="monthNumber">selected month</param>
-        /// <param name="yearNumber">selected year</param>
-        /// <returns>1th of {selected month} weekday</returns>
-        public int FirstDay()
-        {
-            //start from the first of {selected month}
-            int day = 1;
-            int a, y, m, R;
-            a = (14 - SelectedDate.Month) / 12;
-            y = SelectedDate.Year - a;
-            m = SelectedDate.Month + 12 * a - 2;
-            R = 7000 + (day + y + y / 4 - y / 100 + y / 400 + (31 * m) / 12);
-            R %= 7;
-
-            if (Weekend == 0) return R;
-            else return R = (R > 0) ? (R - 1) : 6;
         }
     }
 }

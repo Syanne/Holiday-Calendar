@@ -87,7 +87,7 @@ namespace Calendar.SocialNetworkConnector
                     }
 
                     var array = when.Split(LocalDataManager.DateSeparator);
-                    ItemBase item = new ItemBase
+                    HolidayItem item = new HolidayItem
                     {
                         HolidayName = eventItem.Summary,
                         Day = Convert.ToInt32(array[2]),

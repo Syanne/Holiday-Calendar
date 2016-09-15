@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Calendar.Data.Models;
+using Calendar.Data.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.ApplicationModel.Background;
@@ -16,11 +18,10 @@ namespace BackgroundUpdater
             // Get a deferral, to prevent the task from closing prematurely 
             // while asynchronous code is still running.
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
-            _manager = new DataBakgroundManager();
-            _manager.LoadPersonalData();
+            _manager = new DataBakgroundManager(2);
 
             //get date
-            int day = _manager.GetToastSnooze();
+            int day = DataManager.GetToastSnoozeValue();
             SelectedDate = DateTime.Now.Date.AddDays(day);
 
             //start updating
@@ -37,8 +38,8 @@ namespace BackgroundUpdater
         private static void SendToast()
         {
             //prepare collection
-            List<Event> collection =  _manager.PersonalAndServices(SelectedDate.Month, SelectedDate.Year);
-            collection = collection.Where(p => p.Day == SelectedDate.Day || p.Value == "google calendar").ToList();
+            List<HolidayItem> collection = _manager.GetHolidayList(DateTime.Now);
+            collection = collection.Where(p => p.Day == SelectedDate.Day || p.HolidayName == "google calendar").ToList();
 
             if (collection.Count > 0)
             {
@@ -56,7 +57,7 @@ namespace BackgroundUpdater
                     // Set the text on the toast. 
                     // The first line of text in the ToastText02 template is treated as header text, and will be bold.
                     toastTextElements[0].AppendChild(toastXml.CreateTextNode(SelectedDate.ToString("d")));
-                    toastTextElements[1].AppendChild(toastXml.CreateTextNode(item.Value));
+                    toastTextElements[1].AppendChild(toastXml.CreateTextNode(item.HolidayName));
 
                     // Set the duration on the toast
                     IXmlNode toastNode = toastXml.SelectSingleNode("/toast");

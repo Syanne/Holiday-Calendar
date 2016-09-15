@@ -41,9 +41,12 @@
     <Compile Include="Models\DocElement.cs" />
     <Compile Include="Models\HolidayItem.cs" />
     <Compile Include="Models\Service.cs" />
+    <Compile Include="Services\BasicDataResource.cs" />
     <Compile Include="Services\DataManager.cs" />
-    <Compile Include="Models\ItemBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\GeneralDataResource.cs" />
+    <Compile Include="Services\PersonalDataResource.cs" />
+    <Compile Include="Services\SmartTileDataResource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

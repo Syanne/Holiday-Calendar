@@ -12,7 +12,7 @@ namespace Calendar.SocialNetworkConnector
         /// <summary>
         /// Records in calendar
         /// </summary>
-        protected List<ItemBase> Items { get; set; }
+        protected List<HolidayItem> Items { get; set; }
         /// <summary>
         /// repeat each
         /// </summary>
@@ -36,7 +36,7 @@ namespace Calendar.SocialNetworkConnector
         /// <param name="period">snooze time</param>
         public BaseConnector(int period)
         {
-            this.Items = new List<ItemBase>();
+            this.Items = new List<HolidayItem>();
         }
 
         /// <summary>  
@@ -49,7 +49,7 @@ namespace Calendar.SocialNetworkConnector
             DateStart = dateStart;
             Period = period;
             DateEnd = dateStart.Date.AddDays(period - 1);
-            this.Items = new List<ItemBase>();
+            this.Items = new List<HolidayItem>();
         }
 
         /// <summary>

@@ -1,13 +1,11 @@
 ﻿using Calendar.Data.Models;
+using Calendar.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using Windows.ApplicationModel.Resources;
-using Windows.Storage;
-using Windows.UI.Popups;
 
 namespace Calendar.Data.Services
 {
@@ -22,178 +20,300 @@ namespace Calendar.Data.Services
         /// unified separator for date split
         /// </summary>
         public const char DateSeparator = '-';
+        
+        /// <summary>
+        /// row*10+col of the first day in the month
+        /// </summary>
+        public static int Start { get; private set; }
+        /// <summary>
+        /// row*10+col of the last day in the month
+        /// </summary>
+        public static int End { get; private set; }
 
-        protected static XDocument PersonalData { get; private set; }
-        protected static XDocument doc { get; private set; }
-        public static ResourceLoader Resource { get; set; }
+        public static int Weekend { get; private set; } = -1;
 
-        public static Dictionary<string, string> SelectedCategories { get; private set; }
+        protected static GeneralDataResource genDataResource { get; set; }
+        protected static PersonalDataResource persDataResource { get; set; }
+
+        protected static ResourceLoader Resource { get; set; } = null;
+
+        public static void SetResource(ResourceLoader value)
+        {
+            Resource = value;
+        }
+        
+        public static void ResetMonth(DateTime SelectedDate, int callerID)
+        {
+            if (Weekend == -1)
+            {
+                try
+                {
+                    string theDay = Resource.GetString("Weekend");
+                    Weekend = Convert.ToInt32(theDay);
+                }
+                catch
+                {
+                    Weekend = 5;
+                }
+            }
+
+            int weekDay = FirstDay(SelectedDate, callerID);
+            int days = DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month);
+
+            //start position for this month
+            int ii = (weekDay == 0) ? 1 : 0;
+            Start = (ii * 7) + weekDay;
+            End = days + Start;
+
+        }
+
+        public static string GetStringFromResourceLoader(string resourceStringName)
+        {
+            return Resource.GetString(resourceStringName);
+        }
 
         /// <summary>
         /// Load Holidays Data (general, then personal)
         /// </summary>
-        protected static void LoadPersonalData()
+        /// <param name="loadDoc">load files</param>
+        protected static void LoadPersonalData(bool loadDoc)
         {
+            //personal
+            persDataResource = new PersonalDataResource();
+
             //basic collection
-            doc = LoadFile("ms-appx:///Strings/Holidays.xml", null);
+            if (loadDoc)
+            {
+                genDataResource = new GeneralDataResource();
+
+                //set collection of selected categories of holidays
+                var collection = GetCollectionFromSourceFile("theme");
+                genDataResource.SetSelectedCategoriesList(collection);
+            }
+        }
+
+        #region Collection of Items
+        /// <summary>
+        /// Returns collection of holidays
+        /// </summary>
+        /// <param name="SelectedDate">current date</param>
+        /// <param name="callerID">0 - application, 1 - tile/smartTile, 2 - toast</param>
+        /// <returns></returns>
+        public static List<HolidayItem> GetComposedData(DateTime SelectedDate, int callerID)
+        {
+            //collections of holidays   
+            var fullCollection = new List<HolidayItem>();
+            List<DocElement> tempCollection = new List<DocElement>();
+
+            if (callerID != 2)
+            {
+                //looking for holidays from selected categories
+                tempCollection = GetCollectionFromSourceFile(SelectedDate, "day");
+                foreach (var x in tempCollection)
+                {
+                    fullCollection.Add(new HolidayItem
+                    {
+                        Day = Convert.ToInt32(x.Value.Attribute("date").Value),
+                        Month = SelectedDate.Month,
+                        Year = SelectedDate.Year,
+                        HolidayName = x.Value.Attribute("name").Value,
+                        HolidayTag = x.Key
+                    });
+                }
+
+                //computationals
+                tempCollection = GetCollectionFromSourceFile(SelectedDate, "computational");
+                foreach (var x in tempCollection)
+                {
+                    fullCollection.Add(new HolidayItem
+                    {
+                        Day = ComputeHoliday(Convert.ToInt32(x.Value.Attributes().ElementAt(1).Value), Convert.ToInt32(x.Value.Attributes().ElementAt(2).Value), callerID),
+                        Month = SelectedDate.Month,
+                        Year = SelectedDate.Year,
+                        HolidayName = x.Value.Attributes().ElementAt(0).Value,
+                        HolidayTag = x.Key
+                    });
+                }
+
+                //movables
+                tempCollection = GetCollectionFromSourceFile(SelectedDate, "movable");
+                if (tempCollection != null)
+                    foreach (var x in tempCollection)
+                    {
+                        fullCollection.Add(new HolidayItem
+                        {
+                            Day = Convert.ToInt32(x.Value.Attribute("date").Value),
+                            Month = SelectedDate.Month,
+                            Year = SelectedDate.Year,
+                            HolidayName = x.Value.Attribute("name").Value,
+                            HolidayTag = x.Key
+                        });
+                    }
+            }
 
             //personal
-            try
+            string mine = "";
+            if (callerID == 0)
+                mine = Resource.GetString("MineAsTag");
+
+            var list = GetCollectionFromSourceFile("persDate");
+            foreach (var pers in list)
             {
-                var storageFolder = ApplicationData.Current.RoamingFolder;
-                PersonalData = LoadFile("PersData.xml", storageFolder);
+                //get year
+                int year = -1;
+                if (!int.TryParse(pers.Attribute("year").Value, out year))
+                    year = -1;
 
-                if (PersonalData == null)
-                    throw new Exception();
+                //check month
+                bool isCurrenMonth = (pers.Attribute("month").Value == SelectedDate.Month.ToString() ||
+                                      pers.Attribute("month").Value == "0") ?
+                                      true : false;
+
+                if (isCurrenMonth && year != -1)
+                    fullCollection.Add(new HolidayItem
+                    {
+                        Day = Convert.ToInt32(pers.Attribute("date").Value),
+                        Month = SelectedDate.Month,
+                        Year = SelectedDate.Year,
+                        HolidayName = pers.Attribute("name").Value,
+                        HolidayTag = mine
+                    });
             }
-            //if it's the fist launch - load basic file
-            catch
-            {
-                PersonalData = LoadFile("ms-appx:///Strings/PersData.xml", null);
-            }
 
-            SetSelectedCategoriesList();
-        }
+            //services
+            var collection = persDataResource.GetItemList(null, -1);
 
-        protected static void SetSelectedCategoriesList()
-        {
-            SelectedCategories = new Dictionary<string, string>();
+            if (collection.Count() != 0)
+                foreach (var holiday in collection.Where(x => x.Name.LocalName == "persDate"))
+                {
+                    int year = int.Parse(holiday.Attribute("year").Value);
+                    int month = int.Parse(holiday.Attribute("month").Value);
 
-            //get themes (categories)
-            var collection = GetCollectionFromSourceFile("theme");
-            var keys = collection.Select(x => x.Attribute("name").Value).ToList();
-            var values = collection.Select(x => x.Attribute("desc").Value).ToList();
+                    if (year == SelectedDate.Year && month == SelectedDate.Month)
+                        fullCollection.Add(new HolidayItem
+                        {
+                            Day = int.Parse(holiday.Attribute("date").Value),
+                            Month = SelectedDate.Month,
+                            Year = SelectedDate.Year,
+                            HolidayName = holiday.Attribute("name").Value,
+                            HolidayTag = mine
+                        });
+                }
 
-            //set dictionary
-            for (int i = 0; i < keys.Count; i++)
-                SelectedCategories.Add(keys[i], values[i]);
-        }
+            //empty item
+            if (callerID == 0)
+                fullCollection.Add(new HolidayItem
+                {
+                    Day = 0,
+                    Month = SelectedDate.Month,
+                    Year = SelectedDate.Year,
+                    HolidayName = Resource.GetString("PersonalNote"),
+                    HolidayTag = Resource.GetString("MineAsTag")
+                });
 
-        public static void SetToastSnoozeValue(string value)
-        {
-            PersonalData.Root.Attribute("toast").Value = value; 
-            
-            //save changes
-            SaveDocumentAsync();
-        }
-
-        public static string GetToastSnoozeValue()
-        {
-            return PersonalData.Root.Attribute("toast").Value;
+            return fullCollection;
         }
 
         /// <summary>
-        /// Loads file from path
+        /// computes holidays from tag COMPUTATIONAL
         /// </summary>
-        /// <param name="filepath">path to a file</param>
-        /// <param name="folder">folder or null (to load from application folder)</param>
+        /// <param name="dow">day of week (from 0 to 6)</param>
+        /// <param name="now">number of week (from 0 to 4 (or 6 if last week))</param>
+        /// <param name="callerID">0 - application, 1 - tile/smartTile, 2 - toast</param>
         /// <returns></returns>
-        private static XDocument LoadFile(string filepath, StorageFolder folder)
+        private static int ComputeHoliday(int dow, int now, int callerID)
         {
-            try
+            if (callerID != 0)
             {
-                StorageFile file;
-
-                //load file
-                if (folder == null)
+                int a;
+                if (now != 6)
                 {
-                    var uri = new Uri(filepath);
-                    file = StorageFile.GetFileFromApplicationUriAsync(uri).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                    int startDay = ((Start % 10) == 7) ? 0 : (int)(Start % 10);
+                    a = (int)(Start / 10) * 7 + now * 7 + dow + 1 - startDay;
+
+                    //if week starts from Sun, add 7 days
+                    if (Weekend == 0) return a + 7;
+                    return a;
                 }
+                //last week
                 else
                 {
-                    file = folder.GetFileAsync(filepath).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
+                    a = (int)(End / 7) * 7 - Start - 6;
+                    if (End % 7 > dow)
+                        a += 7 + dow;
+                    else a += dow;
+                    return a;
                 }
-
-                //parse and return
-                var result = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                return XDocument.Parse(result);
             }
-            catch
+            else
             {
-                return null;
+                return ((8 - (int)(Start % 10)) + now * 7 - 6 + dow);
             }
         }
 
         /// <summary>
-        /// Saves changed personal data
+        /// Find a day, that starts selected month
         /// </summary>
-        public static async void SaveDocumentAsync()
+        /// <param name="SelectedDate">selected month</param>
+        /// <param name="callerID">0 - application, 1 - tile/smartTile, 2 - toast</param>
+        /// <returns>1th of {selected month} weekday</returns>
+        private static int FirstDay(DateTime SelectedDate, int callerID)
         {
-            try
+            //start from the first of {selected month}
+            int day = 1;
+            int a, y, m, R;
+            a = (14 - SelectedDate.Month) / 12;
+            y = SelectedDate.Year - a;
+            m = SelectedDate.Month + 12 * a - 2;
+            R = 7000 + (day + y + y / 4 - y / 100 + y / 400 + (31 * m) / 12);
+            R %= 7;
+
+            if (callerID != 0)
             {
-                StorageFile sampleFile = await ApplicationData.Current.RoamingFolder.
-                     CreateFileAsync("PersData.xml", CreationCollisionOption.OpenIfExists);
-                await FileIO.WriteTextAsync(sampleFile, PersonalData.ToString());
+                if (Weekend == 0) return R;
+                else return R = (R > 0) ? (R - 1) : 6;
             }
-            catch (Exception e)
+            else
             {
-                MyMessage(e.Message);
+                R = (R > 0) ? R : 7;
+                return (R == 1) ? (10 + R) : R;
             }
         }
-        
-        /// <summary>
-        /// change the list of holidays
-        /// </summary>
-        /// <param name="writer">XML writer</param>
-        /// <param name="name">name of holiday</param>
-        /// <param name="tag">type of holiday</param>
+       
+        #endregion
+
+        #region personal data
+        public static void SetToastSnoozeValue(string value)
+        {
+            persDataResource.SetToastSnoozeValue(value);
+        }
+
+        public static int GetToastSnoozeValue()
+        {
+            return persDataResource.GetToastSnoozeValue();
+        }
+
         public static void WriteNode(XmlWriter writer, string name, string tag)
         {
-            writer.WriteStartElement("holiday");
+            persDataResource.WriteNode(writer, name, tag);
+        }
 
-            writer.WriteStartAttribute("desc");
-            writer.WriteString(name);
-            writer.WriteEndAttribute();
-            writer.WriteStartAttribute("name");
-            writer.WriteString(tag);
-            writer.WriteEndAttribute();
-
-            writer.WriteEndElement();
+        public static void SavePersonal(string name, string day, string month, string year, bool needSave, string parentTag)
+        {
+            persDataResource.SavePersonal(name, day, month, year, needSave, parentTag);
         }
 
         /// <summary>
-        /// add new holiday
+        /// Remove note from file 
         /// </summary>
-        /// <param name="name">text</param>
-        /// <param name="day">selected day</param>
-        /// <param name="month">selected month</param>
-        /// <param name="year">selected year (or 0)</param> 
-        /// <param name="needSave">do we need to save document now?</param>
-        /// <param name="parentTag">parent tag</param>
-        public static void SavePersonal(string name, string day, string month, string year, bool needSave, string parentTag)
+        /// <param name="name">Note text</param>
+        /// <param name="day">day</param>
+        /// <param name="month">month</param>
+        /// <param name="year">year</param>
+        public static void RemoveHoliday(string name, string day, string month, string year)
         {
-            try
-            {
-                //add all nodes
-                using (XmlWriter writer = PersonalData.Root.Element(parentTag).CreateWriter())
-                {
-                    writer.WriteStartElement("persDate");
-
-                    writer.WriteStartAttribute("name");
-                    writer.WriteString(name);
-                    writer.WriteEndAttribute();
-                    writer.WriteStartAttribute("date");
-                    writer.WriteString(day);
-                    writer.WriteEndAttribute();
-                    writer.WriteStartAttribute("month");
-                    writer.WriteString(month);
-                    writer.WriteEndAttribute();
-                    writer.WriteStartAttribute("year");
-                    writer.WriteString(year);
-                    writer.WriteEndAttribute();
-
-                    writer.WriteEndElement();
-                }
-                //save changes
-                if (needSave) SaveDocumentAsync();
-            }
-            catch (Exception e)
-            {
-                MyMessage(e.Message);
-            }
+            persDataResource.RemoveHoliday(name, day, month, year);
         }
-
         /// <summary>
         /// Change note
         /// </summary>
@@ -204,189 +324,57 @@ namespace Calendar.Data.Services
         /// <param name="year">selected year (or 0)</param> 
         public static void ChangePersonal(string oldName, string newName, string day, string month, string year)
         {
-            try
-            {
-                PersonalData.Root.Descendants("holidays").Descendants("persDate").
-                    Where(p => (p.Attribute("name").Value == oldName)).
-                    Where(p => (p.Attribute("date").Value == day)).
-                    FirstOrDefault().
-                    ReplaceAttributes(new XAttribute("name", newName),
-                    new XAttribute("date", day),
-                    new XAttribute("month", month),
-                    new XAttribute("year", year));
-
-                //save changes
-                SaveDocumentAsync();
-            }
-            catch (Exception e)
-            {
-                MyMessage(e.Message);
-            }
+            persDataResource.ChangePersonal(oldName, newName, day, month, year);
         }
 
-        /// <summary>
-        /// Remove note
-        /// </summary>
-        /// <param name="startText"></param>
-        public static void RemoveHoliday(string name, string day, string month, string year)
-        {
-            try
-            {
-                //try to load PersData.xml            
-                PersonalData.Root.Descendants("holidays").
-                    Descendants("persDate").
-                    Where(p => (p.Attribute("name").Value == name &&
-                    p.Attribute("date").Value == day &&
-                    p.Attribute("month").Value == month &&
-                    p.Attribute("year").Value == year)).
-                        Remove();
+        #endregion
 
-                //save changes
-                SaveDocumentAsync();
-            }
-            catch (Exception e)
-            {
-                MyMessage(e.Message);
-            }
+        #region general data
+        public static List<DocElement> GetCollectionFromSourceFile(DateTime SelectedDate, string collectionType)
+        {
+            return genDataResource.GetCollectionFromSourceFile(SelectedDate, collectionType);
         }
 
-        /// <summary>
-        /// Removes records where year and month are less then current
-        /// </summary>
-        /// <returns>asyn operation</returns>
-        private static Task RemoveDeprecated()
+        public static Dictionary<string, string> GetSelectedCategoriesList()
         {
-            return Task.Run(() =>
-            {
-                //get current date and year
-                var month = DateTime.Now.Month;
-                var year = DateTime.Now.Year;
-                foreach (var descendant in PersonalData.Root.Descendants().Skip(1))
-                {
-                    descendant.Descendants().Where(p =>
-                        int.Parse(p.Attribute("month").Value) < month &&
-                        int.Parse(p.Attribute("year").Value) < year &&
-                        int.Parse(p.Attribute("year").Value) != 0).
-                            Remove();
-                }
-            });
-        }
-        
-        private static async void MyMessage(string text)
-        {
-            var dial = new MessageDialog(text);
-
-            dial.Commands.Add(new UICommand("OK"));
-            var command = await dial.ShowAsync();
-        }
-
-        #region SmartTile
-        public static bool SmartTileFile(string snooze)
-        {
-            XDocument SmartTileFie = new XDocument();
-
-            //try load
-            try
-            {
-                var storageFolder = ApplicationData.Current.LocalFolder;
-                var file = storageFolder.GetFileAsync("SmartTileFile.xml").AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                string text = FileIO.ReadTextAsync(file).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
-                SmartTileFie = XDocument.Parse(text);
-
-                SmartTileFie.Root.Attribute("refreshmentDate").SetValue(DateTime.Now.Date.AddDays(-1).ToString(DateFormat));
-                SmartTileFie.Root.Attribute("daysAmount").SetValue(snooze);
-
-                //save changes
-                //save changes
-                SaveSmartTileFile(SmartTileFie);
-
-                return true;
-            }
-            //elseway - try create
-            catch
-            {
-                try
-                {
-                    //create file
-                    SmartTileFie = new XDocument();
-                    SmartTileFie = new XDocument(new XElement("root", SmartTileFie.Root));
-                    SmartTileFie.Root.Value = "";
-
-                    using (XmlWriter writer = SmartTileFie.Root.CreateWriter())
-                    {
-                        writer.WriteStartAttribute("firstElement");
-                        writer.WriteString("0");
-                        writer.WriteEndAttribute();
-                        writer.WriteStartAttribute("refreshmentDate");
-                        writer.WriteString(DateTime.Now.Date.AddDays(-1).ToString(DataManager.DateFormat));
-                        writer.WriteEndAttribute();
-                        writer.WriteStartAttribute("daysAmount");
-                        writer.WriteString(snooze);
-                        writer.WriteEndAttribute();
-                    }
-
-                    //save changes
-                    SaveSmartTileFile(SmartTileFie);
-
-                    return true;
-                }
-                catch
-                {
-                    SmartTileFie = null;
-                    return false;
-                }
-            }
-        }
-        
-        private static async void SaveSmartTileFile(XDocument document)
-        {
-            if(document != null)
-            try
-            {
-                StorageFile sampleFile = await ApplicationData.Current.LocalFolder.
-                     CreateFileAsync("SmartTileFile.xml", CreationCollisionOption.OpenIfExists);
-                await FileIO.WriteTextAsync(sampleFile, document.ToString());
-            }
-            catch { }
+            return genDataResource.SelectedCategories;
         }
         #endregion
 
-
-        public static List<DocElement> GetCollectionFromSourceFile(DateTime SelectedDate, string collectionType)
+        #region smart tile data
+        /// <summary>
+        /// Create/change data in SmartTileFile.xml
+        /// </summary>
+        /// <param name="snooze">snooze</param>
+        /// <returns>done or not</returns>
+        public static bool ProcessSmartTileFile(string snooze)
         {
-            var holidayCollection = new List<DocElement>();
-
-            foreach (var element in doc.Root.Descendants("month").ElementAt(SelectedDate.Month - 1).Descendants(collectionType))
-            {
-                //category
-                string theme = element.Parent.Attribute("name").Value;
-                bool value = (SelectedCategories.Keys.Count(val => val == theme) == 1) ? true : false;
-
-                if (element.FirstAttribute.Value != "" && value == true)
-                    holidayCollection.Add(new DocElement
-                    {
-                        Key = theme,
-                        Value = element
-                    });
-            }
-            
-            return holidayCollection;
+            var smartTile = new SmartTileDataResource();
+            return smartTile.ProcessSmartTileFile(snooze);
         }
 
+        public static List<HolidayItem> GetSmartTileCollection()
+        {
+            var smartTile = new SmartTileDataResource();
+            return smartTile.LoadSmartTileFile();
+        }
+
+        #endregion
+
+        /// <summary>
+        /// get collection of XElements from resource files
+        /// </summary>
+        /// <param name="collectionType"></param>
+        /// <returns></returns>
         public static List<XElement> GetCollectionFromSourceFile(string collectionType)
         {
             List<XElement> holidayCollection = new List<XElement>();
 
             if (collectionType == "categories")
-                holidayCollection = doc.Root.Descendants("month").ElementAt(0).Descendants("holiday").ToList();
-            else if (collectionType == "theme")
-                holidayCollection = PersonalData.Root.Descendants("theme").Descendants("holiday").ToList();
-            else if (collectionType == "persDate")
-                DataManager.PersonalData.Root.Descendants("holidays").Descendants("persDate");
-            else holidayCollection = PersonalData.Root.Element(collectionType).Descendants().ToList();
+                holidayCollection = genDataResource.GetCollectionFromSourceFile();
+            else holidayCollection = persDataResource.GetCollectionFromSourceFile(collectionType);
 
             return holidayCollection;
         }
-
     }
 }

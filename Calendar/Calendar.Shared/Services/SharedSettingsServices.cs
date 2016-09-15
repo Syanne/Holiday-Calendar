@@ -37,7 +37,7 @@ namespace Calendar.Services
             string name = "SmartTileBackgroundTask";
             string entryPoint = "BackgroundUpdater.SmartTileBackgroundTask";
 
-            LocalDataManager.SmartTileFile(daysAverage);
+            LocalDataManager.ProcessSmartTileFile(daysAverage);
             TileEnableController(name, entryPoint, needEnableService, ref IsSmartTileSet, 30);
         }
 

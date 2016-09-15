@@ -36,7 +36,7 @@ namespace Calendar
             var read = Windows.Storage.FileIO.ReadTextAsync(holFile).AsTask().ConfigureAwait(false).GetAwaiter().GetResult();
             var doc = XDocument.Parse(read);
         #endif
-            string pictureFolder = LocalDataManager.Resource.GetString("themePictures");
+            string pictureFolder = LocalDataManager.GetStringFromResourceLoader("themePictures");
 
             var collection = doc.Root.Descendants("theme");
 

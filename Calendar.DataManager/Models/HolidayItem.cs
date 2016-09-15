@@ -5,8 +5,14 @@ namespace Calendar.Data.Models
     /// <summary>
     /// all chosen holidays (from at least 3 categories of holidays)
     /// </summary>
-    public class HolidayItem: ItemBase
+    public class HolidayItem
     {
+
+        public int Day { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
+        public string HolidayName { get; set; }
+        public string HolidayTag { get; set; }
         public Brush Background { get; set; }
         public double Height { get; set; }
         public double FontSize { get; set; }

@@ -141,7 +141,7 @@ namespace Calendar
 
                     FillCalendar();
                     MarkHolidays();
-                    gviPrev = calGrid.Items.ElementAt(LocalDataManager.calBase.Start + LocalDataManager.calBase.SelectedDate.Day - 1) as GridViewItem;
+                    gviPrev = calGrid.Items.ElementAt(LocalDataManager.Start + LocalDataManager.calBase.SelectedDate.Day - 1) as GridViewItem;
 
                     gviPrev.BorderBrush = gviPrev.Foreground;
                 }
@@ -183,7 +183,7 @@ namespace Calendar
             }
             UpdateNoteList();
 
-            GridViewItem gvi = calGrid.Items.ElementAt(DatePickerDp.Date.Day + LocalDataManager.calBase.Start - 1) as GridViewItem;
+            GridViewItem gvi = calGrid.Items.ElementAt(DatePickerDp.Date.Day + LocalDataManager.Start - 1) as GridViewItem;
             //highlight selected day 
             if (gviPrev != gvi)
             {

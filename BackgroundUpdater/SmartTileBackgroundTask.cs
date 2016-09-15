@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Calendar.Data.Models;
+using System;
 using System.Collections.Generic;
 using Windows.ApplicationModel.Background;
 using Windows.Data.Xml.Dom;
@@ -16,8 +17,7 @@ namespace BackgroundUpdater
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
 
             //load data
-            _manager = new DataBakgroundManager();
-            _manager.LoadResourceHolidays();
+            _manager = new DataBakgroundManager(1);
 
             //start updating
             try
@@ -37,16 +37,16 @@ namespace BackgroundUpdater
             updateManager.EnableNotificationQueue(true);
 
             //prepare collection
-            List<Event> eventCollection = _manager.LoadSmartTileFile();            
+            List<HolidayItem> eventCollection = _manager.GetSmartTileDataColection();           
             
             if (eventCollection.Count > 0)
                 foreach (var currEvent in eventCollection)
                 {
                     //date to show
-                    DateTime date = new DateTime(currEvent.Year, currEvent.Month, currEvent.Day);
+                    DateTime date = new DateTime((int)currEvent.Year, (int)currEvent.Month, currEvent.Day);
 
                     var xmlDocument = new XmlDocument();
-                    xmlDocument.LoadXml(String.Format(DataBakgroundManager.XML_TEMPLATE, date.ToString("d"), currEvent.Value));
+                    xmlDocument.LoadXml(String.Format(DataBakgroundManager.XML_TEMPLATE, date.ToString("d"), currEvent.HolidayName));
 
                     var notification = new TileNotification(xmlDocument);
                     updateManager.Update(notification);

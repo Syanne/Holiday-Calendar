@@ -92,7 +92,7 @@ namespace Calendar
 #endif
 
                 //resources
-                LocalDataManager.Resource = ResourceLoader.GetForCurrentView("Resources");
+                LocalDataManager.SetResource(ResourceLoader.GetForCurrentView("Resources"));
                 try
                 {
                     Current.Resources.Source = new Uri(ApplicationData.Current.LocalSettings.Values["AppTheme"].ToString());
@@ -103,20 +103,7 @@ namespace Calendar
                 }
 
                 LocalDataManager.StartLoad();
-
-                //mechanism
-                int Weekend;
-                try
-                {
-                    string theDay = LocalDataManager.Resource.GetString("Weekend");
-                    Weekend = Convert.ToInt32(theDay);
-                }
-                catch
-                {
-                    Weekend = 5;
-                }
-                LocalDataManager.calBase = new Mechanism.HolidayCalendarBase(Weekend);
-
+                LocalDataManager.calBase = new Mechanism.HolidayCalendarBase();
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation

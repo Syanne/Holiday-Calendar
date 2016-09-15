@@ -56,14 +56,14 @@ namespace Calendar
                 lviAll = new ListViewItem
                 {
                     Tag = "All",
-                    Content = DataManager.Resource.GetString("AllHol"),
+                    Content = DataManager.GetStringFromResourceLoader("AllHol"),
                     Foreground = new SolidColorBrush(Colors.White),
                 };
 
                 lviPers = new ListViewItem
                 {
                     Tag = "Per",
-                    Content = DataManager.Resource.GetString("MineAsTag"),
+                    Content = DataManager.GetStringFromResourceLoader("MineAsTag"),
                     Foreground = foreg,
                 };
 
@@ -266,7 +266,7 @@ namespace Calendar
 
             //Shows month and year in the top of calGrid\
             FillCalendar();
-            gviPrev = calGrid.Items.ElementAt(LocalDataManager.calBase.Start + gotoDay - 1) as GridViewItem;
+            gviPrev = calGrid.Items.ElementAt(LocalDataManager.Start + gotoDay - 1) as GridViewItem;
             MarkHolidays();
             UpdateNoteList();
             gviPrev.BorderBrush = gviPrev.Foreground;
@@ -307,7 +307,7 @@ namespace Calendar
             {
                 //new note
                 if (((sender as ListViewItem).Content as TextBlock).Text ==
-                                        DataManager.Resource.GetString("PersonalNote"))
+                                        DataManager.GetStringFromResourceLoader("PersonalNote"))
                 {
                     FlyoutBase.ShowAttachedFlyout(noteList as FrameworkElement);
                     addNotetb.Text = "";
@@ -316,7 +316,7 @@ namespace Calendar
                     onceCb.IsChecked = true;
                 }
                 //existing
-                else if ((sender as ListViewItem).Tag.ToString() == DataManager.Resource.GetString("MineAsTag"))
+                else if ((sender as ListViewItem).Tag.ToString() == DataManager.GetStringFromResourceLoader("MineAsTag"))
                 {
                     FlyoutBase.ShowAttachedFlyout(noteList as FrameworkElement);
                     addNotetb.Text = ((sender as ListViewItem).Content as TextBlock).Text;
@@ -344,7 +344,7 @@ namespace Calendar
             else
             {
                 //change selected day
-                int index = LocalDataManager.calBase.Start + (int)((sender as ListViewItem).Content as TextBlock).Tag - 1;
+                int index = LocalDataManager.Start + (int)((sender as ListViewItem).Content as TextBlock).Tag - 1;
                 GridViewItem gvi = calGrid.Items[index] as GridViewItem;
 
                 //if type "All" selected - show whole list of holidays

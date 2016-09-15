@@ -61,7 +61,7 @@ namespace Calendar
             catch
             {   }
 
-            gviPrev = calGrid.Items.ElementAt(LocalDataManager.calBase.SelectedDate.Day + LocalDataManager.calBase.Start - 1) as GridViewItem;
+            gviPrev = calGrid.Items.ElementAt(LocalDataManager.calBase.SelectedDate.Day + LocalDataManager.Start - 1) as GridViewItem;
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Calendar
             monthNameButton.Content = LocalDataManager.calBase.SelectedDate.Date.ToString("MMMM yyyy").ToLower();
 
             //from first to last day in a month
-            int jj = (LocalDataManager.calBase.Start == 7) ? LocalDataManager.calBase.Start : 0;
+            int jj = (LocalDataManager.Start == 7) ? LocalDataManager.Start : 0;
 
             //styles and brushes for day-items
             Style adjStyle = (Style)this.Resources["AdjMonthStyle"];
@@ -200,7 +200,7 @@ namespace Calendar
                 gvItem.Tapped += Day_Tapped;
 #endif
                 //adjMonths
-                if (i < LocalDataManager.calBase.Start || i >= LocalDataManager.calBase.End)
+                if (i < LocalDataManager.Start || i >= LocalDataManager.End)
                     gvItem.Style = adjStyle;
                 else
                 {
@@ -234,7 +234,7 @@ namespace Calendar
             SolidColorBrush hol = (SolidColorBrush)Application.Current.Resources["AdditionalColor"];
                 
             //holidays
-            for (int i = LocalDataManager.calBase.Start; i < LocalDataManager.calBase.End; i++)
+            for (int i = LocalDataManager.Start; i < LocalDataManager.End; i++)
             {
                 int current = Convert.ToInt32((calGrid.Items[i] as GridViewItem).Content);
                
@@ -246,7 +246,7 @@ namespace Calendar
             //today
             if (LocalDataManager.calBase.SelectedDate.Month == DateTime.Now.Month && LocalDataManager.calBase.SelectedDate.Year == DateTime.Now.Year)
             {
-                int x = LocalDataManager.calBase.Start - 1 + DateTime.Now.Day;
+                int x = LocalDataManager.Start - 1 + DateTime.Now.Day;
                 (calGrid.Items[x] as GridViewItem).Style = (Style)this.Resources["TodayStyle"];
 
                 if(gviPrev != null)
