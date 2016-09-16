@@ -12,12 +12,18 @@ namespace Calendar.Data.Services
 {
     public class PersonalDataResource : BasicDataResource
     {
+        /// <summary>
+        /// File basic path
+        /// </summary>
         protected override string Path
         {
             get { return "PersData.xml"; }
         }
 
-        private string SparePath { get { return "ms-appx:///Strings/PersData.xml"; } }
+        /// <summary>
+        /// File extra path (localized standard)
+        /// </summary>
+        private string ExtraPath { get { return "ms-appx:///Strings/PersData.xml"; } }
 
         public PersonalDataResource()
         {
@@ -32,7 +38,7 @@ namespace Calendar.Data.Services
             //if it's the fist launch - load basic file
             catch
             {
-                Document = LoadFile(SparePath, null);
+                Document = LoadFile(ExtraPath, null);
             }
         }
 
@@ -57,6 +63,11 @@ namespace Calendar.Data.Services
             return subcollection;
         }
         
+        /// <summary>
+        /// Get a collection from specified type 
+        /// </summary>
+        /// <param name="collectionType">parent tag name (type)</param>
+        /// <returns>collection of XElement</returns>
         public List<XElement> GetCollectionFromSourceFile(string collectionType)
         {
             if (collectionType == "theme")
@@ -229,6 +240,10 @@ namespace Calendar.Data.Services
             SaveDocument();
         }
 
+        /// <summary>
+        /// Get snooze for toast
+        /// </summary>
+        /// <returns>snooze value</returns>
         public int GetToastSnoozeValue()
         {
             return Convert.ToInt32(Document.Root.Attribute("toast").Value);
@@ -331,6 +346,10 @@ namespace Calendar.Data.Services
             }
         }
 
+        /// <summary>
+        /// Write new categories
+        /// </summary>
+        /// <param name="basicHolidays"></param>
         public void WriteHolidayTypes(Dictionary<string, string> basicHolidays)
         {
             //remove all nodes
@@ -348,6 +367,12 @@ namespace Calendar.Data.Services
             SaveDocument();
         }
 
+        /// <summary>
+        /// Get value from root's straight descendant
+        /// </summary>
+        /// <param name="straightDescendantName">node name</param>
+        /// <param name="attributeName">needed attribute name</param>
+        /// <returns>attribute's value</returns>
         public string GetRootStraightDescendantAttributeValue(string straightDescendantName, string attributeName)
         {
             return Document.Root.Element(straightDescendantName).Attribute(attributeName).Value;

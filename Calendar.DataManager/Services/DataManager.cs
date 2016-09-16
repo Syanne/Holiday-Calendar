@@ -35,13 +35,18 @@ namespace Calendar.Data.Services
         /// </summary>
         public static int Weekend { get; private set; } = -1;
 
-        protected static GeneralDataResource genDataResource { get; set; }
-        protected static PersonalDataResource persDataResource { get; set; }
-
         /// <summary>
         /// Application Resources (localized strings)
         /// </summary>
         protected static ResourceLoader Resource { get; set; } = null;
+
+        /// <summary>
+        /// Categories collection
+        /// </summary>
+        protected static Dictionary<string, string> SelectedCategories { get; set; }
+
+        protected static GeneralDataResource genDataResource { get; set; }
+        protected static PersonalDataResource persDataResource { get; set; }
 
         /// <summary>
         /// Set application resources
@@ -105,11 +110,17 @@ namespace Calendar.Data.Services
             {
                 //set collection of selected categories of holidays
                 var collection = GetCollectionFromSourceFile("theme");
-                genDataResource = new GeneralDataResource(collection);
+                genDataResource = new GeneralDataResource();
+
+                SelectedCategories = new Dictionary<string, string>();
+
+                //set dictionary
+                foreach (var item in collection)
+                    SelectedCategories.Add(item.Attribute("name").Value, item.Attribute("desc").Value);
             }
         }
 
-        #region Collection of Items
+        #region Collection generator
         /// <summary>
         /// Returns collection of holidays
         /// </summary>
@@ -373,14 +384,24 @@ namespace Calendar.Data.Services
         #endregion
 
         #region general data
+        /// <summary>
+        /// Get collection of elements from general (localized) data file
+        /// </summary>
+        /// <param name="SelectedDate">selected date</param>
+        /// <param name="collectionType">type of collection (moveable, compytational, day)</param>
+        /// <returns>collection of pairs category/XElement</returns>
         public static List<DocElement> GetCollectionFromSourceFile(DateTime SelectedDate, string collectionType)
         {
-            return genDataResource.GetCollectionFromSourceFile(SelectedDate, collectionType);
+            return genDataResource.GetCollectionFromSourceFile(SelectedDate, collectionType, SelectedCategories);
         }
 
+        /// <summary>
+        /// Get categories collection
+        /// </summary>
+        /// <returns>pairs name(key)/description</returns>
         public static Dictionary<string, string> GetSelectedCategoriesList()
         {
-            return genDataResource.SelectedCategories;
+            return SelectedCategories;
         }
         #endregion
 

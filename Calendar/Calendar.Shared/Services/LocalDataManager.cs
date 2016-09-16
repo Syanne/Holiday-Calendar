@@ -128,7 +128,8 @@ namespace Calendar.Services
         public static void WriteHolidayXml(Dictionary<string, string> basicHolidays)
         {
             persDataResource.WriteHolidayTypes(basicHolidays);
-            genDataResource.ResetSelectedCategories(basicHolidays);
+
+            SelectedCategories = basicHolidays;
         }
     }
 }

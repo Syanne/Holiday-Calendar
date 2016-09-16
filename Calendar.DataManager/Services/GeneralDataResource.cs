@@ -10,28 +10,20 @@ namespace Calendar.Data.Services
 {
     public class GeneralDataResource : BasicDataResource
     {
+        /// <summary>
+        /// File basic path
+        /// </summary>
         protected override string Path
         {
             get { return "ms-appx:///Strings/Holidays.xml"; }
         }
 
-        public Dictionary<string, string> SelectedCategories { get; private set; }
 
-        public GeneralDataResource(List<XElement> collection)
+        public GeneralDataResource()
         {
             Document = LoadFile(Path, null);
-            SelectedCategories = new Dictionary<string, string>();
-
-            //set dictionary
-            foreach(var item in collection)
-                SelectedCategories.Add(item.Attribute("name").Value, item.Attribute("desc").Value);
         }
-
-        public void ResetSelectedCategories(Dictionary<string, string> categories)
-        {
-            SelectedCategories = categories;
-        }
-
+        
         /// <summary>
         /// Prepare ollection of elements.
         /// Key - parent.
@@ -52,12 +44,13 @@ namespace Calendar.Data.Services
         
 
         /// <summary>
-        /// 
+        /// Get collection of elements from general (localized) data file
         /// </summary>
-        /// <param name="SelectedDate"></param>
-        /// <param name="collectionType"></param>
-        /// <returns></returns>
-        public List<DocElement> GetCollectionFromSourceFile(DateTime SelectedDate, string collectionType)
+        /// <param name="SelectedDate">selected date</param>
+        /// <param name="collectionType">type of collection (moveable, compytational, day)</param>
+        /// <param name="categories">selected holiday types</param>
+        /// <returns>collection of pairs category/XElement</returns>
+        public List<DocElement> GetCollectionFromSourceFile(DateTime SelectedDate, string collectionType, Dictionary<string, string> categories)
         {
             var holidayCollection = new List<DocElement>();
 
@@ -65,7 +58,7 @@ namespace Calendar.Data.Services
             {
                 //category
                 string theme = element.Parent.Attribute("name").Value;
-                bool value = (SelectedCategories.Keys.Count(val => val == theme) == 1) ? true : false;
+                bool value = (categories.Keys.Count(val => val == theme) == 1) ? true : false;
 
                 if (element.FirstAttribute.Value != "" && value == true)
                     holidayCollection.Add(new DocElement

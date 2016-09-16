@@ -10,6 +10,9 @@ namespace Calendar.Data.Services
 {
     public class SmartTileDataResource : BasicDataResource
     {
+        /// <summary>
+        /// File basic path
+        /// </summary>
         protected override string Path
         {
             get { return "SmartTileFile.xml"; }
@@ -20,12 +23,12 @@ namespace Calendar.Data.Services
             var storageFolder = ApplicationData.Current.LocalFolder;
             Document = base.LoadFile(Path, storageFolder);
         }
-
-        public override IEnumerable<XElement> GetItemList(string parentName, int? extraKey)
-        {
-            throw new NotImplementedException();
-        }
-
+        
+        /// <summary>
+        /// Prepare file from application
+        /// </summary>
+        /// <param name="snooze"></param>
+        /// <returns></returns>
         public bool ProcessSmartTileFile(string snooze)
         {
             //try load
@@ -74,20 +77,11 @@ namespace Calendar.Data.Services
                 }
             }
         }
-
-        protected async override void SaveDocument()
-        {
-            if (Document != null)
-                try
-                {
-                    StorageFile sampleFile = await ApplicationData.Current.LocalFolder.
-                         CreateFileAsync("SmartTileFile.xml", CreationCollisionOption.OpenIfExists);
-                    await FileIO.WriteTextAsync(sampleFile, Document.ToString());
-                }
-                catch { }
-        }
-
-        #region LiveTileActivity
+        
+        /// <summary>
+        /// Prepare data for SmartTile activity
+        /// </summary>
+        /// <returns></returns>
         public List<HolidayItem> LoadSmartTileFile()
         {
             DateTime refreshmentDate, endDate;
@@ -210,7 +204,21 @@ namespace Calendar.Data.Services
 
             return events;
         }
+        
 
-        #endregion
+        /// <summary>
+        /// Save doc
+        /// </summary>
+        protected async override void SaveDocument()
+        {
+            if (Document != null)
+                try
+                {
+                    StorageFile sampleFile = await ApplicationData.Current.LocalFolder.
+                         CreateFileAsync("SmartTileFile.xml", CreationCollisionOption.OpenIfExists);
+                    await FileIO.WriteTextAsync(sampleFile, Document.ToString());
+                }
+                catch { }
+        }
     }
 }

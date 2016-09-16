@@ -12,7 +12,14 @@ namespace Calendar.Data.Services
 {
     public abstract class BasicDataResource
     {
+        /// <summary>
+        /// File basic path
+        /// </summary>
         protected abstract string Path { get; }
+        
+        /// <summary>
+        /// Instance of a document
+        /// </summary>
         public XDocument Document { get; protected set; }
 
         /// <summary>
