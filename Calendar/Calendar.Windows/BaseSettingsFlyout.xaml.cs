@@ -97,7 +97,7 @@ namespace Calendar
                 {
                     if (toastToggle.IsOn)
                     {
-                        LocalDataManager.SetToastSnoozeValue((comboToast.SelectedIndex + 1).ToString());
+                        LocalDataManager.SetToastSnoozeValue((comboToast.SelectedIndex + 1));
 
                         //set period
                         uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);

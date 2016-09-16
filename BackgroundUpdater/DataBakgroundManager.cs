@@ -34,8 +34,8 @@ namespace BackgroundUpdater
         {
             CallerID = callerID;
             if (callerID == 2)
-                DataManager.LoadPersonalData(false);
-            else DataManager.LoadPersonalData(true);
+                DataManager.LoadApplicationDataFiles(false);
+            else DataManager.LoadApplicationDataFiles(true);
         }
 
         /// <summary>

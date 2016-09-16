@@ -24,50 +24,71 @@ namespace Calendar.Mechanism
             SelectedDate = DateTime.Now;
             
             FillMonth();
-
-            ReadHolidayXml();
-            FillHolidaysList();
+            RefreshBottomPanelAndCalendar(null);
         }
 
         /// <summary>
         /// Source for ListView in Flyout
         /// </summary>
+        /// <param name="collection">null - if empty, else - need to refresh</param>
         /// <returns>Collection of holiday's categories</returns>
-        public void FillHolidaysList()
+        public void RefreshBottomPanelAndCalendar(IEnumerable<object> collection)
         {
-            if (HolidayNameCollection.Count == 0)
+            //read collection from file
+            if (collection == null)
             {
-                var collect = LocalDataManager.GetCollectionFromSourceFile("categories");
-                foreach (XElement x in collect)
+                var dict = LocalDataManager.GetCollectionOfCategories();
+                foreach (var x in dict)
                 {
                     HolidayNameCollection.Add(new CheckBox
                     {
-                        Content = x.FirstAttribute.Value.ToLower(),
-                        Tag = x.LastAttribute.Value,
+                        Content = x.Value,
+                        Tag = x.Key,
                         FontSize = 18,
                         Padding = new Windows.UI.Xaml.Thickness(10, 0, 10, 10)
                     });
                 }
-            }
 
-            for (int i = 0; i < HolidayNameCollection.Count; i++)
-                foreach (var p in LocalDataManager.GetSelectedCategoriesList())
+                var selectedCats = LocalDataManager.GetSelectedCategoriesList();
+                for (int i = 0; i < HolidayNameCollection.Count; i++)
                 {
-                    if (p.Key.ToLower() == HolidayNameCollection[i].Tag.ToString().ToLower())
-                    {
-                        HolidayNameCollection[i].IsChecked = true; break;
-                    }
+                    if (selectedCats.ContainsKey(HolidayNameCollection[i].Tag.ToString().ToLower()))
+                        HolidayNameCollection[i].IsChecked = true;
                     else HolidayNameCollection[i].IsChecked = false;
                 }
+                    
+            }
+            //refresh application and data in file
+            else
+            {
+                Dictionary<string, string> dictionary = new Dictionary<string, string>();
+                HolidayNameCollection = new List<CheckBox>();
+
+                foreach (var element in collection)
+                {
+                    if (element is CheckBox)
+                    {
+                        var current = element as CheckBox;
+                        HolidayNameCollection.Add(current);
+
+                        if (current.IsChecked == true)
+                        {
+                            dictionary.Add(current.Tag.ToString(), current.Content.ToString());
+                        }
+                    }
+                }
+
+                LocalDataManager.WriteHolidayXml(dictionary);
+
+            }
+            //refresh collection
+            RefreshDataCollection();
         }
 
         /// <summary>
         /// get all holidays (personal and selected types)
         /// </summary>
-        /// <param name="month">shown month</param>
-        /// <param name="start">first day of month </param>
-        /// <param name="year">shown year</param>
-        public void ReadHolidayXml()
+        public void RefreshDataCollection()
         {
             HolidayItemCollection = LocalDataManager.GetComposedData(SelectedDate, 0);
         }
@@ -75,7 +96,7 @@ namespace Calendar.Mechanism
         /// <summary>
         /// Next or previous month
         /// </summary>
-        /// <param name="value">1 or -1</param>
+        /// <param name="value">1 for next, -1 for previous</param>
         public void Skip(int value)
         {
             SelectedDate = SelectedDate.AddMonths(value);

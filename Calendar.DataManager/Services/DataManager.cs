@@ -22,26 +22,41 @@ namespace Calendar.Data.Services
         public const char DateSeparator = '-';
         
         /// <summary>
-        /// row*10+col of the first day in the month
+        /// a position of a first day of a month on the calendar grid
         /// </summary>
         public static int Start { get; private set; }
         /// <summary>
-        /// row*10+col of the last day in the month
+        /// a position of a last day of a month on the calendar grid
         /// </summary>
         public static int End { get; private set; }
 
+        /// <summary>
+        /// 5 - weeek starts from Mon, 0 - week starts from Sun
+        /// </summary>
         public static int Weekend { get; private set; } = -1;
 
         protected static GeneralDataResource genDataResource { get; set; }
         protected static PersonalDataResource persDataResource { get; set; }
 
+        /// <summary>
+        /// Application Resources (localized strings)
+        /// </summary>
         protected static ResourceLoader Resource { get; set; } = null;
 
+        /// <summary>
+        /// Set application resources
+        /// </summary>
+        /// <param name="value"></param>
         public static void SetResource(ResourceLoader value)
         {
             Resource = value;
         }
-        
+
+        /// <summary>
+        /// Reset month data
+        /// </summary>
+        /// <param name="SelectedDate">current month and year</param>
+        /// <param name="callerID">0 - application, 1 - tile/smartTile, 2 - toast</param>
         public static void ResetMonth(DateTime SelectedDate, int callerID)
         {
             if (Weekend == -1)
@@ -64,19 +79,23 @@ namespace Calendar.Data.Services
             int ii = (weekDay == 0) ? 1 : 0;
             Start = (ii * 7) + weekDay;
             End = days + Start;
-
         }
 
+        /// <summary>
+        /// Get string from resource file
+        /// </summary>
+        /// <param name="resourceStringName">key (uid)</param>
+        /// <returns>localized string</returns>
         public static string GetStringFromResourceLoader(string resourceStringName)
         {
             return Resource.GetString(resourceStringName);
         }
 
         /// <summary>
-        /// Load Holidays Data (general, then personal)
+        /// Load application XML files (personal and localized)
         /// </summary>
         /// <param name="loadDoc">load files</param>
-        protected static void LoadPersonalData(bool loadDoc)
+        protected static void LoadApplicationDataFiles(bool loadDoc)
         {
             //personal
             persDataResource = new PersonalDataResource();
@@ -84,11 +103,9 @@ namespace Calendar.Data.Services
             //basic collection
             if (loadDoc)
             {
-                genDataResource = new GeneralDataResource();
-
                 //set collection of selected categories of holidays
                 var collection = GetCollectionFromSourceFile("theme");
-                genDataResource.SetSelectedCategoriesList(collection);
+                genDataResource = new GeneralDataResource(collection);
             }
         }
 
@@ -140,14 +157,19 @@ namespace Calendar.Data.Services
                 if (tempCollection != null)
                     foreach (var x in tempCollection)
                     {
-                        fullCollection.Add(new HolidayItem
-                        {
-                            Day = Convert.ToInt32(x.Value.Attribute("date").Value),
-                            Month = SelectedDate.Month,
-                            Year = SelectedDate.Year,
-                            HolidayName = x.Value.Attribute("name").Value,
-                            HolidayTag = x.Key
-                        });
+                        //try parse year
+                        int mYear = 0;
+                        bool sth = Int32.TryParse(x.Value.Attribute("year").Value, out mYear);
+
+                        if (mYear != 0 && mYear == SelectedDate.Year)
+                            fullCollection.Add(new HolidayItem
+                            {
+                                Day = Convert.ToInt32(x.Value.Attribute("date").Value),
+                                Month = SelectedDate.Month,
+                                Year = SelectedDate.Year,
+                                HolidayName = x.Value.Attribute("name").Value,
+                                HolidayTag = x.Key
+                            });
                     }
             }
 
@@ -279,28 +301,49 @@ namespace Calendar.Data.Services
                 return (R == 1) ? (10 + R) : R;
             }
         }
-       
+
         #endregion
 
         #region personal data
-        public static void SetToastSnoozeValue(string value)
+        /// <summary>
+        /// Set snooze of toast notification
+        /// </summary>
+        /// <param name="value">snooze</param>
+        public static void SetToastSnoozeValue(int value)
         {
             persDataResource.SetToastSnoozeValue(value);
         }
 
+        /// <summary>
+        /// Get snooze value
+        /// </summary>
+        /// <returns>snooze</returns>
         public static int GetToastSnoozeValue()
         {
             return persDataResource.GetToastSnoozeValue();
         }
 
-        public static void WriteNode(XmlWriter writer, string name, string tag)
+        /// <summary>
+        /// Write theme node
+        /// </summary>
+        /// <param name="writer">XmlWriter instance</param>
+        /// <param name="name">text</param>
+        /// <param name="tag">tag (key)</param>
+        public static void AddHolidayCategory(XmlWriter writer, string name, string tag)
         {
             persDataResource.WriteNode(writer, name, tag);
         }
 
-        public static void SavePersonal(string name, string day, string month, string year, bool needSave, string parentTag)
+        /// <summary>
+        /// Save new note
+        /// </summary>
+        /// <param name="text">note's text</param>
+        /// <param name="day">day value</param>
+        /// <param name="month">month value</param>
+        /// <param name="year">year value</param>
+        public static void CreateRecord(string text, int day, int month, int year)
         {
-            persDataResource.SavePersonal(name, day, month, year, needSave, parentTag);
+            persDataResource.CreateRecord(text, day, month, year, true, "holidays");
         }
 
         /// <summary>
@@ -310,21 +353,21 @@ namespace Calendar.Data.Services
         /// <param name="day">day</param>
         /// <param name="month">month</param>
         /// <param name="year">year</param>
-        public static void RemoveHoliday(string name, string day, string month, string year)
+        public static void RemoveRecord(string name, string day, string month, string year)
         {
-            persDataResource.RemoveHoliday(name, day, month, year);
+            persDataResource.RemoveRecord(name, day, month, year);
         }
         /// <summary>
         /// Change note
         /// </summary>
-        /// <param name="oldName">old text</param>
-        /// <param name="newName">changed text</param>
+        /// <param name="oldValue">old text</param>
+        /// <param name="newValue">changed text</param>
         /// <param name="day">selected day</param>
         /// <param name="month">selected month</param>
         /// <param name="year">selected year (or 0)</param> 
-        public static void ChangePersonal(string oldName, string newName, string day, string month, string year)
+        public static void ChangeRecord(string oldValue, string newValue, string day, string month, string year)
         {
-            persDataResource.ChangePersonal(oldName, newName, day, month, year);
+            persDataResource.ChangeRecord(oldValue, newValue, day, month, year);
         }
 
         #endregion
@@ -353,6 +396,10 @@ namespace Calendar.Data.Services
             return smartTile.ProcessSmartTileFile(snooze);
         }
 
+        /// <summary>
+        /// Get collection of notes for SmartTile
+        /// </summary>
+        /// <returns>collection of parsed notes from file</returns>
         public static List<HolidayItem> GetSmartTileCollection()
         {
             var smartTile = new SmartTileDataResource();
@@ -362,19 +409,35 @@ namespace Calendar.Data.Services
         #endregion
 
         /// <summary>
-        /// get collection of XElements from resource files
+        /// Get collection of XElements from resource files
         /// </summary>
         /// <param name="collectionType"></param>
         /// <returns></returns>
-        public static List<XElement> GetCollectionFromSourceFile(string collectionType)
+        protected static List<XElement> GetCollectionFromSourceFile(string collectionType)
         {
             List<XElement> holidayCollection = new List<XElement>();
-
-            if (collectionType == "categories")
-                holidayCollection = genDataResource.GetCollectionFromSourceFile();
-            else holidayCollection = persDataResource.GetCollectionFromSourceFile(collectionType);
+            
+            holidayCollection = persDataResource.GetCollectionFromSourceFile(collectionType);
 
             return holidayCollection;
+        }
+
+        /// <summary>
+        /// Get collection of holiday's categories (Key - tag, Value - description)
+        /// </summary>
+        /// <returns>Collection of categories</returns>
+        public static Dictionary<string, string> GetCollectionOfCategories()
+        {
+            List<XElement> listOfElements = new List<XElement>();
+            listOfElements = genDataResource.GetCollectionFromSourceFile();
+
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+
+            if (listOfElements.Count > 0)
+                foreach (var element in listOfElements)
+                    dict.Add(element.LastAttribute.Value.ToLower(), element.FirstAttribute.Value.ToLower());
+
+            return dict;
         }
     }
 }

@@ -122,7 +122,7 @@ namespace Calendar
                     if (toastToggle.IsOn)
                     {
                         //save changes
-                        LocalDataManager.SetToastSnoozeValue((comboToast.SelectedIndex + 1).ToString());
+                        LocalDataManager.SetToastSnoozeValue((comboToast.SelectedIndex + 1));
 
                         //set period and create a task
                         uint period = Convert.ToUInt32((comboPeriod.SelectedItem as ComboBoxItem).Content);
@@ -184,6 +184,7 @@ namespace Calendar
         }
 
         #region purchase
+
         private void allBuy_Toggled(object sender, RoutedEventArgs e)
         {
             if (allBuy.IsOn)

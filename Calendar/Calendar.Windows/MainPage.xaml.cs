@@ -125,22 +125,22 @@ namespace Calendar
         #region Notes
         private void note_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            NoteController(sender);
+            RecordController(sender);
         }
 
         private void addNote_Click(object sender, RoutedEventArgs e)
         {
-            AddNoteController();
+            AddRecordController(addNotetb.Text);
         }
 
         private void delNote_Click(object sender, RoutedEventArgs e)
         {
-            DeleteNoteController();
+            DeleteRecordController();
         }
 
         private void changeNote_Click(object sender, RoutedEventArgs e)
         {
-            ChangeNoteController();
+            ChangeRecordController();
         }
 
         private void AddNoteFlyout_Opened(object sender, object e)

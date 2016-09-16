@@ -77,12 +77,12 @@ namespace Calendar.Data.Services
         /// <param name="year">selected year (or 0)</param> 
         /// <param name="needSave">do we need to save document now?</param>
         /// <param name="parentTag">parent tag</param>
-        public void SavePersonal(string name, string day, string month, string year, bool needSave, string parentTag)
+        public void CreateRecord(string name, int day, int month, int year, bool needSave, string parentNode)
         {
             try
             {
                 //add all nodes
-                using (XmlWriter writer = Document.Root.Element(parentTag).CreateWriter())
+                using (XmlWriter writer = Document.Root.Element(parentNode).CreateWriter())
                 {
                     writer.WriteStartElement("persDate");
 
@@ -90,13 +90,13 @@ namespace Calendar.Data.Services
                     writer.WriteString(name);
                     writer.WriteEndAttribute();
                     writer.WriteStartAttribute("date");
-                    writer.WriteString(day);
+                    writer.WriteString(day.ToString());
                     writer.WriteEndAttribute();
                     writer.WriteStartAttribute("month");
-                    writer.WriteString(month);
+                    writer.WriteString(month.ToString());
                     writer.WriteEndAttribute();
                     writer.WriteStartAttribute("year");
-                    writer.WriteString(year);
+                    writer.WriteString(year.ToString());
                     writer.WriteEndAttribute();
 
                     writer.WriteEndElement();
@@ -113,20 +113,20 @@ namespace Calendar.Data.Services
         /// <summary>
         /// Change note
         /// </summary>
-        /// <param name="oldName">old text</param>
-        /// <param name="newName">changed text</param>
+        /// <param name="oldValue">old text</param>
+        /// <param name="newValue">changed text</param>
         /// <param name="day">selected day</param>
         /// <param name="month">selected month</param>
         /// <param name="year">selected year (or 0)</param> 
-        public void ChangePersonal(string oldName, string newName, string day, string month, string year)
+        public void ChangeRecord(string oldValue, string newValue, string day, string month, string year)
         {
             try
             {
                 Document.Root.Descendants("holidays").Descendants("persDate").
-                    Where(p => (p.Attribute("name").Value == oldName)).
+                    Where(p => (p.Attribute("name").Value == oldValue)).
                     Where(p => (p.Attribute("date").Value == day)).
                     FirstOrDefault().
-                    ReplaceAttributes(new XAttribute("name", newName),
+                    ReplaceAttributes(new XAttribute("name", newValue),
                     new XAttribute("date", day),
                     new XAttribute("month", month),
                     new XAttribute("year", year));
@@ -145,7 +145,7 @@ namespace Calendar.Data.Services
         /// Remove note
         /// </summary>
         /// <param name="startText"></param>
-        public void RemoveHoliday(string name, string day, string month, string year)
+        public void RemoveRecord(string name, string day, string month, string year)
         {
             Windows.Data.Xml.Dom.XmlDocument docs = new Windows.Data.Xml.Dom.XmlDocument();
             docs.SelectNodes("sprite");
@@ -217,9 +217,13 @@ namespace Calendar.Data.Services
 
         #region bg operations
 
-        public void SetToastSnoozeValue(string value)
+        /// <summary>
+        /// Set snooze value
+        /// </summary>
+        /// <param name="value">snooze</param>
+        public void SetToastSnoozeValue(int value)
         {
-            Document.Root.Attribute("toast").Value = value;
+            Document.Root.Attribute("toast").Value = value.ToString();
 
             //save changes
             SaveDocument();
@@ -289,14 +293,14 @@ namespace Calendar.Data.Services
                             Count();
 
                         if (count == 0)
-                            SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false, serviceName);
+                            CreateRecord(item.HolidayName, item.Day, item.Month, item.Year, false, serviceName);
 
                     }
                 }
                 catch
                 {
                     foreach (var item in items)
-                        SavePersonal(item.HolidayName, item.Day.ToString(), item.Month.ToString(), item.Year.ToString(), false, serviceName);
+                        CreateRecord(item.HolidayName, item.Day, item.Month, item.Year, false, serviceName);
                 }
 
             SaveDocument();
@@ -327,17 +331,17 @@ namespace Calendar.Data.Services
             }
         }
 
-        public void WriteHolidayTypes(List<string> basicHolidays)
+        public void WriteHolidayTypes(Dictionary<string, string> basicHolidays)
         {
             //remove all nodes
             Document.Root.Descendants("theme").Descendants().Remove();
 
             //add all nodes
-            for (int i = 0; i < basicHolidays.Count(); i += 2)
+            foreach(var element in basicHolidays)
             {
                 using (XmlWriter writer = Document.Root.Descendants().ElementAt(0).CreateWriter())
                 {
-                    DataManager.WriteNode(writer, basicHolidays.ElementAt(i), basicHolidays.ElementAt(i + 1));
+                    DataManager.AddHolidayCategory(writer, element.Value, element.Key);
                 }
             }
 

@@ -43,6 +43,9 @@ namespace Calendar
 #endif
         }
 
+        /// <summary>
+        /// Refresh bottom app panel
+        /// </summary>
         private void PrepareHolidayPanel()
         {
             Style style = (Style)this.Resources["HolidayFlyoutStyle"]; 
@@ -78,20 +81,20 @@ namespace Calendar
             listOfLVI.Add(lviAll);
             listOfLVI.Add(lviPers);
 
-            var subcollection = LocalDataManager.calBase.HolidayNameCollection.Where(el => el.IsChecked == true);
+            var subcollection = LocalDataManager.GetSelectedCategoriesList();
 
-            for(int i = 0; i < subcollection.Count(); i++)
+            for (int i = 0; i < subcollection.Count(); i++)
             {
                 listOfLVI.Add(new ListViewItem
                 {
-                    Content = subcollection.ElementAt(i).Tag,
+                    Content = subcollection.ElementAt(i).Key,
                     Foreground = foreg,
                 });
 
 
                 ToolTip tt = new ToolTip()
                 {
-                    Content = subcollection.ElementAt(i).Content,
+                    Content = subcollection.ElementAt(i).Value,
                     Placement = PlacementMode.Top,
                     FontSize = 16
                 };
@@ -144,7 +147,7 @@ namespace Calendar
             {
                 int month = LocalDataManager.calBase.SelectedDate.Month;
                 LocalDataManager.calBase.Skip(value);
-                LocalDataManager.calBase.ReadHolidayXml();
+                LocalDataManager.calBase.RefreshDataCollection();
 
                 SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
                 SelectedHolidayType = lviAll;
@@ -179,10 +182,7 @@ namespace Calendar
                 }
 #endif
             }
-            else 
-            {
-                monthNameButton.Content = (int)monthNameButton.Content + value;
-            }
+            else monthNameButton.Content = (int)monthNameButton.Content + value;
         }
 
         /// <summary>
@@ -257,12 +257,18 @@ namespace Calendar
                 }
         }
 
+        /// <summary>
+        /// Select another day
+        /// </summary>
+        /// <param name="gotoDay">day to selected</param>
+        /// <param name="gotoMonth">month to select</param>
+        /// <param name="gotoYear">year to select</param>
         private void ChangeDate(int gotoDay, int gotoMonth, int gotoYear)
         {
             int month = LocalDataManager.calBase.SelectedDate.Month;
             LocalDataManager.calBase.Skip(gotoDay, gotoMonth, gotoYear);
             if (month != LocalDataManager.calBase.SelectedDate.Month)
-                LocalDataManager.calBase.ReadHolidayXml();
+                LocalDataManager.calBase.RefreshDataCollection();
 
             //Shows month and year in the top of calGrid\
             FillCalendar();
@@ -272,6 +278,10 @@ namespace Calendar
             gviPrev.BorderBrush = gviPrev.Foreground;
         }
 
+        /// <summary>
+        /// Prepare decade panel
+        /// </summary>
+        /// <param name="sender">sender grid</param>
         private void DecadeItemController(object sender)
         {
             int year = Convert.ToInt32(monthNameButton.Content);
@@ -301,7 +311,11 @@ namespace Calendar
 #endregion
 
 #region notes controller
-        private void NoteController(object sender)
+        /// <summary>
+        /// Process record selection
+        /// </summary>
+        /// <param name="sender"></param>
+        private void RecordController(object sender)
         {
             if (gviPrev != null)
             {
@@ -372,21 +386,18 @@ namespace Calendar
             }
         }
         
-        private void AddNoteController()
+        /// <summary>
+        /// Add new record
+        /// </summary>
+        /// <param name="recordText"></param>
+        private void AddRecordController(string recordText)
         {
             int year = 0, month = 0, day = 0;
             RepeatPeriodChecker(ref month, ref year, ref day);
-            if (addNotetb.Text != String.Empty)
-            {
-                DataManager.SavePersonal(addNotetb.Text,
-                    day.ToString(),
-                    month.ToString(),
-                    year.ToString(),
-                    true,
-                    "holidays");
-            }
+            if (recordText != String.Empty)
+                DataManager.CreateRecord(recordText, day, month, year);            
 
-            LocalDataManager.calBase.ReadHolidayXml();
+            LocalDataManager.calBase.RefreshDataCollection();
 
             UpdateNoteList();
 
@@ -397,47 +408,51 @@ namespace Calendar
             }
 
             AddNoteFlyout.Hide();
-        }        
+        }
 
         /// <summary>
-        /// Gets month and year
+        /// Check snooze
         /// </summary>
-        /// <returns>year</returns>
+        /// <param name="month">month</param>
+        /// <param name="year">year</param>
+        /// <param name="day">day</param>
         private void RepeatPeriodChecker(ref int month, ref int year, ref int day)
         {
             if (everyYear.IsChecked == true)
             {
                 year = 0;
                 month = LocalDataManager.calBase.SelectedDate.Month;
-                day = LocalDataManager.calBase.SelectedDate.Day;
             }
             else if (everyMonth.IsChecked == true)
             {
                 year = 0;
                 month = 0;
-                day = LocalDataManager.calBase.SelectedDate.Day;
             }
             else
             {
                 year = LocalDataManager.calBase.SelectedDate.Year;
                 month = LocalDataManager.calBase.SelectedDate.Month;
-                day = LocalDataManager.calBase.SelectedDate.Day;
             }
+
+            day = LocalDataManager.calBase.SelectedDate.Day;
         }
 
-        private void DeleteNoteController()
+        /// <summary>
+        /// Remove selected record
+        /// </summary>
+        private void DeleteRecordController()
         {
             int year = 0, month = 0, day = 0;
             RepeatPeriodChecker(ref month, ref year, ref day);
             if (addNotetb.Text != String.Empty)
             {
-                DataManager.RemoveHoliday(startText.ToString(),
+                DataManager.RemoveRecord(startText.ToString(),
                     day.ToString(),
                     month.ToString(),
                     year.ToString());
             }
 
-            LocalDataManager.calBase.ReadHolidayXml();
+            LocalDataManager.calBase.RefreshDataCollection();
 
             if (gviPrev != null)
                 UpdateNoteList();
@@ -451,7 +466,10 @@ namespace Calendar
             AddNoteFlyout.Hide();
         }
 
-        private void ChangeNoteController()
+        /// <summary>
+        /// Change selected record
+        /// </summary>
+        private void ChangeRecordController()
         {
             if (addNotetb.Text != "")
             {
@@ -459,7 +477,7 @@ namespace Calendar
                 RepeatPeriodChecker(ref month, ref year, ref day);
                 if (addNotetb.Text != String.Empty)
                 {
-                    DataManager.ChangePersonal(
+                    DataManager.ChangeRecord(
                         startText.ToString(), 
                         addNotetb.Text,
                         day.ToString(),
@@ -467,7 +485,7 @@ namespace Calendar
                         year.ToString());
                 }
 
-                LocalDataManager.calBase.ReadHolidayXml();
+                LocalDataManager.calBase.RefreshDataCollection();
 
                 UpdateNoteList();
             }
@@ -481,23 +499,9 @@ namespace Calendar
         /// Save selected holiday types into the xml-file
         /// </summary>
         private void SaveHolidayTypes()
-        {
-            List<string> ls = new List<string>();
-            foreach (var lv in listOfHolidays.Items)
-            {
-                if (lv is CheckBox && (lv as CheckBox).IsChecked == true)
-                {
-                    ls.Add((lv as CheckBox).Content.ToString());
-                    ls.Add((lv as CheckBox).Tag.ToString());
-                }
-            }
-
-            LocalDataManager.WriteHolidayXml(ls);
-
+        {            
+            LocalDataManager.calBase.RefreshBottomPanelAndCalendar(listOfHolidays.Items.Where(item => item is CheckBox));
             PrepareHolidayPanel();
-
-            LocalDataManager.calBase.ReadHolidayXml();
-            LocalDataManager.calBase.FillHolidaysList();
 
             SelectedHolidayType.Foreground = Application.Current.Resources["HolidayTitleColor"] as Brush;
             SelectedHolidayType = lviAll;
@@ -509,6 +513,10 @@ namespace Calendar
             HolidayFlyout.Hide();
         }
 
+        /// <summary>
+        /// Selected type (category) of holiday
+        /// </summary>
+        /// <param name="sender"></param>
         private void HolidayTypesController(ListViewItem sender)
         {
             if (sender.Content != null)
@@ -587,8 +595,7 @@ namespace Calendar
 
         private void RefreshPage()
         {
-            LocalDataManager.calBase.ReadHolidayXml();
-            LocalDataManager.calBase.FillHolidaysList();
+            LocalDataManager.calBase.RefreshBottomPanelAndCalendar(null);
 
             MarkHolidays();
             UpdateNoteList();

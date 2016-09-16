@@ -17,10 +17,19 @@ namespace Calendar.Data.Services
 
         public Dictionary<string, string> SelectedCategories { get; private set; }
 
-        public GeneralDataResource()
+        public GeneralDataResource(List<XElement> collection)
         {
             Document = LoadFile(Path, null);
             SelectedCategories = new Dictionary<string, string>();
+
+            //set dictionary
+            foreach(var item in collection)
+                SelectedCategories.Add(item.Attribute("name").Value, item.Attribute("desc").Value);
+        }
+
+        public void ResetSelectedCategories(Dictionary<string, string> categories)
+        {
+            SelectedCategories = categories;
         }
 
         /// <summary>
@@ -40,21 +49,14 @@ namespace Calendar.Data.Services
         {
             return Document.Root.Descendants("month").ElementAt(0).Descendants("holiday").ToList();
         }
+        
 
-
-        public void SetSelectedCategoriesList(List<XElement> collection)
-        {
-            SelectedCategories = new Dictionary<string, string>();
-
-            //get themes (categories)
-            var keys = collection.Select(x => x.Attribute("name").Value).ToList();
-            var values = collection.Select(x => x.Attribute("desc").Value).ToList();
-
-            //set dictionary
-            for (int i = 0; i < keys.Count; i++)
-                SelectedCategories.Add(keys[i], values[i]);
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="SelectedDate"></param>
+        /// <param name="collectionType"></param>
+        /// <returns></returns>
         public List<DocElement> GetCollectionFromSourceFile(DateTime SelectedDate, string collectionType)
         {
             var holidayCollection = new List<DocElement>();

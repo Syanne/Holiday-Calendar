@@ -117,7 +117,7 @@ namespace Calendar
 
         private void note_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            NoteController(sender);
+            RecordController(sender);
         }
         private void butPrev1_Tapped(object sender, TappedRoutedEventArgs e)
         {
@@ -137,7 +137,7 @@ namespace Calendar
                 LocalDataManager.calBase.SelectedDate = LocalDataManager.calBase.SelectedDate.AddDays(value);
                 if (month != LocalDataManager.calBase.SelectedDate.Month)
                 {
-                    LocalDataManager.calBase.ReadHolidayXml();
+                    LocalDataManager.calBase.RefreshDataCollection();
 
                     FillCalendar();
                     MarkHolidays();
@@ -205,18 +205,18 @@ namespace Calendar
 
         private void addNote_Click(object sender, RoutedEventArgs e)
         {
-            AddNoteController();
+            AddRecordController(addNotetb.Text);
         }
 
 
         private void delNote_Click(object sender, RoutedEventArgs e)
         {
-            DeleteNoteController();
+            DeleteRecordController();
         }
 
         private void changeNote_Click(object sender, RoutedEventArgs e)
         {
-            ChangeNoteController();
+            ChangeRecordController();
         }
 
 

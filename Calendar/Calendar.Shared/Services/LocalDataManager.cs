@@ -17,7 +17,7 @@ namespace Calendar.Services
 
         public static void StartLoad()
         {
-            LoadPersonalData(true);
+            LoadApplicationDataFiles(true);
             #if !WINOWS_PHONE_APP
                 EnableService();
             #endif
@@ -125,9 +125,10 @@ namespace Calendar.Services
         /// Save changes in file with personal data
         /// </summary>
         /// <param name="basicHolidays">selected kinds of holidays</param>
-        public static void WriteHolidayXml(List<string> basicHolidays)
+        public static void WriteHolidayXml(Dictionary<string, string> basicHolidays)
         {
             persDataResource.WriteHolidayTypes(basicHolidays);
+            genDataResource.ResetSelectedCategories(basicHolidays);
         }
     }
 }
